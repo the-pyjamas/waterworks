@@ -1,0 +1,283 @@
+{% load static %}
+
+<!-- app-header -->
+<div class="app-header-area">
+
+    <header class="app-header" id="header">
+        <div class="app-header-inner">
+            <div class="app-header-left">
+                <div class="d-flex align-center gap-15">
+                    <div class="app-header-element">
+                        <a
+                        class="sidebar-toggle-bar"
+                        href="javascript:void(0);"
+                        id="sidebarToggle"
+                        >
+                        <div class="sidebar-menu-bar">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        </a>
+                    </div>
+                    <div class="app-header-ls-logo">
+                        <!-- large screen logo -->
+                        <a class="app-header-ls-dark-logo" href="index.html">
+                            <img alt="image" src="{% static 'images/logo/logo-black.svg' %}" />
+                        </a>
+                        <a class="app-header-ls-light-logo" href="index.html">
+                            <img alt="image" src="{% static 'images/logo/logo-white.svg' %}" />
+                        </a>
+                    </div>
+                    <div class="app-header-mobile-logo">
+                        <a class="app-header-dark-logo" href="index.html">
+                            <img alt="image" src="{% static 'images/logo/mobile-logo.svg' %}" />
+                        </a>
+                        <a class="app-header-light-logo" href="index.html">
+                            <img
+                                alt="image"
+                                src="{% static 'images/logo/mobile-logo-light.svg' %}"
+                            />
+                        </a>
+                    </div>
+                </div>
+                <div class="app-header-search d-none d-lg-block">
+                    <form action="#">
+                        <input
+                        class="form-control"
+                        placeholder="جستجو ..."
+                        type="text"
+                        />
+                        <button type="submit">
+                            <i class="ri-search-line"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="app-header-right">
+                <div class="app-header-search-modal">
+                    <button
+                        class="app-header-circle"
+                        data-bs-target="#searchModal"
+                        data-bs-toggle="modal"
+                        type="button"
+                    >
+                        <i class="ri-search-line"></i>
+                    </button>
+                </div>
+                <div class="app-header-link">
+                    <div class="dropdown">
+                        <a
+                            aria-expanded="false"
+                            class="dropdown-toggle"
+                            data-bs-toggle="dropdown"
+                            href="javascript:void(0);"
+                            role="button">
+                            <span class="app-header-circle">
+                                <i class="ri-global-line"></i>
+                            </span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-lang" href="javascript:void(0);">
+                                    <img
+                                    alt="image not found"
+                                    src="{% static 'images/flags/us-flag.jpg' %}"/>
+                                    انگلیسی
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-lang" href="javascript:void(0);">
+                                    <img
+                                    alt="image not found"
+                                    src="{% static 'images/flags/uae-flag.jpg' %}"/>
+                                    العربية
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-lang" href="javascript:void(0);">
+                                    <img
+                                    alt="image not found"
+                                    src="{% static 'images/flags/china-flag.jpg' %}"/>
+                                    中文
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-lang" href="javascript:void(0);">
+                                    <img
+                                    alt="image not found"
+                                    src="{% static 'images/flags/spain-flag.jpg' %}"/>
+                                    لاتول
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="app-header-switcher app-header-circle">
+                    <div class="theme-switcher">
+                        <i class="ri-sun-line change-theme theme-button"></i>
+                    </div>
+                </div>
+                <div class="app-header-fullscreen app-header-circle cursor-pointer">
+                    <div onclick="javascript:toggleFullScreen()">
+                        <i class="ri-fullscreen-line"></i>
+                    </div>
+                </div>
+                <div class="app-header-notification">
+                    <div class="dropdown">
+                        <a
+                            aria-expanded="false"
+                            class="dropdown-toggle"
+                            data-bs-toggle="dropdown"
+                            href="javascript:void(0);"
+                            role="button">
+                            <span class="app-header-circle">
+                                <i class="ri-notification-line"></i>
+                            </span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-menu-header">
+                                <h5>اعلان</h5>
+                                <span class="badge bg-label-primary">8 جدید</span>
+                            </li>
+                            <li class="dropdown-notifications-list card-scrollbar">
+                                <ul>
+                                    <li class="dropdown-notifications-list-item">
+                                        <div class="avatar">
+                                            <img
+                                                alt="image not found"
+                                                class="radius-100"
+                                                src="{% static 'images/avatar/avatar-thumb-001.webp' %}"/>
+                                        </div>
+                                        <div class="content">
+                                            <h6 class="mb-5">سفارش جدید دریافت شده است</h6>
+                                            <p class="mb-5">
+                                                سفارش شماره 14523 توسط جمشید ایرانیی قرار داده شده
+                                                است
+                                            </p>
+                                            <span class="text-body-secondary">همین الان</span>
+                                        </div>
+                                        <div class="notifications-actions d-flex direction-column align-center">
+                                            <a
+                                                class="dropdown-notifications-read d-block pt-5"
+                                                href="javascript:void(0);">
+                                                <span class="bullet bg-primary"></span>
+                                            </a>
+                                            <a
+                                                class="dropdown-notifications-archive"
+                                                href="javascript:void(0);">
+                                                <i class="ri-close-line"></i>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="dropdown-notifications-list-item">
+                                        <div class="avatar">
+                                            <img
+                                                alt="image not found"
+                                                class="radius-100"
+                                                src="{% static 'images/avatar/avatar-thumb-002.webp' %}"/>
+                                        </div>
+                                        <div class="content">
+                                            <h6 class="mb-5">هشدار سهام کم ⚠</h6>
+                                            <p class="mb-5">
+                                                فقط 3 مورد برای "Smartwatch Pro X" در انبار باقی
+                                                مانده است
+                                            </p>
+                                            <span class="text-body-secondary">10 دقیقه پیش</span>
+                                        </div>
+                                        <div class="notifications-actions d-flex direction-column align-center">
+                                            <a
+                                                class="dropdown-notifications-read d-block pt-5"
+                                                href="javascript:void(0);">
+                                                <span class="bullet bg-primary"></span>
+                                            </a>
+                                            <a
+                                                class="dropdown-notifications-archive"
+                                                href="javascript:void(0);">
+                                                <i class="ri-close-line"></i>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li class="dropdown-notifications-list-item">
+                                        <div class="avatar">
+                                            <img
+                                                alt="image not found"
+                                                class="radius-100"
+                                                src="{% static 'images/avatar/avatar-thumb-003.webp' %}"/>
+                                        </div>
+                                        <div class="content">
+                                            <h6 class="mb-5">مشتری جدید ثبت شده</h6>
+                                            <p class="mb-5">
+                                                سارا ویلیامز به فروشگاه شما پیوسته است
+                                            </p>
+                                            <span class="text-body-secondary">30 دقیقه پیش</span>
+                                        </div>
+                                        <div class="notifications-actions d-flex direction-column align-center">
+                                            <a
+                                                class="dropdown-notifications-archive"
+                                                href="javascript:void(0);">
+                                                <i class="ri-close-line"></i>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="app-header-user">
+                    <div class="dropdown">
+                        <a
+                            aria-expanded="false"
+                            class="dropdown-toggle"
+                            data-bs-toggle="dropdown"
+                            href="javascript:void(0);"
+                            role="button">
+                            <div class="author">
+                                <div class="author-thumb">
+                                    <img
+                                        alt="user"
+                                        src="{% static 'images/avatar/avatar-thumb-001.webp' %}"/>
+                                </div>
+                                <h6 class="author-name lh-1">جمشید ایرانی</h6>
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu">
+                            {% if request.user.is_authenticated %}
+                                <li class="bd-user-info-list">
+                                    <a href="app-user-account.html">
+                                        <i class="ri-user-line"></i>
+                                        مشخصات
+                                    </a>
+                                </li>
+                                <hr>
+                                <li class="bd-user-info-list">
+                                    <a href="{% url 'accounts:user-logout' %}">
+                                        <i class="ri-logout-circle-line"></i>
+                                        خروج از سیستم
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li class="bd-user-info-list">
+                                    <a href="{% url 'accounts:user-login' %}">
+                                        <i class="ri-logout-circle-line"></i>
+                                        ورود به سیستم
+                                    </a>
+                                </li>
+                                <li class="bd-user-info-list">
+                                    <a href="{% url 'accounts:user-register' %}">
+                                        <i class="ri-logout-circle-line"></i>
+                                        ثبت‌نام در سیستم
+                                    </a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="body__overlay"></div>
+
+</div>

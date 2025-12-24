@@ -1,0 +1,37 @@
+{% if messages %}
+    <style>
+        .msg-popup{
+            position:fixed;
+            top:20px;
+            right:20px;
+            color:#fff;
+            padding:20px 30px;
+            border-radius:8px;
+            z-index:9999;
+            opacity:0;
+            animation:fadeInOut 4s forwards;
+            font-size: 2rem;
+        }
+
+        /* colors based on tags */
+        .msg-popup.success{ background:#28a745; }   /* green */
+        .msg-popup.danger{ background:#dc3545; }    /* red */
+        .msg-popup.error{ background:#dc3545; }     /* alias */
+        .msg-popup.warning{ background:#ffc107; color:#000; } /* yellow */
+        .msg-popup.info{ background:#0dcaf0; }
+
+        /* animation */
+        @keyframes fadeInOut{
+        0%{opacity:0;transform:translateY(-10px)}
+        10%{opacity:1;transform:translateY(0)}
+        90%{opacity:1}
+        100%{opacity:0;transform:translateY(-10px)}
+        }
+    </style>
+
+    {% for msg in messages %}
+        <div class="msg-popup {{ msg.tags }}">
+            {{ msg }}
+        </div>
+    {% endfor %}
+{% endif %}

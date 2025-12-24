@@ -1,0 +1,155 @@
+@import url(aghdasi-typo/typography.css);
+
+/*
+* RTL File By Farham Aghdasi
+! RTL-THEMES | Orginal Version With Comments
+* Dashnix HTML Template 1404-1405
+*/
+
+/**
+* 50+ Persian Font In Template For free
+* Support me by giving me 5 star !  
+*/
+:root {
+  --font-anjoman: "anjoman";
+  --font-anjoman-bold: "anjoman-bold";
+  --font-aviny: "aviny";
+  --font-behdad: "behdad";
+  --font-dima: "dima";
+  --font-dordane: "dordane";
+  --font-dastnevis: "dastnevis";
+  --font-dana: "dana";
+  --font-dana-bold: "dana-bold";
+  --font-dana-bold-latin: "dana-bold-latin";
+  --font-dana-light: "dana-light";
+  --font-dana-medium: "dana-medium";
+  --font-dana-regular: "dana-regular";
+  --font-dana-thin: "dana-thin";
+  --font-fanavari-bold: "fanavari-bold";
+  --font-fanavari-regular: "fanavari-regular";
+  --font-estedad-bold: "estedad-bold";
+  --font-estedad-light: "estedad-light";
+  --font-estedad-medium: "estedad-medium";
+  --font-hilda: "hilda";
+  --font-hekayat: "hekayat";
+  --font-hana: "hana";
+  --font-hala: "hala";
+  --font-hoor: "hoor";
+  --font-iran: "iran";
+  --font-iran-gerd: "iran-gerd";
+  --font-khandevane: "khandevane";
+  --font-kalameh: "kalameh";
+  --font-khaton: "khaton";
+  --font-lalezar: "lalezar";
+  --font-mahboubeh: "mahboubeh";
+  --font-nahid: "nahid";
+  --font-negaar: "negaar";
+  --font-negaar-bold: "negaar-bold";
+  --font-nic: "nic";
+  --font-pinar: "pinar";
+  --font-pinar-ds1: "pinar ds1";
+  --font-pinar-ds2: "pinar ds2";
+  --font-iranyekan: "iranyekan";
+  --font-iranyekanweb: "iranyekanweb";
+  --font-vazirmatn-thin: "vazirmatn";
+  --font-vazirmatn-extralight: "vazirmatn";
+  --font-vazirmatn-light: "vazirmatn";
+  --font-vazirmatn-regular: "vazirmatn";
+  --font-vazirmatn-medium: "vazirmatn";
+  --font-vazirmatn-semibold: "vazirmatn";
+  --font-vazirmatn-bold: "vazirmatn";
+  --font-vazirmatn-extrabold: "vazirmatn";
+  --font-vazirmatn-black: "vazirmatn";
+  --font-yekanbakh-light: "yekanbakh";
+  --font-estedad: "estedad";
+  --font-yekanbakh-regular: "yekanbakh";
+  --font-yekanbakh-semibold: "yekanbakh";
+  --font-yekanbakh-bold: "yekanbakh";
+  --font-yekanbakh-extrabold: "yekanbakh";
+  --font-iransans: "iransans";
+  --font-iransans-medium: "iransans-medium";
+}
+
+/**
+  * Fonts
+  */
+h1 {
+  font-family: "Gofteh", Sans-serif !important;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Morabba", Sans-serif !important;
+}
+
+p,
+.fa-fix,
+.tooltip-inner,
+.datepicker-plot-area,
+.apexcharts-xaxis-texts-g text,
+.apexcharts-text tspan,
+.card-title,
+.fa,
+.card-content h2,
+.attendance-info h2,
+.fs-14text-muted,
+.card-header h4,
+.countdown-timer h3,
+h2.amount {
+  font-family: "YekanBakhFaNum-Regular", Sans-serif !important;
+}
+
+.autoplay-progress {
+  font-size: 80%;
+}
+
+
+*:not(h1, h2, h3, h4, h5, h6, i, p, div,.fa,code,.ri-star-fill,.ri-star-line,
+.fc-icon) {
+  font-family: "IRANYekanX", Sans-serif !important;
+}
+
+
+/*-----------------------------------
+  RTL Direction Setup
+------------------------------------*/
+body {
+  direction: rtl;
+  overflow-x: hidden !important;
+}
+.ovw-h {
+  overflow-x: hidden !important;
+}
+.apexcharts-legend-series,
+.apexcharts-tooltip.apexcharts-active,
+.select2-container--default .select2-results>.select2-results__options,
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  direction: rtl !important;
+}
+.apexcharts-tooltip-series-group.apexcharts-active .apexcharts-tooltip-marker {
+  direction: rtl !important;
+}
+.num-fix {
+  direction: ltr !important;
+  text-align: center;
+}
+.d-unset {
+  display: unset !important;
+}
+
+* {
+  letter-spacing: 0 !important;
+}
+
+.ri-star-half-line {
+  transform: scale(-1,1);
+}
+
+pre,
+code,
+.ltr {
+  direction: ltr !important;
+}

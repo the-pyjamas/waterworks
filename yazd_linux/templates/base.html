@@ -1,0 +1,65 @@
+{% load static %}
+
+<!doctype html>
+<html class="no-js" lang="fa">
+<head>
+    {% include 'includes/head.html' %}
+</head>
+
+<body class="body-area">
+
+    <!-- Dashboard page wrapper start -->
+    <div class="page">
+        {% include 'includes/header.html' %}
+
+		<!-- Start app-sidebar -->
+		<aside class="app-sidebar sticky" id="sidebar">
+
+			<!-- start app-sidebar-header -->
+			<div class="app-sidebar-header">
+				<a class="desktop-logo" href="index.html">
+				<img alt="image" src="{% static 'images/logo/logo-black.svg' %}" />
+				</a>
+				<a class="desktop-dark" href="index.html">
+				<img alt="image" src="{% static 'images/logo/logo-white.svg' %}" />
+				</a>
+			</div>
+			<!-- end app-sidebar-header -->
+
+            {% include 'includes/sidebar.html' %}
+
+		</aside>
+		{% include 'includes/messages.html' %}
+		<div class="app-offcanvas-overlay"></div>
+		<!-- end app-sidebar -->
+
+		<!-- app-content-area-start -->
+		{% block content %}
+		{% endblock content %}
+		<!-- app-content-area-end -->
+
+    </div>
+    <!-- Dashboard page wrapper end -->
+
+    <!-- back to top area start -->
+    <div class="progress-wrap">
+		<svg
+		class="progress-circle svg-content"
+		height="100%"
+		viewbox="-1 -1 102 102"
+		width="100%">
+		<path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"></path>
+		</svg>
+    </div>
+    <!-- back to top area end -->
+    {% include 'includes/theme_switcher.html' %}
+
+    {% include 'includes/preloader.html' %}
+
+    {% include 'includes/footer.html' %}
+    {% include 'includes/search.html' %}
+
+    {% include 'includes/js_links.html' %}
+
+</body>
+</html>
