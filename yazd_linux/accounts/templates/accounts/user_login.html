@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+    <div class="authentication-wrapper basic-authentication" style="margin-top: 5%;">
+        <div class="authentication-inner">
+            <div class="card">
+                <div class="authentication-top text-center mb-25">
+                    <a class="authentication-logo logo-black" href="javascript:;">
+                        <img alt="logo" src="{% static 'images/logo/logo-black.svg' %}" />
+                    </a>
+                    <a class="authentication-logo logo-white" href="javascript:;">
+                        <img alt="logo" src="{% static 'images/logo/logo-white.svg' %}" />
+                    </a>
+                    <h4 class="mb-5">به Dashnix خوش آمدید</h4>
+                    <p>لطفاً وارد حساب خود شوید و ماجراجویی را شروع کنید</p>
+                </div>
+
+                <form action="" class="" method="POST">
+                    {% csrf_token %}
+                    {{ form.non_field_errors }}
+
+                    <div class="mb-10">
+                        <label class="form-label" for="nameEmail">{{ form.phone_number.label }}</label>
+                        {{ form.phone_number }}
+                    </div>
+                    <div class="mb-15">
+                        <div class="d-flex justify-content-between mb-5">
+                            <label class="form-label mb-0" for="password">{{ form.password.label }}</label>
+                            <!-- <a class="text-body" href="auth-auth-forgot-password-basic.html">
+                                فراموشی رمز عبور؟
+                            </a> -->
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                {{ form.password }}
+                                <button class="input-group-text text-black toggle-password" type="button">
+                                    <i class="ri-eye-line fs-20"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-25">
+                        <div class="form-check">
+                            <input
+                            class="form-check-input"
+                            id="remember-me"
+                            type="checkbox"
+                            />
+                            <label class="form-check-label" for="remember-me">من را به یاد بیاورید</label>
+                        </div>
+                    </div>
+                    <div class="mb-25">
+                        <button class="btn btn-primary w-100" type="submit">
+                            ورود به سیستم
+                        </button>
+                    </div>
+                </form>
+
+                <p class="text-center underline">
+                    <span>حساب کاربری ندارید؟</span>
+                    <a class="fw-bold" href="{% url 'accounts:user-register' %}">
+                        <span>ایجاد یک حساب</span>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
