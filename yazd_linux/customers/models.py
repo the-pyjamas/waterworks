@@ -74,5 +74,19 @@ class Customer(BaseModel):
         verbose_name = _("Customer")
         verbose_name_plural = _("Customers")
 
-    # def __str__(self):
-    #     return f"{self.phone_number}"
+    def __str__(self) -> str:
+        """
+        Returns the user info by checking the important info.
+        """
+        lastname = self.user.userprofile.last_name or None
+        username = self.user.username or None
+        phone_number = self.user.phone_number
+
+        if lastname and username:
+            return f"{phone_number} - {username} - {lastname}"
+        elif lastname and not username:
+            return f"{phone_number} - {lastname}"
+        elif username and not lastname:
+            return f"{phone_number} - {username}"
+        else:
+            return f"{phone_number}"

@@ -3,19 +3,35 @@ from django.utils.translation import gettext_lazy as _
 
 from .models import Vendor
 
+
 @admin.register(Vendor)
 class VendorAdmin(admin.ModelAdmin):
-    list_display = ("name", "shop_name", "contact_phone", "is_active")
+    list_display = (
+        "user__phone_number",
+        "shop_name",
+        "contact_phone",
+        "is_active"
+    )
     list_filter = ("is_active", "created_at", "updated_at")
-    search_fields = ("name", "shop_name", "contact_email", "address")
+    search_fields = (
+        "user__phone_number",
+        "user__username",
+        "shop_name",
+        "contact_email",
+    )
     readonly_fields = ("created_at", "updated_at")
-    ordering = ("name",)
+    ordering = ("user",)
 
 
     fieldsets = (
         (_("Vendor Information"),
             {
-                "fields": ("name", "shop_name", "contact_email", "contact_phone", "address")
+                "fields": (
+                    "user",
+                    "shop_name",
+                    "contact_email",
+                    "contact_phone",
+                )
             }
         ),
         (_("Status & Timestamps"),
@@ -29,7 +45,12 @@ class VendorAdmin(admin.ModelAdmin):
     add_fieldsets = (
         (_("Vendor Information"),
             {
-                "fields": ("name", "shop_name", "contact_email", "contact_phone", "address")
+                "fields": (
+                    "user",
+                    "shop_name",
+                    "contact_email",
+                    "contact_phone",
+                )
             }
         ),
         (_("Status & Timestamps"),
