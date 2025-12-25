@@ -2,8 +2,16 @@ from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
-from accounts.models import User
+from accounts.models import User, UserProfile
 from accounts.user_admin_form import UserCreationForm, UserChangeForm
+
+
+class UserProfileInline(admin.TabularInline):
+    model = UserProfile
+    fields = (
+        "first_name", "last_name", "address"
+    )
+    readonly_fields = ("created_at", "updated_at")
 
 
 @admin.register(User)
@@ -18,6 +26,7 @@ class UserAdmin(BaseUserAdmin):
     ordering = ["phone_number", "username"]
     filter_horizontal = ["groups", "user_permissions"]
     list_per_page = 30
+    inlines = (UserProfileInline,)
 
     fieldsets = (
         [_("Personal Information"),
