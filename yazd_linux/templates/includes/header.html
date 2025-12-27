@@ -227,25 +227,41 @@
                 </div>
                 <div class="app-header-user">
                     <div class="dropdown">
-                        <a
-                            aria-expanded="false"
-                            class="dropdown-toggle"
-                            data-bs-toggle="dropdown"
-                            href="javascript:void(0);"
-                            role="button">
-                            <div class="author">
-                                <div class="author-thumb">
-                                    <img
-                                        alt="user"
-                                        src="{% static 'images/avatar/avatar-thumb-001.webp' %}"/>
+                        {% if request.user.is_authenticated %}
+                            <a
+                                aria-expanded="false"
+                                class="dropdown-toggle"
+                                data-bs-toggle="dropdown"
+                                href="javascript:void(0);"
+                                role="button">
+
+                                <div class="author">
+                                    <div class="author-thumb">
+                                        <img
+                                            alt="user"
+                                            src="{% static 'images/avatar/avatar-thumb-001.webp' %}"/>
+                                    </div>
+                                    {% if request.user.userprofile.first_name and request.user.userprofile.last_name %}
+                                        <h6 class="author-name lh-1">
+                                            {{ request.user.userprofile.first_name }}
+                                            {{ request.user.userprofile.last_name }}
+                                        </h6>
+                                    {% elif request.user.username %}
+                                        <h6 class="author-name lh-1">
+                                            {{ request.user.username }}
+                                        </h6>
+                                    {% else %}
+                                        <h6 class="author-name lh-1">
+                                            {{ request.user.phone_number }}
+                                        </h6>
+                                    {% endif %}
                                 </div>
-                                <h6 class="author-name lh-1">جمشید ایرانی</h6>
-                            </div>
-                        </a>
+                            </a>
+                        {% endif %}
                         <ul class="dropdown-menu">
                             {% if request.user.is_authenticated %}
                                 <li class="bd-user-info-list">
-                                    <a href="app-user-account.html">
+                                    <a href="{% url 'accounts:user-profile-update' %}">
                                         <i class="ri-user-line"></i>
                                         مشخصات
                                     </a>

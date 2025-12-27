@@ -3,7 +3,9 @@ from django.urls import path
 from accounts.views import (
     UserLoginView,
     UserRegisterView,
-    UserLogoutView
+    UserLogoutView,
+    # User Profile
+    UserProfileUpdateView
 )
 
 
@@ -14,5 +16,8 @@ AUTHENTICATION_URLS = [
     path("register/", UserRegisterView.as_view(), name="user-register"),
     path("logout/", UserLogoutView.as_view(), name="user-logout"),
 ]
+USER_PROFILE_URLS = [
+    path("profile/update/", UserProfileUpdateView.as_view(), name="user-profile-update")
+]
 
-urlpatterns = AUTHENTICATION_URLS
+urlpatterns = AUTHENTICATION_URLS + USER_PROFILE_URLS
