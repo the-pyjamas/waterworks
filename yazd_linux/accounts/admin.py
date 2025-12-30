@@ -48,6 +48,12 @@ class UserAdmin(BaseUserAdmin):
                 )
             }
         ],
+        [_("Role"),
+            {
+                "classes": ("collapse",),
+                "fields": ("role",)
+            }
+        ],
     )
 
     add_fieldsets = (
