@@ -3,12 +3,14 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 DJANGO_URLS = [
     path('admin/', admin.site.urls),
 ]
 LOCAL_URLS = [
     path("", include("dashboard.urls", namespace="dashboard")),
     path("accounts/", include("accounts.urls", namespace="accounts")),
+    path("customers/", include("customers.urls", namespace="customers")),
 ]
 
 urlpatterns = DJANGO_URLS + LOCAL_URLS

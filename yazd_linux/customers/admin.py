@@ -34,7 +34,7 @@ class CustomerAdmin(admin.ModelAdmin):
                 "fields": ("vendor", "technician", "description")
             }
         ),
-        (_("Address & Service Dates"),
+        (_("Service Dates"),
             {
                 "classes": ("collapse",),
                 "fields": (
@@ -64,7 +64,7 @@ class CustomerAdmin(admin.ModelAdmin):
                 "fields": ("vendor", "technician", "description")
             }
         ),
-        (_("Address & Service Dates"),
+        (_("Service Dates"),
             {
                 "classes": ("collapse",),
                 "fields": (

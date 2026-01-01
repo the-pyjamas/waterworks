@@ -1,0 +1,1 @@
+from .customer_crud_view import CreateCustomerUserView
