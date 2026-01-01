@@ -9,12 +9,12 @@ from accounts.models import User
 
 
 
-class UserRegisterForm(forms.Form):
+class UserSoftRegisterForm(forms.Form):
     """
     User registration form class.
 
     Handle user registration, its exceptions and validations.
-    Validates matched passwords and valid phone-number.
+    Validates phone-number.
     Validates the existence user with the phone-number.
     """
     phone_number = PhoneNumberField(
@@ -25,10 +25,6 @@ class UserRegisterForm(forms.Form):
         label=_("Password"),
         widget=forms.PasswordInput(),
         validators=[validate_password]
-    )
-    password_repeat = forms.CharField(
-        label=_("Repeat your password"),
-        widget=forms.PasswordInput()
     )
 
     def __init__(self, *args, **kwargs):
@@ -68,23 +64,3 @@ class UserRegisterForm(forms.Form):
             )
 
         return phone_number
-
-    def clean(self):
-        """
-        General cleaning!
-
-        Validates the password repeatition.
-        Check if the passwords matched or not.
-        """
-        data = super().clean()
-
-        # Clean passwords
-        p1 = data.get("password")
-        p2 = data.get("password_repeat")
-
-        if p1 and p2 and p2 != p1:
-            # Add validation error if the passwords do not match together
-            self.add_error(
-                "password",
-                ValidationError(_("Passwords must match."))
-            )
