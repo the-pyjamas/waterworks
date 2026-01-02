@@ -100,9 +100,13 @@ class BaseUserSoftRegisterView(LoginRequiredMixin, View):
                 password=cleaned_data["password"],
                 role=self.user_role
             )
+            # Deactive user until its role profile created
             user.is_active = False
             user.save()
 
+            # Keep created user-id in the session
+            # to use it for creating a role object
+            # base on created user-role
             request.session["user_role_registered_id"] = user.id
             request.session.modified = True
 

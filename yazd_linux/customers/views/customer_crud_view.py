@@ -67,26 +67,39 @@ class CreateCustomerView(LoginRequiredMixin, View):
         )
 
     def post(self, request):
+        """
+        Getting created user with 'customer' role
+        and create a role profile (Customer) for the user.
+        Activate user after its Customer profile created successfully,
+        and then delete the session which contains the created user-id.
+        """
         form = self.form_class(request.POST)
+        # Get user-id from the session
         user_id = request.session.get("user_role_registered_id")
 
+        # Check if there's not any user with the user-id
+        # render an error message and redirect user to the dashboard
         if not user_id:
             messages.error(
                 request=request,
                 message=_("No user found for customer creation."),
                 extra_tags="danger"
             )
-            return redirect("/")
+            return redirect("dashboard:dashboard")
 
+        # Get the created user object
         user = User.objects.get(id=user_id)
 
         if form.is_valid():
+            # Saves the new customer object but with no commiting to DB,
+            # activate the customer user and save both
             customer = form.save(commit=False)
             customer.user = user
             user.is_active = True
             customer.save()
             user.save()
 
+            # Clean the sessions
             del request.session["user_role_registered_id"]
 
             messages.success(
