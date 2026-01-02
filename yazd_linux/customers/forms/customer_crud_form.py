@@ -13,7 +13,7 @@ class CreateCustomerForm(forms.ModelForm):
     class Meta:
         model = Customer
         fields = (
-            "user", "vendor", "technician","description",
+            "vendor", "technician","description",
             "installation_date", "next_inspection_date", "replacement_date"
         )
         widgets = {
