@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="app-content-area">
+    <div class="app-content-wrap">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-header justify-between">
+                            <h4 class="d-flex-items gap-10">لیست مشتریان</h4>
+                            <div class="d-flex flex-wrap gap-15">
+                                <a class="btn btn-primary" href="{% url 'customers:create-customer-user' %}">
+                                    ثبت مشتری جدید
+                                </a>
+                            </div>
+                        </div>
+                        <div class="card-body pt-15">
+                            <div class="table-responsive">
+                            <table class="table text-nowrap w-100" id="dataTableDefault">
+                                <thead>
+                                    <tr>
+                                        <th>شماره موبایل</th>
+                                        <th>فروشنده</th>
+                                        <th>نصاب</th>
+                                        <th>تاریخ نصب</th>
+                                        <th style="width: 200px">تاریخ بازدید مجدد</th>
+                                        <th>تاریخ تعویض</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for customer in customers %}
+                                        <tr>
+                                            <td>{{ customer.user.phone_number }}</td>
+                                            <td>{{ customer.vendor.shop_name }}</td>
+                                            <td>{{ customer.technician.user.phone_number }}</td>
+                                            <td>{{ customer.installation_date }}</td>
+                                            <td>{{ customer.next_inspection_date }}</td>
+                                            <td>{{ customer.replacement_date }}</td>
+                                            <!-- <td>
+                                                {% if customer.is_active %}
+                                                    <span class="badge bg-label-success">
+                                                        فعال
+                                                    </span>
+                                                {% else %}
+                                                    <span class="badge bg-label-danger">
+                                                        غیرفعال
+                                                    </span>
+                                                {% endif %}
+                                            </td> -->
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

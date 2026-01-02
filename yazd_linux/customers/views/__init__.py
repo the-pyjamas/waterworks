@@ -1,4 +1,5 @@
 from .customer_crud_view import (
     CreateCustomerUserView,
-    CreateCustomerView
+    CreateCustomerView,
+    ListCustomerView
 )

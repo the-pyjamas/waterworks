@@ -8,6 +8,7 @@ from django.contrib.auth import get_user_model
 
 from common.views import BaseUserSoftRegisterView
 from customers.forms import CreateCustomerForm
+from customers.models import Customer
 
 
 User = get_user_model()
@@ -116,6 +117,23 @@ class CreateCustomerView(LoginRequiredMixin, View):
             )
 
         context = {"form": form}
+        return render(
+            request=request,
+            template_name=self.template_name,
+            context=context
+        )
+
+
+class ListCustomerView(View):
+    """
+    List all active customers.
+    """
+    template_name = "customers/list_customers.html"
+
+    def get(self, request):
+        customers = Customer.objects.filter(is_active=True)
+
+        context = {"customers": customers}
         return render(
             request=request,
             template_name=self.template_name,
