@@ -20,6 +20,9 @@ class BaseUserSoftRegisterView(LoginRequiredMixin, View):
     with a special Role (e.g. technician).
 
     Methods:
+        dispatch (predecision).
+        form_valid (validation).
+        form_invalid (validation).
         get (GET HTTP).
         post (POST HTTP).
     """
@@ -97,7 +100,11 @@ class BaseUserSoftRegisterView(LoginRequiredMixin, View):
                 password=cleaned_data["password"],
                 role=self.user_role
             )
+            user.is_active = False
             user.save()
+
+            request.session["user_role_registered_id"] = user.id
+            request.session.modified = True
 
             self.form_valid(form=form)
             return redirect(self.sucess_url)
