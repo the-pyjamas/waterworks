@@ -27,20 +27,18 @@
                                 </svg>
                             </i>
                         </div>
-                        <span class="sidebar-menu-label">داشبورد</span>
+                        <span class="sidebar-menu-label">خدمات مشتریان</span>
                     </a>
                     <ul class="sidebar-menu child1">
                         <li class="slide">
-                            <a class="sidebar-menu-item" href="index.html">تجارت تجارتی</a>
+                            <a class="sidebar-menu-item" href="{% url 'customers:create-customer-user' %}">
+                                ثبت مشتری جدید
+                            </a>
                         </li>
                         <li class="slide">
-                            <a class="sidebar-menu-item" href="index-2.html">CRM</a>
-                        </li>
-                        <li class="slide">
-                            <a class="sidebar-menu-item" href="index-3.html">HRM</a>
-                        </li>
-                        <li class="slide">
-                            <a class="sidebar-menu-item" href="index-4.html">کار</a>
+                            <a class="sidebar-menu-item" href="{% url 'customers:list-customers' %}">
+                                لیست مشتریان
+                            </a>
                         </li>
                     </ul>
                 </li>

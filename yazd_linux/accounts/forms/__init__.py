@@ -1,3 +1,4 @@
 from .user_login_form import UserLoginForm
 from .user_register_form import UserRegisterForm
 from .user_profile_form import UserUpdateForm, UserProfileUpdateForm
+from .user_soft_register_form import UserSoftRegisterForm
