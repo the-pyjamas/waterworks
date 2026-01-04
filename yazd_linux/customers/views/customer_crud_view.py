@@ -28,6 +28,7 @@ class CreateCustomerUserView(BaseUserSoftRegisterView):
     template_name = "customers/create_customer_user.html"
     user_role = "Customer"
     sucess_url = reverse_lazy("customers:create-customer")
+    authorized_roles = ("Admin", "Technician")
 
 
 class CreateCustomerView(LoginRequiredMixin, View):
@@ -49,8 +50,13 @@ class CreateCustomerView(LoginRequiredMixin, View):
         is superuser, admin, or technician.
         """
         user = self.request.user
-        if not (user.is_superuser) or not (user.role in ["Admin", "Technician"]):
-            return redirect("/")
+        is_allowed = (
+            user.is_superuser
+            or user.role in ("Admin", "Technnician")
+        )
+
+        if not is_allowed:
+            return redirect("dashboard:dashboard")
 
         return super().dispatch(*args, **kwargs)
 
@@ -108,7 +114,7 @@ class CreateCustomerView(LoginRequiredMixin, View):
                 message=_("Customer created successfully."),
                 extra_tags="success"
             )
-            return redirect("dashboard:dashboard")
+            return redirect("customers:list-customers")
         else:
             messages.error(
                 request=request,

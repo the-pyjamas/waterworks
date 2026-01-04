@@ -31,6 +31,7 @@ class BaseUserSoftRegisterView(LoginRequiredMixin, View):
     sucess_url = reverse_lazy("dashboard:dashboard")
     template_name = None
     user_role = None
+    authorized_roles: tuple[str, ...] = ()
 
     def dispatch(self, *args, **kwargs):
         """
@@ -38,8 +39,15 @@ class BaseUserSoftRegisterView(LoginRequiredMixin, View):
         is superuser, admin, or technician.
         """
         user = self.request.user
-        if not (user.is_superuser) or not (user.role in ["Admin", "Technician"]):
-            return redirect("/")
+        is_allowed = (
+            user.is_superuser
+            or user.role in self.authorized_roles
+        )
+
+        # Redirects user only if user is neither
+        # a superuser nor has an authorized role
+        if not is_allowed:
+            return redirect("dashboard:dashboard")
 
         return super().dispatch(*args, **kwargs)
 
