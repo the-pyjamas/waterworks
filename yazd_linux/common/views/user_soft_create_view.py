@@ -61,7 +61,7 @@ class BaseUserSoftRegisterView(LoginRequiredMixin, View):
         """
         messages.success(
             request=self.request,
-            message=_("User with 'customer' role created successfully."),
+            message=_(f"User with '{self.user_role}' role created successfully."),
             extra_tags="success"
         )
 
