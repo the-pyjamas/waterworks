@@ -19,7 +19,7 @@ class UserAdmin(BaseUserAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
 
-    list_display = ["phone_number", "username", "is_admin", "is_staff"]
+    list_display = ["phone_number", "username", "role", "is_admin", "is_staff"]
     list_filter = ["is_active", "is_admin", "is_staff"]
     search_fields = ["phone_number", "username"]
     readonly_fields = ["last_login"]

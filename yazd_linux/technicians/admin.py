@@ -23,7 +23,13 @@ class TechnicianAdmin(admin.ModelAdmin):
     fieldsets = (
         (_("Technician Information"),
             {
-                "fields": ("user",)
+                "fields": ("user", "national_code")
+            }
+        ),
+        (_("Technician Job Information"),
+            {
+                "classes": ("wide",),
+                "fields": ("installer_code", "experience_years", "skill_level")
             }
         ),
         (_("Status & Timestamps"),
@@ -37,7 +43,13 @@ class TechnicianAdmin(admin.ModelAdmin):
     add_fieldsets = (
         (_("Technician Information"),
             {
-                "fields": ("user",)
+                "fields": ("user", "national_code")
+            }
+        ),
+        (_("Technician Job Information"),
+            {
+                "classes": ("wide",),
+                "fields": ("installer_code", "experience_years", "skill_level")
             }
         ),
         (_("Status & Timestamps"),
