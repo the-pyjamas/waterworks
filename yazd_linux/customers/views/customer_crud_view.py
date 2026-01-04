@@ -32,6 +32,7 @@ class CreateCustomerView(BaseRoleProfileCreateView):
     """
     Creating a new customer base on the user recently
     created with Customer role.
+    Only users who authorized as Admin and Technician be able to do it.
     """
     form_class = CreateCustomerForm
     template_name = "customers/create_customer.html"
