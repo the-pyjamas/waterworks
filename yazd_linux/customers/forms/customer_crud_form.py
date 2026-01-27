@@ -14,12 +14,11 @@ class CreateCustomerForm(forms.ModelForm):
         model = Customer
         fields = (
             "vendor", "technician","description",
-            "installation_date", "next_inspection_date", "replacement_date"
+            "installation_date", "next_inspection_date"
         )
         widgets = {
             "installation_date": forms.DateInput(attrs={"type": "date", "class": "form-control"}),
             "next_inspection_date": forms.DateInput(attrs={"type": "date", "class": "form-control"}),
-            "replacement_date": forms.DateInput(attrs={"type": "date", "class": "form-control"}),
         }
 
     def __init__(self, *args, **kwargs):

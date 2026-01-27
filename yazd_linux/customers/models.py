@@ -1,5 +1,8 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.utils.crypto import get_random_string
+
+from dateutil import relativedelta
 
 from common.models import BaseModel
 from vendors.models import Vendor
@@ -19,10 +22,11 @@ class Customer(BaseModel):
         user (int, O2O): The user who is the customer with the Customer role!
         vendor (int, FK): The vendor who provided the device, if any.
         technician (int, FK): The technician assigned to this customer. Who done the installation.
+        customer_code (char): Unqiue generated code for customer to verify it.
         description (str): Additional notes or description about the customer.
         installation_date (date): The date that the purifier was installed.
         next_inspection_date (date): The date for the next scheduled inspection or maintenance.
-        replacement_date (date): The date when the filter or part was replaced — or should be replaced
+        replacement_dates (1, 2, 3, 4) (date): The date when the filter or part was replaced — or should be replaced
     """
     user = models.OneToOneField(
         User,
@@ -48,6 +52,13 @@ class Customer(BaseModel):
         verbose_name=_("Technician"),
         help_text=_("The technician assigned to this customer. Who done the installation.")
     )
+    customer_code = models.CharField(
+        max_length=6,
+        unique=True,
+        null=True,
+        blank=True,
+        verbose_name=_("Customer Code")
+    )
     description = models.TextField(
         null=True,
         blank=True,
@@ -64,10 +75,27 @@ class Customer(BaseModel):
         blank=True,
         verbose_name=_("Next Inspection Date")
     )
-    replacement_date = models.DateField(
+
+    # Replacement dates
+    first_replacement_date = models.DateField(
         null=True,
         blank=True,
-        verbose_name=_("Replacement Date")
+        verbose_name=_("First Replacement Date")
+    )
+    second_replacement_date = models.DateField(
+        null=True,
+        blank=True,
+        verbose_name=_("Second Replacement Date")
+    )
+    third_replacement_date = models.DateField(
+        null=True,
+        blank=True,
+        verbose_name=_("Third Replacement Date")
+    )
+    forth_replacement_date = models.DateField(
+        null=True,
+        blank=True,
+        verbose_name=_("Forth Replacement Date")
     )
 
     class Meta:
@@ -90,3 +118,28 @@ class Customer(BaseModel):
             return f"{phone_number} - {username}"
         else:
             return f"{phone_number}"
+
+
+    def customer_code_generator() -> None:
+        """
+        Generates a unique code with length 6
+        for a customer as a customer code.
+        """
+        length = 6
+        generated_string = get_random_string(length)
+        self.customer_code = generated_string
+
+    def save_replacement_dates() -> None:
+        """
+        Save replacement dates automatically after calling the method.
+        Uses 'relativedelta' to change dates properly.
+        """
+        first = self.installation_date + relativedelta(months=6)
+        second = self.installation_date + relativedelta(years=1)
+        third = self.installation_date + relativedelta(years=1, months=6)
+        forth = self.installation_date + relativedelta(years=2)
+
+        self.first_replacement_date = first
+        self.second_replacement_date = second
+        self.third_replacement_date = third
+        self.forth_replacement_date = forth
