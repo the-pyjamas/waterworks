@@ -33,7 +33,7 @@ class UserManager(BaseUserManager):
 
 		return user
 
-	def create_superuser(self, phone_number: str, role: str, username: str=None, password=None):
+	def create_superuser(self, phone_number: str, role: str="Admin", username: str=None, password=None):
 		"""
         Create a superuser with reuired fields and activation status of Is Superuser.
         Check if the Is Staff and Is Superuser status are active for created superuser.
@@ -45,7 +45,7 @@ class UserManager(BaseUserManager):
         """
 		user = self.create_user(
 			phone_number=phone_number,
-			role=role,
+			role="Admin",
 			username=username,
 			password=password
 		)
