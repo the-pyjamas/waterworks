@@ -3,7 +3,7 @@
 The Water Treatment manager project. A minimal dashboard to record necessar things for this brand: **Yazd Linux Water Treatment**
 
 ## Stack
-[![Project Stack](https://skillicons.dev/icons?i=py,django,postgresql,docker,html,css,js)](https://skillicons.dev)
+[![Project Stack](https://skillicons.dev/icons?i=py,bash,django,postgresql,docker,html,css,js)](https://skillicons.dev)
 
 ## License
 **Nothing Yet**
