@@ -40,7 +40,11 @@ class CustomerAdmin(admin.ModelAdmin):
                 "fields": (
                     "installation_date",
                     "next_inspection_date",
-                    "replacement_date"
+                    # Replacement dates
+                    "first_replacement_date",
+                    "second_replacement_date",
+                    "third_replacement_date",
+                    "forth_replacement_date",
                 )
             }
         ),
@@ -70,7 +74,6 @@ class CustomerAdmin(admin.ModelAdmin):
                 "fields": (
                     "installation_date",
                     "next_inspection_date",
-                    "replacement_date"
                 )
             }
         ),
