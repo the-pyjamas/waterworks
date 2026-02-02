@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.utils.crypto import get_random_string
 
-from dateutil import relativedelta
+from dateutil.relativedelta import relativedelta
 
 from common.models import BaseModel
 from vendors.models import Vendor
@@ -119,6 +119,18 @@ class Customer(BaseModel):
         else:
             return f"{phone_number}"
 
+    def save(self, *args, **kwargs):
+        """
+        Override the save method to automatically
+        save the replacement-dates properly.
+        """
+        is_new = self.pk is None
+
+        if is_new and self.installation_date:
+            self.save_replacement_dates()
+
+        super().save(*args, **kwargs)
+
 
     def customer_code_generator() -> None:
         """
@@ -129,7 +141,7 @@ class Customer(BaseModel):
         generated_string = get_random_string(length)
         self.customer_code = generated_string
 
-    def save_replacement_dates() -> None:
+    def save_replacement_dates(self) -> None:
         """
         Save replacement dates automatically after calling the method.
         Uses 'relativedelta' to change dates properly.
