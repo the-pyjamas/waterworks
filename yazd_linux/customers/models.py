@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.utils.crypto import get_random_string
+from django.urls import reverse_lazy
 
 from dateutil.relativedelta import relativedelta
 
@@ -121,18 +122,23 @@ class Customer(BaseModel):
 
     def save(self, *args, **kwargs):
         """
-        Override the save method to automatically
-        save the replacement-dates properly.
+        Override the save method.
+        If the target object is new, then generate
+        an unique code for the customer in 'customer-code' field,
+        and also automatically save the replacement-dates properly.
         """
         is_new = self.pk is None
 
-        if is_new and self.installation_date:
-            self.save_replacement_dates()
+        if is_new:
+            self.customer_code_generator()
+
+            if self.installation_date:
+                self.save_replacement_dates()
 
         super().save(*args, **kwargs)
 
 
-    def customer_code_generator() -> None:
+    def customer_code_generator(self) -> None:
         """
         Generates a unique code with length 6
         for a customer as a customer code.
@@ -155,3 +161,14 @@ class Customer(BaseModel):
         self.second_replacement_date = second
         self.third_replacement_date = third
         self.forth_replacement_date = forth
+
+    @property
+    def get_absolute_url(self):
+        """
+        Mostly use for retrieving a customer.
+        However, it returns a customer detail but its PK.
+        """
+        return reverse_lazy(
+            'customers:retrieve-customer',
+            kwargs={'customer_pk': self.pk}
+        )

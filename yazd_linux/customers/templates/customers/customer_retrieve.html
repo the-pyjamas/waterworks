@@ -1,223 +1,218 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'base_soft.html' %}
 
+{% load static %}
+{% load jformat %}
 
 {% block content %}
 
     <div class="app-content-area">
-        <div class="app-content-wrap">
+
+        <div
+            class="app-content-wrap"
+            style="background-color: #FFFFFF; padding: 3%; border-radius: 2%; margin-top: 0%; margin-bottom: 5%;"
+        >
             <div class="container-fluid">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="page-title-box d-flex-between flex-wrap gap-15">
-                        <h1 class="page-title fs-18 lh-1">جزئیات مشتری</h1>
-                        <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb breadcrumb-example1 mb-0">
-                            <li class="breadcrumb-item">
-                                <a href="{% url 'dashboard:dashboard' %}">خانه</a>
-                            </li>
-                            <li class="breadcrumb-item">
-                                <a href="{% url 'customers:customer-retrieve' customer.pk %}">
-                                    <b>جزئیات مشتری</b>
-                                </a>
-                            </li>
-                            <li aria-current="page" class="breadcrumb-item active">
-                                <a href="{% url 'customers:create-customer' %}">
-                                    مشتری را اضافه کنید
-                                </a>
-                            </li>
-                        </ol>
-                        </nav>
+                <div class="row">
+                    <div class="col-xl-12">
+                        {% if request.user.is_superuser %}
+                            <div class="page-title-box d-flex-between flex-wrap gap-15">
+                                <h1 class="page-title fs-18 lh-1">جزئیات مشتری</h1>
+                                <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb breadcrumb-example1 mb-0">
+                                    <li class="breadcrumb-item">
+                                        <a href="{% url 'dashboard:dashboard' %}">خانه</a>
+                                    </li>
+                                    <li class="breadcrumb-item">
+                                        <a href="{% url 'customers:retrieve-customer' customer.pk %}">
+                                            <b>جزئیات مشتری</b>
+                                        </a>
+                                    </li>
+                                    <li aria-current="page" class="breadcrumb-item active">
+                                        <a href="{% url 'customers:create-customer' %}">
+                                            مشتری را اضافه کنید
+                                        </a>
+                                    </li>
+                                </ol>
+                                </nav>
+                            </div>
+                        {% endif %}
                     </div>
-                </div>
 
-                <div class="col-xl-12">
-                    <div class="customer-nav mb-25 mobile-nav">
-                        <ul class="d-flex-items gap-10">
-                            <li class="active">
-                                <a
-                                class="btn btn-primary"
-                                href="ecommerce-customer-details.html"
-                                >جزئیات</a
-                                >
-                            </li>
-                            <li class="">
-                                <a
-                                class="btn btn-light"
-                                href="{% url 'accounts:user-profile-update' %}">
-                                تنظیم
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-xxl-4 col-xl-6">
-                    <div class="card">
-                        <div class="card-header justify-between">
-                            <h4 class="">اطلاعات شخصی</h4>
-                            <div class="card-dropdown">
-                                <div class="dropdown">
-                                <a
-                                    aria-expanded="false"
-                                    class="card-dropdown-icon"
-                                    data-bs-toggle="dropdown"
-                                    href="javascript:void(0);"
-                                    role="button"
-                                >
-                                    <i class="ri-more-2-fill"></i>
-                                </a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="javascript:void(0);"
-                                    >ویرایش کردن</a
+                    <div class="col-xl-12">
+                        <div class="customer-nav mb-25 mobile-nav">
+                            <ul class="d-flex-items gap-10">
+                                <li class="active">
+                                    <a
+                                    class="btn btn-primary"
+                                    href="ecommerce-customer-details.html"
+                                    >جزئیات</a
                                     >
-                                </div>
-                                </div>
-                            </div>
-                            </div>
-                            <div class="card-body pt-15">
-                            <div class="text-center mb-10">
-                                <div class="avatar avatar-big radius-100">
-                                    <!-- <img
-                                        alt="image not found"
-                                        class="radius-100"
-                                        src="{% static 'images/avatar/avatar-thumb-001.webp' %}"
-                                    /> -->
-                                    <h3 
-                                        class="text-center"
-                                        style="
-                                            background-color: #FFEDDB;
-                                            border-radius: 5%;
-                                            width: 130%;
-                                        "
-                                    >
-                                        یک عکس کیری هم میاد اینجا
-                                    </h3>
-                                </div>
-                            </div>
-                            <div class="profile-info text-center mb-15">
-                                <h3 class="mb-5">{{ customer.user.userprofile.fullname }}</h3>
-                                <h6 class="text-body mb-10">شناسه مشتری: {{ customer.customer_code }}</h6>
-                                <div class="d-flex-center gap-15"></div>
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <td>نام کاربری</td>
-                                            <td>
-                                                <div class="text-heading">{{ customer.user.username }}</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>تاریخ پیوستن</td>
-                                            <td>
-                                                <div class="text-heading">{{ customer.created_at | date }}</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>شماره موبایل</td>
-                                            <td>
-                                                <div class="text-heading">
-                                                <a>{{ customer.user.phone_number }}</a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>تاریخ نصب</td>
-                                            <td>
-                                                <div class="text-heading">{{ customer.installation_date }}</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>وضعیت</td>
-                                            <td>
-                                                {% if customer.is_active %}
-                                                    <div class="badge bg-label-success">فعال</div>
-                                                {% else %}
-                                                    <div class="badge bg-label-danger">غیرفعال</div>
-                                                {% endif %}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                </li>
+                                {% if request.user.is_superuser %}
+                                    <li class="">
+                                        <a
+                                            class="btn btn-light"
+                                            href="{% url 'accounts:user-profile-update' %}">
+                                            تنظیم
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            </ul>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-xxl-8 col-xl-6">
-                    <div class="row">
-                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
-                            <div class="card">
-                                <div class="card-body mini-card-body d-flex align-center gap-16">
-                                    <div class="avatar avatar-xl bg-primary-transparent text-primary">
-                                        <i class="ri-shopping-bag-3-line fs-42"></i>
-                                    </div>
-                                    <div class="card-content">
-                                        <span class="d-block fs-16 mb-5">کل سفارشات</span>
-                                        <h2 class="mb-5 fa">98.5 هزار</h2>
-                                        <span class="text-success">
-                                            +۱.۲۴٪
-                                            <i class="ri-arrow-up-line ml-5 d-inline-block"></i>
-                                        </span>
-                                        <span class="fs-12 text-muted ml-5">این هفته</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
-                            <div class="card">
-                                <div class="card-body mini-card-body d-flex align-center gap-16">
-                                <div class="avatar avatar-xl bg-warning-transparent text-warning">
-                                    <i class="ri-time-line fs-42"></i>
-                                </div>
-                                    <div class="card-content">
-                                        <span class="d-block fs-16 mb-5">در انتظار سفارشات</span>
-                                        <h2 class="mb-5 fa">12</h2>
-                                        <span class="text-warning">
-                                            +2 در انتظار
-                                            <i class="ri-arrow-up-line ml-5 d-inline-block"></i>
-                                        </span>
-                                        <span class="fs-12 text-muted ml-5">در انتظار</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
-                            <div class="card">
-                                <div class="card-body mini-card-body d-flex align-center gap-16">
-                                    <div class="avatar avatar-xl bg-success-transparent text-success">
-                                        <i class="ri-checkbox-circle-line fs-42"></i>
-                                    </div>
-                                        <div class="card-content">
-                                            <span class="d-block fs-16 mb-5">
-                                                سفارشات تکمیل شده
-                                            </span>
-                                            <h2 class="mb-5 fa">86</h2>
-                                            <span class="text-success">
-                                                +8.5 ٪
-                                                <i class="ri-arrow-up-line ml-5 d-inline-block"></i>
-                                            </span>
-                                            <span class="fs-12 text-muted ml-5">این ماه</span>
+                    <div class="col-xxl-4 col-xl-6">
+                        <div class="card">
+                            <div class="card-header justify-between">
+                                <h4 class="">اطلاعات شخصی</h4>
+                                <div class="card-dropdown">
+                                    <div class="dropdown">
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="javascript:void(0);"
+                                            >ویرایش کردن</a
+                                            >
                                         </div>
                                     </div>
                                 </div>
-                        </div>
-                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
-                            <div class="card">
-                                <div class="card-body mini-card-body d-flex align-center gap-16">
-                                <div class="avatar avatar-xl bg-purple-transparent text-purple">
-                                    <i class="ri-money-dollar-circle-line fs-42"></i>
                                 </div>
-                                    <div class="card-content">
-                                        <span class="d-block fs-16 mb-5">کل هزینه شده</span>
-                                        <h2 class="mb-5 fa">12450 تومان</h2>
-                                        <span class="text-success">
-                                            +15 ٪
-                                            <i class="ri-arrow-up-line ml-5 d-inline-block"></i>
+                                <div class="card-body pt-15">
+                                <!--
+                                    <div class="text-center mb-10">
+                                        <div class="avatar avatar-big radius-100">
+                                            <img
+                                                alt="image not found"
+                                                class="radius-100"
+                                                src="{% static 'images/avatar/avatar-thumb-001.webp' %}"
+                                            />
+                                        </div>
+                                    </div>
+                                -->
+                                <div class="profile-info text-center mb-15">
+                                    <h3 class="mb-5">{{ customer.user.userprofile.fullname }}</h3>
+                                    <h6 class="badge bg-success-transparent bg-label-success">
+                                        <span class="text-black" style="font-size: 1.6rem;">
+                                            شناسه مشتری: {{ customer.customer_code }}
                                         </span>
-                                        <span class="fs-12 text-muted ml-5">در مقابل سال گذشته</span>
+                                    </h6>
+                                    <div class="d-flex-center gap-15"></div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <td>نام</td>
+                                                <td>
+                                                    <div class="text-heading">
+                                                        {{ customer.user.userprofile.fullname }}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>تاریخ پیوستن</td>
+                                                <td>
+                                                    <div class="text-heading">
+                                                        {{ customer.created_at | jformat:"%Y/%m/%d" }}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>شماره موبایل</td>
+                                                <td>
+                                                    <div class="text-heading">
+                                                    <a>{{ customer.user.phone_number }}</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>تاریخ نصب</td>
+                                                <td>
+                                                    <div class="text-heading">
+                                                        {{ customer.installation_date | jformat:"%d %B %Y" }}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>وضعیت</td>
+                                                <td>
+                                                    {% if customer.is_active %}
+                                                        <div class="badge bg-label-success">فعال</div>
+                                                    {% else %}
+                                                        <div class="badge bg-label-danger">غیرفعال</div>
+                                                    {% endif %}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xxl-8 col-xl-6">
+                        <div class="row">
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
+                                <div class="card">
+                                    <div class="card-body mini-card-body d-flex align-center gap-16">
+                                        <div class="avatar avatar-xl bg-success-transparent text-success">
+                                            <i class="ri-checkbox-circle-line fs-42"></i>
+                                        </div>
+                                        <div class="card-content">
+                                            <span class="d-block fs-19 mb-5">تاریخ نخستین تعویض</span>
+                                            <p class="mb-5 fa" style="font-size: 1.7rem;">
+                                                {{ customer.first_replacement_date | jformat:"%d %B %Y" }}
+                                            </p>
+                                            <span class="fs-12 text-muted ml-5">این هفته</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
+                                <div class="card">
+                                    <div class="card-body mini-card-body d-flex align-center gap-16">
+                                    <div class="avatar avatar-xl bg-warning-transparent text-warning">
+                                        <i class="ri-time-line fs-42"></i>
+                                    </div>
+                                        <div class="card-content">
+                                            <span class="d-block fs-19 mb-5">تاریخ دومین تعویض</span>
+                                            <p class="mb-5 fa" style="font-size: 1.7rem;">
+                                                {{ customer.second_replacement_date | jformat:"%d %B %Y" }}
+                                            </p>
+                                            <span class="fs-12 text-muted ml-5">در انتظار</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
+                                <div class="card">
+                                    <div class="card-body mini-card-body d-flex align-center gap-16">
+                                        <div class="avatar avatar-xl bg-warning-transparent text-warning">
+                                            <i class="ri-time-line fs-42"></i>
+                                        </div>
+                                            <div class="card-content">
+                                                <span class="d-block fs-19 mb-5">
+                                                    تاریخ سومین تعویض
+                                                </span>
+                                                <p class="mb-5 fa" style="font-size: 1.7rem;">
+                                                    {{ customer.third_replacement_date | jformat:"%d %B %Y" }}
+                                                </p>
+                                                <span class="fs-12 text-muted ml-5">این ماه</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
+                                <div class="card">
+                                    <div class="card-body mini-card-body d-flex align-center gap-16">
+                                    <div class="avatar avatar-xl bg-warning-transparent text-warning">
+                                        <i class="ri-time-line fs-42"></i>
+                                    </div>
+                                        <div class="card-content">
+                                            <span class="d-block fs-19 mb-5">تاریخ چهاریمن تعویض</span>
+                                            <p class="mb-5 fa" style="font-size: 1.7rem;">
+                                                {{ customer.forth_replacement_date | jformat:"%d %B %Y" }}
+                                            </p>
+                                            <span class="fs-12 text-muted ml-5">در انتظار</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -225,8 +220,8 @@
                     </div>
                 </div>
             </div>
-            </div>
         </div>
+
     </div>
 
 {% endblock content %}

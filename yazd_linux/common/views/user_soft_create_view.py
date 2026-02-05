@@ -7,7 +7,8 @@ from django.forms import Form, ModelForm
 from django.contrib.auth import get_user_model
 from django.urls import reverse_lazy
 
-from accounts.forms import UserSoftRegisterForm
+from accounts.forms import UserSoftRegisterForm, UserProfileUpdateForm
+from accounts.models import UserProfile
 
 
 User = get_user_model()
@@ -28,7 +29,7 @@ class BaseUserSoftRegisterView(LoginRequiredMixin, View):
     """
     model = User
     form_class = UserSoftRegisterForm
-    sucess_url = reverse_lazy("dashboard:dashboard")
+    success_url = reverse_lazy("dashboard:dashboard")
     template_name = None
     user_role = None
     authorized_roles: tuple[str, ...] = ()
@@ -36,7 +37,7 @@ class BaseUserSoftRegisterView(LoginRequiredMixin, View):
     def dispatch(self, *args, **kwargs):
         """
         Ensures that the user who creating a new user
-        is superuser, admin, or technician.
+        has an appropriate role.
         """
         user = self.request.user
         is_allowed = (
@@ -96,7 +97,7 @@ class BaseUserSoftRegisterView(LoginRequiredMixin, View):
         """
         Validates the form data from the client,
         it the form is valid then create a new user
-        with the 'Customer' role and showing the message,
+        with an appropriate role and showing the message,
         then redirect to the 'success-url'.
         """
         form = self.form_class(request.POST)
@@ -119,7 +120,123 @@ class BaseUserSoftRegisterView(LoginRequiredMixin, View):
             request.session.modified = True
 
             self.form_valid(form=form)
-            return redirect(self.sucess_url)
+            return redirect(self.success_url)
+        else:
+            self.form_invalid(form=form)
+
+        context = {"form": form}
+        return render(
+            request=request,
+            template_name=self.template_name,
+            context=context
+        )
+
+
+class BaseUserProfileSoftUpdateView(LoginRequiredMixin, View):
+    """
+    Updating a user profile who created 'SOFT',
+    updates its profile instantly after its created.
+
+    Methods:
+        dispatch (predecision).
+        form_valid (validation).
+        form_invalid (validation).
+        get (GET HTTP).
+        post (POST HTTP).
+    """
+    model = UserProfile
+    form_class = UserProfileUpdateForm
+    success_url = reverse_lazy("dashboard:dashboard")
+    template_name = None
+    user = None
+    authorized_roles: tuple[str, ...] = ()
+
+    def dispatch(self, *args, **kwargs):
+        """
+        Ensures that the user who updating the user profile
+        has an appropriate role.
+        """
+        user = self.request.user
+        is_allowed = (
+            user.is_superuser
+            or user.role in self.authorized_roles
+        )
+
+        # Redirects user only if user is neither
+        # a superuser nor has an authorized role
+        if not is_allowed:
+            return redirect("dashboard:dashboard")
+
+        return super().dispatch(*args, **kwargs)
+
+    def form_valid(self, form: Form|ModelForm):
+        """
+        Form validation result.
+        The messages should show if the form validated and create user successfully.
+
+        Args:
+            form (object): The User Soft Register Form that will be valid in case.
+        """
+        messages.success(
+            request=self.request,
+            message=_(f"Profile registered successfully."),
+            extra_tags="success"
+        )
+
+    def form_invalid(self, form: Form|ModelForm):
+        """
+        Form validation result if the validation failed.
+        The message show  if the form will invalid and user had not yet.
+
+        Args:
+            form (object): The User Soft Register Form that will be invalid in some cases.
+        """
+        messages.error(
+            request=self.request,
+            message=_("The sent data are invalid."),
+            extra_tags="danger"
+        )
+
+    def get(self, request):
+        """
+        Renderin the form class simply.
+        """
+        form = self.form_class()
+
+        context = {"form": form}
+        return render(
+            request=request,
+            template_name=self.template_name,
+            context=context
+        )
+
+    def post(self, request):
+        """
+        Gets created user from the 'soft' approach
+        by using sessions.
+        Validates the form data from the client,
+        if the form is valid then updates the user profile
+        and redirect user to the 'success-url'.
+        """
+        form = self.form_class(request.POST)
+        # Gets created user from the session
+        user = request.session.get("user_role_registered_id")
+
+        if form.is_valid():
+            # Gets user profile
+            profile = UserProfile.objects.get(user=user)
+
+            first_name = form.cleaned_data.get("first_name")
+            last_name = form.cleaned_data.get("last_name")
+            address = form.cleaned_data.get("address")
+            # Updating the user's profile fields
+            profile.first_name = first_name or None
+            profile.last_name = last_name or None
+            profile.address = address or None
+            profile.save()
+
+            self.form_valid(form=form)
+            return redirect(self.success_url)
         else:
             self.form_invalid(form=form)
 

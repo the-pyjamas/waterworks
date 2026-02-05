@@ -28,6 +28,7 @@ DJANGO_APPS = [
 ]
 EXTERNAL_APPS = [
     'phonenumber_field',
+    'django_jalali',
 ]
 LOCAL_APPS = [
     'accounts.apps.AccountsConfig',
@@ -43,11 +44,14 @@ INSTALLED_APPS = DJANGO_APPS + EXTERNAL_APPS + LOCAL_APPS
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # Local middleware
+    'customers.middleware.jalali_locale.JalaliLocaleMiddleware'
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -128,3 +132,9 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "accounts.User"
+
+
+# Jalali Date Config
+import jdatetime
+
+jdatetime.set_locale('fa_IR')

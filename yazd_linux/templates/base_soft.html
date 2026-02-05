@@ -1,0 +1,21 @@
+{% load static %}
+
+<!doctype html>
+<html class="no-js" lang="fa">
+<head>
+    {% include 'includes/head.html' %}
+</head>
+
+<body class="body-area">
+    <div class="page" style="width: 88%;">
+
+        {% block content %}
+        {% endblock content %}
+
+    </div>
+
+    {% include 'includes/preloader.html' %}
+    {% include 'includes/js_links.html' %}
+</body>
+
+</html>

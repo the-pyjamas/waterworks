@@ -21,7 +21,7 @@ class BaseRoleProfileCreateView(LoginRequiredMixin, View):
     """
     form_class = None
     template_name = None
-    sucess_url = reverse_lazy("dashboard:dashboard")
+    success_url = reverse_lazy("dashboard:dashboard")
     user_role = None
     authorized_roles: tuple[str, ...] = ()
 
@@ -96,7 +96,7 @@ class BaseRoleProfileCreateView(LoginRequiredMixin, View):
                 message=_(f"{self.user_role} created successfully."),
                 extra_tags="success"
             )
-            return redirect(self.sucess_url)
+            return redirect(self.success_url)
         else:
             messages.error(
                 request=request,

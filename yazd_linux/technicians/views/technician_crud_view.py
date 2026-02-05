@@ -24,7 +24,6 @@ class CreateTechnicianUserView(BaseUserSoftRegisterView):
     """
     template_name = "technicians/create_technician_user.html"
     user_role = "Technician"
-    sucess_url = reverse_lazy("technicians:create-technician")
     authorized_roles = ("Admin",)
 
 
@@ -37,7 +36,7 @@ class CreateTechnicianView(BaseRoleProfileCreateView):
     form_class = CreateTechnicianForm
     template_name = "technicians/create_technician.html"
     user_role = "Technician"
-    sucess_url = reverse_lazy("technicians:list-technicians")
+    success_url = reverse_lazy("technicians:list-technicians")
     authorized_roles = ("Admin",)
 
 

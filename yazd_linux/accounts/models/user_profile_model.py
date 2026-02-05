@@ -46,3 +46,24 @@ class UserProfile(BaseModel):
 
     def __str__(self) -> str:
         return f"{self.user}"
+
+    @property
+    def fullname(self) -> str:
+        """
+        Fullname of a user which contains first-name
+        and last-name together.
+        """
+        first_name = self.first_name or None
+        last_name = self.last_name or None
+        fullname = None
+
+        if first_name and last_name:
+            fullname = first_name + " " + last_name
+        elif first_name and not last_name:
+            fullname = first_name
+        elif not first_name and last_name:
+            fullname = last_name
+        else:
+            fullname = None
+
+        return fullname

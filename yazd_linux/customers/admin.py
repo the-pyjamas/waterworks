@@ -25,7 +25,7 @@ class CustomerAdmin(admin.ModelAdmin):
     fieldsets = (
         (_("Personal Information"),
             {
-                "fields": ("user",)
+                "fields": ("user", "customer_code")
             }
         ),
         (_("Installation Information"),
@@ -59,7 +59,7 @@ class CustomerAdmin(admin.ModelAdmin):
     add_fieldsets = (
         (_("Personal Information"),
             {
-                "fields": ("user",)
+                "fields": ("user", "customer_code")
             }
         ),
         (_("Installation Information"),
