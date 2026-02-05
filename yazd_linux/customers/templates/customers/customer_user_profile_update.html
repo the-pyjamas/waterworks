@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+    <div class="authentication-wrapper basic-authentication" style="margin-top: 5%;">
+        <div class="authentication-inner">
+            <div class="card">
+                <div class="authentication-top text-center mb-25">
+                    <a class="authentication-logo logo-black" href="javascript:;">
+                        <img alt="logo" src="{% static 'images/logo/logo-black.svg' %}" />
+                    </a>
+                    <a class="authentication-logo logo-white" href="javascript:;">
+                        <img alt="logo" src="{% static 'images/logo/logo-white.svg' %}" />
+                    </a>
+                    <h4 class="mb-5">به Dashnix خوش آمدید</h4>
+                    <p>لطفاً وارد حساب خود شوید و ماجراجویی را شروع کنید</p>
+                </div>
+
+                <form action="" class="" method="POST">
+                    {% csrf_token %}
+                    {{ form.non_field_errors }}
+
+                    <div class="mb-10">
+                        <label class="form-label" for="nameEmail">
+                            {{ form.first_name.label }}
+                        </label>
+                        {{ form.first_name }}
+                    </div>
+                    <div class="mb-10">
+                        <label class="form-label" for="nameEmail">
+                            {{ form.last_name.label }}
+                        </label>
+                        {{ form.last_name }}
+                    </div>
+                    <div class="mb-10">
+                        <label class="form-label" for="nameEmail">
+                            {{ form.address.label }}
+                        </label>
+                        {{ form.address }}
+                    </div>
+
+                    <div class="mb-25">
+                        <button class="btn btn-primary w-100" type="submit">
+                            ثبت
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

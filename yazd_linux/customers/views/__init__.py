@@ -1,5 +1,6 @@
-from .customer_crud_view import (
+from .create_customer import (
     CreateCustomerUserView,
-    CreateCustomerView,
-    ListCustomerView
+    UpdateCustomerUserView,
+    CreateCustomerView
 )
+from .list_customer import ListCustomerView
