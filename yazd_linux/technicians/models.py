@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import MinLengthValidator
 from django.utils.crypto import get_random_string
+from django.urls import reverse_lazy
 
 from common.models import BaseModel
 from accounts.models import User
@@ -76,6 +77,29 @@ class Technician(BaseModel):
             return f"{phone_number}"
 
     def save(self, *args, **kwargs):
-        self.installer_code = get_random_string(6)
+        is_new = self.pk is None
+
+        if is_new:
+            self.installer_code_generator()
 
         super().save(*args, **kwargs)
+
+    def installer_code_generator(self) -> None:
+        """
+        Generates a unique code with length 6
+        for a technician as a installer code.
+        """
+        length = 6
+        generated_string = get_random_string(length)
+        self.installer_code = generated_string
+
+    @property
+    def get_absolute_url(self):
+        """
+        Mostly use for retrieving a customer.
+        However, it returns a customer detail but its PK.
+        """
+        return reverse_lazy(
+            'technicians:technician-retrieve',
+            kwargs={'technician_pk': self.pk}
+        )

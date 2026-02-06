@@ -1,5 +1,7 @@
-from .technician_crud_view import (
-    CreateTechnicianUserView,
-    CreateTechnicianView,
-    ListTechnicianView
+from .technician_create_view import (
+    TechnicianCreateUserView,
+    TechnicianUpdateUserProfileView,
+    TechnicianCreateView,
 )
+from .technician_list_view import TechnicianListView
+from .technician_retrieve_view import TechnicianRetrieveView

@@ -1,9 +1,13 @@
 from django.urls import path
 
 from technicians.views import (
-    CreateTechnicianUserView,
-    CreateTechnicianView,
-    ListTechnicianView
+    # Creation
+    TechnicianCreateUserView,
+    TechnicianUpdateUserProfileView,
+    TechnicianCreateView,
+    # List and Retrieve
+    TechnicianListView,
+    TechnicianRetrieveView
 )
 
 
@@ -12,11 +16,18 @@ app_name = "technicians"
 TECHNICIAN_CRUD_URLS = [
     path(
         "create/user/",
-        CreateTechnicianUserView.as_view(),
+        TechnicianCreateUserView.as_view(),
         name="create-technician-user"
     ),
-    path("create/", CreateTechnicianView.as_view(), name="create-technician"),
-    path("list/", ListTechnicianView.as_view(), name="list-technicians"),
+    path(
+        "user/profile/",
+        TechnicianUpdateUserProfileView.as_view(),
+        name="update-technician-user-profile"
+    ),
+    path("create/", TechnicianCreateView.as_view(), name="create-technician"),
+
+    path("list/", TechnicianListView.as_view(), name="list-technicians"),
+    path("<int:technician_pk>/", TechnicianRetrieveView.as_view(), name="technician-retrieve"),
 ]
 
 urlpatterns = TECHNICIAN_CRUD_URLS

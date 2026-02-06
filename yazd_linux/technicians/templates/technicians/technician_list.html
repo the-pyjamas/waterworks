@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="app-content-area">
+    <div class="app-content-wrap">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-header justify-between">
+                            <h4 class="d-flex-items gap-10">لیست نصاب‌ها</h4>
+                            <div class="d-flex flex-wrap gap-15">
+                                <a class="btn btn-primary" href="{% url 'technicians:create-technician-user' %}">
+                                    ثبت نصاب جدید
+                                </a>
+                            </div>
+                        </div>
+                        <div class="card-body pt-15">
+                            <div class="table-responsive">
+                            <table class="table text-nowrap w-100" id="dataTableDefault">
+                                <thead>
+                                    <tr>
+                                        <th>شماره موبایل</th>
+                                        <th>نام</th>
+                                        <th>کد نصاب</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for technician in technicians %}
+                                        <tr>
+                                            <td>{{ technician.user.phone_number }}</td>
+                                            <td>
+                                                <a
+                                                    href="{{ technician.get_absolute_url }}"
+                                                    class="text text-primary"
+                                                    style="font-size: 2rem;"
+                                                >
+                                                    {{ technician.user.userprofile.fullname }}
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a
+                                                    href="{{ technician.get_absolute_url }}"
+                                                    class="text text-primary"
+                                                    style="font-size: 2rem;"
+                                                >
+                                                    {{ technician.installer_code }}
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
