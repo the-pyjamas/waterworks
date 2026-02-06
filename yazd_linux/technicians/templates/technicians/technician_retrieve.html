@@ -132,6 +132,14 @@
                                                 </td>
                                             </tr>
                                             <tr>
+                                                <td>تعداد نصب ها</td>
+                                                <td>
+                                                    <div class="text-heading">
+                                                        {{ customers_count }}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
                                                 <td>وضعیت</td>
                                                 <td>
                                                     {% if technician.is_active %}
@@ -184,6 +192,38 @@
                                                     مشخص نشده
                                                 {% endif %}
                                             </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-xxl-12 col-xl-6 col-lg-6 col-md-6">
+                                <div class="card">
+                                    <div class="card-body mini-card-body d-flex align-center gap-16">
+                                        <div class="card-content">
+                                            <h3
+                                                style="text-align: center; font-size: 2.5rem; margin-bottom: 10%;"
+                                            >
+                                                مشتریانی که خدمات داده
+                                            </h3>
+                                            <hr width="260%">
+                                            <br>
+
+                                            {% for customer in customers %}
+                                                <p class="mb-5 fa" style="font-size: 1.5rem;">
+                                                    <a
+                                                        href="{{ customer.get_absolute_url }}"
+                                                        class="text text-primary"
+                                                    >
+                                                        {{ customer.user.userprofile.fullname }}
+                                                    </a>
+                                                </p>
+                                            {% empty %}
+                                                <p class="mb-5 fa" style="font-size: 1.7rem;">
+                                                    خدماتی انجام نشده تا به حال
+                                                </p>
+                                            {% endfor %}
                                         </div>
                                     </div>
                                 </div>

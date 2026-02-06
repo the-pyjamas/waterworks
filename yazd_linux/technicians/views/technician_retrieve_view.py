@@ -22,8 +22,14 @@ class TechnicianRetrieveView(View):
 			technician_pk (int): The primary-key of technician.
 		"""
 		technician = get_object_or_404(Technician, pk=technician_pk)
+		technician_customers = technician.customers.all()
+		customers_count = len(technician_customers)
 
-		context = {"technician": technician}
+		context = {
+			"technician": technician,
+			"customers": technician_customers,
+			"customers_count": customers_count
+		}
 		return render(
 			request=request,
             template_name=self.template_name,
