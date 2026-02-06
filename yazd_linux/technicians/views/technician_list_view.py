@@ -4,14 +4,14 @@ from django.views import View
 from technicians.models import Technician
 
 
-class ListTechnicianView(View):
+class TechnicianListView(View):
     """
     List all active technicians.
 
     Methods:
         get (GET HTTP).
     """
-    template_name = "technicians/list_technicians.html"
+    template_name = "technicians/technician_list.html"
 
     def get(self, request):
         """

@@ -12,7 +12,7 @@ from technicians.forms import CreateTechnicianForm
 from technicians.models import Technician
 
 
-class CreateTechnicianUserView(BaseUserSoftRegisterView):
+class TechnicianCreateUserView(BaseUserSoftRegisterView):
     """
     Creates a new user to create a new technician base on the user object.
     Only the admin role be able to do this,
@@ -24,7 +24,7 @@ class CreateTechnicianUserView(BaseUserSoftRegisterView):
     authorized_roles = ("Admin",)
 
 
-class UpdateTechnicianUserProfileView(BaseUserProfileSoftUpdateView):
+class TechnicianUpdateUserProfileView(BaseUserProfileSoftUpdateView):
     """
     Updating and make created user's profile complete.
     User personal info, the user who has just created
@@ -35,7 +35,7 @@ class UpdateTechnicianUserProfileView(BaseUserProfileSoftUpdateView):
     authorized_roles = ("Admin",)
 
 
-class CreateTechnicianView(BaseRoleProfileCreateView):
+class TechnicianCreateView(BaseRoleProfileCreateView):
     """
     Creating a new technician base on the user recently
     created with Technician role.

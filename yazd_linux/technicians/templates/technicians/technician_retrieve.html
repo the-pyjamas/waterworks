@@ -1,0 +1,199 @@
+{% extends 'base_soft.html' %}
+
+{% load static %}
+{% load jformat %}
+
+{% block content %}
+
+    <div class="app-content-area">
+
+        <div
+            class="app-content-wrap"
+            style="background-color: #FFFFFF; padding: 3%; border-radius: 2%; margin-top: 0%; margin-bottom: 5%;"
+        >
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-12">
+                        {% if request.user.is_superuser %}
+                            <div class="page-title-box d-flex-between flex-wrap gap-15">
+                                <h1 class="page-title fs-18 lh-1">جزئیات نصاب</h1>
+                                <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb breadcrumb-example1 mb-0">
+                                    <li class="breadcrumb-item">
+                                        <a href="{% url 'dashboard:dashboard' %}">خانه</a>
+                                    </li>
+                                    <li class="breadcrumb-item">
+                                        <a href="{{ technician.get_absolute_url }}">
+                                            <b>جزئیات نصاب</b>
+                                        </a>
+                                    </li>
+                                    <li aria-current="page" class="breadcrumb-item active">
+                                        <a href="{% url 'customers:create-customer' %}">
+                                            نصاب را اضافه کنید
+                                        </a>
+                                    </li>
+                                </ol>
+                                </nav>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-xl-12">
+                        <div class="customer-nav mb-25 mobile-nav">
+                            <ul class="d-flex-items gap-10">
+                                <li class="active">
+                                    <a
+                                    class="btn btn-primary"
+                                    href="ecommerce-customer-details.html"
+                                    >جزئیات</a
+                                    >
+                                </li>
+                                {% if request.user.is_superuser %}
+                                    <li class="">
+                                        <a
+                                            class="btn btn-light"
+                                            href="{% url 'accounts:user-profile-update' %}">
+                                            تنظیم
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-xxl-4 col-xl-6">
+                        <div class="card">
+                            <div class="card-header justify-between">
+                                <h4 class="">اطلاعات شخصی</h4>
+                                <div class="card-dropdown">
+                                    <div class="dropdown">
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="javascript:void(0);"
+                                            >ویرایش کردن</a
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="card-body pt-15">
+                                <!--
+                                    <div class="text-center mb-10">
+                                        <div class="avatar avatar-big radius-100">
+                                            <img
+                                                alt="image not found"
+                                                class="radius-100"
+                                                src="{% static 'images/avatar/avatar-thumb-001.webp' %}"
+                                            />
+                                        </div>
+                                    </div>
+                                -->
+                                <div class="profile-info text-center mb-15">
+                                    <h3 class="mb-5">{{ technician.user.userprofile.fullname }}</h3>
+                                    <h6 class="badge bg-success-transparent bg-label-success">
+                                        <span class="text-black" style="font-size: 1.6rem;">
+                                            شناسه نصاب: {{ technician.installer_code }}
+                                        </span>
+                                    </h6>
+                                    <div class="d-flex-center gap-15"></div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <td>نام</td>
+                                                <td>
+                                                    <div class="text-heading">
+                                                        {{ technician.user.userprofile.fullname }}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>تاریخ پیوستن</td>
+                                                <td>
+                                                    <div class="text-heading">
+                                                        {{ technician.created_at | jformat:"%Y/%m/%d" }}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>شماره موبایل</td>
+                                                <td>
+                                                    <div class="text-heading">
+                                                    <a>{{ technician.user.phone_number }}</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>شماره ملی</td>
+                                                <td>
+                                                    <div class="text-heading">
+                                                        {{ technician.national_code }}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>وضعیت</td>
+                                                <td>
+                                                    {% if technician.is_active %}
+                                                        <div class="badge bg-label-success">فعال</div>
+                                                    {% else %}
+                                                        <div class="badge bg-label-danger">غیرفعال</div>
+                                                    {% endif %}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xxl-8 col-xl-6">
+                        <div class="row">
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
+                                <div class="card">
+                                    <div class="card-body mini-card-body d-flex align-center gap-16">
+                                        <div class="avatar avatar-xl bg-success-transparent text-success">
+                                            <i class="ri-checkbox-circle-line fs-42"></i>
+                                        </div>
+                                        <div class="card-content">
+                                            <span class="d-block fs-19 mb-5">تجربه</span>
+                                            <p class="mb-5 fa" style="font-size: 1.7rem;">
+                                                {% if technician.experience_years %}
+                                                    {{ technician.experience_years }} سال
+                                                {% else %}
+                                                    مشخص نشده
+                                                {% endif %}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
+                                <div class="card">
+                                    <div class="card-body mini-card-body d-flex align-center gap-16">
+                                    <div class="avatar avatar-xl bg-success-transparent text-success">
+                                        <i class="ri-checkbox-circle-line fs-42"></i>
+                                    </div>
+                                        <div class="card-content">
+                                            <span class="d-block fs-19 mb-5">سطح مهارت</span>
+                                            <p class="mb-5 fa" style="font-size: 1.7rem;">
+                                                {% if technician.skill_level %}
+                                                    {{ technician.skill_level }}
+                                                {% else %}
+                                                    مشخص نشده
+                                                {% endif %}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock content %}
