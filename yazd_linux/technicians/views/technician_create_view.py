@@ -5,6 +5,7 @@ from django.utils.translation import gettext_lazy as _
 
 from common.views import (
     BaseUserSoftRegisterView,
+    BaseUserProfileSoftUpdateView,
     BaseRoleProfileCreateView
 )
 from technicians.forms import CreateTechnicianForm
@@ -13,17 +14,24 @@ from technicians.models import Technician
 
 class CreateTechnicianUserView(BaseUserSoftRegisterView):
     """
-    Creates a new user to create a new customer base on the user object.
-    Only the admin and technician roles be able to
-    do this, creating a new customer object means
-    creating a new user with `Customer` role.
-
-    Requests:
-        GET (HTTP).
-        POST (HTTP).
+    Creates a new user to create a new technician base on the user object.
+    Only the admin role be able to do this,
+    creating a new technician object means creating a new user with `Technician` role.
     """
+    success_url = reverse_lazy("technicians:update-technician-user-profile")
     template_name = "technicians/create_technician_user.html"
     user_role = "Technician"
+    authorized_roles = ("Admin",)
+
+
+class UpdateTechnicianUserProfileView(BaseUserProfileSoftUpdateView):
+    """
+    Updating and make created user's profile complete.
+    User personal info, the user who has just created
+    softly with the Technician role.
+    """
+    success_url = reverse_lazy("technicians:create-technician")
+    template_name = "technicians/update_technician_user_profile.html"
     authorized_roles = ("Admin",)
 
 
@@ -33,25 +41,8 @@ class CreateTechnicianView(BaseRoleProfileCreateView):
     created with Technician role.
     Only users who authorized as Admin be able to do it.
     """
+    success_url = reverse_lazy("technicians:list-technicians")
     form_class = CreateTechnicianForm
     template_name = "technicians/create_technician.html"
     user_role = "Technician"
-    success_url = reverse_lazy("technicians:list-technicians")
     authorized_roles = ("Admin",)
-
-
-class ListTechnicianView(View):
-    """
-    List all active technicians.
-    """
-    template_name = "technicians/list_technicians.html"
-
-    def get(self, request):
-        technicians = Technician.objects.filter(is_active=True)
-
-        context = {"technicians": technicians}
-        return render(
-            request=request,
-            template_name=self.template_name,
-            context=context
-        )

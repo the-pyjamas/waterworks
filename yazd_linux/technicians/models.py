@@ -76,6 +76,18 @@ class Technician(BaseModel):
             return f"{phone_number}"
 
     def save(self, *args, **kwargs):
-        self.installer_code = get_random_string(6)
+        is_new = self.pk is None
+
+        if is_new:
+            self.installer_code_generator()
 
         super().save(*args, **kwargs)
+
+    def installer_code_generator(self) -> None:
+        """
+        Generates a unique code with length 6
+        for a technician as a installer code.
+        """
+        length = 6
+        generated_string = get_random_string(length)
+        self.installer_code = generated_string
