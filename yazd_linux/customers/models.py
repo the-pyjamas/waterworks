@@ -65,16 +65,10 @@ class Customer(BaseModel):
         blank=True,
         verbose_name=_("Description")
     )
-
     installation_date = models.DateField(
         null=True,
         blank=True,
         verbose_name=_("Installation Date")
-    )
-    next_inspection_date = models.DateField(
-        null=True,
-        blank=True,
-        verbose_name=_("Next Inspection Date")
     )
 
     # Replacement dates

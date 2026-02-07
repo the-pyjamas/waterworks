@@ -37,6 +37,7 @@ LOCAL_APPS = [
     'vendors.apps.VendorsConfig',
     'technicians.apps.TechniciansConfig',
     'dashboard.apps.DashboardConfig',
+    'devices.apps.DevicesConfig',
 ]
 INSTALLED_APPS = DJANGO_APPS + EXTERNAL_APPS + LOCAL_APPS
 
