@@ -18,8 +18,8 @@ class TechnicianCreateUserView(BaseUserSoftRegisterView):
     Only the admin role be able to do this,
     creating a new technician object means creating a new user with `Technician` role.
     """
-    success_url = reverse_lazy("technicians:update-technician-user-profile")
-    template_name = "technicians/create_technician_user.html"
+    success_url = reverse_lazy("technicians:technician-update-user-profile")
+    template_name = "technicians/technician_create_user.html"
     user_role = "Technician"
     authorized_roles = ("Admin",)
 
@@ -30,8 +30,8 @@ class TechnicianUpdateUserProfileView(BaseUserProfileSoftUpdateView):
     User personal info, the user who has just created
     softly with the Technician role.
     """
-    success_url = reverse_lazy("technicians:create-technician")
-    template_name = "technicians/update_technician_user_profile.html"
+    success_url = reverse_lazy("technicians:technician-create")
+    template_name = "technicians/technician_update_user_profile.html"
     authorized_roles = ("Admin",)
 
 
@@ -41,8 +41,8 @@ class TechnicianCreateView(BaseRoleProfileCreateView):
     created with Technician role.
     Only users who authorized as Admin be able to do it.
     """
-    success_url = reverse_lazy("technicians:list-technicians")
+    success_url = reverse_lazy("technicians:technicians-list")
     form_class = CreateTechnicianForm
-    template_name = "technicians/create_technician.html"
+    template_name = "technicians/technician_create.html"
     user_role = "Technician"
     authorized_roles = ("Admin",)

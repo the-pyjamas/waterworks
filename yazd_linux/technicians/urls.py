@@ -17,16 +17,16 @@ TECHNICIAN_CRUD_URLS = [
     path(
         "create/user/",
         TechnicianCreateUserView.as_view(),
-        name="create-technician-user"
+        name="technician-create-user"
     ),
     path(
         "user/profile/",
         TechnicianUpdateUserProfileView.as_view(),
-        name="update-technician-user-profile"
+        name="technician-update-user-profile"
     ),
-    path("create/", TechnicianCreateView.as_view(), name="create-technician"),
+    path("create/", TechnicianCreateView.as_view(), name="technician-create"),
 
-    path("list/", TechnicianListView.as_view(), name="list-technicians"),
+    path("list/", TechnicianListView.as_view(), name="technicians-list"),
     path("<int:technician_pk>/", TechnicianRetrieveView.as_view(), name="technician-retrieve"),
 ]
 
