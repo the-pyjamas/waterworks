@@ -13,8 +13,8 @@ class CustomerCreateForm(forms.ModelForm):
     class Meta:
         model = Customer
         fields = (
-            "vendor", "technician","description",
-            "installation_date", "next_inspection_date"
+            "vendor", "technician",
+            "description", "installation_date"
         )
         widgets = {
             "installation_date": forms.DateInput(attrs={"type": "date", "class": "form-control"}),

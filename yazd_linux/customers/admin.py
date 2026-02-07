@@ -39,7 +39,6 @@ class CustomerAdmin(admin.ModelAdmin):
                 "classes": ("collapse",),
                 "fields": (
                     "installation_date",
-                    "next_inspection_date",
                     # Replacement dates
                     "first_replacement_date",
                     "second_replacement_date",
@@ -73,7 +72,6 @@ class CustomerAdmin(admin.ModelAdmin):
                 "classes": ("collapse",),
                 "fields": (
                     "installation_date",
-                    "next_inspection_date",
                 )
             }
         ),
