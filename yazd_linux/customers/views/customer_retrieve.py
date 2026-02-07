@@ -4,7 +4,7 @@ from django.views import View
 from customers.models import Customer
 
 
-class RetrieveCustomerView(View):
+class CustomerRetrieveView(View):
 	"""
 	Retrieving a customer information,
 	It must have showing the detail of a customer.

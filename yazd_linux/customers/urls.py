@@ -1,11 +1,13 @@
 from django.urls import path
 
 from customers.views import (
-    CreateCustomerUserView,
-    CreateCustomerView,
-    UpdateCustomerUserView,
-    ListCustomerView,
-    RetrieveCustomerView
+    # Creation
+    CustomerCreateUserView,
+    CustomerUpdateUserProfileView,
+    CustomerCreateView,
+    # List and retrieve
+    CustomerListView,
+    CustomerRetrieveView
 )
 
 app_name = "customers"
@@ -13,18 +15,18 @@ app_name = "customers"
 CUSTOMER_CRUD_URLS = [
     path(
         "create/user/",
-        CreateCustomerUserView.as_view(),
-        name="create-customer-user"
+        CustomerCreateUserView.as_view(),
+        name="customer-create-user"
     ),
     path(
         "user/profile/",
-        UpdateCustomerUserView.as_view(),
-        name="update-customer-user-profile"
+        CustomerUpdateUserProfileView.as_view(),
+        name="customer-update-user-profile"
     ),
+    path("create/", CustomerCreateView.as_view(), name="customer-create"),
 
-    path("create/", CreateCustomerView.as_view(), name="create-customer"),
-    path("list/", ListCustomerView.as_view(), name="list-customers"),
-    path("<int:customer_pk>/", RetrieveCustomerView.as_view(), name="retrieve-customer")
+    path("list/", CustomerListView.as_view(), name="customers-list"),
+    path("<int:customer_pk>/", CustomerRetrieveView.as_view(), name="customer-retrieve")
 ]
 
 urlpatterns = CUSTOMER_CRUD_URLS

@@ -13,7 +13,7 @@
                         <div class="card-header justify-between">
                             <h4 class="d-flex-items gap-10">لیست مشتریان</h4>
                             <div class="d-flex flex-wrap gap-15">
-                                <a class="btn btn-primary" href="{% url 'customers:create-customer-user' %}">
+                                <a class="btn btn-primary" href="{% url 'customers:customer-create-user' %}">
                                     ثبت مشتری جدید
                                 </a>
                             </div>
@@ -37,7 +37,7 @@
                                             <td>{{ customer.user.phone_number }}</td>
                                             <td>
                                                 <a
-                                                    href="{% url 'customers:retrieve-customer' customer.pk %}"
+													href="{{ customer.get_absolute_url }}"
                                                     class="text text-primary"
                                                     style="font-size: 2rem;"
                                                 >
@@ -45,7 +45,7 @@
                                                 </a>
                                             <td>
                                                 <a
-                                                    href="{% url 'customers:retrieve-customer' customer.pk %}"
+													href="{{ customer.get_absolute_url }}"
                                                     class="text text-primary"
                                                     style="font-size: 2rem;"
                                                 >

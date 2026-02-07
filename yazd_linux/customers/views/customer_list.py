@@ -4,11 +4,11 @@ from django.views import View
 from customers.models import Customer
 
 
-class ListCustomerView(View):
+class CustomerListView(View):
     """
     List all active customers.
     """
-    template_name = "customers/list_customers.html"
+    template_name = "customers/customers_list.html"
 
     def get(self, request):
         customers = Customer.objects.filter(is_active=True)

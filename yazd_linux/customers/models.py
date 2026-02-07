@@ -169,6 +169,6 @@ class Customer(BaseModel):
         However, it returns a customer detail but its PK.
         """
         return reverse_lazy(
-            'customers:retrieve-customer',
+            'customers:customer-retrieve',
             kwargs={'customer_pk': self.pk}
         )

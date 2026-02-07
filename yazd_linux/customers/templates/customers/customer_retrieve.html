@@ -23,12 +23,12 @@
                                         <a href="{% url 'dashboard:dashboard' %}">خانه</a>
                                     </li>
                                     <li class="breadcrumb-item">
-                                        <a href="{% url 'customers:retrieve-customer' customer.pk %}">
+										<a href="{{ customer.get_absolute_url }}">
                                             <b>جزئیات مشتری</b>
                                         </a>
                                     </li>
                                     <li aria-current="page" class="breadcrumb-item active">
-                                        <a href="{% url 'customers:create-customer' %}">
+                                        <a href="{% url 'customers:customer-create' %}">
                                             مشتری را اضافه کنید
                                         </a>
                                     </li>

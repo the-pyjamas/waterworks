@@ -1,7 +1,7 @@
-from .create_customer import (
-    CreateCustomerUserView,
-    UpdateCustomerUserView,
-    CreateCustomerView
+from .customer_create import (
+    CustomerCreateUserView,
+    CustomerUpdateUserProfileView,
+    CustomerCreateView
 )
-from .list_customer import ListCustomerView
-from .retrieve_customer import RetrieveCustomerView
+from .customer_list import CustomerListView
+from .customer_retrieve import CustomerRetrieveView
