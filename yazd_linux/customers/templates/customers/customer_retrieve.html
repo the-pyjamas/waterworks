@@ -14,7 +14,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xl-12">
-                        {% if request.user.is_superuser %}
+                        {% if request.user.is_superuser or request.user.role == 'Admin' %}
                             <div class="page-title-box d-flex-between flex-wrap gap-15">
                                 <h1 class="page-title fs-18 lh-1">جزئیات مشتری</h1>
                                 <nav aria-label="breadcrumb">
@@ -48,7 +48,7 @@
                                     >جزئیات</a
                                     >
                                 </li>
-                                {% if request.user.is_superuser %}
+                                {% if request.user.is_superuser or request.user.role == 'Admin' %}
                                     <li class="">
                                         <a
                                             class="btn btn-light"
@@ -128,6 +128,36 @@
                                                 <td>
                                                     <div class="text-heading">
                                                         {{ customer.installation_date | jformat:"%d %B %Y" }}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>مدل دستگاه</td>
+                                                <td>
+                                                    <div class="text-heading">
+                                                        {{ customer.device }}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>فروشنده</td>
+                                                <td>
+                                                    <div class="text-heading">
+                                                        {{ customer.vendor.shop_name }}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>نصاب</td>
+                                                <td>
+                                                    <div class="text-heading">
+                                                        <a
+                                                            href="{{ customer.technician.get_absolute_url }}"
+                                                            class="text text-primary"
+                                                            style="font-size: 1.5rem;"
+                                                        >
+                                                            {{ customer.technician.user.userprofile.fullname }}
+                                                        </a>
                                                     </div>
                                                 </td>
                                             </tr>

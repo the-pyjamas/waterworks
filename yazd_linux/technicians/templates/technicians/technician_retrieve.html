@@ -14,7 +14,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xl-12">
-                        {% if request.user.is_superuser %}
+                        {% if request.user.is_superuser or request.user.role == 'Admin' %}
                             <div class="page-title-box d-flex-between flex-wrap gap-15">
                                 <h1 class="page-title fs-18 lh-1">جزئیات نصاب</h1>
                                 <nav aria-label="breadcrumb">
@@ -48,7 +48,7 @@
                                     >جزئیات</a
                                     >
                                 </li>
-                                {% if request.user.is_superuser %}
+                                {% if request.user.is_superuser or request.user.role == 'Admin' %}
                                     <li class="">
                                         <a
                                             class="btn btn-light"

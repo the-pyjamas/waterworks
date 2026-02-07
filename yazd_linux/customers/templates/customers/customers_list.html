@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
+
 {% load static %}
+{% load jformat %}
 
 {% block content %}
 
@@ -23,9 +25,8 @@
                             <table class="table text-nowrap w-100" id="dataTableDefault">
                                 <thead>
                                     <tr>
-                                        <th>شماره موبایل</th>
                                         <th>نام خانودگی</th>
-                                        <th>کد مشتری</th>
+                                        <th>مدل دستگاه</th>
                                         <th>فروشنده</th>
                                         <th>نصاب</th>
                                         <th>تاریخ نصب</th>
@@ -34,7 +35,6 @@
                                 <tbody>
                                     {% for customer in customers %}
                                         <tr>
-                                            <td>{{ customer.user.phone_number }}</td>
                                             <td>
                                                 <a
 													href="{{ customer.get_absolute_url }}"
@@ -43,18 +43,10 @@
                                                 >
                                                     {{ customer.user.userprofile.last_name }}</td>
                                                 </a>
-                                            <td>
-                                                <a
-													href="{{ customer.get_absolute_url }}"
-                                                    class="text text-primary"
-                                                    style="font-size: 2rem;"
-                                                >
-                                                    {{ customer.customer_code }}
-                                                </a>
-                                            </td>
-                                            <td>{{ customer.vendor.shop_name }}</td>
-                                            <td>{{ customer.technician.user.userprofile.last_name }}</td>
-                                            <td>{{ customer.installation_date }}</td>
+                                            <td style="font-size: 1.6rem;">{{ customer.device }}</td>
+                                            <td style="font-size: 1.6rem;">{{ customer.vendor.shop_name }}</td>
+                                            <td style="font-size: 1.6rem;">{{ customer.technician.user.userprofile.last_name }}</td>
+                                            <td style="font-size: 1.6rem;">{{ customer.installation_date | jformat:"%d %B %Y" }}</td>
                                             <!-- <td>
                                                 {% if customer.is_active %}
                                                     <span class="badge bg-label-success">

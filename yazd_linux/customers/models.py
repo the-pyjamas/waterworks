@@ -9,6 +9,7 @@ from common.models import BaseModel
 from vendors.models import Vendor
 from technicians.models import Technician
 from accounts.models import User
+from devices.models import Device
 
 
 class Customer(BaseModel):
@@ -64,6 +65,13 @@ class Customer(BaseModel):
         null=True,
         blank=True,
         verbose_name=_("Description")
+    )
+    device = models.ForeignKey(
+        Device,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name=_("Device")
     )
     installation_date = models.DateField(
         null=True,
