@@ -1,1 +1,1 @@
-from .customer_crud_form import CreateCustomerForm
+from .customer_crud_form import CustomerCreateForm

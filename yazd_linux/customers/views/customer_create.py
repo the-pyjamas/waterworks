@@ -9,7 +9,7 @@ from common.views import (
     BaseRoleProfileCreateView,
     BaseUserProfileSoftUpdateView
 )
-from customers.forms import CreateCustomerForm
+from customers.forms import CustomerCreateForm
 from customers.models import Customer
 
 
@@ -46,7 +46,7 @@ class CustomerCreateView(BaseRoleProfileCreateView):
     created with Customer role.
     Only users who authorized as Admin and Technician be able to do it.
     """
-    form_class = CreateCustomerForm
+    form_class = CustomerCreateForm
     success_url = reverse_lazy("customers:customers-list")
     template_name = "customers/customer_create.html"
     user_role = "Customer"

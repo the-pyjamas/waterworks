@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from customers.models import Customer
 
 
-class CreateCustomerForm(forms.ModelForm):
+class CustomerCreateForm(forms.ModelForm):
     """
     Creation form for creating a new customer object.
     Only the admin-user and technician-user be able to
