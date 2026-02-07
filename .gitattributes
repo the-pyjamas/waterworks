@@ -2,6 +2,7 @@ yazd_linux/assets/** linguist-vendored
 
 *.css linguist-vendored
 *.js  linguist-vendored
+*.html  linguist-vendored
 
 *.min.js linguist-vendored
 *.map linguist-vendored
