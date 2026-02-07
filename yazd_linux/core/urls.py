@@ -13,6 +13,7 @@ LOCAL_URLS = [
     path("accounts/", include("accounts.urls", namespace="accounts")),
     path("customers/", include("customers.urls", namespace="customers")),
     path("technicians/", include("technicians.urls", namespace="technicians")),
+    path("devices/", include("devices.urls", namespace="devices")),
 ]
 
 urlpatterns = DJANGO_URLS + LOCAL_URLS
