@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
+
 
 User = get_user_model()
 
@@ -105,6 +106,104 @@ class BaseRoleProfileCreateView(LoginRequiredMixin, View):
             )
 
         context = {"form": form}
+        return render(
+            request=request,
+            template_name=self.template_name,
+            context=context
+        )
+
+
+class BaseRoleProfileUpdateView(LoginRequiredMixin, View):
+    """
+    Updating a user's role profile (e.g. Customer or Technician.)
+    Just 'Admin' and the user who is the owner of the profile
+    are be able to update a role profile.
+
+    Methods:
+        dispatch (predecision).
+        get (GET HTTP).
+        post (POST HTTP).
+    """
+    model = None
+    role = None
+    form_class = None
+    template_name = None
+    # pk_url_kwarg = "instance_pk"
+    success_url = reverse_lazy("dashboard:dashboard")
+
+    def dispatch(self, *args, **kwargs):
+        """
+        Ensures that the user who updating a profile
+        has the Admin role or is a superuser.
+        """
+        user = self.request.user
+        is_allowed = (
+            user.is_superuser
+            or user.role == 'Admin'
+        )
+
+        if not is_allowed:
+            return redirect("dashboard:dashboard")
+
+        return super().dispatch(*args, **kwargs)
+
+    def get(self, request, instance_pk: int):
+        """
+        Simply gets the role profile ID/PK and renders
+        the form-class with an instnace which is the role-profile.
+
+        Args:
+            instance_pk (int): The target role profile ID/PK.
+        """
+        instance = get_object_or_404(self.model, pk=instance_pk)
+        form = self.form_class(instance=instance)
+
+        context = {
+            "form": form,
+            "instance": instance
+        }
+        return render(
+            request=request,
+            template_name=self.template_name,
+            context=context
+        )
+
+    def post(self, request, instance_pk: int):
+        """
+        Updating a role profile (e.g. Customer or Technician).
+        Gets the instance-id which is the ID of a role profile
+        and then update it from the sent date from the client of POST method.
+
+        Args:
+            instance_pk (int): The target role profile ID/PK.
+        """
+        instance = get_object_or_404(self.model, pk=instance_pk)
+        form = self.form_class(
+            data=request.POST,
+            instance=instance
+        )
+
+        if form.is_valid():
+            form.save()
+            self.success_url = instance.get_absolute_url
+
+            messages.success(
+                request=request,
+                message=_(f"{self.role} profile udpated successfully."),
+                extra_tags="success"
+            )
+            return redirect(self.success_url)
+        else:
+            messages.error(
+                request=request,
+                message=_("Please correct the errors bellow."),
+                extra_tags="danger"
+            )
+
+        context = {
+            "form": form,
+            "instance": instance
+        }
         return render(
             request=request,
             template_name=self.template_name,
