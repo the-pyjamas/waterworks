@@ -1,0 +1,128 @@
+{% extends 'base_soft.html' %}
+
+
+{% block extra_style %}
+<style>
+    .save-btn {
+        background-color: #DFF2E3;
+        border: none;
+        border-radius: 3%;
+        width: 20%;
+        font-size: 1.5rem;
+        padding: 0.8%;
+        transition: 0.7s;
+    }
+    .save-btn:hover {
+        color: #28A745;
+        font-size: 1.8rem;
+        width: 25%;
+    }
+</style>
+{% endblock extra_style %}
+
+{% block content %}
+
+    <div class="app-content-area">
+        <div class="app-content-wrap">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-8" style="margin: auto;">
+                        <div class="page-title-box d-flex-between flex-wrap gap-15">
+                            <h1 class="page-title fs-18 lh-1">
+                            ورودی های اساسی را تشکیل دهید
+                            </h1>
+                            <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb breadcrumb-example1 mb-0">
+                                <li class="breadcrumb-item">
+                                    <a href="{% url 'dashboard:dashboard' %}">خانه</a>
+                                </li>
+                                <li aria-current="page" class="breadcrumb-item">
+                                    <a href="{% url 'customers:customers-list' %}">مشتریان</a>
+                                </li>
+                                <li aria-current="page" class="breadcrumb-item active">
+                                    ویرایش پروفایل
+                                </li>
+                            </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-12" style="margin: auto;">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2 style="margin: auto; margin-bottom: 2%; font-size: 3rem;">
+                                    مشخصات پایه
+                                </h2>
+                            </div>
+                            <div class="card-body pt-15">
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    {{ form.non_field_errors }}
+
+                                    <div class="row gy-15">
+                                        <div class="col-xl-3 col-lg-6 col-md-6 mb-4" style="margin-bottom: 2%;">
+                                            <label class="form-label fs-4" for="name" style="font-size: 1.8rem;">
+                                                تاریخ نصب
+                                            </label>
+                                            {{ form.installation_date }}
+                                        </div>
+                                        <div class="col-xl-3 col-lg-6 col-md-6 mb-4" style="margin-bottom: 2%;">
+                                            <label class="form-label fs-4" for="name" style="font-size: 1.8rem;">
+                                                مدل دستگاه
+                                            </label>
+                                            {{ form.device }}
+                                        </div>
+                                        <div class="col-xl-3 col-lg-6 col-md-6 mb-4" style="margin-bottom: 2%;">
+                                            <label class="form-label fs-4" for="name" style="font-size: 1.8rem;">
+                                                فروشنده
+                                            </label>
+                                            {{ form.vendor }}
+                                        </div>
+                                        <div class="col-xl-3 col-lg-6 col-md-6 mb-4" style="margin-bottom: 2%;">
+                                            <label class="form-label fs-4" for="name" style="font-size: 1.8rem;">
+                                                نصاب
+                                            </label>
+                                            {{ form.technician }}
+                                        </div>
+                                        <hr style="margin-top: 3%; margin-bottom: 3%;">
+
+                                        <!-- Replacement dates -->
+                                        <div class="col-xl-3 col-lg-6 col-md-6 mb-4" style="margin-bottom: 2%;">
+                                            <label class="form-label fs-4" for="name" style="font-size: 1.8rem;">
+                                                نخستین تعویض
+                                            </label>
+                                            {{ form.first_replacement_date }}
+                                        </div>
+                                        <div class="col-xl-3 col-lg-6 col-md-6 mb-4" style="margin-bottom: 2%;">
+                                            <label class="form-label fs-4" for="name" style="font-size: 1.8rem;">
+                                                دومین تعویض
+                                            </label>
+                                            {{ form.second_replacement_date }}
+                                        </div>
+                                        <div class="col-xl-3 col-lg-6 col-md-6 mb-4" style="margin-bottom: 2%;">
+                                            <label class="form-label fs-4" for="name" style="font-size: 1.8rem;">
+                                                سومین تعویض
+                                            </label>
+                                            {{ form.third_replacement_date }}
+                                        </div>
+                                        <div class="col-xl-3 col-lg-6 col-md-6 mb-4" style="margin-bottom: 2%;">
+                                            <label class="form-label fs-4" for="name" style="font-size: 1.8rem;">
+                                                چهارمین تعویض
+                                            </label>
+                                            {{ form.forth_replacement_date }}
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="save-btn" style="margin-top: 5%;">
+                                        ذخیره تغییرات
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

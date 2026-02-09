@@ -44,7 +44,7 @@
                                 <li class="active">
                                     <a
                                     class="btn btn-primary"
-                                    href="ecommerce-customer-details.html"
+                                    href="{{ customer.get_absolute_url }}"
                                     >جزئیات</a
                                     >
                                 </li>
@@ -52,7 +52,7 @@
                                     <li class="">
                                         <a
                                             class="btn btn-light"
-                                            href="{% url 'accounts:user-profile-update' %}">
+                                            href="{% url 'customers:customer-update' customer.pk %}">
                                             تنظیم
                                         </a>
                                     </li>
