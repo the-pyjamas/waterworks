@@ -44,26 +44,59 @@ class CustomerUpdateForm(forms.ModelForm):
     only the admin user and superuser are be able to
     update a profile.
     """
+    is_active = forms.BooleanField(required=False)
+    first_replacement_status = forms.BooleanField(required=False)
+    second_replacement_status = forms.BooleanField(required=False)
+    third_replacement_status = forms.BooleanField(required=False)
+    forth_replacement_status = forms.BooleanField(required=False)
+
     class Meta:
         model = Customer
         fields = (
             "vendor", "technician", "description",
-            "device", "installation_date",
+            "device", "installation_date", "is_active",
+            # Replacement dates
             "first_replacement_date", "second_replacement_date",
             "third_replacement_date", "forth_replacement_date",
+            # Replacement dates status
+            "first_replacement_status", "second_replacement_status",
+            "third_replacement_status", "forth_replacement_status"
         )
 
         widgets = {
             "installation_date": forms.DateInput(
                 attrs={"type": "date", "class": "form-control"}
             ),
-            "first_installation_date": forms.DateInput(
+            "vendor": forms.Select(attrs={"class": "form-control"}),
+            "device": forms.Select(attrs={"class": "form-control"}),
+            "technician": forms.Select(attrs={"class": "form-control"}),
+            "is_active": forms.CheckboxInput(
+                attrs={"type": "checkbox", "class": "form-control"}
+            ),
+            # Replacement dates
+            "first_replacement_date": forms.DateInput(
                 attrs={"type": "date", "class": "form-control"}
             ),
+            "second_replacement_date": forms.DateInput(
+                attrs={"type": "date", "class": "form-control"}
+            ),
+            "third_replacement_date": forms.DateInput(
+                attrs={"type": "date", "class": "form-control"}
+            ),
+            "forth_replacement_date": forms.DateInput(
+                attrs={"type": "date", "class": "form-control"}
+            ),
+            # Replacement dates status
+            "first_replacement_status": forms.CheckboxInput(
+                attrs={"type": "checkbox", "class": "form-control"}
+            ),
+            "second_replacement_status": forms.CheckboxInput(
+                attrs={"type": "checkbox", "class": "form-control"}
+            ),
+            "third_replacement_status": forms.CheckboxInput(
+                attrs={"type": "checkbox", "class": "form-control"}
+            ),
+            "forth_replacement_status": forms.CheckboxInput(
+                attrs={"type": "checkbox", "class": "form-control"}
+            ),
         }
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        for field in self.fields.values():
-            field.widget.attrs["class"] = "form-control"

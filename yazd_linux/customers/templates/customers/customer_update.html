@@ -111,6 +111,40 @@
                                             </label>
                                             {{ form.forth_replacement_date }}
                                         </div>
+
+                                        <!-- Replacement dates status -->
+                                        <div class="col-xl-3 col-lg-6 col-md-6 mb-4" style="margin-bottom: 2%;">
+                                            <label class="form-label fs-4" for="name" style="font-size: 1.8rem;">
+                                                نخستین تعویض
+                                            </label>
+                                            {{ form.first_replacement_status }}
+                                        </div>
+                                        <div class="col-xl-3 col-lg-6 col-md-6 mb-4" style="margin-bottom: 2%;">
+                                            <label class="form-label fs-4" for="name" style="font-size: 1.8rem;">
+                                                دومین تعویض
+                                            </label>
+                                            {{ form.second_replacement_status }}
+                                        </div>
+                                        <div class="col-xl-3 col-lg-6 col-md-6 mb-4" style="margin-bottom: 2%;">
+                                            <label class="form-label fs-4" for="name" style="font-size: 1.8rem;">
+                                                سومین تعویض
+                                            </label>
+                                            {{ form.third_replacement_status }}
+                                        </div>
+                                        <div class="col-xl-3 col-lg-6 col-md-6 mb-4" style="margin-bottom: 2%;">
+                                            <label class="form-label fs-4" for="name" style="font-size: 1.8rem;">
+                                                چهارمین تعویض
+                                            </label>
+                                            {{ form.forth_replacement_status }}
+                                        </div>
+
+                                        <hr style="margin-top: 3%; margin-bottom: 3%;">
+                                        <div class="col-xl-3 col-lg-6 col-md-6 mb-4" style="margin-bottom: 2%;">
+                                            <label class="form-label fs-4" for="name" style="font-size: 1.8rem;">
+                                                وضعیت مشتری
+                                            </label>
+                                            {{ form.is_active }}
+                                        </div>
                                     </div>
 
                                     <button type="submit" class="save-btn" style="margin-top: 5%;">
