@@ -3,6 +3,21 @@
 {% load static %}
 {% load jformat %}
 
+{% block extra_style %}
+<style>
+    .search-btn {
+        background-color: #5344EA;
+        color: #FFFFFF;
+        border: none;
+        border-radius: 4%;
+        width: 9%;
+        font-size: 1.3r em;
+        padding: 0.5%;
+        margin-top: 2%;
+    }
+</style>
+{% endblock extra_style %}
+
 {% block content %}
 
 <div class="app-content-area">
@@ -20,6 +35,33 @@
                                 </a>
                             </div>
                         </div>
+
+                        <form
+                            action="{% url 'customers:customers-list' %}"
+                            method="get"
+                            class="form-control"
+                            style="margin-top: 2%; margin-bottom: 2%;"
+                        >
+                            {% csrf_token %}
+                            {{ form.non_field_errors }}
+
+                            <div class="row g-2 align-items-end">
+                                <div class="col-md-4">
+                                    {{ filters.form.device.label }}
+                                    {{ filters.form.device }}
+                                </div>
+                                <div class="col-md-4">
+                                    {{ filters.form.technician.label }}
+                                    {{ filters.form.technician }}
+                                </div>
+                                <div class="col-md-4">
+                                    {{ filters.form.vendor.label }}
+                                    {{ filters.form.vendor }}
+                                </div>
+                            </div>
+                            <input type="submit" value="جستجو" class="search-btn">
+                        </form>
+
                         <div class="card-body pt-15">
                             <div class="table-responsive">
                             <table class="table text-nowrap w-100" id="dataTableDefault">
