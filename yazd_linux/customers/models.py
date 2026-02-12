@@ -100,6 +100,23 @@ class Customer(BaseModel):
         blank=True,
         verbose_name=_("Forth Replacement Date")
     )
+    # Replacement dates ststus
+    first_replacement_status = models.BooleanField(
+        default=False,
+        verbose_name=_("First Replacement Status")
+    )
+    second_replacement_status = models.BooleanField(
+        default=False,
+        verbose_name=_("Second Replacement Status")
+    )
+    third_replacement_status = models.BooleanField(
+        default=False,
+        verbose_name=_("Third Replacement Status")
+    )
+    forth_replacement_status = models.BooleanField(
+        default=False,
+        verbose_name=_("Forth Replacement Status")
+    )
 
     class Meta:
         verbose_name = _("Customer")
