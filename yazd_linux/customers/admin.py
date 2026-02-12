@@ -44,6 +44,11 @@ class CustomerAdmin(admin.ModelAdmin):
                     "second_replacement_date",
                     "third_replacement_date",
                     "forth_replacement_date",
+                    # Replacement dates status
+                    "first_replacement_status",
+                    "second_replacement_status",
+                    "third_replacement_status",
+                    "forth_replacement_status"
                 )
             }
         ),
