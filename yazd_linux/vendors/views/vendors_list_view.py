@@ -19,7 +19,7 @@ class VendorListView(View):
         Lists all the vendors,
         filters them base on the client request, the search filter.
         """
-        vendors = Vendor.objects.filter(is_active=True)
+        vendors = Vendor.objects.all()
         # Search filter according to the 'VendorFilter'
         filters = VendorFilter(
             request.GET,

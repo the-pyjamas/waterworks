@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% load static %}
-{% load jformat %}
 
 {% block extra_style %}
 <style>
@@ -67,7 +66,7 @@
                                         <th>نام فروشگاه</th>
                                         <th>شماره تماس</th>
                                         <th>شماره تماس کاری</th>
-                                        <th>تاریخ عضویت</th>
+                                        <th>تعداد فروش ها</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -75,7 +74,7 @@
                                         <tr>
                                             <td>
                                                 <a
-													href="{{ vendor.get_absolute_url }}"
+													href="#"
                                                     class="text text-primary"
                                                     style="font-size: 2rem;"
                                                 >
@@ -84,7 +83,7 @@
                                             <td style="font-size: 1.6rem;">{{ vendor.shop_name }}</td>
                                             <td style="font-size: 1.6rem;">{{ vendor.user.phone_number }}</td>
                                             <td style="font-size: 1.6rem;">{{ vendor.contact_phone }}</td>
-                                            <td style="font-size: 1.6rem;">{{ vendor.created_at | jformat:"%d %B %Y" }}</td>
+                                            <td style="font-size: 1.6rem;">{{ vendor.customers.count }}</td>
                                             <!-- <td>
                                                 {% if vendor.is_active %}
                                                     <span class="badge bg-label-success">
