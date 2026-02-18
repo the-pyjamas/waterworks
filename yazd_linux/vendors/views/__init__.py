@@ -3,3 +3,4 @@ from .vendor_create_view import (
     VendorUpdateUserProfileView,
     VendorCreateView
 )
+from .vendors_list_view import VendorListView
