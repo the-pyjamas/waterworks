@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load jformat %}
+
+{% block extra_style %}
+<style>
+    .search-btn {
+        background-color: #5344EA;
+        color: #FFFFFF;
+        border: none;
+        border-radius: 4%;
+        width: 9%;
+        font-size: 1.3r em;
+        padding: 0.5%;
+        margin-top: 2%;
+    }
+</style>
+{% endblock extra_style %}
+
+{% block content %}
+
+<div class="app-content-area">
+    <div class="app-content-wrap">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-header justify-between">
+                            <h4 class="d-flex-items gap-10">لیست فروشندگان</h4>
+                            <div class="d-flex flex-wrap gap-15">
+                                <a class="btn btn-primary" href="{% url 'vendors:vendor-create-user' %}">
+                                    ثبت فروشنده جدید
+                                </a>
+                            </div>
+                        </div>
+
+                        <form
+                            action="{% url 'vendors:vendors-list' %}"
+                            method="get"
+                            class="form-control"
+                            style="margin-top: 2%; margin-bottom: 2%;"
+                        >
+                            {% csrf_token %}
+                            {{ form.non_field_errors }}
+
+                            <div class="row g-2 align-items-end">
+                                <div class="col-md-4">
+                                    {{ filters.form.shop_name.label }}
+                                    {{ filters.form.shop_name }}
+                                </div>
+                                <div class="col-md-4">
+                                    {{ filters.form.contact_phone.label }}
+                                    {{ filters.form.contact_phone }}
+                                </div>
+                            </div>
+                            <input type="submit" value="جستجو" class="search-btn">
+                        </form>
+
+                        <div class="card-body pt-15">
+                            <div class="table-responsive">
+                            <table class="table text-nowrap w-100" id="dataTableDefault">
+                                <thead>
+                                    <tr>
+                                        <th>نام خانودگی</th>
+                                        <th>نام فروشگاه</th>
+                                        <th>شماره تماس</th>
+                                        <th>شماره تماس کاری</th>
+                                        <th>تاریخ عضویت</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for vendor in vendors %}
+                                        <tr>
+                                            <td>
+                                                <a
+													href="{{ vendor.get_absolute_url }}"
+                                                    class="text text-primary"
+                                                    style="font-size: 2rem;"
+                                                >
+                                                    {{ vendor.user.userprofile.last_name }}</td>
+                                                </a>
+                                            <td style="font-size: 1.6rem;">{{ vendor.shop_name }}</td>
+                                            <td style="font-size: 1.6rem;">{{ vendor.user.phone_number }}</td>
+                                            <td style="font-size: 1.6rem;">{{ vendor.contact_phone }}</td>
+                                            <td style="font-size: 1.6rem;">{{ vendor.created_at | jformat:"%d %B %Y" }}</td>
+                                            <!-- <td>
+                                                {% if vendor.is_active %}
+                                                    <span class="badge bg-label-success">
+                                                        فعال
+                                                    </span>
+                                                {% else %}
+                                                    <span class="badge bg-label-danger">
+                                                        غیرفعال
+                                                    </span>
+                                                {% endif %}
+                                            </td> -->
+                                        </tr>
+                                    {% empty %}
+                                        <h3 class="text text-center">No Vendor Yet!</h3>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
