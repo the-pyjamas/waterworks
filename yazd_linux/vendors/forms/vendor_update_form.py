@@ -1,7 +1,6 @@
 from django import forms
 
 from vendors.models import Vendor
-from phonenumber_field.widgets import PhoneNumber
 
 
 class VendorUpdateForm(forms.ModelForm):
@@ -10,6 +9,8 @@ class VendorUpdateForm(forms.ModelForm):
     only the admin user and superuser are be able to
     update a profile.
     """
+    is_active = forms.BooleanField(required=False)
+
     class Meta:
         model = Vendor
         fields = ("shop_name", "contact_email", "contact_phone", "is_active")
@@ -21,8 +22,7 @@ class VendorUpdateForm(forms.ModelForm):
             "contact_email": forms.EmailInput(
                 attrs={"class": "form-control"}
             ),
-            "contact_phone": PhoneNumber(
-                region="IR",
+            "contact_phone": forms.TextInput(
                 attrs={"class": "form-control"}
             ),
             "is_active": forms.CheckboxInput(
