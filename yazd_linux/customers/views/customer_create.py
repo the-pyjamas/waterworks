@@ -1,5 +1,3 @@
-from django.shortcuts import render
-from django.views import View
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
@@ -10,7 +8,6 @@ from common.views import (
     BaseUserProfileSoftUpdateView
 )
 from customers.forms import CustomerCreateForm
-from customers.models import Customer
 
 
 User = get_user_model()
