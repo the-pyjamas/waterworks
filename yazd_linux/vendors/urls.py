@@ -1,17 +1,21 @@
 from django.urls import path
 
 from vendors.views import (
+    # Creation
     VendorCreateUserView,
     VendorUpdateUserProfileView,
     VendorCreateView,
     # List and retrieve
     VendorListView,
-    VendorRetrieveView
+    VendorRetrieveView,
+    # Updating
+    VendorUpdateView
 )
 
 app_name = "vendors"
 
 VENDORS_CRUD_URLS = [
+    # Creation
     path(
         "create/user/",
         VendorCreateUserView.as_view(),
@@ -27,6 +31,13 @@ VENDORS_CRUD_URLS = [
         VendorCreateView.as_view(),
         name="vendor-create"
     ),
+    # Updating
+    path(
+        "<int:instance_pk>/update/",
+        VendorUpdateView.as_view(),
+        name="vendor-update"
+    ),
+    # List and retrieve
     path("list/", VendorListView.as_view(), name="vendors-list"),
     path("<int:vendor_pk>/", VendorRetrieveView.as_view(), name="vendor-retrieve"),
 ]
