@@ -16,7 +16,7 @@ class VendorCreateUserView(BaseUserSoftRegisterView):
     creating a new user with `Vendor` role.
     """
     success_url = reverse_lazy("vendors:vendor-update-user-profile")
-    template_name = "vendors/vendors_create_user.html"
+    template_name = "vendors/vendor_create_user.html"
     user_role = "Vendor"
     authorized_roles = ("Admin",)
 

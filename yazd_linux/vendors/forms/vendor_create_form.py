@@ -11,7 +11,7 @@ class VendorCreateForm(forms.ModelForm):
     """
     class Meta:
         model = Vendor
-        fields = ("user", "shop_name", "contact_phone")
+        fields = ("shop_name", "contact_phone")
 
     def __init__(self, *args, **kwargs):
         """
