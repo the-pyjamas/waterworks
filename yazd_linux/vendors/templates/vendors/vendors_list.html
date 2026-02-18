@@ -14,6 +14,12 @@
         padding: 0.5%;
         margin-top: 2%;
     }
+    /* .ltr-number {
+        direction: ltr;
+        unicode-bidi: isolate;
+        text-align: left;
+        white-space: nowrap;
+    } */
 </style>
 {% endblock extra_style %}
 
@@ -74,15 +80,23 @@
                                         <tr>
                                             <td>
                                                 <a
-													href="#"
+													href="{{ vendor.get_absolute_url }}"
                                                     class="text text-primary"
                                                     style="font-size: 2rem;"
                                                 >
                                                     {{ vendor.user.userprofile.last_name }}</td>
                                                 </a>
                                             <td style="font-size: 1.6rem;">{{ vendor.shop_name }}</td>
-                                            <td style="font-size: 1.6rem;">{{ vendor.user.phone_number }}</td>
-                                            <td style="font-size: 1.6rem;">{{ vendor.contact_phone }}</td>
+                                            <td style="font-size: 1.6rem;">
+                                                <span dir="ltr">{{ vendor.user.phone_number.as_national }}</span>
+                                            </td>
+                                            <td style="font-size: 1.6rem;" class="ltr-number">
+                                                {% if vendor.contact_phone %}
+                                                    <span dir="ltr">{{ vendor.contact_phone.as_national }}</span>
+                                                {% else %}
+                                                    مشخص نشده
+                                                {% endif %}
+                                            </td>
                                             <td style="font-size: 1.6rem;">{{ vendor.customers.count }}</td>
                                             <!-- <td>
                                                 {% if vendor.is_active %}
