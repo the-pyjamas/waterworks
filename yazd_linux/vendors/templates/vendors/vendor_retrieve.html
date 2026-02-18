@@ -1,0 +1,180 @@
+{% extends 'base_soft.html' %}
+
+{% load static %}
+{% load jformat %}
+
+{% block content %}
+
+    <div class="app-content-area">
+
+        <div
+            class="app-content-wrap"
+            style="background-color: #FFFFFF; padding: 3%; border-radius: 2%; margin-top: 0%; margin-bottom: 5%;"
+        >
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-12">
+                        {% if request.user.is_superuser or request.user.role == 'Admin' %}
+                            <div class="page-title-box d-flex-between flex-wrap gap-15">
+                                <h1 class="page-title fs-18 lh-1">جزئیات فروشنده</h1>
+                                <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb breadcrumb-example1 mb-0">
+                                    <li class="breadcrumb-item">
+                                        <a href="{% url 'dashboard:dashboard' %}">خانه</a>
+                                    </li>
+                                    <li class="breadcrumb-item">
+										<a href="{{ vendor.get_absolute_url }}">
+                                            <b>جزئیات فروشنده</b>
+                                        </a>
+                                    </li>
+                                    <li aria-current="page" class="breadcrumb-item active">
+                                        <a href="{% url 'vendors:vendor-create-user' %}">
+                                            فروشنده را اضافه کنید
+                                        </a>
+                                    </li>
+                                </ol>
+                                </nav>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-xl-12">
+                        <div class="customer-nav mb-25 mobile-nav">
+                            <ul class="d-flex-items gap-10">
+                                <li class="active">
+                                    <a
+                                    class="btn btn-primary"
+                                    href="{{ vendor.get_absolute_url }}"
+                                    >جزئیات</a
+                                    >
+                                </li>
+                                {% if request.user.is_superuser or request.user.role == 'Admin' %}
+                                    <li class="">
+                                        <a
+                                            class="btn btn-light"
+                                            href="#">
+                                            تنظیم
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-xxl-12 col-xl-6">
+                        <div class="card">
+                            <div class="card-header justify-between">
+                                <h4 class="">اطلاعات شخصی</h4>
+                                <div class="card-dropdown">
+                                    <div class="dropdown">
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="javascript:void(0);"
+                                            >ویرایش کردن</a
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="card-body pt-15">
+                                <!--
+                                    <div class="text-center mb-10">
+                                        <div class="avatar avatar-big radius-100">
+                                            <img
+                                                alt="image not found"
+                                                class="radius-100"
+                                                src="{% static 'images/avatar/avatar-thumb-001.webp' %}"
+                                            />
+                                        </div>
+                                    </div>
+                                -->
+                                <div class="profile-info text-center mb-15">
+                                    <h3 class="mb-5">{{ vendor.user.userprofile.fullname }}</h3>
+                                    <h6 class="badge bg-success-transparent bg-label-success">
+                                        <span class="text-black" style="font-size: 1.6rem;">
+                                            نام فروشگاه: {{ vendor.shop_name }}
+                                        </span>
+                                    </h6>
+                                    <div class="d-flex-center gap-15"></div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <td>نام</td>
+                                                <td>
+                                                    <div class="text-heading">
+                                                        {{ vendor.user.userprofile.fullname }}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>تاریخ پیوستن</td>
+                                                <td>
+                                                    <div class="text-heading">
+                                                        {{ vendor.created_at | jformat:"%Y/%m/%d" }}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>شماره موبایل</td>
+                                                <td>
+                                                    <div class="text-heading">
+                                                    <a dir="ltr">{{ vendor.user.phone_number.as_national }}</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>تاریخ عضویت</td>
+                                                <td>
+                                                    <div class="text-heading">
+                                                        {{ vendor.created_at | jformat:"%d %B %Y" }}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>شماره موبایل کاری</td>
+                                                <td>
+                                                    <div class="text-heading">
+                                                        {% if vendor.contact_phone %}
+                                                            <span dir="ltr">{{ vendor.contact_phone.as_national }}</span>
+                                                        {% else %}
+                                                            مشخص نشده
+                                                        {% endif %}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>ایمیل کاری</td>
+                                                <td>
+                                                    <div class="text-heading">
+                                                        {% if vendor.contact_email %}
+                                                            {{ vendor.contact_email }}
+                                                        {% else %}
+                                                            مشخص نشده
+                                                        {% endif %}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>وضعیت</td>
+                                                <td>
+                                                    {% if vendor.is_active %}
+                                                        <div class="badge bg-label-success">فعال</div>
+                                                    {% else %}
+                                                        <div class="badge bg-label-danger">غیرفعال</div>
+                                                    {% endif %}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock content %}

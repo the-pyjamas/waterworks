@@ -39,7 +39,7 @@ class Customer(BaseModel):
     vendor = models.ForeignKey(
         Vendor,
         on_delete=models.SET_NULL,
-        related_name="vendors",
+        related_name="customers",
         null=True,
         blank=True,
         verbose_name=_("Seller"),

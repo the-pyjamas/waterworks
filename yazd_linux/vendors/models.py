@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.urls import reverse_lazy
 
 from phonenumber_field.modelfields import PhoneNumberField
 
@@ -62,3 +63,14 @@ class Vendor(BaseModel):
             return f"{phone_number} - {username}"
         else:
             return f"{phone_number}"
+
+    @property
+    def get_absolute_url(self):
+        """
+        Mostly use for retrieving a vendor.
+        However, it returns a vendor detail but its PK.
+        """
+        return reverse_lazy(
+            'vendors:vendor-retrieve',
+            kwargs={'vendor_pk': self.pk}
+        )
