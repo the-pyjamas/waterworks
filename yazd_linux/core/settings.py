@@ -29,6 +29,7 @@ DJANGO_APPS = [
 EXTERNAL_APPS = [
     'phonenumber_field',
     'django_jalali',
+    'jalali_date',
     'django_filters',
 ]
 LOCAL_APPS = [
@@ -140,3 +141,23 @@ AUTH_USER_MODEL = "accounts.User"
 import jdatetime
 
 jdatetime.set_locale('fa_IR')
+
+# Django Jalali Date Config
+JALALI_DATE_DEFAULTS = {
+   # if change it to true then all dates of the list_display will convert to the Jalali.
+   'LIST_DISPLAY_AUTO_CONVERT': False,
+   'Strftime': {
+        'date': '%y/%m/%d',
+        'datetime': '%H:%M:%S _ %y/%m/%d',
+    },
+    'Static': {
+        'js': [
+            'admin/js/django_jalali.min.js',
+        ],
+        'css': {
+            'all': [
+              'admin/css/django_jalali.min.css',
+            ]
+        }
+    },
+}

@@ -1,7 +1,7 @@
 {% extends 'base_soft.html' %}
 
 {% load static %}
-{% load jformat %}
+{% load jalali_tags %}
 
 {% block content %}
 
@@ -111,7 +111,7 @@
                                                 <td>تاریخ پیوستن</td>
                                                 <td>
                                                     <div class="text-heading">
-                                                        {{ technician.created_at | jformat:"%Y/%m/%d" }}
+                                                        {{ technician.created_at | to_jalali:"%Y/%m/%d" }}
                                                     </div>
                                                 </td>
                                             </tr>

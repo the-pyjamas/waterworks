@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% load static %}
-{% load jformat %}
+{% load jalali_tags %}
 
 {% block extra_style %}
 <style>
@@ -88,7 +88,7 @@
                                             <td style="font-size: 1.6rem;">{{ customer.device }}</td>
                                             <td style="font-size: 1.6rem;">{{ customer.vendor.shop_name }}</td>
                                             <td style="font-size: 1.6rem;">{{ customer.technician.user.userprofile.last_name }}</td>
-                                            <td style="font-size: 1.6rem;">{{ customer.installation_date | jformat:"%d %B %Y" }}</td>
+                                            <td style="font-size: 1.6rem;">{{ customer.installation_date | to_jalali:"%d %B %Y" }}</td>
                                             <!-- <td>
                                                 {% if customer.is_active %}
                                                     <span class="badge bg-label-success">
