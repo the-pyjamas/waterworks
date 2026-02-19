@@ -1,4 +1,4 @@
-from django.forms import Select
+from django.forms import Select, TextInput
 
 import django_filters
 
@@ -24,7 +24,17 @@ class CustomerFilter(django_filters.FilterSet):
         queryset=Vendor.objects.filter(is_active=True),
         widget=Select(attrs={"class": "form-control"})
     )
+    last_name = django_filters.CharFilter(
+        field_name="user__userprofile__last_name",
+        lookup_expr="icontains",
+        widget=TextInput(attrs={"class": "form-control"})
+    )
+    phone_number = django_filters.CharFilter(
+        field_name="user__phone_number",
+        lookup_expr="icontains",
+        widget=TextInput(attrs={"class": "form-control"})
+    )
 
     class Meta:
         model = Customer
-        fields = ("device", "technician", "vendor")
+        fields = ("device", "technician", "vendor", "last_name", "phone_number")
