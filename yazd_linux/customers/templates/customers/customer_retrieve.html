@@ -119,7 +119,9 @@
                                                 <td>شماره موبایل</td>
                                                 <td>
                                                     <div class="text-heading">
-                                                    <a>{{ customer.user.phone_number }}</a>
+                                                    <a dir="ltr">
+                                                        {{ customer.user.phone_number.as_national }}
+                                                    </a>
                                                     </div>
                                                 </td>
                                             </tr>

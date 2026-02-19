@@ -47,16 +47,27 @@
 
                             <div class="row g-2 align-items-end">
                                 <div class="col-md-4">
-                                    {{ filters.form.device.label }}
+                                    <!-- {{ filters.form.device.label }} -->
+                                    دستگاه
                                     {{ filters.form.device }}
                                 </div>
                                 <div class="col-md-4">
-                                    {{ filters.form.technician.label }}
+                                    <!-- {{ filters.form.technician.label }} -->
+                                    نصاب
                                     {{ filters.form.technician }}
                                 </div>
                                 <div class="col-md-4">
-                                    {{ filters.form.vendor.label }}
+                                    <!-- {{ filters.form.vendor.label }} -->
+                                    فروشنده
                                     {{ filters.form.vendor }}
+                                </div>
+                                <div class="col-md-4">
+                                    نام خانوادگی
+                                    {{ filters.form.last_name }}
+                                </div>
+                                <div class="col-md-4">
+                                    شماره تماس
+                                    {{ filters.form.phone_number }}
                                 </div>
                             </div>
                             <input type="submit" value="جستجو" class="search-btn">
