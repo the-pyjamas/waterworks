@@ -10,114 +10,10 @@
 			<div class="container-fluid">
 				<div class="row overflow-hidden">
 
-					<div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6">
-						<div class="card">
-							<div
-							class="card-body mini-card-body d-flex align-center gap-16"
-							>
-							<div
-								class="avatar avatar-xl bg-primary-transparent text-primary"
-							>
-								<i class="ri-shopping-bag-3-line fs-42"></i>
-							</div>
-							<div class="card-content">
-								<span class="d-block fs-16 mb-5">کل سفارشات</span>
-								<h2 class="mb-5 fa">98.5 هزار</h2>
-								<span class="text-success"
-								>+۱.۲۴٪<i
-									class="ri-arrow-up-line ml-5 d-inline-block"
-								></i
-								></span>
-								<span class="fs-12 text-muted ml-5">این هفته</span>
-							</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6">
-						<div class="card">
-							<div
-							class="card-body mini-card-body d-flex align-center gap-16"
-							>
-							<div class="avatar avatar-xl bg-info-transparent text-info">
-								<i class="ri-user-line fs-42"></i>
-							</div>
-							<div class="card-content">
-								<span class="d-block fs-16 mb-5">کاربران جدید</span>
-								<h2 class="mb-5 fa">12.3 هزار</h2>
-								<span class="text-success"
-								>+۰.۸۷٪<i
-									class="ri-arrow-up-line ml-5 d-inline-block"
-								></i
-								></span>
-								<span class="fs-12 text-muted ml-5">این هفته</span>
-							</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6">
-						<div class="card">
-							<div class="card-body mini-card-body d-flex align-center gap-16">
-								<div class="avatar avatar-xl bg-danger-transparent text-danger">
-									<i class="ri-box-3-line fs-42"></i>
-								</div>
-								<div class="card-content">
-									<span class="d-block fs-16 mb-5">محصولات موجود</span>
-									<h2 class="mb-5 fa">5،230</h2>
-									<span class="text-danger">
-										-۰.۳۴٪
-										<i class="ri-arrow-down-line ml-5 d-inline-block"></i>
-									</span>
-									<span class="fs-12 text-muted ml-5">این هفته</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6">
-						<div class="card">
-							<div class="card-body mini-card-body d-flex align-center gap-16">
-								<div class="avatar avatar-xl bg-success-transparent text-success">
-									<i class="ri-wallet-3-line fs-42"></i>
-								</div>
-								<div class="card-content">
-									<span class="d-block fs-16 mb-5">سود خالص</span>
-									<h2 class="mb-5 fa">86000 هزار تومان</h2>
-									<span class="text-success">
-										+۲.۰۵٪
-										<i class="ri-arrow-up-line ml-5 d-inline-block"></i>
-									</span>
-									<span class="fs-12 text-muted ml-5">این هفته</span>
-								</div>
-							</div>
-						</div>
-					</div>
 					<div class="col-xxl-6 col-xl-12">
 						<div class="card height-equal">
 							<div class="card-header justify-between">
 								<h4 class="">معاملات اخیر</h4>
-								<div class="card-dropdown">
-									<div class="dropdown">
-										<a
-											aria-expanded="false"
-											class="card-dropdown-icon"
-											data-bs-toggle="dropdown"
-											href="javascript:void(0);"
-											role="button"
-										>
-											<i class="ri-more-2-fill"></i>
-										</a>
-										<div class="dropdown-menu">
-												<a class="dropdown-item" href="javascript:void(0);">
-													این هفته
-												</a>
-												<a class="dropdown-item" href="javascript:void(0);">
-													هفته گذشته
-												</a>
-												<a class="dropdown-item" href="javascript:void(0);">
-													این ماه
-												</a>
-										</div>
-									</div>
-								</div>
 							</div>
 							<div class="card-body pt-15">
 								<ul class="transactions-list">
@@ -158,16 +54,20 @@
 								</ul>
 								<div class="d-flex-between stats-card mt-30">
 									<div class="text-center">
-										<h3 class="text-success mb-5 fa">8،245.60 تومان</h3>
-										<p class="text-muted fs-12">کل درآمد</p>
+										<h3 class="text-success mb-5 fa">{{ customers_count }}</h3>
+										<p class="text-muted fs-12">تعداد کل مشتریان</p>
 									</div>
 									<div class="text-center">
-										<h3 class="text-primary mb-5 fa">42</h3>
-										<p class="text-muted fs-12">معاملات</p>
+										<h3 class="text-primary mb-5 fa">{{ technicians_count }}</h3>
+										<p class="text-muted fs-12">تعداد نصاب های فعال</p>
 									</div>
 									<div class="text-center">
-										<h3 class="text-warning mb-5 fa">3</h3>
-										<p class="text-muted fs-12">درنده</p>
+										<h3 class="text-warning mb-5 fa">{{ vendors_count }}</h3>
+										<p class="text-muted fs-12">تعداد کل فروشندگان</p>
+									</div>
+									<div class="text-center">
+										<h3 class="text-warning mb-5 fa">{{ devices_count }}</h3>
+										<p class="text-muted fs-12">تعداد کل دستگاه ها</p>
 									</div>
 								</div>
 							</div>
@@ -176,66 +76,30 @@
 					<div class="col-xxl-6 col-xl-12">
 						<div class="card height-equal">
 							<div class="card-header justify-between">
-								<h4 class="">دسته های برتر فروش</h4>
-								<div class="card-dropdown">
-									<div class="dropdown">
-										<a
-											aria-expanded="false"
-											class="card-dropdown-icon"
-											data-bs-toggle="dropdown"
-											href="javascript:void(0);"
-											role="button">
-											<i class="ri-more-2-fill"></i>
-										</a>
-										<div class="dropdown-menu">
-											<a class="dropdown-item" href="javascript:void(0);">امروز</a>
-											<a class="dropdown-item" href="javascript:void(0);">این هفته</a>
-											<a class="dropdown-item active" href="javascript:void(0);">این ماه</a>
-											<a class="dropdown-item" href="javascript:void(0);">امسال</a>
-										</div>
-									</div>
-								</div>
+								<h4 class="">دستگاه های پرفروش</h4>
 							</div>
 							<div class="card-body pt-15">
 								<div class="table-responsive">
 									<table class="table text-nowrap">
 										<thead class="table-light">
 											<tr>
-												<th class="">دسته</th>
-												<th class="">درآمد</th>
-												<th class="">سفارش</th>
-												<th class="">avg ترتیب</th>
-												<th class="">رشد</th>
+												<th class="">نام دستگاه</th>
+												<th class="">مدل دستگاه</th>
+												<th class="">تعداد فروش</th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr>
 												<td>
 													<h6 class="mb-5">الکترونیک</h6>
-													<span class="text-muted">تلفن ، لپ تاپ ، تلویزیون</span>
 												</td>
-													<td class="text-end fw-6">24،850 تومان</td>
-													<td class="text-end">182</td>
-													<td class="text-end">136.54 تومان</td>
-													<td class="text-end">
-													<span class="text-success">
-														<i class="ri-arrow-up-line mr-5"></i>
-														12.5٪
-													</span>
-												</td>
-											</tr>
-											<tr>
 												<td>
-													<h6 class="mb-5">خانه و آشپزخانه</h6>
-													<span class="text-muted">مبلمان ، لوازم</span>
+													<h6 class="mb-5">24،850 تومان</h6>
 												</td>
-												<td class="text-end fw-6">12،750 تومان</td>
-												<td class="text-end">98</td>
-												<td class="text-end">130.10 تومان</td>
-												<td class="text-end">
-													<span class="text-danger">
-														<i class="ri-arrow-down-line"></i>
-														3.2 ٪
+												<td>
+													<span class="text-success" style="font-size: 1.8rem;">
+														<i class="ri-arrow-up-line"></i>
+														12.5
 													</span>
 												</td>
 											</tr>
