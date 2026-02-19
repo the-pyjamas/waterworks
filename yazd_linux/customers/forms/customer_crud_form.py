@@ -1,7 +1,8 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
 
-import jdatetime
+from jalali_date.fields import JalaliDateField
+from jalali_date.widgets import AdminJalaliDateWidget
 
 from customers.models import Customer
 
@@ -44,6 +45,23 @@ class CustomerUpdateForm(forms.ModelForm):
     only the admin user and superuser are be able to
     update a profile.
     """
+    # Overriding installation and replacement dates fields
+    installation_date = JalaliDateField(
+        widget=AdminJalaliDateWidget(attrs={"class": "form-control"})
+    )
+    first_replacement_date = JalaliDateField(
+        widget=AdminJalaliDateWidget(attrs={"class": "form-control"})
+    )
+    second_replacement_date = JalaliDateField(
+        widget=AdminJalaliDateWidget(attrs={"class": "form-control"})
+    )
+    third_replacement_date = JalaliDateField(
+        widget=AdminJalaliDateWidget(attrs={"class": "form-control"})
+    )
+    forth_replacement_date = JalaliDateField(
+        widget=AdminJalaliDateWidget(attrs={"class": "form-control"})
+    )
+
     is_active = forms.BooleanField(required=False)
     first_replacement_status = forms.BooleanField(required=False)
     second_replacement_status = forms.BooleanField(required=False)
@@ -64,28 +82,10 @@ class CustomerUpdateForm(forms.ModelForm):
         )
 
         widgets = {
-            "installation_date": forms.DateInput(
-                attrs={"type": "date", "class": "form-control"}
-            ),
             "vendor": forms.Select(attrs={"class": "form-control"}),
             "device": forms.Select(attrs={"class": "form-control"}),
             "technician": forms.Select(attrs={"class": "form-control"}),
-            "is_active": forms.CheckboxInput(
-                attrs={"type": "checkbox", "class": "form-control"}
-            ),
-            # Replacement dates
-            "first_replacement_date": forms.DateInput(
-                attrs={"type": "date", "class": "form-control"}
-            ),
-            "second_replacement_date": forms.DateInput(
-                attrs={"type": "date", "class": "form-control"}
-            ),
-            "third_replacement_date": forms.DateInput(
-                attrs={"type": "date", "class": "form-control"}
-            ),
-            "forth_replacement_date": forms.DateInput(
-                attrs={"type": "date", "class": "form-control"}
-            ),
+            "is_active": forms.CheckboxInput(attrs={"type": "checkbox", "class": "form-control"}),
             # Replacement dates status
             "first_replacement_status": forms.CheckboxInput(
                 attrs={"type": "checkbox", "class": "form-control"}
