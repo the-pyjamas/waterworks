@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% load static %}
-{% load jformat %}
+{% load jalali_tags %}
 
 {% block extra_style %}
 <style>
@@ -81,7 +81,7 @@
                                             <td style="font-size: 1.6rem;">{{ technician.user.phone_number }}</td>
                                             <td style="font-size: 1.6rem;">{{ technician.national_code }}</td>
                                             <td style="font-size: 1.6rem;">
-                                                {{ technician.created_at | jformat:"%d %B %Y" }}
+                                                {{ technician.created_at | to_jalali:"%d %B %Y" }}
                                             </td>
                                             <td style="font-size: 1.6rem;">
                                                 {{ technician.customers.count }}

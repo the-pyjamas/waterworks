@@ -1,7 +1,7 @@
 {% extends 'base_soft.html' %}
 
 {% load static %}
-{% load jformat %}
+{% load jalali_tags %}
 
 {% block content %}
 
@@ -111,7 +111,7 @@
                                                 <td>تاریخ پیوستن</td>
                                                 <td>
                                                     <div class="text-heading">
-                                                        {{ vendor.created_at | jformat:"%Y/%m/%d" }}
+                                                        {{ vendor.created_at | to_jalali:"%Y/%m/%d" }}
                                                     </div>
                                                 </td>
                                             </tr>
@@ -127,7 +127,7 @@
                                                 <td>تاریخ عضویت</td>
                                                 <td>
                                                     <div class="text-heading">
-                                                        {{ vendor.created_at | jformat:"%d %B %Y" }}
+                                                        {{ vendor.created_at | to_jalali:"%d %B %Y" }}
                                                     </div>
                                                 </td>
                                             </tr>
