@@ -29,6 +29,7 @@ DJANGO_APPS = [
 EXTERNAL_APPS = [
     'phonenumber_field',
     'django_jalali',
+    'jalali_date',
     'django_filters',
 ]
 LOCAL_APPS = [
