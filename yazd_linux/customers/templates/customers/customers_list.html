@@ -6,12 +6,12 @@
 {% block extra_style %}
 <style>
     .search-btn {
-        background-color: #5344EA;
+        background-color: #1E88E5;
         color: #FFFFFF;
         border: none;
         border-radius: 4%;
         width: 9%;
-        font-size: 1.3r em;
+        font-size: 1.3rem;
         padding: 0.5%;
         margin-top: 2%;
     }
@@ -30,7 +30,11 @@
                         <div class="card-header justify-between">
                             <h4 class="d-flex-items gap-10">لیست مشتریان</h4>
                             <div class="d-flex flex-wrap gap-15">
-                                <a class="btn btn-primary" href="{% url 'customers:customer-create-user' %}">
+                                <a
+                                    class="btn"
+                                    href="{% url 'customers:customer-create-user' %}"
+                                    style="background-color: #1E88E5;"
+                                >
                                     ثبت مشتری جدید
                                 </a>
                             </div>
@@ -79,6 +83,7 @@
                                 <thead>
                                     <tr>
                                         <th>نام خانودگی</th>
+                                        <th>شماره تماس</th>
                                         <th>مدل دستگاه</th>
                                         <th>فروشنده</th>
                                         <th>نصاب</th>
@@ -91,11 +96,13 @@
                                             <td>
                                                 <a
 													href="{{ customer.get_absolute_url }}"
-                                                    class="text text-primary"
-                                                    style="font-size: 2rem;"
+                                                    style="font-size: 2rem; color: #1E88E5;"
                                                 >
                                                     {{ customer.user.userprofile.last_name }}</td>
                                                 </a>
+                                            <td style="font-size: 1.6rem;">
+                                                <span dir="ltr">{{ customer.user.phone_number.as_national }}</span>
+                                            </td>
                                             <td style="font-size: 1.6rem;">{{ customer.device }}</td>
                                             <td style="font-size: 1.6rem;">{{ customer.vendor.shop_name }}</td>
                                             <td style="font-size: 1.6rem;">{{ customer.technician.user.userprofile.last_name }}</td>
