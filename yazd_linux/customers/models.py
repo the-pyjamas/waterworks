@@ -191,3 +191,9 @@ class Customer(BaseModel):
             'customers:customer-retrieve',
             kwargs={'customer_pk': self.pk}
         )
+
+    @classmethod
+    def last_objects(cls, length: int):
+        customers = cls.objects.all()[:length]
+
+        return customers
