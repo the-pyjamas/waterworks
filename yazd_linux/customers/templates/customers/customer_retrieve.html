@@ -1,7 +1,7 @@
 {% extends 'base_soft.html' %}
 
 {% load static %}
-{% load jformat %}
+{% load jalali_tags %}
 
 {% block content %}
 
@@ -111,7 +111,7 @@
                                                 <td>تاریخ پیوستن</td>
                                                 <td>
                                                     <div class="text-heading">
-                                                        {{ customer.created_at | jformat:"%Y/%m/%d" }}
+                                                        {{ customer.created_at | to_jalali:"%Y/%m/%d" }}
                                                     </div>
                                                 </td>
                                             </tr>
@@ -127,7 +127,7 @@
                                                 <td>تاریخ نصب</td>
                                                 <td>
                                                     <div class="text-heading">
-                                                        {{ customer.installation_date | jformat:"%d %B %Y" }}
+                                                        {{ customer.installation_date | to_jalali:"%d %B %Y" }}
                                                     </div>
                                                 </td>
                                             </tr>
@@ -189,7 +189,7 @@
                                         <div class="card-content">
                                             <span class="d-block fs-19 mb-5">تاریخ نخستین تعویض</span>
                                             <p class="mb-5 fa" style="font-size: 1.7rem;">
-                                                {{ customer.first_replacement_date | jformat:"%d %B %Y" }}
+                                                {{ customer.first_replacement_date | to_jalali:"%d %B %Y" }}
                                             </p>
                                             <span class="fs-12 text-muted ml-5">این هفته</span>
                                         </div>
@@ -205,7 +205,7 @@
                                         <div class="card-content">
                                             <span class="d-block fs-19 mb-5">تاریخ دومین تعویض</span>
                                             <p class="mb-5 fa" style="font-size: 1.7rem;">
-                                                {{ customer.second_replacement_date | jformat:"%d %B %Y" }}
+                                                {{ customer.second_replacement_date | to_jalali:"%d %B %Y" }}
                                             </p>
                                             <span class="fs-12 text-muted ml-5">در انتظار</span>
                                         </div>
@@ -223,7 +223,7 @@
                                                     تاریخ سومین تعویض
                                                 </span>
                                                 <p class="mb-5 fa" style="font-size: 1.7rem;">
-                                                    {{ customer.third_replacement_date | jformat:"%d %B %Y" }}
+                                                    {{ customer.third_replacement_date | to_jalali:"%d %B %Y" }}
                                                 </p>
                                                 <span class="fs-12 text-muted ml-5">این ماه</span>
                                             </div>
@@ -239,7 +239,7 @@
                                         <div class="card-content">
                                             <span class="d-block fs-19 mb-5">تاریخ چهاریمن تعویض</span>
                                             <p class="mb-5 fa" style="font-size: 1.7rem;">
-                                                {{ customer.forth_replacement_date | jformat:"%d %B %Y" }}
+                                                {{ customer.forth_replacement_date | to_jalali:"%d %B %Y" }}
                                             </p>
                                             <span class="fs-12 text-muted ml-5">در انتظار</span>
                                         </div>
