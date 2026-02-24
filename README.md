@@ -6,11 +6,11 @@ The Water Treatment manager project. A minimal dashboard to record necessar thin
 
 ## Stack
 
-### Back-end and Its Tools
-![My Skills](https://go-skill-icons.vercel.app/api/icons?i=python,bash,django,postgres,celery,rabbitmq)
+### Backend and Its Tools
+![Backend](https://go-skill-icons.vercel.app/api/icons?i=python,bash,django,docker,postgres,celery,rabbitmq)
 
-### Front-end and Its Tools
-![My Skills](https://go-skill-icons.vercel.app/api/icons?i=html,css,bootstrap,javascript,jquery)
+### Frontend and Its Tools
+![Frontend](https://go-skill-icons.vercel.app/api/icons?i=html,css,bootstrap,javascript,jquery)
 
 > Just bought the template, no developer for it.
 
