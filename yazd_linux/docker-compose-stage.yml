@@ -1,0 +1,90 @@
+services:
+  postgres:
+    env_file:
+      - .env
+
+    container_name: centralsu-postgres
+    image: postgres:14
+
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+
+    volumes:
+      - centralsu_postgres_data:/var/lib/postgresql/data/
+    networks:
+      - main
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+    restart: always
+
+
+  app:
+    env_file:
+      - .env
+
+    build: .
+    image: centralsu/app:1.0
+    container_name: centralsu-app
+
+    command: >
+      sh -c "
+      python manage.py makemigrations &&
+      python manage.py migrate &&
+      python manage.py collectstatic --noinput &&
+      gunicorn core.wsgi --bind 0.0.0.0:8000
+      "
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+    volumes:
+      - .:/app
+      - static_volume:/app/static
+      - media_volume:/app/media
+
+    networks:
+      - main
+
+    environment:
+      - SECRET_KEY=test
+      - DEBUG=False
+
+    restart: always
+
+  nginx:
+    container_name: centralsu-nginx
+    image: nginx:1.28.2
+
+    ports:
+      - "80:80"
+
+    depends_on:
+      - app
+
+    volumes:
+      - ./nginx//default.conf:/etc/nginx/conf.d/default.conf
+      - static_volume:/home/app/static
+      - media_volume:/home/app/media
+
+    networks:
+      - main
+
+    restart: always
+
+
+networks:
+  main:
+
+volumes:
+  boilerplate_postgres_data:
+  static_volume:
+  media_volume:
+
