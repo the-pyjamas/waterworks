@@ -1,4 +1,5 @@
 yazd_linux/assets/** linguist-vendored
+yazd_linux/static/** linguist-vendored
 
 *.css linguist-vendored
 *.js  linguist-vendored
