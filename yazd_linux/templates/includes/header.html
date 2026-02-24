@@ -127,12 +127,18 @@
                                             {{ request.user.userprofile.last_name }}
                                         </h6>
                                     {% elif request.user.username %}
-                                        <h6 class="author-name lh-1">
+                                        <h6
+                                            class="author-name lh-1 bg-info text-white"
+                                            style="padding: 10%; border-radius: 7%;"
+                                        >
                                             {{ request.user.username }}
                                         </h6>
                                     {% else %}
-                                        <h6 class="author-name lh-1">
-                                            {{ request.user.phone_number }}
+                                        <h6
+                                            class="author-name lh-1 bg-info text-white"
+                                            style="padding: 10%; border-radius: 7%;"    
+                                        >
+                                            <span dir="ltr">{{ request.user.phone_number.as_national }}</span>
                                         </h6>
                                     {% endif %}
                                 </div>
