@@ -114,7 +114,8 @@
                                 class="dropdown-toggle"
                                 data-bs-toggle="dropdown"
                                 href="javascript:void(0);"
-                                role="button">
+                                role="button"
+                            >
 
                                 <div class="author">
                                     {% if request.user.userprofile.first_name and request.user.userprofile.last_name %}
@@ -134,6 +135,23 @@
                                             {{ request.user.phone_number }}
                                         </h6>
                                     {% endif %}
+                                </div>
+                            </a>
+                        {% else %}
+                            <a
+                                aria-expanded="false"
+                                class="dropdown-toggle"
+                                data-bs-toggle="dropdown"
+                                role="button"
+                            >
+
+                                <div class="author">
+                                    <h6
+                                        class="author-name lh-1 bg-info text-white"
+                                        style="padding: 10%; border-radius: 7%;"
+                                    >
+                                    حساب کاربری
+                                    </h6>
                                 </div>
                             </a>
                         {% endif %}
