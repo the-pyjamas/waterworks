@@ -125,29 +125,6 @@
                                         src="{% static 'images/avatar/avatar-thumb-018.webp' %}"
                                         />
                                     </div>
-                                    {% if request.user.userprofile.first_name and request.user.userprofile.last_name %}
-                                        <h6
-                                            class="author-name lh-1 bg-info text-white"
-                                            style="padding: 10%; border-radius: 7%;"
-                                        >
-                                            {{ request.user.userprofile.first_name }}
-                                            {{ request.user.userprofile.last_name }}
-                                        </h6>
-                                    {% elif request.user.username %}
-                                        <h6
-                                            class="author-name lh-1 bg-info text-white"
-                                            style="padding: 10%; border-radius: 7%;"
-                                        >
-                                            {{ request.user.username }}
-                                        </h6>
-                                    {% else %}
-                                        <h6
-                                            class="author-name lh-1 bg-info text-white"
-                                            style="padding: 10%; border-radius: 7%;"    
-                                        >
-                                            <span dir="ltr">{{ request.user.phone_number.as_national }}</span>
-                                        </h6>
-                                    {% endif %}
                                 </div>
                             </a>
                         {% else %}
@@ -165,18 +142,17 @@
                                         src="{% static 'images/avatar/avatar-thumb-018.webp' %}"
                                         />
                                     </div>
-                                    
-                                    <h6
-                                        class="author-name lh-1 bg-info text-white"
-                                        style="padding: 10%; border-radius: 7%;"
-                                    >
-                                    حساب کاربری
-                                    </h6>
                                 </div>
                             </a>
                         {% endif %}
                         <ul class="dropdown-menu">
                             {% if request.user.is_authenticated %}
+                                <li class="bd-user-info-list">
+                                    <p style="font-size: 1.8rem; font-weight: bold;">
+                                        {{ request.user.userprofile.fullname }}
+                                    </p>
+                                </li>
+                                <hr>
                                 <li class="bd-user-info-list">
                                     <a href="{% url 'accounts:user-profile-update' %}">
                                         <i class="ri-user-line"></i>
