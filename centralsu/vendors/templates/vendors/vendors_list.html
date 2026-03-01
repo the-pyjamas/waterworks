@@ -2,26 +2,6 @@
 
 {% load static %}
 
-{% block extra_style %}
-<style>
-    .search-btn {
-        background-color: #5344EA;
-        color: #FFFFFF;
-        border: none;
-        border-radius: 4%;
-        width: 9%;
-        font-size: 1.3r em;
-        padding: 0.5%;
-        margin-top: 2%;
-    }
-    /* .ltr-number {
-        direction: ltr;
-        unicode-bidi: isolate;
-        text-align: left;
-        white-space: nowrap;
-    } */
-</style>
-{% endblock extra_style %}
 
 {% block content %}
 
@@ -60,7 +40,7 @@
                                     {{ filters.form.contact_phone }}
                                 </div>
                             </div>
-                            <input type="submit" value="جستجو" class="search-btn">
+                            <input type="submit" value="جستجو" class="btn btn-primary">
                         </form>
 
                         <div class="card-body pt-15">

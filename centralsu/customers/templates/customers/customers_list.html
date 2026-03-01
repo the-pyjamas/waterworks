@@ -31,9 +31,8 @@
                             <h4 class="d-flex-items gap-10">لیست مشتریان</h4>
                             <div class="d-flex flex-wrap gap-15">
                                 <a
-                                    class="btn"
+                                    class="btn btn-primary"
                                     href="{% url 'customers:customer-create-user' %}"
-                                    style="background-color: #1E88E5;"
                                 >
                                     ثبت مشتری جدید
                                 </a>
@@ -74,7 +73,7 @@
                                     {{ filters.form.phone_number }}
                                 </div>
                             </div>
-                            <input type="submit" value="جستجو" class="search-btn">
+                            <input type="submit" value="جستجو" class="btn btn-primary">
                         </form>
 
                         <div class="card-body pt-15">
