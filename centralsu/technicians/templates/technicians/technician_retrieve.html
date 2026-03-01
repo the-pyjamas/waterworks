@@ -18,21 +18,21 @@
                             <div class="page-title-box d-flex-between flex-wrap gap-15">
                                 <h1 class="page-title fs-18 lh-1">جزئیات نصاب</h1>
                                 <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb breadcrumb-example1 mb-0">
-                                    <li class="breadcrumb-item">
-                                        <a href="{% url 'dashboard:dashboard' %}">خانه</a>
-                                    </li>
-                                    <li class="breadcrumb-item">
-                                        <a href="{{ technician.get_absolute_url }}">
-                                            <b>جزئیات نصاب</b>
-                                        </a>
-                                    </li>
-                                    <li aria-current="page" class="breadcrumb-item active">
-                                        <a href="{% url 'technicians:technician-create-user' %}">
-                                            نصاب را اضافه کنید
-                                        </a>
-                                    </li>
-                                </ol>
+                                    <ol class="breadcrumb breadcrumb-example1 mb-0">
+                                        <li class="breadcrumb-item">
+                                            <a href="{% url 'dashboard:dashboard' %}">خانه</a>
+                                        </li>
+                                        <li class="breadcrumb-item">
+                                            <a href="{{ technician.get_absolute_url }}">
+                                                <b>جزئیات نصاب</b>
+                                            </a>
+                                        </li>
+                                        <li aria-current="page" class="breadcrumb-item active">
+                                            <a href="{% url 'technicians:technician-create-user' %}">
+                                                نصاب را اضافه کنید
+                                            </a>
+                                        </li>
+                                    </ol>
                                 </nav>
                             </div>
                         {% endif %}
@@ -119,7 +119,9 @@
                                                 <td>شماره موبایل</td>
                                                 <td>
                                                     <div class="text-heading">
-                                                    <a>{{ technician.user.phone_number }}</a>
+                                                    <a>
+                                                        <span dir="ltr">{{ technician.user.phone_number.as_national }}</span>
+                                                    </a>
                                                     </div>
                                                 </td>
                                             </tr>
