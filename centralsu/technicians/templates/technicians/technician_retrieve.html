@@ -25,6 +25,25 @@
             margin-top: 0%;
             margin-bottom: 5%;
         }
+        div.profile-info .unique-code {font-size: 1.4rem;}
+
+        /* Response configs */
+        @media screen and (max-width: 576px) {
+            nav.nav-breadcrumb {display: none;}
+            div.customer-nav ul {flex-direction: row; justify-content: space-between;}
+            div.customer-nav ul li {flex-basis: 400px;}
+            div.row div.main-info {display: flex; flex-direction: column;}
+            .bigger-card {margin-bottom: 5%;}
+            .bigger-card h2 {font-size: 1.5rem!important;}
+            .bigger-card p {font-size: .9rem!important;}
+            div.profile-info .unique-code {font-size: 1rem!important;}
+            .table-info {font-size: .8rem!important;}
+        }
+
+        @media screen and (min-width: 768px) and (max-width: 992px) {
+            .bigger-card {margin-bottom: 5%;}
+            .table {text-align: center;}
+        }
     </style>
 {% endblock extra_style %}
 
@@ -106,7 +125,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 pb-2">
                                 <div class="card">
                                     <div class="card-body mini-card-body d-flex align-center gap-16">
                                     <div class="avatar avatar-xl bg-warning-transparent text-warning">
@@ -122,7 +141,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xxl-12 col-xl-6 col-lg-6 col-md-6">
+                            <div class="col-xxl-12 col-xl-6 col-lg-6 col-md-6 bigger-card">
                                 <div class="card">
                                     <div class="card-body mini-card-body d-flex align-center gap-16">
                                         <div class="avatar avatar-xl bg-warning-transparent text-warning">
@@ -131,7 +150,7 @@
                                             <div class="card-content">
                                                 <span class="d-block fs-19 mb-5">
                                                     <h2 style="font-size: 1.8rem;">
-                                                        مشتریانی که خدمات داده‌است
+                                                        خدمات
                                                     </h2>
                                                 </span>
                                                 {% for customer in customers %}
@@ -154,92 +173,92 @@
                     </div>
 
                     <div class="col-xxl-4 col-xl-6">
-                        <div class="card">
-                            <div class="card-header justify-between" style="background-color: #116979; color: #FFFFFF;">
-                                <h4 class="text-center" style="margin: auto;">اطلاعات شخصی</h4>
-                                </div>
-                                <div class="card-body pt-15">
-                                <!--
-                                    <div class="text-center mb-10">
-                                        <div class="avatar avatar-big radius-100">
-                                            <img
-                                                alt="image not found"
-                                                class="radius-100"
-                                                src="{% static 'images/avatar/avatar-thumb-001.webp' %}"
-                                            />
-                                        </div>
+                            <div class="card">
+                                <div class="card-header justify-between" style="background-color: #116979; color: #FFFFFF;">
+                                    <h4 class="text-center" style="margin: auto;">اطلاعات شخصی</h4>
                                     </div>
-                                -->
-                                <div class="profile-info text-center mb-15">
-                                    <h3 class="mb-5">{{ technician.user.userprofile.fullname }}</h3>
-                                    <h6 class="badge bg-primary-subtle text-primary-emphasis">
-                                        <span class="text-black" style="font-size: 1.6rem;">
-                                            شناسه نصاب: {{ technician.technician_code }}
-                                        </span>
-                                    </h6>
-                                    <div class="d-flex-center gap-15"></div>
-                                </div>
+                                    <div class="card-body pt-15">
+                                    <!--
+                                        <div class="text-center mb-10">
+                                            <div class="avatar avatar-big radius-100">
+                                                <img
+                                                    alt="image not found"
+                                                    class="radius-100"
+                                                    src="{% static 'images/avatar/avatar-thumb-001.webp' %}"
+                                                />
+                                            </div>
+                                        </div>
+                                    -->
+                                    <div class="profile-info text-center mb-15">
+                                        <h3 class="mb-5">{{ technician.user.userprofile.fullname }}</h3>
+                                        <h6 class="badge bg-primary-subtle text-primary-emphasis unique-code">
+                                            <span class="text-black">
+                                                شناسه نصاب: {{ technician.installer_code }}
+                                            </span>
+                                        </h6>
+                                        <div class="d-flex-center gap-15"></div>
+                                    </div>
 
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <tbody>
-                                            <tr>
-                                                <td>نام</td>
-                                                <td>
-                                                    <div class="text-heading">
-                                                        {{ technician.user.userprofile.fullname }}
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>تاریخ پیوستن</td>
-                                                <td>
-                                                    <div class="text-heading">
-                                                        {{ technician.created_at | to_jalali:"%Y/%m/%d" }}
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>شماره موبایل</td>
-                                                <td>
-                                                    <div class="text-heading">
-                                                    <a dir="ltr">
-                                                        {{ technician.user.phone_number.as_national }}
-                                                    </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>شماره ملی</td>
-                                                <td>
-                                                    <div class="text-heading">
-                                                        {{ technician.national_code }}
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>تعداد نصب‌ها</td>
-                                                <td>
-                                                    <div class="text-heading">
-                                                        {{ customers_count }}
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>وضعیت</td>
-                                                <td>
-                                                    {% if customer.is_active %}
-                                                        <div class="badge bg-label-success">فعال</div>
-                                                    {% else %}
-                                                        <div class="badge bg-label-danger">غیرفعال</div>
-                                                    {% endif %}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <div class="table-responsive table-info">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <td>نام</td>
+                                                    <td>
+                                                        <div class="text-heading">
+                                                            {{ technician.user.userprofile.fullname }}
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>تاریخ پیوستن</td>
+                                                    <td>
+                                                        <div class="text-heading">
+                                                            {{ technician.created_at | to_jalali:"%Y/%m/%d" }}
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>شماره موبایل</td>
+                                                    <td>
+                                                        <div class="text-heading">
+                                                        <a dir="ltr">
+                                                            {{ technician.user.phone_number.as_national }}
+                                                        </a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>شماره ملی</td>
+                                                    <td>
+                                                        <div class="text-heading">
+                                                            {{ technician.national_code }}
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>تعداد نصب‌ها</td>
+                                                    <td>
+                                                        <div class="text-heading">
+                                                            {{ customers_count }}
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>وضعیت</td>
+                                                    <td>
+                                                        {% if customer.is_active %}
+                                                            <div class="badge bg-label-success">فعال</div>
+                                                        {% else %}
+                                                            <div class="badge bg-label-danger">غیرفعال</div>
+                                                        {% endif %}
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>
