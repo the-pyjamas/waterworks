@@ -15,6 +15,12 @@ class CreateTechnicianForm(forms.ModelForm):
             "national_code", "experience_years", "skill_level"
         )
 
+        labels = {
+            'national_code': _('کدملی'),
+            'experience_years': _('سالهای فعالیت'),
+            'skill_level': _('سطح مهارت')
+        }
+
     def __init__(self, *args, **kwargs):
         """
         Initialized the form class.
@@ -26,5 +32,5 @@ class CreateTechnicianForm(forms.ModelForm):
 
         for field in self.fields.values():
             field.widget.attrs.update({
-                "class": "form-control"
+                "class": "form-control mb-4"
             })
