@@ -28,11 +28,11 @@ class UserLoginForm(forms.Form):
         # Add placeholder for fields
         self.fields['phone_number'].widget.attrs = {
             'placeholder': _('Phone number; +989129634554, etc.'),
-            'class': 'form-control'
+            'class': 'form-control mb-4'
         }
         self.fields['password'].widget.attrs = {
             'placeholder': _('Password'),
-            'class': 'form-control'
+            'class': 'form-control mb-4'
         }
 
         # Get the placeholders to use them in the template fields' placeholders

@@ -1,0 +1,35 @@
+div.row {
+    display: flex;
+    margin: auto;
+}
+div.user-login {
+    /* background-color: #3281B9; */
+    /* background-color: #40A2E3; */
+
+    width: 30%;
+    background-color: #1672c2;
+    padding: 20px;
+    margin: auto;
+    color: #eaf1f7;
+    border-radius: 4px;
+    box-shadow: 0 4px 15px #1672c2;
+}
+div.user-login h2, h4 {font-family: Hasti;}
+div.user-login form.form-control {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+
+/* Response configs */
+
+@media screen and (max-width: 576px) {
+    /* Form Style */
+    div.user-login {width: 100%;}
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+    /* Form Style */
+    div.user-login {width: 100%;}
+}

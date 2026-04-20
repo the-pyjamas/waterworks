@@ -1,4 +1,6 @@
 @import url("navbar.css");
+@import url("authentication.css");
+
 
 /* Hasti Family */
 @font-face {
@@ -23,29 +25,41 @@
 	src: url(../../fonts/farsi/iranyekan/IRANYekanX-Black.woff), format(woff2);
 }
 
-* {
-    margin: 0;
-    padding: 0;
+
+* {margin: 0; padding: 0;}
+body {font-family: IranYekan;}
+
+/* Header Style */
+.nav-title {font-family: HastiR; color: #FFFFFF!important;}
+a.nav-link.active {
+    color: #F6F1F1!important;
+    border-left: 1px solid #F6F1F1;
+    font-family: Hasti!important;
+    font-size: 1.2rem;
+    border-radius: 50%;
 }
-body {
-    font-family: IranYekan;
+#theme-toggle-btn {
+    background-color: #4A628A;
+    color: #FFFFFF;
+    font-family: Hasti;
+    opacity: .8;
+    transition: opacity .4s;
 }
+#theme-toggle-btn:hover {opacity: 1;}
 
 /* Body Style */
 .display {
     padding: 20px;
     margin-bottom: 20px;
-    background-color: #E9ECEF;
 }
 div.flex-container {
-    background-color: #FFFFFF;
     display: flex;
     padding: 20px;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
 }
-div.flex-container .content {flex-basis: 1100px;}
+div.flex-container .content {width: 100%;}
 div.flex-container .sidebar {
     border: 1px solid rgba(0, 0, 0, .2);
     padding: 20px;
@@ -58,7 +72,7 @@ div.flex-container .sidebar {
 
 /* Basic Tags Styles */
 a {text-decoration: none;}
-
+a.active {color: #1E88E5!important; font-family: IranYekanBold;}
 
 
 /* Response configs */
