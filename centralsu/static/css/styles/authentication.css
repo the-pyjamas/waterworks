@@ -39,10 +39,11 @@ input.save-changes-btn:hover {
 
 @media screen and (max-width: 576px) {
     /* Form Style */
-    div.user-login {width: 100%;}
+    div.row {margin: 0 !important; padding: 0 !important;}
+    div.user-login {width: 100% !important;}
 }
 
 @media screen and (min-width: 768px) and (max-width: 992px) {
     /* Form Style */
-    div.user-login {width: 100%;}
+    div.user-login {width: 100% !important;}
 }
