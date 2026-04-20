@@ -3,37 +3,62 @@
 {% load static %}
 {% load jalali_tags %}
 
+{% block extra_style %}
+    <style>
+        .page-title-box {
+            display: flex;
+            flex-direction: row-reverse;
+            flex-wrap: wrap;
+        }
+        ol.breadcrumb {display: flex; flex-direction: row-reverse; flex-wrap: wrap;}
+        div.customer-nav ul {
+            list-style-type: none;
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-start;
+        }
+        div.customer-nav ul li {margin-right: 2%;}
+        div.main-retrieve {
+            background-image: linear-gradient(to bottom, #DE7119, #DEE3E2);
+            padding: 3%;
+            border-radius: 2%;
+            margin-top: 0%;
+            margin-bottom: 5%;
+        }
+    </style>
+{% endblock extra_style %}
+
 {% block content %}
 
     <div class="app-content-area">
 
-        <div
-            class="app-content-wrap"
-            style="background-color: #FFFFFF; padding: 3%; border-radius: 2%; margin-top: 0%; margin-bottom: 5%;"
-        >
+        <div class="app-content-wrap main-retrieve">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xl-12">
                         {% if request.user.is_superuser or request.user.role == 'Admin' %}
                             <div class="page-title-box d-flex-between flex-wrap gap-15">
-                                <h1 class="page-title fs-18 lh-1">جزئیات مشتری</h1>
-                                <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb breadcrumb-example1 mb-0">
-                                    <li class="breadcrumb-item">
-                                        <a href="{% url 'dashboard:dashboard' %}" style="color: #1E88E5;">خانه</a>
-                                    </li>
-                                    <li class="breadcrumb-item">
-										<a href="{{ customer.get_absolute_url }}" style="color: #1E88E5;">
-                                            <b>جزئیات مشتری</b>
-                                        </a>
-                                    </li>
-                                    <li aria-current="page" class="breadcrumb-item active">
-                                        <a href="{% url 'customers:customer-create-user' %}" style="color: #1E88E5;">
-                                            مشتری را اضافه کنید
-                                        </a>
-                                    </li>
-                                </ol>
-                                </nav>
+                                <h1 class="page-title fs-18 lh-1" style="color: #DEE3E2;">جزئیات مشتری</h1>
+                                <div class="container my-5">
+                                    <nav aria-label="breadcrumb" class="nav-breadcrumb">
+                                        <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
+                                            <li class="breadcrumb-item">
+                                                <a href="/">
+                                                    صفحه اصلی
+                                                </a>
+                                            </li>
+                                            <li class="breadcrumb-item"></li>
+                                            <li class="breadcrumb-item">
+                                                <a href="{% url 'customers:customers-list' %}">
+                                                    مشتریان
+                                                </a>
+                                            </li>
+                                            <li class="breadcrumb-item active" aria-current="page">
+                                                جزئیات مشتری
+                                            </li>
+                                        </ol>
+                                    </nav>
+                                </div>
                             </div>
                         {% endif %}
                     </div>
@@ -44,7 +69,7 @@
                                 <li class="active">
                                     <a
                                     class="btn"
-                                    style="background-color: #1E88E5;"
+                                    style="background-color: #116979; color: #FFFFFF;"
                                     href="{{ customer.get_absolute_url }}"
                                     >جزئیات</a
                                     >
@@ -53,6 +78,7 @@
                                     <li class="">
                                         <a
                                             class="btn btn-light"
+                                            style="color: #116979;"
                                             href="{% url 'customers:customer-update' customer.pk %}">
                                             تنظیم
                                         </a>
@@ -62,118 +88,9 @@
                         </div>
                     </div>
 
-                    <div class="col-xxl-4 col-xl-6">
-                        <div class="card">
-                            <div class="card-header justify-between">
-                                <h4 class="">اطلاعات شخصی</h4>
-                                </div>
-                                <div class="card-body pt-15">
-                                <!--
-                                    <div class="text-center mb-10">
-                                        <div class="avatar avatar-big radius-100">
-                                            <img
-                                                alt="image not found"
-                                                class="radius-100"
-                                                src="{% static 'images/avatar/avatar-thumb-001.webp' %}"
-                                            />
-                                        </div>
-                                    </div>
-                                -->
-                                <div class="profile-info text-center mb-15">
-                                    <h3 class="mb-5">{{ customer.user.userprofile.fullname }}</h3>
-                                    <h6 class="badge bg-success-transparent bg-label-success">
-                                        <span class="text-black" style="font-size: 1.6rem;">
-                                            شناسه مشتری: {{ customer.customer_code }}
-                                        </span>
-                                    </h6>
-                                    <div class="d-flex-center gap-15"></div>
-                                </div>
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <tbody>
-                                            <tr>
-                                                <td>نام</td>
-                                                <td>
-                                                    <div class="text-heading">
-                                                        {{ customer.user.userprofile.fullname }}
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>تاریخ پیوستن</td>
-                                                <td>
-                                                    <div class="text-heading">
-                                                        {{ customer.created_at | to_jalali:"%Y/%m/%d" }}
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>شماره موبایل</td>
-                                                <td>
-                                                    <div class="text-heading">
-                                                    <a dir="ltr">
-                                                        {{ customer.user.phone_number.as_national }}
-                                                    </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>تاریخ نصب</td>
-                                                <td>
-                                                    <div class="text-heading">
-                                                        {{ customer.installation_date | to_jalali:"%d %B %Y" }}
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>مدل دستگاه</td>
-                                                <td>
-                                                    <div class="text-heading">
-                                                        {{ customer.device }}
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>فروشنده</td>
-                                                <td>
-                                                    <div class="text-heading">
-                                                        {{ customer.vendor.shop_name }}
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>نصاب</td>
-                                                <td>
-                                                    <div class="text-heading">
-                                                        <a
-                                                            href="{{ customer.technician.get_absolute_url }}"
-                                                            style="font-size: 1.5rem; color: #1E88E5;"
-                                                        >
-                                                            {{ customer.technician.user.userprofile.fullname }}
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>وضعیت</td>
-                                                <td>
-                                                    {% if customer.is_active %}
-                                                        <div class="badge bg-label-success">فعال</div>
-                                                    {% else %}
-                                                        <div class="badge bg-label-danger">غیرفعال</div>
-                                                    {% endif %}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="col-xxl-8 col-xl-6">
                         <div class="row">
-                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 pb-2">
                                 <div class="card">
                                     <div class="card-body mini-card-body d-flex align-center gap-16">
                                         <div class="avatar avatar-xl bg-success-transparent text-success">
@@ -237,6 +154,116 @@
                                             <span class="fs-12 text-muted ml-5">در انتظار</span>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xxl-4 col-xl-6">
+                        <div class="card">
+                            <div class="card-header justify-between" style="background-color: #116979; color: #FFFFFF;">
+                                <h4 class="text-center" style="margin: auto;">اطلاعات شخصی</h4>
+                                </div>
+                                <div class="card-body pt-15">
+                                <!--
+                                    <div class="text-center mb-10">
+                                        <div class="avatar avatar-big radius-100">
+                                            <img
+                                                alt="image not found"
+                                                class="radius-100"
+                                                src="{% static 'images/avatar/avatar-thumb-001.webp' %}"
+                                            />
+                                        </div>
+                                    </div>
+                                -->
+                                <div class="profile-info text-center mb-15">
+                                    <h3 class="mb-5">{{ customer.user.userprofile.fullname }}</h3>
+                                    <h6 class="badge bg-primary-subtle text-primary-emphasis">
+                                        <span class="text-black" style="font-size: 1.6rem;">
+                                            شناسه مشتری: {{ customer.customer_code }}
+                                        </span>
+                                    </h6>
+                                    <div class="d-flex-center gap-15"></div>
+                                </div>
+
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <td>نام</td>
+                                                <td>
+                                                    <div class="text-heading">
+                                                        {{ customer.user.userprofile.fullname }}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>تاریخ پیوستن</td>
+                                                <td>
+                                                    <div class="text-heading">
+                                                        {{ customer.created_at | to_jalali:"%Y/%m/%d" }}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>شماره موبایل</td>
+                                                <td>
+                                                    <div class="text-heading">
+                                                    <a dir="ltr">
+                                                        {{ customer.user.phone_number.as_national }}
+                                                    </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>تاریخ نصب</td>
+                                                <td>
+                                                    <div class="text-heading">
+                                                        {{ customer.installation_date | to_jalali:"%d %B %Y" }}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>مدل دستگاه</td>
+                                                <td>
+                                                    <div class="text-heading">
+                                                        {{ customer.device }}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>فروشنده</td>
+                                                <td>
+                                                    <div class="text-heading">
+                                                        {{ customer.vendor.shop_name }}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>نصاب</td>
+                                                <td>
+                                                    <div class="text-heading">
+                                                        <a
+                                                            href="{{ customer.technician.get_absolute_url }}"
+                                                            style="font-size: 1.5rem; color: #1672c2;"
+                                                        >
+                                                            {{ customer.technician.user.userprofile.fullname }}
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>وضعیت</td>
+                                                <td>
+                                                    {% if customer.is_active %}
+                                                        <div class="badge bg-label-success">فعال</div>
+                                                    {% else %}
+                                                        <div class="badge bg-label-danger">غیرفعال</div>
+                                                    {% endif %}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
