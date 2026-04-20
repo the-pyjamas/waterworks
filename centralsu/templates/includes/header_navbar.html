@@ -66,6 +66,7 @@
 
                     </ul>
                 </li>
+
                 <li class="nav-item dropdown">
                     <a
                     class="nav-link dropdown-toggle text-white"
@@ -85,6 +86,32 @@
                             <li>
                                 <a class="dropdown-item" href="{% url 'customers:customers-list' %}">
                                     لیست مشتریان
+                                </a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a
+                    class="nav-link dropdown-toggle text-white"
+                    href="#"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                    >نصاب‌ها</a
+                    >
+                    <ul class="dropdown-menu">
+
+                        {% if request.user.role == 'Admin' or request.user.role == 'technician' %}
+                            <li>
+                                <a class="dropdown-item" href="{% url 'technicians:technician-create-user' %}">
+                                    اضافه کردن نصاب
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'technicians:technicians-list' %}">
+                                    لیست نصاب‌ها
                                 </a>
                             </li>
                         {% endif %}
