@@ -27,7 +27,7 @@ class UserUpdateForm(forms.ModelForm):
 
         for field in self.fields.values():
             field.widget.attrs.update({
-                "class": "form-control"
+                "class": "form-control mb-4"
             })
 
 
@@ -50,5 +50,5 @@ class UserProfileUpdateForm(forms.ModelForm):
 
         for field in self.fields.values():
             field.widget.attrs.update({
-                "class": "form-control"
+                "class": "form-control mb-4"
             })

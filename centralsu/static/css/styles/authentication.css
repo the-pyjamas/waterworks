@@ -21,6 +21,19 @@ div.user-login form.form-control {
     padding: 20px;
 }
 
+/* Specific Buttons */
+input.save-changes-btn {
+    background-color: #198754;
+    color: #FFFFFF;
+    font-family: Hasti;
+    transition: color .4s, box-shadow .4s;
+}
+input.save-changes-btn:hover {
+    background-color: #198754;
+    box-shadow: 0 2px 15px #20c997;
+    color: #FFFFDD;
+}
+
 
 /* Response configs */
 

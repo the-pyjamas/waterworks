@@ -65,12 +65,12 @@ class UserProfileUpdateView(View):
                 extra_tags="success"
             )
             return redirect("/")
-
-        messages.error(
-            request=request,
-            message=_("Please correct the errors bellow."),
-            extra_tags="danger"
-        )
+        else:
+            messages.error(
+                request=request,
+                message=_("Please correct the errors bellow."),
+                extra_tags="danger"
+            )
         return render(
             request=request,
             template_name=self.template_name,

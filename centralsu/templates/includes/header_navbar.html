@@ -49,7 +49,7 @@
 
                         {% if request.user.is_authenticated %}
                             <li>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{% url 'accounts:user-dashboard' %}">
                                     داشبورد
                                 </a>
                             </li>

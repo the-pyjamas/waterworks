@@ -1,101 +1,49 @@
 {% extends 'base.html' %}
-{% load static %}
 
+{% block title %}Update Profile{% endblock title %}
+
+{% block extra_style %}
+    <style>
+        div.user-login {width: 50%;}
+    </style>
+{% endblock extra_style %}
 
 {% block content %}
 
-<div class="app-content-area">
-    <div class="app-content-wrap">
-        <div class="container-fluid">
-			<div class="row">
-				<div class="col-xxl-12">
-					<div class="card">
-						<div class="card__title-wrap mb-20">
-							<h3 class="card__heading-title">فرم ثبت نام با نماد</h3>
-						</div>
+    <div class="row flex-container">
+        <div class="user-login">
+            <h2>ویرایش حساب</h2>
+            <p style="opacity: .8;">لطفا با استفاده از فرم زیر اطلاعات کاربری خود را ویرایش کنید:</p>
 
-						<div class="custom-form style_two">
-							<!-- Stepper -->
-							<div class="steps-form">
-								<div class="steps-row setup-panel-2 position-relative d-flex justify-content-between">
-									<div class="steps-step">
-										<a
-										class="step-active step-circle ml-0"
-										data-placement="top"
-										data-toggle="tooltip"
-										href="#step-1"
-										title="اطلاعات اساسی"
-										>
-											<span><i class="ri-folder-line"></i></span>
-										</a>
-									</div>
-								</div>
-							</div>
-							<!-- First Step -->
-							<form method="POST">
-								{% csrf_token %}
-								{{ form.non_field_errors }}
-								
-								<div class="row setup-content-2" id="step-1">
-									<div class="col-md-12">
-										<h5 class="pl-0 my-4">
-											<strong>اطلاعات اساسی</strong>
-										</h5>
-										<div class="form-group md-form mb-10">
-											<label
-												class="form-label"
-												data-error="wrong"
-												data-success="right"
-												for="yourEmail-2"
-												>{{ user_form.username.label }}</label
-											>
-											{{ user_form.username }}
-										</div>
-										<div class="form-group md-form mb-10">
-											<label
-												class="form-label"
-												data-error="wrong"
-												data-success="right"
-												for="yourUsername2"
-												>{{ profile_form.first_name.label }}</label
-											>
-											{{ profile_form.first_name }}
-										</div>
-										<div class="form-group md-form mb-10">
-											<label
-												class="form-label"
-												data-error="wrong"
-												data-success="right"
-												for="yourPassword2"
-												>{{ profile_form.last_name.label }}</label
-											>
-											{{ profile_form.last_name }}
-										</div>
-										<div class="form-group md-form mb-10">
-											<label
-												class="form-label"
-												data-error="wrong"
-												data-success="right"
-												for="repeatPassword2"
-												>{{ profile_form.address.label }}</label
-											>
-											{{ profile_form.address }}
-										</div>
-										<button
-										class="nextBtn-2 btn btn-primary"
-										type="submit"
-										>
-										بعدی
-										</button>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+            <form class="form-control mb-3" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+
+                {% for field in user_form %}
+					{% if field.errors %}
+						{% for error in field.errors %}
+							<p class="alert alert-danger">{{ error }}</p>
+						{% endfor %}
+					{% endif %}
+
+                    {{ field }}
+                {% endfor %}
+
+                <hr>
+
+                {% for field in profile_form %}
+					{% if field.errors %}
+						{% for error in field.errors %}
+							<p class="alert alert-danger">{{ error }}</p>
+						{% endfor %}
+					{% endif %}
+
+                    {{ field }}
+                {% endfor %}
+
+                <input type="submit" value="ذخیره تغییرات" class="btn save-changes-btn">
+            </form>
+        </div>
+    </div>
 
 {% endblock content %}
