@@ -3,6 +3,10 @@
 {% load static %}
 {% load jalali_tags %}
 
+{% block title %}
+    مشخصات مشتری {{ customer.user.userprofile.fullname }}
+{% endblock title %}
+
 {% block extra_style %}
     <style>
         .page-title-box {
@@ -24,6 +28,36 @@
             border-radius: 2%;
             margin-top: 0%;
             margin-bottom: 5%;
+        }
+        div.profile-info .unique-code {font-size: 1.4rem;}
+        .report-card {direction: rtl;}
+        .report-text {font-size: 1.5rem;}
+        .report-title {font-size: 1rem;}
+
+        /* Response configs */
+        @media screen and (max-width: 576px) {
+            .page-title {margin: auto;}
+            /* Breadcrumb and Buttons */
+            nav.nav-breadcrumb {display: none;}
+            div.customer-nav ul {flex-direction: row; justify-content: space-between;}
+            div.customer-nav ul li {flex-basis: 400px;}
+            div.row div.main-info {display: flex; flex-direction: column;}
+            /* Profile Card Info */
+            div.profile-info .unique-code {font-size: 1rem!important;}
+            /* Table Info */
+            .table-info {font-size: .8rem!important;}
+            .extra-link {font-size: 1rem!important;}
+            /* Report Card */
+            .bigger-card {margin-bottom: 5%;}
+            .bigger-card h2 {font-size: 1.5rem!important;}
+            .bigger-card p {font-size: .9rem!important;}
+            .report-text {font-size: 1.2rem;}
+            .report-title {font-size: .8rem;}
+        }
+
+        @media screen and (min-width: 768px) and (max-width: 992px) {
+            .bigger-card {margin-bottom: 5%;}
+            .table {text-align: center;}
         }
     </style>
 {% endblock extra_style %}
@@ -91,14 +125,14 @@
                     <div class="col-xxl-8 col-xl-6">
                         <div class="row">
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 pb-2">
-                                <div class="card">
+                                <div class="card report-card">
                                     <div class="card-body mini-card-body d-flex align-center gap-16">
                                         <div class="avatar avatar-xl bg-success-transparent text-success">
                                             <i class="ri-checkbox-circle-line fs-42"></i>
                                         </div>
                                         <div class="card-content">
-                                            <span class="d-block fs-19 mb-5">تاریخ نخستین تعویض</span>
-                                            <p class="mb-5 fa" style="font-size: 1.7rem;">
+                                            <span class="d-block fs-19 mb-5 text-secondary report-title">تاریخ نخستین تعویض</span>
+                                            <p class="mb-5 fa report-text">
                                                 {{ customer.first_replacement_date | to_jalali:"%d %B %Y" }}
                                             </p>
                                             <span class="fs-12 text-muted ml-5">این هفته</span>
@@ -106,15 +140,15 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
-                                <div class="card">
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 pb-2">
+                                <div class="card report-card">
                                     <div class="card-body mini-card-body d-flex align-center gap-16">
                                     <div class="avatar avatar-xl bg-warning-transparent text-warning">
                                         <i class="ri-time-line fs-42"></i>
                                     </div>
                                         <div class="card-content">
-                                            <span class="d-block fs-19 mb-5">تاریخ دومین تعویض</span>
-                                            <p class="mb-5 fa" style="font-size: 1.7rem;">
+                                            <span class="d-block fs-19 mb-5 text-secondary report-title">تاریخ دومین تعویض</span>
+                                            <p class="mb-5 fa report-text">
                                                 {{ customer.second_replacement_date | to_jalali:"%d %B %Y" }}
                                             </p>
                                             <span class="fs-12 text-muted ml-5">در انتظار</span>
@@ -122,17 +156,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
-                                <div class="card">
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 pb-2">
+                                <div class="card report-card">
                                     <div class="card-body mini-card-body d-flex align-center gap-16">
                                         <div class="avatar avatar-xl bg-warning-transparent text-warning">
                                             <i class="ri-time-line fs-42"></i>
                                         </div>
                                             <div class="card-content">
-                                                <span class="d-block fs-19 mb-5">
+                                                <span class="d-block fs-19 mb-5 text-secondary report-title">
                                                     تاریخ سومین تعویض
                                                 </span>
-                                                <p class="mb-5 fa" style="font-size: 1.7rem;">
+                                                <p class="mb-5 fa report-text">
                                                     {{ customer.third_replacement_date | to_jalali:"%d %B %Y" }}
                                                 </p>
                                                 <span class="fs-12 text-muted ml-5">این ماه</span>
@@ -140,15 +174,15 @@
                                         </div>
                                     </div>
                             </div>
-                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
-                                <div class="card">
+                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 pb-2">
+                                <div class="card report-card">
                                     <div class="card-body mini-card-body d-flex align-center gap-16">
                                     <div class="avatar avatar-xl bg-warning-transparent text-warning">
                                         <i class="ri-time-line fs-42"></i>
                                     </div>
                                         <div class="card-content">
-                                            <span class="d-block fs-19 mb-5">تاریخ چهاریمن تعویض</span>
-                                            <p class="mb-5 fa" style="font-size: 1.7rem;">
+                                            <span class="d-block fs-19 mb-5 text-secondary report-title">تاریخ چهاریمن تعویض</span>
+                                            <p class="mb-5 fa report-text">
                                                 {{ customer.forth_replacement_date | to_jalali:"%d %B %Y" }}
                                             </p>
                                             <span class="fs-12 text-muted ml-5">در انتظار</span>
@@ -178,15 +212,15 @@
                                 -->
                                 <div class="profile-info text-center mb-15">
                                     <h3 class="mb-5">{{ customer.user.userprofile.fullname }}</h3>
-                                    <h6 class="badge bg-primary-subtle text-primary-emphasis">
-                                        <span class="text-black" style="font-size: 1.6rem;">
+                                    <h6 class="badge bg-primary-subtle text-primary-emphasis unique-code">
+                                        <span class="text-black">
                                             شناسه مشتری: {{ customer.customer_code }}
                                         </span>
                                     </h6>
                                     <div class="d-flex-center gap-15"></div>
                                 </div>
 
-                                <div class="table-responsive">
+                                <div class="table-responsive table-info">
                                     <table class="table">
                                         <tbody>
                                             <tr>
@@ -246,6 +280,7 @@
                                                         <a
                                                             href="{{ customer.technician.get_absolute_url }}"
                                                             style="font-size: 1.5rem; color: #1672c2;"
+                                                            class="extra-link"
                                                         >
                                                             {{ customer.technician.user.userprofile.fullname }}
                                                         </a>
