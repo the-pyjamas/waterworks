@@ -107,3 +107,6 @@ aws/
 
 # Ignore swap files
 *.swp
+
+# Unnecessary static files
+staticfiles/

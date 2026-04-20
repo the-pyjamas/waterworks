@@ -7,6 +7,19 @@
 <style>
     form.search-filter-form {border: 1px solid #DE7119;}
     tbody.td {font-size: 1.6rem;}
+
+    /* Response configs */
+
+    @media screen and (max-width: 576px) {
+        form.search-filter-form .search-btn {width: 100%;}
+        .register-new-customer-btn {width: 100%;}
+        .items-list-section {width: 100%; margin: 0; padding: 0;}
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 992px) {
+        form.search-filter-form .search-btn {width: 30%;}
+        .register-new-customer-btn {width: 30%;}
+    }
 </style>
 {% endblock extra_style %}
 
@@ -17,13 +30,13 @@
         <div class="container-fluid">
 
             <div class="row">
-                <div class="col-xl-12">
+                <div class="col-xl-12 items-list-section">
                     <div class="card" style="padding: 10px;">
                         <div class="justify-between">
                             <h4 class="d-flex-items gap-10">لیست مشتریان</h4>
                             <div class="d-flex flex-wrap gap-15">
                                 <a
-                                    class="btn btn-orange"
+                                    class="btn btn-orange register-new-customer-btn"
                                     href="{% url 'customers:customer-create-user' %}"
                                 >
                                     ثبت مشتری جدید
@@ -64,7 +77,7 @@
                                     {{ filters.form.phone_number }}
                                 </div>
                             </div>
-                            <input type="submit" value="جستجو" class="btn btn-orange mt-2 col-1">
+                            <input type="submit" value="جستجو" class="btn btn-orange mt-2 col-1 search-btn">
                         </form>
 
                         <div class="card-body pt-10">
