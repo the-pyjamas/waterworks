@@ -46,6 +46,7 @@ a.nav-link.active {
     transition: opacity .4s;
 }
 #theme-toggle-btn:hover {opacity: 1;}
+#navbarsExample11 {font-family: IranYekanBlack;}
 
 /* Body Style */
 .display {
