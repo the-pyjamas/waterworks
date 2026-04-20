@@ -4,6 +4,7 @@ from django.contrib.auth.password_validation import validate_password
 from django.utils.translation import gettext_lazy as _
 
 from phonenumber_field.formfields import PhoneNumberField
+from phonenumber_field.widgets import PhoneNumber
 
 from accounts.models import User
 
@@ -19,16 +20,17 @@ class UserRegisterForm(forms.Form):
     """
     phone_number = PhoneNumberField(
         region="IR",
-        label=_("Phone number")
+        label=_("Phone number"),
+        widget=forms.TextInput(attrs={'placeholder': 'شماره همراه مثل ۰۹۱۲۵۶۵۲۳۳۲'})
     )
     password = forms.CharField(
         label=_("Password"),
-        widget=forms.PasswordInput(),
+        widget=forms.PasswordInput(attrs={'placeholder': 'رمزعبور'}),
         validators=[validate_password]
     )
     password_repeat = forms.CharField(
         label=_("Repeat your password"),
-        widget=forms.PasswordInput()
+        widget=forms.PasswordInput(attrs={'placeholder': 'تکرار رمزعبور'})
     )
 
     def __init__(self, *args, **kwargs):
@@ -42,7 +44,8 @@ class UserRegisterForm(forms.Form):
 
         for field in self.fields.values():
             field.widget.attrs.update({
-                "class": "form-control"
+                "class": "form-control mb-4",
+                # "placeholder": field.label
             })
 
     def clean_phone(self):

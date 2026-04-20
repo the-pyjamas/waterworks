@@ -27,11 +27,11 @@ class UserLoginForm(forms.Form):
 
         # Add placeholder for fields
         self.fields['phone_number'].widget.attrs = {
-            'placeholder': _('Phone number; +989129634554, etc.'),
+            'placeholder': _('شماره همراه مثل ۰۹۱۲۵۶۵۲۳۳۲'),
             'class': 'form-control mb-4'
         }
         self.fields['password'].widget.attrs = {
-            'placeholder': _('Password'),
+            'placeholder': _('رمزعبور'),
             'class': 'form-control mb-4'
         }
 

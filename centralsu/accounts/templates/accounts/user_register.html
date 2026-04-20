@@ -1,74 +1,50 @@
 {% extends 'base.html' %}
-{% load static %}
+
+{% block title %}User Login{% endblock title %}
+
+{% block extra_style %}
+    <style>
+        /* .login-btn {background-color: #7AB2D3; color: #FFFFFF;} */
+
+        .forgot-password {color: #F6F1F1;}
+        .login-btn {
+            background-color: #4A628A;
+            color: #FFFFFF;
+            opacity: .8;
+            transition: opacity .4s;
+        }
+        .login-btn:hover {background-color: #4A628A; color: #FFFFFF; opacity: 1;}
+    </style>
+{% endblock extra_style %}
 
 
 {% block content %}
 
-    <div class="authentication-wrapper basic-authentication" style="margin-top: 5%;">
-        <div class="authentication-inner">
-            <div class="card">
-                <div class="authentication-top text-center mb-25">
-                    <a class="authentication-logo logo-black" href="javascript:;">
-                        <img alt="logo" src="{% static 'images/logo/logo-black.svg' %}" />
-                    </a>
-                    <a class="authentication-logo logo-white" href="javascript:;">
-                        <img alt="logo" src="{% static 'images/logo/logo-white.svg' %}" />
-                    </a>
-                    <h4 class="mb-5">به Dashnix خوش آمدید</h4>
-                    <p> حساب خود را برای شروع کار ایجاد کنید و تجربه کامل را باز کنید. </p>
-                </div>
+    <div class="row flex-container">
+        <div class="user-login">
+            <h2>ثبت‌نام</h2>
+            <p style="opacity: .8;">لطفا از فرم زیر برای ثبت‌نام خود استفاده کنید:</p>
 
-                <form action="" class="" method="POST">
-                    {% csrf_token %}
-                    {{ form.non_field_errors }}
+            <form accept="{% url 'accounts:user-login' %}" class="form-control mb-3" method="post">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
 
-                    <div class="mb-10">
-                        <label class="form-label" for="nameEmail">{{ form.phone_number.label }}</label>
-                        {{ form.phone_number }}
-                    </div>
-                    <div class="mb-15">
-                        <div class="d-flex justify-content-between mb-5">
-                            <label class="form-label mb-0" for="password">{{ form.password.label }}</label>
-                            <!-- <a class="text-body" href="auth-auth-forgot-password-basic.html">
-                                فراموشی رمز عبور؟
-                            </a> -->
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group">
-                                {{ form.password }}
-                                <button class="input-group-text text-black toggle-password" type="button">
-                                    <i class="ri-eye-line fs-20"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-15">
-                        <div class="d-flex justify-content-between mb-5">
-                            <label class="form-label mb-0" for="password">{{ form.password_repeat.label }}</label>
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group">
-                                {{ form.password_repeat }}
-                                <button class="input-group-text text-black toggle-password" type="button">
-                                    <i class="ri-eye-line fs-20"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-25">
-                        <button class="btn btn-primary w-100" type="submit">
-                            ثبت‌نام کردن
-                        </button>
-                    </div>
-                </form>
+                {% for field in form %}
+					{% if field.errors %}
+						{% for error in field.errors %}
+							<p class="alert alert-danger">{{ error }}</p>
+						{% endfor %}
+					{% endif %}
 
-                <p class="text-center underline">
-                    <span>در حال حاضر یک حساب کاربری دارید؟</span>
-                    <a class="fw-bold" href="{% url 'accounts:user-login' %}">
-                        <span>وارد کردن</span>
-                    </a>
-                </p>
-            </div>
+                    {{ field }}
+                {% endfor %}
+
+                <input type="submit" value="ثبت‌نام" class="btn login-btn">
+            </form>
+
+            <a href="{% url 'accounts:user-login' %}" class="forgot-password">
+                حساب کاربری داری؟
+            </a>
         </div>
     </div>
 
