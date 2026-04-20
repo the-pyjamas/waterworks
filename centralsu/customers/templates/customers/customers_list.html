@@ -5,16 +5,8 @@
 
 {% block extra_style %}
 <style>
-    .search-btn {
-        background-color: #1E88E5;
-        color: #FFFFFF;
-        border: none;
-        border-radius: 4%;
-        width: 9%;
-        font-size: 1.3rem;
-        padding: 0.5%;
-        margin-top: 2%;
-    }
+    form.search-filter-form {border: 1px solid #DE7119;}
+    tbody.td {font-size: 1.6rem;}
 </style>
 {% endblock extra_style %}
 
@@ -26,12 +18,12 @@
 
             <div class="row">
                 <div class="col-xl-12">
-                    <div class="card">
-                        <div class="card-header justify-between">
+                    <div class="card" style="padding: 10px;">
+                        <div class="justify-between">
                             <h4 class="d-flex-items gap-10">لیست مشتریان</h4>
                             <div class="d-flex flex-wrap gap-15">
                                 <a
-                                    class="btn btn-primary"
+                                    class="btn btn-orange"
                                     href="{% url 'customers:customer-create-user' %}"
                                 >
                                     ثبت مشتری جدید
@@ -42,8 +34,7 @@
                         <form
                             action="{% url 'customers:customers-list' %}"
                             method="get"
-                            class="form-control"
-                            style="margin-top: 2%; margin-bottom: 2%;"
+                            class="form-control mt-3 mb-5 search-filter-form"
                         >
                             {% csrf_token %}
                             {{ form.non_field_errors }}
@@ -73,56 +64,56 @@
                                     {{ filters.form.phone_number }}
                                 </div>
                             </div>
-                            <input type="submit" value="جستجو" class="btn btn-primary">
+                            <input type="submit" value="جستجو" class="btn btn-orange mt-2 col-1">
                         </form>
 
-                        <div class="card-body pt-15">
+                        <div class="card-body pt-10">
                             <div class="table-responsive">
-                            <table class="table text-nowrap w-100" id="dataTableDefault">
-                                <thead>
-                                    <tr>
-                                        <th>نام خانودگی</th>
-                                        <th>شماره تماس</th>
-                                        <th>مدل دستگاه</th>
-                                        <th>فروشنده</th>
-                                        <th>نصاب</th>
-                                        <th>تاریخ نصب</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for customer in customers %}
+                                <table class="table text-nowrap w-100" id="dataTableDefault">
+                                    <thead class="table-warning">
                                         <tr>
-                                            <td>
-                                                <a
-													href="{{ customer.get_absolute_url }}"
-                                                    style="font-size: 2rem; color: #1E88E5;"
-                                                >
-                                                    {{ customer.user.userprofile.last_name }}</td>
-                                                </a>
-                                            <td style="font-size: 1.6rem;">
-                                                <span dir="ltr">{{ customer.user.phone_number.as_national }}</span>
-                                            </td>
-                                            <td style="font-size: 1.6rem;">{{ customer.device }}</td>
-                                            <td style="font-size: 1.6rem;">{{ customer.vendor.shop_name }}</td>
-                                            <td style="font-size: 1.6rem;">{{ customer.technician.user.userprofile.last_name }}</td>
-                                            <td style="font-size: 1.6rem;">{{ customer.installation_date | to_jalali:"%d %B %Y" }}</td>
-                                            <!-- <td>
-                                                {% if customer.is_active %}
-                                                    <span class="badge bg-label-success">
-                                                        فعال
-                                                    </span>
-                                                {% else %}
-                                                    <span class="badge bg-label-danger">
-                                                        غیرفعال
-                                                    </span>
-                                                {% endif %}
-                                            </td> -->
+                                            <th>نام خانودگی</th>
+                                            <th>شماره تماس</th>
+                                            <th>مدل دستگاه</th>
+                                            <th>فروشنده</th>
+                                            <th>نصاب</th>
+                                            <th>تاریخ نصب</th>
                                         </tr>
-                                    {% empty %}
-                                        <h3 class="text text-center">No Customer Yet!</h3>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        {% for customer in customers %}
+                                            <tr>
+                                                <td>
+                                                    <a
+                                                        href="{{ customer.get_absolute_url }}"
+                                                        style="color: #DE7119;"
+                                                    >
+                                                        {{ customer.user.userprofile.last_name }}</td>
+                                                    </a>
+                                                <td>
+                                                    <span dir="ltr">{{ customer.user.phone_number.as_national }}</span>
+                                                </td>
+                                                <td>{{ customer.device }}</td>
+                                                <td>{{ customer.vendor.shop_name }}</td>
+                                                <td>{{ customer.technician.user.userprofile.last_name }}</td>
+                                                <td>{{ customer.installation_date | to_jalali:"%d %B %Y" }}</td>
+                                                <!-- <td>
+                                                    {% if customer.is_active %}
+                                                        <span class="badge bg-label-success">
+                                                            فعال
+                                                        </span>
+                                                    {% else %}
+                                                        <span class="badge bg-label-danger">
+                                                            غیرفعال
+                                                        </span>
+                                                    {% endif %}
+                                                </td> -->
+                                            </tr>
+                                        {% empty %}
+                                            <h3 class="text text-center">تا به‌حال مشتریی ثبت نشده!</h3>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

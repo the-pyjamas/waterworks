@@ -19,11 +19,12 @@ class UserSoftRegisterForm(forms.Form):
     """
     phone_number = PhoneNumberField(
         region="IR",
-        label=_("Phone number")
+        label=_("Phone number"),
+        widget=forms.TextInput(attrs={'placeholder': _('شماره همراه مثل ۰۹۱۲۵۶۵۲۳۳۲')})
     )
     password = forms.CharField(
         label=_("Password"),
-        widget=forms.PasswordInput(),
+        widget=forms.PasswordInput(attrs={'placeholder': _('رمزعبوری را انتخاب کنید')}),
         validators=[validate_password]
     )
 
@@ -38,7 +39,7 @@ class UserSoftRegisterForm(forms.Form):
 
         for field in self.fields.values():
             field.widget.attrs.update({
-                "class": "form-control"
+                "class": "form-control mb-2"
             })
 
     def clean_phone(self):

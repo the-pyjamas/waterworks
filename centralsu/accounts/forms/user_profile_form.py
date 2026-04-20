@@ -37,6 +37,10 @@ class UserProfileUpdateForm(forms.ModelForm):
     Just profile info.
     Validate the incoming data from the client and cleaned them.
     """
+    first_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': _('نام')}))
+    last_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': _('نام خانوادگی')}))
+    address = forms.CharField(widget=forms.TextInput(attrs={'placeholder': _('آدرس')}))
+
     class Meta:
         model = UserProfile
         fields = ("first_name", "last_name", "address")

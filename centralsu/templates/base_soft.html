@@ -6,36 +6,6 @@
     {% include 'includes/head.html' %}
 </head>
 
-<style>
-	/*
-	Override the 'btn-primary' and `text-primary` styles
-	to show a better background color and font color.
-	Fix the margin. 
-	*/
-	.btn-primary {
-		background-color: #1E88E5 !important;
-		margin-top: 2%;
-	}
-	.btn-primary:hover {
-		background-color: #1E88E5 !important;
-		color: #F8F8F8 !important;
-	}
-    .btn-light:hover {
-        color: #1672c2 !important;
-    }
-
-	.text-primary {
-		color: #1672c2 !important;
-	}
-    a {
-        color: #1672c2 !important;
-    }
-
-	.form-control:focus {
-		border-color: #add4f6 !important;
-	}
-</style>
-
 {% block extra_style %}
 {% endblock extra_style %}
 
@@ -47,7 +17,6 @@
 
     </div>
 
-    {% include 'includes/preloader.html' %}
     {% include 'includes/js_links.html' %}
 </body>
 

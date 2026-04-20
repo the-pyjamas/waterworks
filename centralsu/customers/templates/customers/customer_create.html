@@ -1,42 +1,47 @@
 {% extends 'base.html' %}
-{% load static %}
+
+{% block title %}اطلاعات نصب{% endblock title %}
+
+{% block extra_style %}
+    <style>
+        /* .login-btn {background-color: #7AB2D3; color: #FFFFFF;} */
+
+        .forgot-password {color: #F6F1F1;}
+        .login-btn {
+            background-color: #4A628A;
+            color: #FFFFFF;
+            opacity: .8;
+            transition: opacity .4s;
+        }
+        .login-btn:hover {background-color: #4A628A; color: #FFFFFF; opacity: 1;}
+    </style>
+{% endblock extra_style %}
 
 
 {% block content %}
 
-    <div class="authentication-wrapper basic-authentication" style="margin-top: 5%;">
-        <div class="authentication-inner">
-            <div class="card" style="margin-top: 4%;">
-                <div class="authentication-top text-center mb-25">
-                    <a class="authentication-logo logo-black" href="javascript:;">
-                        <img alt="logo" src="{% static 'images/logo/logo-black.svg' %}" />
-                    </a>
-                    <a class="authentication-logo logo-white" href="javascript:;">
-                        <img alt="logo" src="{% static 'images/logo/logo-white.svg' %}" />
-                    </a>
-                    <h4 class="mb-5">به Dashnix خوش آمدید</h4>
-                    <p> ثبت مشتری جدید و اطلاعات نصب </p>
-                </div>
+    <div class="row flex-container">
+        <div class="user-login">
+            <h2>اطلاعات نصب</h2>
+            <p style="opacity: .8;">با استفاده از فرم زیر اطلاعات نصب و دستگاه نصب‌شده را وارد کنید:</p>
 
-                <form action="" class="" method="POST">
-                    {% csrf_token %}
-                    {{ form.non_field_errors }}
+            <form accept="{% url 'accounts:user-login' %}" class="form-control mb-3" method="post">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
 
-					{% for field in form.visible_fields %}
-						<div class="mb-10">
-							<label class="form-label" for="nameEmail">{{ field.label }}</label>
-							{{ field }}
-						</div>
-					{% endfor %}
+                {% for field in form %}
+					{% if field.errors %}
+						{% for error in field.errors %}
+							<p class="alert alert-danger">{{ error }}</p>
+						{% endfor %}
+					{% endif %}
 
-                    <div class="mb-25">
-                        <button class="btn btn-primary w-100" type="submit">
-							ثبت مشتری جدید
-                        </button>
-                    </div>
-                </form>
+                    <h5>{{ field.label }}</h5>
+                    {{ field }}
+                {% endfor %}
 
-            </div>
+                <input type="submit" value="ثبت مشتری جدید" class="btn login-btn">
+            </form>
         </div>
     </div>
 

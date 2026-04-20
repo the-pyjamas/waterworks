@@ -19,9 +19,26 @@ class CustomerCreateForm(forms.ModelForm):
             "vendor", "technician", "device",
             "description", "installation_date"
         )
+        labels = {
+            'vendor': _('فروشنده'),
+            'technician': _('نصاب'),
+            'device': _('دستگاه'),
+            'description': _('توضیحات'),
+            'installation_date': _('تاریخ نصب')
+        }
         widgets = {
-            "installation_date": forms.DateInput(attrs={"type": "date", "class": "form-control"}),
-            "next_inspection_date": forms.DateInput(attrs={"type": "date", "class": "form-control"}),
+            "installation_date": forms.DateInput(
+                attrs={
+                    "type": "date",
+                    "class": "form-control mb-2"
+                }
+            ),
+            "next_inspection_date": forms.DateInput(
+                attrs={
+                    "type": "date",
+                    "class": "form-control mb-2"
+                }
+            ),
         }
 
     def __init__(self, *args, **kwargs):
@@ -35,7 +52,7 @@ class CustomerCreateForm(forms.ModelForm):
 
         for field in self.fields.values():
             field.widget.attrs.update({
-                "class": "form-control"
+                "class": "form-control mb-2"
             })
 
 
@@ -82,21 +99,21 @@ class CustomerUpdateForm(forms.ModelForm):
         )
 
         widgets = {
-            "vendor": forms.Select(attrs={"class": "form-control"}),
-            "device": forms.Select(attrs={"class": "form-control"}),
-            "technician": forms.Select(attrs={"class": "form-control"}),
-            "is_active": forms.CheckboxInput(attrs={"type": "checkbox", "class": "form-control"}),
+            "vendor": forms.Select(attrs={"class": "form-control mb-4"}),
+            "device": forms.Select(attrs={"class": "form-control mb-4"}),
+            "technician": forms.Select(attrs={"class": "form-control mb-4"}),
+            "is_active": forms.CheckboxInput(attrs={"type": "checkbox", "class": "form-control mb-4"}),
             # Replacement dates status
             "first_replacement_status": forms.CheckboxInput(
-                attrs={"type": "checkbox", "class": "form-control"}
+                attrs={"type": "checkbox", "class": "form-control mb-4"}
             ),
             "second_replacement_status": forms.CheckboxInput(
-                attrs={"type": "checkbox", "class": "form-control"}
+                attrs={"type": "checkbox", "class": "form-control mb-4"}
             ),
             "third_replacement_status": forms.CheckboxInput(
-                attrs={"type": "checkbox", "class": "form-control"}
+                attrs={"type": "checkbox", "class": "form-control mb-4"}
             ),
             "forth_replacement_status": forms.CheckboxInput(
-                attrs={"type": "checkbox", "class": "form-control"}
+                attrs={"type": "checkbox", "class": "form-control mb-4"}
             ),
         }
