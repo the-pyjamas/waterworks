@@ -1,0 +1,78 @@
+<nav
+    class="navbar navbar-expand-lg bg-dark"
+    aria-label="Thirteenth navbar example"
+>
+    <div class="container-fluid">
+        <button
+            class="navbar-toggler bg-white collapsed d-block d-lg-none"
+            type="button"
+            id="navbar-toggle-btn"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarsExample11"
+            aria-controls="navbarsExample11"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div
+            class="collapse navbar-collapse"
+            id="navbarsExample11"
+        >
+            <a class="navbar-brand col-lg-3 me-0 text-secondary" href="/">Centralsu</a>
+            <ul class="navbar-nav col-lg-6 justify-content-lg-center">
+                <li class="nav-item">
+                    <a 
+                        class="nav-link text-white
+                        aria-current="page" href="/"
+                    >
+                        خانه
+                    </a>
+                </li>
+
+                <!-- <li class="nav-item"><a class="nav-link text-white" href="#" style="opacity: .8;">Link</a></li> -->
+                <!-- <li class="nav-item">
+                    <a class="nav-link text-secondary disabled" aria-disabled="true">Disabled</a>
+                </li> -->
+
+                <li class="nav-item dropdown">
+                    <a
+                    class="nav-link dropdown-toggle text-white"
+                    href="#"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                    >حساب کاربری</a
+                    >
+                    <ul class="dropdown-menu">
+
+                        {% if request.user.is_authenticated %}
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    داشبورد
+                                </a>
+                            </li>
+                            <hr>
+                            <li>
+                                <a class="dropdown-item text-danger" href="{% url 'accounts:user-logout' %}">خروج</a>
+                            </li>
+                        {% else %}
+                            <li><a class="dropdown-item" href="{% url 'accounts:user-login' %}">ورود</a></li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'accounts:user-register' %}">ثبت‌نام</a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="d-lg-flex col-lg-3 justify-content-lg-end">
+                <!-- <button class="btn btn-outline-secondary">Button</button> -->
+                <button class="btn btn-outline-success col-4" id="theme-toggle-btn">
+                    چشمات!
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>

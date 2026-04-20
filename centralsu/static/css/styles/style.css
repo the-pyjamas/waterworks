@@ -1,0 +1,78 @@
+@import url("navbar.css");
+
+/* Hasti Family */
+@font-face {
+	font-family: Hasti;
+	src: url(../../fonts/farsi/hasti/Hasti-HeavyR.woff), format(woff);
+}
+@font-face {
+    font-family: HastiRRD;
+    src: url(../../fonts/farsi/hasti/Hasti-HeavyRRD.woff), format(woff);
+}
+/* Iran Yekan Family */
+@font-face {
+	font-family: IranYekan;
+	src: url(../../fonts/farsi/iranyekan/IRANYekanX-Regular.woff), format(woff);
+}
+@font-face {
+	font-family: IranYekanBold;
+	src: url(../../fonts/farsi/iranyekan/IRANYekanX-Bold.woff), format(woff2);
+}
+@font-face {
+	font-family: IranYekanBlack;
+	src: url(../../fonts/farsi/iranyekan/IRANYekanX-Black.woff), format(woff2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: IranYekan;
+}
+
+/* Body Style */
+.display {
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #E9ECEF;
+}
+div.flex-container {
+    background-color: #FFFFFF;
+    display: flex;
+    padding: 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+div.flex-container .content {flex-basis: 1100px;}
+div.flex-container .sidebar {
+    border: 1px solid rgba(0, 0, 0, .2);
+    padding: 20px;
+    border-radius: 4px;
+    flex-basis: 250px;
+    background-color: #535E7B;
+    color: #FFFFFF; 
+    box-shadow: 0 4px 15px #535E7B;
+}
+
+/* Basic Tags Styles */
+a {text-decoration: none;}
+
+
+
+/* Response configs */
+
+@media screen and (max-width: 576px) {
+    /* Body Style */
+    div.flex-container {flex-direction: column-reverse;}
+    div.flex-container .content {flex-basis: 0;}
+    div.flex-container .sidebar {flex-basis: 0; width: 100%;}
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+    /* Body Style */
+    div.flex-container {flex-direction: column-reverse;}
+    div.flex-container .content {flex-basis: 0;}
+    div.flex-container .sidebar {flex-basis: 0; width: 70%; align-self: center;}
+}
