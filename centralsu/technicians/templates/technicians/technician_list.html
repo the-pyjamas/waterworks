@@ -3,13 +3,14 @@
 {% load static %}
 {% load jalali_tags %}
 
+{% block title %}لیست نصاب‌ها{% endblock title %}
+
 {% block extra_style %}
 <style>
     form.search-filter-form {border: 1px solid #DE7119;}
     tbody.td {font-size: 1.6rem;}
 
     /* Response configs */
-
     @media screen and (max-width: 576px) {
         form.search-filter-form .search-btn {width: 100%;}
         .register-new-customer-btn {width: 100%;}
