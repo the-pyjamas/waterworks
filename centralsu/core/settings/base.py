@@ -1,11 +1,9 @@
 from pathlib import Path
 import os
 
-from dotenv import load_dotenv
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -27,31 +25,7 @@ ALLOWED_HOSTS = [
 
 
 # Application definition
-
-DJANGO_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-]
-EXTERNAL_APPS = [
-    'phonenumber_field',
-    'django_jalali',
-    'jalali_date',
-    'django_filters',
-]
-LOCAL_APPS = [
-    'accounts.apps.AccountsConfig',
-    'customers.apps.CustomersConfig',
-    'common.apps.CommonConfig',
-    'vendors.apps.VendorsConfig',
-    'technicians.apps.TechniciansConfig',
-    'dashboard.apps.DashboardConfig',
-    'devices.apps.DevicesConfig',
-]
-INSTALLED_APPS = DJANGO_APPS + EXTERNAL_APPS + LOCAL_APPS
+from .configs import INSTALLED_APPS
 
 
 MIDDLEWARE = [
@@ -88,22 +62,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
-
-load_dotenv()
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("DB_NAME"),
-        "USER": os.getenv("DB_USER"),
-        "PASSWORD": os.getenv("DB_PASSWORD"),
-        "HOST": os.getenv("DB_HOST"),
-        "PORT": 5432
-    }
-}
-
+from .configs import DATABASES
 
 
 # Password validation
@@ -156,27 +115,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = "accounts.User"
 
 
-# Jalali Date Config
-import jdatetime
-
-jdatetime.set_locale('fa_IR')
-
-# Django Jalali Date Config
-JALALI_DATE_DEFAULTS = {
-   # if change it to true then all dates of the list_display will convert to the Jalali.
-   'LIST_DISPLAY_AUTO_CONVERT': False,
-   'Strftime': {
-        'date': '%y/%m/%d',
-        'datetime': '%H:%M:%S _ %y/%m/%d',
-    },
-    'Static': {
-        'js': [
-            'admin/js/django_jalali.min.js',
-        ],
-        'css': {
-            'all': [
-              'admin/css/django_jalali.min.css',
-            ]
-        }
-    },
-}
+# Jalali date configs
+from .configs import JALALI_DATE_DEFAULTS
