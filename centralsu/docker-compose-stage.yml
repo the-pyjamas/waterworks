@@ -24,7 +24,6 @@ services:
 
     restart: always
 
-
   app:
     env_file:
       - .env
@@ -47,7 +46,7 @@ services:
 
     volumes:
       - .:/app
-      - static_volume:/app/static
+      - static_volume:/app/staticfiles
       - media_volume:/app/media
 
     networks:
@@ -71,7 +70,7 @@ services:
 
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-      - static_volume:/home/app/static
+      - static_volume:/home/app/staticfiles
       - media_volume:/home/app/media
 
     networks:
