@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.translation import gettext_lazy as _
 
 from vendors.models import Vendor
 
@@ -14,6 +15,13 @@ class VendorUpdateForm(forms.ModelForm):
     class Meta:
         model = Vendor
         fields = ("shop_name", "contact_email", "contact_phone", "is_active")
+
+        labels = {
+            'shop_name': _('نام فروشگاه'),
+            'contact_email': _('پست‌الکترونیک'),
+            'contact_phone': _('شماره تماس کسب'),
+            'is_active': _('وضعیت')
+        }
 
         widgets = {
             "shop_name": forms.TextInput(

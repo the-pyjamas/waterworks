@@ -13,6 +13,11 @@ class VendorCreateForm(forms.ModelForm):
         model = Vendor
         fields = ("shop_name", "contact_phone")
 
+        labels = {
+            'shop_name': _('نام فروشگاه'),
+            'contact_phone': _('شماره تماس کسب')
+        }
+
     def __init__(self, *args, **kwargs):
         """
         Initialized the form class.
@@ -24,5 +29,5 @@ class VendorCreateForm(forms.ModelForm):
 
         for field in self.fields.values():
             field.widget.attrs.update({
-                "class": "form-control"
+                "class": "form-control mb-2"
             })
