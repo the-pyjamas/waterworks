@@ -1,48 +1,10 @@
-{% extends 'base.html' %}
+{% extends 'crud_bases/role_creation.html' %}
 
-{% block title %}اطلاعات نصاب{% endblock title %}
+{% block role_head_title %}اطلاعات شغلی نصاب{% endblock role_head_title %}
 
-{% block extra_style %}
-    <style>
-        /* .login-btn {background-color: #7AB2D3; color: #FFFFFF;} */
+{% block form_title %}اطلاعات شغلی نصاب{% endblock form_title %}
+{% block form_description %}
+    با استفاده از فرم زیر اطلاعات شغلی و تجربه کاری نصاب را ثبت کنید:
+{% endblock form_description %}
 
-        .forgot-password {color: #F6F1F1;}
-        .login-btn {
-            background-color: #4A628A;
-            color: #FFFFFF;
-            opacity: .8;
-            transition: opacity .4s;
-        }
-        .login-btn:hover {background-color: #4A628A; color: #FFFFFF; opacity: 1;}
-    </style>
-{% endblock extra_style %}
-
-
-{% block content %}
-
-    <div class="row flex-container">
-        <div class="user-login">
-            <h2>اطلاعات نصب</h2>
-            <p style="opacity: .8;">با استفاده از فرم زیر اطلاعات شغلی و شخصی نصاب را وارد کنید:</p>
-
-            <form accept="{% url 'accounts:user-login' %}" class="form-control mb-3" method="post">
-                {% csrf_token %}
-                {{ form.non_field_errors }}
-
-                {% for field in form %}
-					{% if field.errors %}
-						{% for error in field.errors %}
-							<p class="alert alert-danger">{{ error }}</p>
-						{% endfor %}
-					{% endif %}
-
-                    <h5>{{ field.label }}</h5>
-                    {{ field }}
-                {% endfor %}
-
-                <input type="submit" value="ثبت نصاب جدید" class="btn login-btn">
-            </form>
-        </div>
-    </div>
-
-{% endblock content %}
+{% block btn_value %}ثبت نصاب جدید{% endblock btn_value %}

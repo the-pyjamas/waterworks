@@ -1,47 +1,8 @@
-{% extends 'base.html' %}
+{% extends 'crud_bases/create_user_profile_role.html' %}
 
-{% block title %}مشتری جدید{% endblock title %}
+{% block role_head_title %}مشتری جدید{% endblock role_head_title %}
 
-{% block extra_style %}
-    <style>
-        /* .login-btn {background-color: #7AB2D3; color: #FFFFFF;} */
-
-        .forgot-password {color: #F6F1F1;}
-        .login-btn {
-            background-color: #4A628A;
-            color: #FFFFFF;
-            opacity: .8;
-            transition: opacity .4s;
-        }
-        .login-btn:hover {background-color: #4A628A; color: #FFFFFF; opacity: 1;}
-    </style>
-{% endblock extra_style %}
-
-
-{% block content %}
-
-    <div class="row flex-container">
-        <div class="user-login">
-            <h2>مشتری جدید</h2>
-            <p style="opacity: .8;">با استفاده از فرم زیر اطالاعات شخصی مشتری را درج کنید:</p>
-
-            <form accept="{% url 'accounts:user-login' %}" class="form-control mb-3" method="post">
-                {% csrf_token %}
-                {{ form.non_field_errors }}
-
-                {% for field in form %}
-					{% if field.errors %}
-						{% for error in field.errors %}
-							<p class="alert alert-danger">{{ error }}</p>
-						{% endfor %}
-					{% endif %}
-
-                    {{ field }}
-                {% endfor %}
-
-                <input type="submit" value="بعدی" class="btn login-btn">
-            </form>
-        </div>
-    </div>
-
-{% endblock content %}
+{% block form_title %}مشتری جدید{% endblock form_title %}
+{% block form_description %}
+    با استفاده از فرم زیر اطلاعات شخصی مشتری را ثبت کنید:
+{% endblock form_description %}
