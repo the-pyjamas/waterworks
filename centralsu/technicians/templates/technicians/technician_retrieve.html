@@ -56,6 +56,10 @@
             /* Card Items */
             .card-item {line-height: 5px;}
         }
+        @media screen and (min-width: 768px) and (max-width: 992px) {
+            .bigger-card {margin-bottom: 5%;}
+            .table {text-align: center;}
+        }
     </style>
 {% endblock extra_style %}
 
@@ -259,10 +263,10 @@
                                                 <tr>
                                                     <td>وضعیت</td>
                                                     <td>
-                                                        {% if customer.is_active %}
-                                                            <div class="badge bg-label-success">فعال</div>
+                                                        {% if technician.is_active %}
+                                                            <div class="badge bg-success-subtle text-success-emphasis">فعال</div>
                                                         {% else %}
-                                                            <div class="badge bg-label-danger">غیرفعال</div>
+                                                            <div class="badge bg-danger-subtle text-danger-emphasis">غیرفعال</div>
                                                         {% endif %}
                                                     </td>
                                                 </tr>

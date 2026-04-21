@@ -1,43 +1,10 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'crud_bases/role_creation.html' %}
 
+{% block role_head_title %}اطلاعات شغلی فروشنده{% endblock role_head_title %}
 
-{% block content %}
+{% block form_title %}اطلاعات کسب{% endblock form_title %}
+{% block form_description %}
+    با استفاده از فرم زیر اطلاعات کسب و فروشگاه فروشنده را وارد کنید:
+{% endblock form_description %}
 
-    <div class="authentication-wrapper basic-authentication" style="margin-top: 5%;">
-        <div class="authentication-inner">
-            <div class="card" style="margin-top: 4%;">
-                <div class="authentication-top text-center mb-25">
-                    <a class="authentication-logo logo-black" href="javascript:;">
-                        <img alt="logo" src="{% static 'images/logo/logo-black.svg' %}" />
-                    </a>
-                    <a class="authentication-logo logo-white" href="javascript:;">
-                        <img alt="logo" src="{% static 'images/logo/logo-white.svg' %}" />
-                    </a>
-                    <h4 class="mb-5">به Dashnix خوش آمدید</h4>
-                    <p> ثبت مشتری جدید و اطلاعات نصب </p>
-                </div>
-
-                <form action="" class="" method="POST">
-                    {% csrf_token %}
-                    {{ form.non_field_errors }}
-
-					{% for field in form.visible_fields %}
-						<div class="mb-10">
-							<label class="form-label" for="nameEmail">{{ field.label }}</label>
-							{{ field }}
-						</div>
-					{% endfor %}
-
-                    <div class="mb-25">
-                        <button class="btn btn-primary w-100" type="submit">
-							ثبت مشتری جدید
-                        </button>
-                    </div>
-                </form>
-
-            </div>
-        </div>
-    </div>
-
-{% endblock content %}
+{% block btn_value %}ثبت فروشنده{% endblock btn_value %}

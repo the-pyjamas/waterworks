@@ -1,7 +1,29 @@
 {% extends 'base.html' %}
 
 {% load static %}
+{% load jalali_tags %}
 
+{% block title %}لیست فروشندگان{% endblock title %}
+
+{% block extra_style %}
+<style>
+    form.search-filter-form {border: 1px solid #DE7119;}
+    tbody.td {font-size: 1.6rem;}
+
+    /* Response configs */
+
+    @media screen and (max-width: 576px) {
+        form.search-filter-form .search-btn {width: 100%;}
+        .register-new-customer-btn {width: 100%;}
+        .items-list-section {width: 100%; margin: 0; padding: 0;}
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 992px) {
+        form.search-filter-form .search-btn {width: 30%;}
+        .register-new-customer-btn {width: 30%;}
+    }
+</style>
+{% endblock extra_style %}
 
 {% block content %}
 
@@ -10,13 +32,16 @@
         <div class="container-fluid">
 
             <div class="row">
-                <div class="col-xl-12">
-                    <div class="card">
-                        <div class="card-header justify-between">
+                <div class="col-xl-12 items-list-section">
+                    <div class="card" style="padding: 10px;">
+                        <div class="justify-between">
                             <h4 class="d-flex-items gap-10">لیست فروشندگان</h4>
                             <div class="d-flex flex-wrap gap-15">
-                                <a class="btn btn-primary" href="{% url 'vendors:vendor-create-user' %}">
-                                    ثبت فروشنده جدید
+                                <a
+                                    class="btn btn-orange register-new-customer-btn"
+                                    href="{% url 'vendors:vendor-create-user' %}"
+                                >
+                                    اضافه کردن فروشنده جدید
                                 </a>
                             </div>
                         </div>
@@ -24,77 +49,72 @@
                         <form
                             action="{% url 'vendors:vendors-list' %}"
                             method="get"
-                            class="form-control"
-                            style="margin-top: 2%; margin-bottom: 2%;"
+                            class="form-control mt-3 mb-5 search-filter-form"
                         >
                             {% csrf_token %}
                             {{ form.non_field_errors }}
 
                             <div class="row g-2 align-items-end">
                                 <div class="col-md-4">
-                                    {{ filters.form.shop_name.label }}
+                                    <!-- {{ filters.form.device.label }} -->
+                                    نام فروشگاه
                                     {{ filters.form.shop_name }}
                                 </div>
                                 <div class="col-md-4">
-                                    {{ filters.form.contact_phone.label }}
+                                    <!-- {{ filters.form.technician.label }} -->
+                                    شماره تماس کسب
                                     {{ filters.form.contact_phone }}
                                 </div>
                             </div>
-                            <input type="submit" value="جستجو" class="btn btn-primary">
+                            <input type="submit" value="جستجو" class="btn btn-orange mt-2 col-1 search-btn">
                         </form>
 
-                        <div class="card-body pt-15">
+                        <div class="card-body pt-10">
                             <div class="table-responsive">
-                            <table class="table text-nowrap w-100" id="dataTableDefault">
-                                <thead>
-                                    <tr>
-                                        <th>نام خانودگی</th>
-                                        <th>نام فروشگاه</th>
-                                        <th>شماره تماس</th>
-                                        <th>شماره تماس کاری</th>
-                                        <th>تعداد فروش ها</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for vendor in vendors %}
+                                <table class="table text-nowrap w-100" id="dataTableDefault">
+                                    <thead class="table-warning">
                                         <tr>
-                                            <td>
-                                                <a
-													href="{{ vendor.get_absolute_url }}"
-                                                    class="text text-primary"
-                                                    style="font-size: 2rem;"
-                                                >
-                                                    {{ vendor.user.userprofile.last_name }}</td>
-                                                </a>
-                                            <td style="font-size: 1.6rem;">{{ vendor.shop_name }}</td>
-                                            <td style="font-size: 1.6rem;">
-                                                <span dir="ltr">{{ vendor.user.phone_number.as_national }}</span>
-                                            </td>
-                                            <td style="font-size: 1.6rem;" class="ltr-number">
-                                                {% if vendor.contact_phone %}
-                                                    <span dir="ltr">{{ vendor.contact_phone.as_national }}</span>
-                                                {% else %}
-                                                    مشخص نشده
-                                                {% endif %}
-                                            </td>
-                                            <td style="font-size: 1.6rem;">{{ vendor.customers.count }}</td>
-                                            <!-- <td>
-                                                {% if vendor.is_active %}
-                                                    <span class="badge bg-label-success">
-                                                        فعال
-                                                    </span>
-                                                {% else %}
-                                                    <span class="badge bg-label-danger">
-                                                        غیرفعال
-                                                    </span>
-                                                {% endif %}
-                                            </td> -->
+                                            <th>نام</th>
+                                            <th>نام فروشگاه</th>
+                                            <th>شماره تماس</th>
+                                            <th>شماره تماس کسب</th>
+                                            <th>تعداد فروش</th>
                                         </tr>
-                                    {% empty %}
-                                        <h3 class="text text-center">No Vendor Yet!</h3>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        {% for vendor in vendors %}
+                                            <tr>
+                                                <td>
+                                                    <a
+                                                        href="{{ vendor.get_absolute_url }}"
+                                                        style="color: #DE7119;"
+                                                    >
+                                                        {{ vendor.user.userprofile.fullname }}
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <span dir="ltr">{{ vendor.shop_name }}</span>
+                                                </td>
+                                                <td>{{ vendor.user.phone }}</td>
+                                                <td>{{ vendor.contact_phone }}</td>
+                                                <td>{{ vendor.customers.count }}</td>
+                                                <!-- <td>
+                                                    {% if customer.is_active %}
+                                                        <span class="badge bg-label-success">
+                                                            فعال
+                                                        </span>
+                                                    {% else %}
+                                                        <span class="badge bg-label-danger">
+                                                            غیرفعال
+                                                        </span>
+                                                    {% endif %}
+                                                </td> -->
+                                            </tr>
+                                        {% empty %}
+                                            <h3 class="text text-center">تا به‌حال فروشنده‌ای ثبت نشده!</h3>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
