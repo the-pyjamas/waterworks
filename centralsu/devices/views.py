@@ -19,7 +19,8 @@ class DeviceCreateView(LoginRequiredMixin, FormView):
 		form_valid (Base View Method).
 	"""
 	form_class = DeviceCreateForm
-	success_url = "devices:devices-list"
+	template_name = 'devices/device_create.html'
+	success_url = 'devices:devices-list'
 
 	def dispatch(self, request, *args, **kwargs):
 		"""
