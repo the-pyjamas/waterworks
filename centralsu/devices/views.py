@@ -61,5 +61,5 @@ class DevicesListView(ListView):
 	Lists all devices.
 	"""
 	model = Device
-	queryset = Device.objects.filter(is_active=True)
+	queryset = Device.objects.all().order_by('-created_at')
 	template_name = 'devices/devices_list.html'

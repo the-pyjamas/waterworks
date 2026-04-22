@@ -46,10 +46,10 @@
                                     >
                                         <use xlink:href="#geo-fill"></use>
                                     </svg>
-                                    {% if object.is_active %}
-                                        <small class="badge bg-success-subtle text-success-emphasis">فعال</small>
+                                    {% if object.is_exists %}
+                                        <small class="badge bg-success-subtle text-success-emphasis">موجود</small>
                                     {% else %}
-                                        <small class="badge bg-danger-subtle text-danger-emphasis">غیرفعال</small>
+                                        <small class="badge bg-danger-subtle text-danger-emphasis">ناموجود</small>
                                     {% endif %}
                                 </li>
                                 <li class="d-flex align-items-center">

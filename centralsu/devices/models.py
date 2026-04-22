@@ -10,7 +10,9 @@ class Device(BaseModel):
 
 	Attributes:
 		name (str): The original name of the device.		
-		model (str): The model of the device.		
+		model (str): The model of the device.
+		installed_count (int, unsigned): Installation count of the device.
+		is_exists (bool): Existence status of the device.
 	"""
 	name = models.CharField(
 		max_length=50,
@@ -23,6 +25,10 @@ class Device(BaseModel):
 	installed_count = models.PositiveIntegerField(
 		default=0,
 		verbose_name=_('Installed Count')
+	)
+	is_exists = models.BooleanField(
+		default=True,
+		verbose_name=_('Existence Status')
 	)
 
 	class Meta:
