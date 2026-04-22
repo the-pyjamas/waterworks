@@ -6,52 +6,44 @@ from accounts.models import User, UserProfile
 from accounts.user_admin_form import UserCreationForm, UserChangeForm
 
 
-class UserProfileInline(admin.TabularInline):
-    model = UserProfile
-    fields = (
-        "first_name", "last_name", "address"
-    )
-    readonly_fields = ("created_at", "updated_at")
-
 
 @admin.register(User)
 class UserAdmin(BaseUserAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
 
-    list_display = ["phone_number", "username", "role", "is_admin", "is_staff"]
-    list_filter = ["is_active", "is_admin", "is_staff"]
-    search_fields = ["phone_number", "username"]
-    readonly_fields = ["last_login"]
-    ordering = ["phone_number", "username"]
-    filter_horizontal = ["groups", "user_permissions"]
+    list_display = ['phone_number', 'username', 'role', 'is_admin', 'is_staff']
+    list_filter = ['is_active', 'is_admin', 'is_staff']
+    search_fields = ['phone_number', 'username']
+    readonly_fields = ['last_login']
+    ordering = ['phone_number', 'username']
+    filter_horizontal = ['groups', 'user_permissions']
     list_per_page = 30
-    inlines = (UserProfileInline,)
 
     fieldsets = (
-        [_("Personal Information"),
+        [_('Personal Information'),
             {
-                "fields": ("phone_number", "username", "password")
+                'fields': ('phone_number', 'username', 'password')
             }
         ],
-        [_("Permissions"),
+        [_('Permissions'),
             {
-                "classes": ("collapse",),
-                "fields": (
-                    "is_active",
-                    "is_admin",
-                    "is_staff",
-                    "is_superuser",
-                    "last_login",
-                    "groups",
-                    "user_permissions"
+                'classes': ('collapse',),
+                'fields': (
+                    'is_active',
+                    'is_admin',
+                    'is_staff',
+                    'is_superuser',
+                    'last_login',
+                    'groups',
+                    'user_permissions'
                 )
             }
         ],
-        [_("Role"),
+        [_('Role'),
             {
-                "classes": ("collapse",),
-                "fields": ("role",)
+                'classes': ('collapse',),
+                'fields': ('role',)
             }
         ],
     )
@@ -59,8 +51,8 @@ class UserAdmin(BaseUserAdmin):
     add_fieldsets = (
         [None,
             {
-                "classes": ("wide",),
-                "fields": ("phone_number", "username", "password1", "password2")
+                'classes': ('wide',),
+                'fields': ('phone_number', 'username', 'password1', 'password2')
             }
         ],
     )
@@ -77,6 +69,14 @@ class UserAdmin(BaseUserAdmin):
         is_superuser = request.user.is_superuser
 
         if not is_superuser:
-            form.base_fields["is_superuser"].disabled = True
+            form.base_fields['is_superuser'].disabled = True
 
         return form
+
+
+@admin.register(UserProfile)
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ['user', 'fullname', 'address']
+    list_filter = ['created_at', 'updated_at', 'is_active']
+    search_fields = ['user', 'fullname', 'address']
+    readonly_fields = ['created_at', 'updated_at']
