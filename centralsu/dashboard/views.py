@@ -13,6 +13,7 @@ class DashboardView(View):
     def get(self, request):
         # List last five customers
         last_five_customers = Customer.last_objects(5)
+        most_installed_devices = Device.most_installation(3)
 
         customers_count = Customer.objects.count()
         technicians_count = Technician.objects.count()
@@ -20,11 +21,12 @@ class DashboardView(View):
         devices_count = Device.objects.count()
 
         context = {
-            "last_five_customers": last_five_customers,
-            "customers_count": customers_count,
-            "technicians_count": technicians_count,
-            "vendors_count": vendors_count,
-            "devices_count": devices_count,
+            'last_five_customers': last_five_customers,
+            'most_installed_devices': most_installed_devices,
+            'customers_count': customers_count,
+            'technicians_count': technicians_count,
+            'vendors_count': vendors_count,
+            'devices_count': devices_count,
         }
         return render(
             template_name=self.template_name,

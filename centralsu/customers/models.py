@@ -69,6 +69,7 @@ class Customer(BaseModel):
     device = models.ForeignKey(
         Device,
         on_delete=models.SET_NULL,
+        related_name='customers',
         null=True,
         blank=True,
         verbose_name=_("Device")
@@ -153,6 +154,9 @@ class Customer(BaseModel):
 
             if self.installation_date:
                 self.save_replacement_dates()
+
+        # Increse the installation cound of devices after a customer added
+        self.device.installed_count += 1
 
         super().save(*args, **kwargs)
 
