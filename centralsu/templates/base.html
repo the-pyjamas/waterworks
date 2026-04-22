@@ -23,26 +23,27 @@
                 {% endblock %}
             </div>
 
-            <div class="side">
-                <div class="sidebar">
-					<main class="d-flex flex-nowrap sidebar-links justify-content-between">
-                        <div class="flex-shrink-0 p-3" style="width: 280px">
-                            <a
-                                href="/"
-                                class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom"
-                            >
-                                <svg
-                                class="bi pe-none me-2"
-                                width="30"
-                                height="24"
-                                aria-hidden="true"
+            {% if request.is_authenticated %}
+                <div class="side">
+                    <div class="sidebar">
+                        <main class="d-flex flex-nowrap sidebar-links justify-content-between">
+                            <div class="flex-shrink-0 p-3" style="width: 280px">
+                                <a
+                                    href="/"
+                                    class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom"
                                 >
-                                <use xlink:href="#bootstrap"></use>
-                                </svg>
-                                <span class="fs-5 fw-semibold sidebar-title">دسته‌بندی لینک‌ها</span>
-                            </a>
-                            <ul class="list-unstyled ps-0">
-                                {% if request.user.is_authenticated %}
+                                    <svg
+                                    class="bi pe-none me-2"
+                                    width="30"
+                                    height="24"
+                                    aria-hidden="true"
+                                    >
+                                    <use xlink:href="#bootstrap"></use>
+                                    </svg>
+                                    <span class="fs-5 fw-semibold sidebar-title">دسته‌بندی لینک‌ها</span>
+                                </a>
+
+                                <ul class="list-unstyled ps-0">
                                     {% if request.user.role == 'Admin' or request.user.is_superuser or request.user.role == 'Technician' %}
                                         <li class="mb-1">
                                             <button
@@ -73,9 +74,7 @@
                                             </div>
                                         </li>
                                     {% endif %}
-                                {% endif %}
 
-                                {% if request.user.is_authenticated %}
                                     {% if request.user.role == 'Admin' or request.user.is_superuser %}
                                         <li class="mb-1">
                                             <button
@@ -106,9 +105,7 @@
                                             </div>
                                         </li>
                                     {% endif %}
-                                {% endif %}
 
-                                {% if request.user.is_authenticated %}
                                     {% if request.user.role == 'Admin' or request.user.is_superuser %}
                                         <li class="mb-1">
                                             <button
@@ -139,9 +136,7 @@
                                             </div>
                                         </li>
                                     {% endif %}
-                                {% endif %}
 
-                                {% if request.user.is_authenticated %}
                                     {% if request.user.role == 'Admin' or request.user.is_superuser %}
                                         <li class="mb-1">
                                             <button
@@ -173,34 +168,34 @@
                                         </li>
                                         <li class="border-top my-3"></li>
                                     {% endif %}
-                                {% endif %}
 
-                                <li class="mb-1">
-                                    <button
-                                        class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                                        data-bs-toggle="collapse"
-                                        data-bs-target="#handylinks-collapse"
-                                        aria-expanded="false"
-                                    >
-                                        لینک‌های اصلی
-                                    </button>
-                                    <div class="collapse show" id="handylinks-collapse">
-                                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                            <li>
-                                                <a
-                                                href="{% url 'dashboard:dashboard' %}"
-                                                class="link-body-emphasis d-inline-flex text-decoration-none rounded"
-                                                >صفحه اصلی</a
-                                                >
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </main>
+                                    <li class="mb-1">
+                                        <button
+                                            class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                                            data-bs-toggle="collapse"
+                                            data-bs-target="#handylinks-collapse"
+                                            aria-expanded="false"
+                                        >
+                                            لینک‌های اصلی
+                                        </button>
+                                        <div class="collapse show" id="handylinks-collapse">
+                                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                                <li>
+                                                    <a
+                                                    href="{% url 'dashboard:dashboard' %}"
+                                                    class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                                                    >صفحه اصلی</a
+                                                    >
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </main>
+                    </div>
                 </div>
-            </div>
+            {% endif %}
         </div>
     </div>
 
