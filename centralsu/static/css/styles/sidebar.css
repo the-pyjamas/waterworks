@@ -63,8 +63,8 @@ main.sidebar-links .sidebar-title {font-family: Hasti;}
 /* Response configs */
 @media screen and (max-width: 576px) {
     main.sidebar-links {
-        height: 50vh;
-        max-height: 50vh;
+        height: 60vh;
+        max-height: 60vh;
         flex-direction: column;
         /* margin-bottom: 10%; */
     }
