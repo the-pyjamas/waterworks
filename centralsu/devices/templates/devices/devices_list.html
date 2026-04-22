@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}لیست دستگاه‌ها{% endblock title %}
+
+{% block content %}
+
+    <div class="container px-4 py-5" id="custom-cards">
+		<h2 class="pb-2 border-bottom text-right">لیست دستگاه‌ها</h2>
+		<div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+			{% for object in object_list %}
+                <div class="col">
+                    <div
+                        class="card card-cover h-100 overflow-hidden text-bg-dark border border-none rounded-4 shadow-lg"
+                        style="background-image: linear-gradient(#38598B, #1672c2)"
+                    >
+                    <!-- 
+                        For background image in a prettier way:
+                        url(&quot;unsplash-photo-1.jpg&quot;) 
+                    -->
+                        <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold align-self-start" style="position: relative; top: -50px;">
+                                {{ object.name }}
+                            </h3>
+                            <ul class="d-flex list-unstyled mt-auto p-0 
+                                        flex-md-row flex-md-nowrap 
+                                        justify-content-center justify-content-md-start 
+                                        mb-md-0
+                                        pb-md-0">
+
+                                <li class="me-auto md-md-2">
+                                    <img
+                                        src=""
+                                        alt="Nothing!"
+                                        width="32"
+                                        height="32"
+                                        class="rounded border border-white px-2 d-none"
+                                    />
+                                </li>
+                                <li class="d-flex align-items-center me-3 me-md-2">
+                                    <svg
+                                        class="bi me-2"
+                                        width="1em"
+                                        height="1em"
+                                        role="img"
+                                        aria-label="Location"
+                                    >
+                                        <use xlink:href="#geo-fill"></use>
+                                    </svg>
+                                    {% if object.is_active %}
+                                        <small class="badge bg-success-subtle text-success-emphasis">فعال</small>
+                                    {% else %}
+                                        <small class="badge bg-danger-subtle text-danger-emphasis">غیرفعال</small>
+                                    {% endif %}
+                                </li>
+                                <li class="d-flex align-items-center">
+                                    <svg
+                                        class="bi me-2"
+                                        width="1em"
+                                        height="1em"
+                                        role="img"
+                                        aria-label="Duration"
+                                    >
+                                        <use xlink:href="#calendar3"></use>
+                                    </svg>
+                                    <small>{{ object.model }}</small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+		</div>
+	</div>
+
+{% endblock content %}
