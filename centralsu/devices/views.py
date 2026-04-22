@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect
-from django.views import View
+from django.shortcuts import redirect
+from django.views.generic import ListView, FormView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 
@@ -7,26 +8,25 @@ from .forms import DeviceCreateForm
 from .models import Device
 
 
-class DeviceCreateView(View):
+class DeviceCreateView(LoginRequiredMixin, FormView):
 	"""
 	Creating a new device model object.
 	Renders the form and validates its sent data
 	from the client and then save a new device object.
 
 	Methods:
-		dispatch(predecision).
-		get (GET HTTP).
-		post (POST HTTP).
+		dispatch (predecision).
+		form_valid (Base View Method).
 	"""
 	form_class = DeviceCreateForm
-	template_name = "devices/device_create.html"
+	success_url = "devices:devices-list"
 
-	def dispatch(self, *args, **kwargs):
+	def dispatch(self, request, *args, **kwargs):
 		"""
 		Ensures that the user who creating a new user
 		has an appropriate role.
 		"""
-		user = self.request.user
+		user = request.user
 		is_allowed = (
 		    user.is_superuser
 		    or user.role == "Admin"
@@ -35,50 +35,30 @@ class DeviceCreateView(View):
 		# Redirects user only if user is neither
 		# a superuser nor has an authorized role
 		if not is_allowed:
-		    return redirect("dashboard:dashboard")
+			return redirect('devices:devices-list')
+		
+		return super().dispatch(request, *args, **kwargs)
 
-		return super().dispatch(*args, **kwargs)
-
-	def get(self, request):
+	def form_valid(self, form):
 		"""
-		Simply renders the form.
+		Called when form validated,
+		saves the form data and showing a success message.
+		Redirects to the devices list.
 		"""
-		form = self.form_class()
+		form.save()
 
-		context = {"form": form}
-		return render(
-			request=request,
-			template_name=self.template_name,
-			context=context
+		messages.success(
+			request=self.request,
+			message=_(f"Device created successfully."),
+			extra_tags="success"
 		)
+		return redirect("devices:devices-list")
 
-	def post(self, request):
-		"""
-		Creating a new device model after checks the form
-		data is valid.
-		"""
-		form = self.form_class(request.POST)
 
-		if form.is_valid():
-			# Save the new device model
-			form.save()
-
-			messages.success(
-			    request=request,
-			    message=_(f"Device created successfully."),
-			    extra_tags="success"
-			)
-			return redirect("dashboard:dashboard")
-		else:
-			messages.error(
-			    request=request,
-			    message=_("The data you sent are invalid."),
-			    extra_tags="danger"
-			)
-
-		context = {"form": form}
-		return render(
-			request=request,
-			template_name=self.template_name,
-			context=context
-		)
+class DevicesListView(ListView):
+	"""
+	Lists all devices.
+	"""
+	model = Device
+	queryset = Device.objects.filter(is_active=True)
+	template_name = 'devices/devices_list.html'
