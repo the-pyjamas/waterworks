@@ -18,8 +18,8 @@ class UserSoftRegisterForm(forms.Form):
     Validates the existence user with the phone-number.
     """
     phone_number = PhoneNumberField(
-        region="IR",
-        label=_("Phone number"),
+        region='IR',
+        label=_('Phone number'),
         widget=forms.TextInput(attrs={'placeholder': _('شماره همراه مثل ۰۹۱۲۵۶۵۲۳۳۲')})
     )
     password = forms.CharField(
@@ -39,7 +39,7 @@ class UserSoftRegisterForm(forms.Form):
 
         for field in self.fields.values():
             field.widget.attrs.update({
-                "class": "form-control mb-2"
+                'class': 'form-control mb-2'
             })
 
     def clean_phone(self):
@@ -55,11 +55,11 @@ class UserSoftRegisterForm(forms.Form):
         if User.objects.filter(phone_number__iexact=phone_number).exists():
             # Add error if the user exists
             self.add_error(
-                "phone_number",
+                'phone_number',
                 ValidationError(
                     _(
-                        "You already have an account with this phone number."
-                        "You just need to login to your account."
+                        'You already have an account with this phone number.'
+                        'You just need to login to your account.'
                     )
                 )
             )

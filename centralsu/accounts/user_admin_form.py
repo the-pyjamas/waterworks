@@ -8,11 +8,11 @@ from accounts.models import User
 
 class UserCreationForm(forms.ModelForm):
     password1 = forms.CharField(
-        label=_("Passsword"),
+        label=_('Passsword'),
         widget=forms.PasswordInput
     )
     password2 = forms.CharField(
-        label=_("Confirm Password"),
+        label=_('Confirm Password'),
         widget=forms.PasswordInput
     )
 
@@ -25,7 +25,7 @@ class UserCreationForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
         # Add placeholder for fields
-        self.fields['phone_number'].widget.attrs = {'placeholder': _("Phone number; +989129634554, etc.")}
+        self.fields['phone_number'].widget.attrs = {'placeholder': _('Phone number; +989129634554, etc.')}
         self.fields['username'].widget.attrs = {'placeholder': _('Username')}
 
     def clean_password2(self):
@@ -41,7 +41,7 @@ class UserCreationForm(forms.ModelForm):
         pass2 = cleaned_data['password2']
 
         if pass1 and pass2 and pass2 != pass1:
-            raise ValidationError("Passwords don't match!")
+            raise ValidationError('Passwords don\'t match!')
 
         return cleaned_data['password2']
     
@@ -66,7 +66,7 @@ class UserCreationForm(forms.ModelForm):
 class UserChangeForm(forms.ModelForm):
     password = ReadOnlyPasswordHashField(
         help_text=_(
-            "You can change this password with <a href=\"../password/\">this form</a>"
+            'You can change this password with <a href=\"../password/\">this form</a>'
         )
     )
 

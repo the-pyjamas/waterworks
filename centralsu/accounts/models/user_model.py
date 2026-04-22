@@ -7,13 +7,6 @@ from phonenumber_field.modelfields import PhoneNumberField
 from accounts.managers import UserManager
 
 
-class UserRoleChoice(models.TextChoices):
-	ADMIN = "Admin", _("Admin")
-	VENDOR = "Vendor", _("Vendor")
-	TECHNICIAN = "Technician", _("Technician")
-	CUSTOMER = "Customer", _("Customer")
-
-
 class User(AbstractBaseUser, PermissionsMixin):
 	"""
 	Represent a user in the system, including authentication and profile details.
@@ -27,6 +20,14 @@ class User(AbstractBaseUser, PermissionsMixin):
 		is_admin (bool): True if the user is admin and false if it's just a rudimentary user.
 		is_staff (bool): Just the validation of 'is_admin', True if the 'is_admin' be True.
 	"""
+	class UserRoleChoice(models.TextChoices):
+		ADMIN = 'Admin', _('Admin')
+		VENDOR = 'Vendor', _('Vendor')
+		TECHNICIAN = 'Technician', _('Technician')
+		CUSTOMER = 'Customer', _('Customer')
+		EXPLORER = 'Explorer', _('Explorer')
+
+
 	phone_number = PhoneNumberField(
 		unique=True,
 		region="IR",
@@ -44,7 +45,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 	role = models.CharField(
 		max_length=11,
 		choices=UserRoleChoice,
-		default=UserRoleChoice.ADMIN,
+		default=UserRoleChoice.EXPLORER,
 		verbose_name=_("Role"),
 		help_text=_("User role that a profile will created base on the role.")
 	)

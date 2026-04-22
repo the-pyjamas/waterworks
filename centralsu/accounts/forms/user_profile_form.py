@@ -16,7 +16,7 @@ class UserUpdateForm(forms.ModelForm):
     """
     class Meta:
         model = User
-        fields = ("username",)
+        fields = ('username',)
 
 
     def __init__(self, *args, **kwargs) -> None:
@@ -27,7 +27,7 @@ class UserUpdateForm(forms.ModelForm):
 
         for field in self.fields.values():
             field.widget.attrs.update({
-                "class": "form-control mb-4"
+                'class': 'form-control mb-4'
             })
 
 
@@ -43,7 +43,7 @@ class UserProfileUpdateForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ("first_name", "last_name", "address")
+        fields = ('first_name', 'last_name', 'address')
 
 
     def __init__(self, *args, **kwargs) -> None:
@@ -54,5 +54,5 @@ class UserProfileUpdateForm(forms.ModelForm):
 
         for field in self.fields.values():
             field.widget.attrs.update({
-                "class": "form-control mb-4"
+                'class': 'form-control mb-4'
             })

@@ -19,8 +19,8 @@ class UserRegisterForm(forms.Form):
     Validates the existence user with the phone-number.
     """
     phone_number = PhoneNumberField(
-        region="IR",
-        label=_("Phone number"),
+        region='IR',
+        label=_('Phone number'),
         widget=forms.TextInput(attrs={'placeholder': 'شماره همراه مثل ۰۹۱۲۵۶۵۲۳۳۲'})
     )
     password = forms.CharField(
@@ -44,7 +44,7 @@ class UserRegisterForm(forms.Form):
 
         for field in self.fields.values():
             field.widget.attrs.update({
-                "class": "form-control mb-4",
+                'class': 'form-control mb-4',
                 # "placeholder": field.label
             })
 
@@ -55,17 +55,17 @@ class UserRegisterForm(forms.Form):
         Gets the cleaned data (phone-number) and validate it
         if any user with that phone-number is already exists or not.
         """
-        phone_number = self.cleaned_data.get("phone_number")
+        phone_number = self.cleaned_data.get('phone_number')
 
         # Check if the user with the phone-number is already exists
         if User.objects.filter(phone_number__iexact=phone_number).exists():
             # Add error if the user exists
             self.add_error(
-                "phone_number",
+                'phone_number',
                 ValidationError(
                     _(
-                        "You already have an account with this phone number."
-                        "You just need to login to your account."
+                        'You already have an account with this phone number.'
+                        'You just need to login to your account.'
                     )
                 )
             )
@@ -82,12 +82,12 @@ class UserRegisterForm(forms.Form):
         data = super().clean()
 
         # Clean passwords
-        p1 = data.get("password")
-        p2 = data.get("password_repeat")
+        p1 = data.get('password')
+        p2 = data.get('password_repeat')
 
         if p1 and p2 and p2 != p1:
             # Add validation error if the passwords do not match together
             self.add_error(
-                "password",
-                ValidationError(_("Passwords must match."))
+                'password',
+                ValidationError(_('Passwords must match.'))
             )

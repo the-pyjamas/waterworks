@@ -36,5 +36,5 @@ class UserLoginForm(forms.Form):
         }
 
         # Get the placeholders to use them in the template fields' placeholders
-        self.password_placeholder = self.fields['password'].widget.attrs.get("placeholder")
-        self.phone_number_placeholder = self.fields['phone_number'].widget.attrs.get("placeholder")
+        self.password_placeholder = self.fields['password'].widget.attrs.get('placeholder')
+        self.phone_number_placeholder = self.fields['phone_number'].widget.attrs.get('placeholder')

@@ -19,30 +19,30 @@ class UserProfile(BaseModel):
     user = models.OneToOneField(
         User,
         on_delete=models.CASCADE,
-        verbose_name=_("User"),
-        help_text=_("User who is the owner of this profile.")
+        verbose_name=_('User'),
+        help_text=_('User who is the owner of this profile.')
     )
     first_name = models.CharField(
         max_length=30,
         null=True,
         blank=True,
-        verbose_name=_("First name")
+        verbose_name=_('First name')
     )
     last_name = models.CharField(
         max_length=30,
         null=True,
         blank=True,
-        verbose_name=_("Last name")
+        verbose_name=_('Last name')
     )
     address = models.TextField(
         null=True,
         blank=True,
-        verbose_name=_("Address")
+        verbose_name=_('Address')
     )
 
     class Meta:
-        verbose_name = _("User Profile")
-        verbose_name_plural = _("Users Profiles")
+        verbose_name = _('User Profile')
+        verbose_name_plural = _('Users Profiles')
 
     def __str__(self) -> str:
         return f"{self.user}"
