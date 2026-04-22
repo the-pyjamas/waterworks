@@ -95,8 +95,12 @@
                                                 <td>
                                                     <span dir="ltr">{{ vendor.shop_name }}</span>
                                                 </td>
-                                                <td>{{ vendor.user.phone }}</td>
-                                                <td>{{ vendor.contact_phone }}</td>
+                                                <td dir="ltr" class="text-center">
+                                                    {{ vendor.user.phone_number.as_national }}
+                                                </td>
+                                                <td dir="ltr" class="text-center">
+                                                    {{ vendor.contact_phone.as_national }}
+                                                </td>
                                                 <td>{{ vendor.customers.count }}</td>
                                                 <!-- <td>
                                                     {% if customer.is_active %}
