@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 
 from technicians.models import Technician
@@ -13,6 +13,24 @@ class TechnicianListView(View):
         get (GET HTTP).
     """
     template_name = "technicians/technician_list.html"
+
+    def dispatch(self, request, *args, **kwargs):
+        """
+		Ensures that the user who creating a new user
+		has an appropriate role.
+		"""
+        user = request.user
+        is_allowed = (
+            user.is_superuser
+            or user.role == 'Admin'
+        )
+
+        # Redirects user only if user is neither
+        # a superuser nor has an authorized role
+        if not is_allowed:
+            return redirect('accounts:user-dashboard')
+
+        return super().dispatch(request, *args, **kwargs)
 
     def get(self, request):
         """
