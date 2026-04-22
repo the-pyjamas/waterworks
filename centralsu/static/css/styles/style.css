@@ -1,6 +1,7 @@
 @import url("navbar.css");
 @import url("authentication.css");
 @import url("dashboard.css");
+@import url("sidebar.css");
 
 
 /* Hasti Family */
@@ -56,13 +57,13 @@ a.nav-link.active {
 }
 div.flex-container {
     display: flex;
-    padding: 20px;
-    flex-direction: row;
+    padding: 20px 20px 20px 0;
+    flex-direction: row-reverse;
     flex-wrap: wrap;
     justify-content: space-between;
 }
-div.flex-container .content {width: 100%;}
-div.flex-container .sidebar {
+div.flex-container .content {width: 70%;}
+/* div.flex-container .sidebar {
     border: 1px solid rgba(0, 0, 0, .2);
     padding: 20px;
     border-radius: 4px;
@@ -70,7 +71,7 @@ div.flex-container .sidebar {
     background-color: #535E7B;
     color: #FFFFFF; 
     box-shadow: 0 4px 15px #535E7B;
-}
+} */
 
 /* Basic Tags Styles */
 a {text-decoration: none;}
@@ -83,13 +84,13 @@ a.active {color: #1E88E5!important; font-family: IranYekanBold;}
 @media screen and (max-width: 576px) {
     /* Body Style */
     div.flex-container {flex-direction: column-reverse;}
-    div.flex-container .content {flex-basis: 0;}
+    div.flex-container .content {flex-basis: 0; width: 100%;}
     div.flex-container .sidebar {flex-basis: 0; width: 100%;}
 }
 
 @media screen and (min-width: 768px) and (max-width: 992px) {
     /* Body Style */
-    div.flex-container {flex-direction: column-reverse;}
-    div.flex-container .content {flex-basis: 0;}
-    div.flex-container .sidebar {flex-basis: 0; width: 70%; align-self: center;}
+    div.flex-container {flex-direction: row-reverse;}
+    div.flex-container .content {width: 60%;}
+    div.flex-container .sidebar {align-self: center;}
 }

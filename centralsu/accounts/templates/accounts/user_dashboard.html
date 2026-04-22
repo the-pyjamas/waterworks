@@ -6,7 +6,7 @@
 {% block content %}
 
 	<div class="user-dashboard">
-		<div class="user-card">
+		<div class="user-card mb-2">
 			<div class="user-dashboard-card">
 				<img src="{{ user.userprofile.picture.url }}" alt="" class="user-profile-picture">
 				<div class="user-basic-info">
@@ -17,15 +17,9 @@
 					</p>
 				</div>
 			</div>
-
-			<div class="d-grid mt-3">
-				<a href="{% url 'accounts:user-logout' %}" class="btn btn-danger col-4 logout-btn">
-                    خروج از حساب
-                </a>
-			</div>
 		</div>
 
-		<div class="user-profile-info">
+		<div class="user-profile-info mt-2">
 			<div class="user-personal-info">
 				<ul class="user-info-list">
 					<li>
@@ -79,6 +73,11 @@
 				<div class="d-grid">
 					<a href="{% url 'accounts:user-profile-update' %}" class="btn btn-orange">
 						ویرایش پروفایل
+					</a>
+				</div>
+				<div class="d-grid">
+					<a href="{% url 'accounts:user-logout' %}" class="btn btn-orange">
+						خروج از حساب
 					</a>
 				</div>
 			</div>

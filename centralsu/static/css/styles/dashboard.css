@@ -2,7 +2,7 @@ div.user-dashboard {
     /* background-color: #20c997; */
     /* background-color: #75b798; */
 
-    box-shadow: 0 4px 15px #343a40;
+    /* box-shadow: 0 4px 15px #343a40; */
     flex-direction: row-reverse;
     display: flex;
     flex-wrap: wrap;
@@ -12,7 +12,7 @@ div.user-dashboard {
 }
 
 /* USER DASHBOARD CARD */
-div.user-card {flex-basis: 500px; align-self: flex-start;}
+div.user-card {flex-basis: 600px; align-self: flex-start;}
 div.user-dashboard-card {
     background-color: #116979;
     border-radius: 4px;
@@ -22,7 +22,7 @@ div.user-dashboard-card {
     justify-content: space-around;
     /* to fit the card content such as 'user-basic-info' content with the center of the whole card */
     align-items: center;
-    box-shadow: 0 4px 15px #343a40;
+    /* box-shadow: 0 4px 15px #343a40; */
 }
 div.user-dashboard-card .user-profile-picture {
     width: 30%;
@@ -43,11 +43,11 @@ div.user-dashboard-card .user-basic-info {
 div.user-profile-info {
     background-color: #116979;
     border-radius: 4px;
-    box-shadow: 0 4px 15px #343a40;
+    /* box-shadow: 0 4px 15px #343a40; */
     padding: 10px 20px 10px 10px;
     display: flex;
     flex-direction: column;
-    flex-basis: 400px;
+    flex-basis: 500px;
 }
 
 ul.user-info-list {
@@ -78,11 +78,17 @@ div.user-options div.d-grid {margin-bottom: 5%;}
 
 @media screen and (max-width: 576px) {
     .logout-btn {display: none;}
-    div.user-dashboard-card {flex-direction: column; margin: 0 2% 0 2%; padding: 10px;}
-    div.user-profile-info {margin: 0 2% 0 2%; padding: 10px;}
+    div.user-dashboard-card {
+        flex-direction: column;
+        margin: 0 2% 0 2%;
+        padding: 10px;
+    }
+    div.user-profile-info {
+        margin: 0 2% 0 2%;
+        padding: 10px;
+    }
 }
 
 @media screen and (min-width: 768px) and (max-width: 992px) {
-    .logout-btn {display: none;}
     div.user-dashboard-card {flex-direction: column;}
 }
