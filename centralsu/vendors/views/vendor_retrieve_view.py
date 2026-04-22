@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import View
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from vendors.models import Vendor
 
 
-class VendorRetrieveView(View):
+class VendorRetrieveView(LoginRequiredMixin, View):
 	"""
 	Retrieving a vendor information,
 	It must have showing the detail of a vendor.

@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import View
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from customers.models import Customer
 
 
-class CustomerRetrieveView(View):
+class CustomerRetrieveView(LoginRequiredMixin, View):
 	"""
 	Retrieving a customer information,
 	It must have showing the detail of a customer.

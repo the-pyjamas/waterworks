@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from django.views import View
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from customers.models import Customer
 from customers.filters import CustomerFilter
 
 
-class CustomerListView(View):
+class CustomerListView(LoginRequiredMixin, View):
     """
     List all customers.
 
@@ -20,17 +21,18 @@ class CustomerListView(View):
 		has an appropriate role.
 		"""
         user = request.user
-        is_allowed = (
-            user.is_superuser
-            or user.role == 'Admin'
-            or user.role == 'Technician'
-        )
+        if user.is_authenticated:
+            is_allowed = (
+                user.is_superuser
+                or user.role == 'Admin'
+                or user.role == 'Technician'
+            )
 
-        # Redirects user only if user is neither
-        # a superuser nor has an authorized role
-        if not is_allowed:
-            return redirect('accounts:user-dashboard')
-        
+            # Redirects user only if user is neither
+            # a superuser nor has an authorized role
+            if not is_allowed:
+                return redirect('accounts:user-dashboard')
+
         return super().dispatch(request, *args, **kwargs)
 
     def get(self, request):

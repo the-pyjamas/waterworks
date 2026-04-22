@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from django.views import View
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from technicians.models import Technician
 from technicians.filters import TechnicianFilter
 
 
-class TechnicianListView(View):
+class TechnicianListView(LoginRequiredMixin, View):
     """
     List all active technicians.
 
