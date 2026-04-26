@@ -19,5 +19,7 @@ LOCAL_URLS = [
 
 urlpatterns = DJANGO_URLS + LOCAL_URLS
 
-# Add media files path to the urlpatterns
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# Add media files and staticfiles paths to the urlpatterns
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

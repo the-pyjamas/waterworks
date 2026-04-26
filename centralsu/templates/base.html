@@ -23,7 +23,7 @@
                 {% endblock %}
             </div>
 
-            {% if request.is_authenticated %}
+            {% if request.user.is_authenticated %}
                 <div class="side">
                     <div class="sidebar">
                         <main class="d-flex flex-nowrap sidebar-links justify-content-between">
