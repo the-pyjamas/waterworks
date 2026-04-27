@@ -1,3 +1,5 @@
+{% load static %}
+
 <nav
     class="navbar navbar-expand-lg"
     aria-label="Thirteenth navbar example"
@@ -16,58 +18,197 @@
         >
             <span class="navbar-toggler-icon"></span>
         </button>
+        <div class="nav-static-links">
+            <a class="nav-title navbar-brand col-lg-3 me-0 text-secondary" href="/">
+                Centralsu
+            </a>
+            <a class="nav-account-link btn btn-secondary" href="{% url 'accounts:user-dashboard' %}">
+                <!-- <img src="{% static 'img/default-user.webp' %}" alt="" class="nav-auth-avatar"> -->
+                حساب کاربری
+            </a>
+        </div>
 
         <div
             class="collapse navbar-collapse"
             id="navbarsExample11"
         >
-            <a class="nav-title navbar-brand col-lg-3 me-0 text-secondary" href="/">Centralsu</a>
-            <ul class="navbar-nav col-lg-6 justify-content-lg-center">
-                <li class="nav-item">
-                    <a 
-                        class="nav-link text-white active"
-                        aria-current="page" href="/"
-                    >
-                        صفحه اصلی
-                    </a>
-                </li>
+            <ul class="navbar-nav justify-content-lg-center">
+                <main class="d-flex flex-nowrap sidebar-links justify-content-between">
+                    <div class="flex-shrink-0 p-3" style="width: 280px">
+                        <!-- <a
+                            href="/"
+                            class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom"
+                        >
+                            <svg
+                            class="bi pe-none me-2"
+                            width="30"
+                            height="24"
+                            aria-hidden="true"
+                            >
+                            <use xlink:href="#bootstrap"></use>
+                            </svg>
+                            <span class="fs-5 fw-semibold sidebar-title">دسته‌بندی لینک‌ها</span>
+                        </a> -->
 
-                <li class="nav-item dropdown">
-                    <a
-                    class="nav-link dropdown-toggle text-white"
-                    href="#"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                    >حساب کاربری</a
-                    >
-                    <ul class="dropdown-menu">
+                        <ul class="list-unstyled ps-0">
+                            {% if request.user.role == 'Admin' or request.user.is_superuser or request.user.role == 'Technician' or request.user.role == 'Vendor' %}
+                                <li class="mb-1">
+                                    <button
+                                        class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#customers-collapse"
+                                        aria-expanded="false"
+                                    >
+                                        مشتریان
+                                    </button>
+                                    <div class="collapse" id="customers-collapse">
+                                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                            {% if request.user.role == 'Admin' or request.user.is_superuser or request.user.role == 'Technician'  %}
+                                                <li>
+                                                    <a
+                                                    href="{% url 'customers:customer-create-user' %}"
+                                                    class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                                                    >مشتری جدید</a
+                                                    >
+                                                </li>
+                                            {% endif %}
+                                            <li>
+                                                <a
+                                                href="{% url 'customers:customers-list' %}"
+                                                class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                                                >لیست مشتریان</a
+                                                >
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            {% endif %}
 
-                        {% if request.user.is_authenticated %}
-                            <li>
-                                <a class="dropdown-item" href="{% url 'accounts:user-dashboard' %}">
-                                    داشبورد
-                                </a>
-                            </li>
-                            <hr>
-                            <li>
-                                <a class="dropdown-item text-danger" href="{% url 'accounts:user-logout' %}">خروج</a>
-                            </li>
-                        {% else %}
-                            <li><a class="dropdown-item" href="{% url 'accounts:user-login' %}">ورود</a></li>
-                            <li>
-                                <a class="dropdown-item" href="{% url 'accounts:user-register' %}">ثبت‌نام</a>
-                            </li>
-                        {% endif %}
+                            {% if request.user.role == 'Admin' or request.user.is_superuser %}
+                                <li class="mb-1">
+                                    <button
+                                        class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#technicians-collapse"
+                                        aria-expanded="false"
+                                    >
+                                        نصاب‌ها
+                                    </button>
+                                    <div class="collapse" id="technicians-collapse">
+                                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                            <li>
+                                                <a
+                                                href="{% url 'technicians:technician-create-user' %}"
+                                                class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                                                >نصاب جدید</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                href="{% url 'technicians:technicians-list' %}"
+                                                class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                                                >لیست نصاب‌ها</a
+                                                >
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            {% endif %}
 
-                    </ul>
-                </li>
+                            {% if request.user.role == 'Admin' or request.user.is_superuser %}
+                                <li class="mb-1">
+                                    <button
+                                        class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#vendors-collapse"
+                                        aria-expanded="false"
+                                    >
+                                        فروشندگان
+                                    </button>
+                                    <div class="collapse" id="vendors-collapse">
+                                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                            <li>
+                                                <a
+                                                href="{% url 'vendors:vendor-create-user' %}"
+                                                class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                                                >فروشنده جدید</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                href="{% url 'vendors:vendors-list' %}"
+                                                class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                                                >لیست فروشنده‌ها</a
+                                                >
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            {% endif %}
+
+                            {% if request.user.role == 'Admin' or request.user.is_superuser %}
+                                <li class="mb-1">
+                                    <button
+                                        class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#devices-collapse"
+                                        aria-expanded="false"
+                                    >
+                                        دستگاه‌ها
+                                    </button>
+                                    <div class="collapse" id="devices-collapse">
+                                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                            <li>
+                                                <a
+                                                href="{% url 'devices:device-create' %}"
+                                                class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                                                >دستگاه جدید</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                href="{% url 'devices:devices-list' %}"
+                                                class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                                                >لیست دستگاه‌ها</a
+                                                >
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="border-top my-3"></li>
+                            {% endif %}
+
+                            <li class="mb-1">
+                                <button
+                                    class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#handylinks-collapse"
+                                    aria-expanded="false"
+                                >
+                                    لینک‌های اصلی
+                                </button>
+                                <div class="collapse show" id="handylinks-collapse">
+                                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                        <li>
+                                            <a
+                                            href="{% url 'dashboard:dashboard' %}"
+                                            class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                                            >صفحه اصلی</a
+                                            >
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </main>
             </ul>
+        </div>
 
-            <div class="d-lg-flex col-lg-3 justify-content-lg-end">
-                <button class="btn col-3" id="theme-toggle-btn">
-                    چشمات!
-                </button>
-            </div>
+        <div class="col-lg-3 justify-content-lg-end d-none">
+            <button class="btn col-3" id="theme-toggle-btn">
+                چشمات!
+            </button>
         </div>
     </div>
 </nav>

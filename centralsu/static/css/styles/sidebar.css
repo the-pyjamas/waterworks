@@ -1,9 +1,29 @@
+div.container-fluid {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+}
+div.nav-static-links {
+    display: flex;
+    flex-direction: row-reverse;
+    flex-basis: 400px;
+    justify-content: flex-start;
+    align-self: baseline;
+    align-items: center;
+    margin: 1%;
+}
+a.nav-title {margin-right: 10%;}
+a.nav-account-link {margin-left: 10%;}
+/* a.nav-account-link img.nav-auth-avatar {width: 20%; border-radius: 50%;} */
+
+
 main.sidebar-links {
-    height: 100vh;
+    height: 50vh;
     height: -webkit-fill-available;
-    max-height: 100vh;
+    max-height: 50vh;
     overflow-x: auto;
     overflow-y: hidden;
+    margin-top: 0;
 }
 
 main.sidebar-links .dropdown-toggle { outline: 0; }
@@ -47,8 +67,11 @@ main.sidebar-links .btn-toggle-nav a {
     font-family: IranYekanBold;
     transition: background-color .4s;
 }
-[data-bs-theme="light"] main.sidebar-links .btn-toggle-nav a {color: #38598B!important;}
-[data-bs-theme="dark"] main.sidebar-links .btn-toggle-nav a {color: #1672c2!important;}
+/* [data-bs-theme="light"] main.sidebar-links .btn-toggle-nav a {color: #38598B!important;}
+[data-bs-theme="dark"] main.sidebar-links .btn-toggle-nav a {color: #1672c2!important;} */
+[data-bs-theme="light"] main.sidebar-links .btn-toggle-nav a {color: #b5d2ec!important;}
+[data-bs-theme="dark"] main.sidebar-links .btn-toggle-nav a {color: #b5d2ec!important;}
+
 main.sidebar-links .btn-toggle-nav a:hover,
 main.sidebar-links .btn-toggle-nav a:focus {
     background-color: var(--bs-tertiary-bg);
@@ -63,16 +86,33 @@ main.sidebar-links .sidebar-title {font-family: Hasti;}
 /* Response configs */
 @media screen and (max-width: 576px) {
     main.sidebar-links {
-        height: 60vh;
-        max-height: 60vh;
+        height: 40vh;
+        max-height: 40vh;
         flex-direction: column;
-        /* margin-bottom: 10%; */
+        margin-top: 5%;
+        border-top: 2px solid #b5d2ec;
+    }
+    div.container-fluid {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    div.nav-static-links {
+        flex-basis: 260px;
+        justify-content: space-between;
+        margin: 0;
+        padding: 0;
     }
 }
 
 @media screen and (min-width: 768px) and (max-width: 992px) {
     main.sidebar-links {
         flex-direction: column;
-        width: 230px;
+        width: 300px;
+    }
+    div.container-fluid {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
     }
 }
