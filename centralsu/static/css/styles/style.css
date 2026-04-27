@@ -62,7 +62,7 @@ div.flex-container {
     flex-wrap: wrap;
     justify-content: space-between;
 }
-div.flex-container .content {width: 70%;}
+div.flex-container .content {width: 100%;}
 /* div.flex-container .sidebar {
     border: 1px solid rgba(0, 0, 0, .2);
     padding: 20px;
@@ -86,12 +86,12 @@ a.active {color: #1E88E5!important; font-family: IranYekanBold;}
     /* Body Style */
     div.flex-container {flex-direction: column-reverse;}
     div.flex-container .content {flex-basis: 0; width: 100%;}
-    div.flex-container .sidebar {flex-basis: 0; width: 100%;}
+    /* div.flex-container .sidebar {flex-basis: 0; width: 100%;} */
 }
 
 @media screen and (min-width: 768px) and (max-width: 992px) {
     /* Body Style */
     div.flex-container {flex-direction: row-reverse;}
-    div.flex-container .content {width: 60%;}
-    div.flex-container .sidebar {align-self: center;}
+    div.flex-container .content {width: 100%;}
+    /* div.flex-container .sidebar {align-self: center;} */
 }
