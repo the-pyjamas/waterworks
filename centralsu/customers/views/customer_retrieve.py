@@ -26,6 +26,7 @@ class CustomerRetrieveView(LoginRequiredMixin, View):
 				user.is_superuser
 				or user.role == 'Admin'
 				or user.role == 'Technician'
+				or user.role == 'Vendor'
 				or user.role == 'Customer'
 			)
 
@@ -50,6 +51,8 @@ class CustomerRetrieveView(LoginRequiredMixin, View):
 			customer = Customer.objects.filter(technician__user=user).first()
 		elif role == 'Customer':
 			customer = Customer.objects.filter(user=user).first()
+		elif role == 'Vendor':
+			customer = Customer.objects.filter(vendor__user=user).first()
 		elif role == 'Admin' or user.is_superuser:
 			customer = get_object_or_404(Customer, pk=customer_pk)
 
