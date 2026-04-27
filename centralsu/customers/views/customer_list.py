@@ -26,6 +26,7 @@ class CustomerListView(LoginRequiredMixin, View):
                 user.is_superuser
                 or user.role == 'Admin'
                 or user.role == 'Technician'
+                or user.role == 'Vendor'
             )
 
             # Redirects user only if user is neither
@@ -44,6 +45,8 @@ class CustomerListView(LoginRequiredMixin, View):
 
         if user.role == 'Technician':
             customers = Customer.objects.filter(technician__user_id=user.id)
+        elif user.role == 'Vendor':
+            customers = Customer.objects.filter(vendor__user_id=user.id)
         else:
             customers = Customer.objects.filter(is_active=True)
 

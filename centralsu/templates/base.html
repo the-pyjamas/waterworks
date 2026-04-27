@@ -44,7 +44,7 @@
                                 </a>
 
                                 <ul class="list-unstyled ps-0">
-                                    {% if request.user.role == 'Admin' or request.user.is_superuser or request.user.role == 'Technician' %}
+                                    {% if request.user.role == 'Admin' or request.user.is_superuser or request.user.role == 'Technician' or request.user.role == 'Vendor' %}
                                         <li class="mb-1">
                                             <button
                                                 class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
@@ -56,13 +56,15 @@
                                             </button>
                                             <div class="collapse" id="customers-collapse">
                                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                                    <li>
-                                                        <a
-                                                        href="{% url 'customers:customer-create-user' %}"
-                                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded"
-                                                        >مشتری جدید</a
-                                                        >
-                                                    </li>
+                                                    {% if request.user.role == 'Admin' or request.user.is_superuser or request.user.role == 'Technician'  %}
+                                                        <li>
+                                                            <a
+                                                            href="{% url 'customers:customer-create-user' %}"
+                                                            class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                                                            >مشتری جدید</a
+                                                            >
+                                                        </li>
+                                                    {% endif %}
                                                     <li>
                                                         <a
                                                         href="{% url 'customers:customers-list' %}"
