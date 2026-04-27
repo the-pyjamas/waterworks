@@ -1,4 +1,4 @@
-div.container-fluid {
+div.header-navbar {
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-around;
@@ -87,6 +87,7 @@ main.sidebar-links .sidebar-title {font-family: Hasti;}
 
 /* Response configs */
 @media screen and (max-width: 576px) {
+    nav.navbar {width: 100%;}
     main.sidebar-links {
         height: 40vh;
         max-height: 40vh;
@@ -94,7 +95,7 @@ main.sidebar-links .sidebar-title {font-family: Hasti;}
         margin-top: 5%;
         border-top: 2px solid #b5d2ec;
     }
-    div.container-fluid {
+    div.header-navbar {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -112,9 +113,9 @@ main.sidebar-links .sidebar-title {font-family: Hasti;}
         flex-direction: column;
         width: 300px;
     }
-    div.container-fluid {
+    div.header-navbar {
         display: flex;
-        flex-direction: row;
+        flex-direction: row-reverse!important;
         justify-content: space-between;
     }
 }
