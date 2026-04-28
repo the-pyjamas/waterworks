@@ -118,9 +118,11 @@ a.active {color: #1E88E5!important; font-family: IranYekanBold;}
     div.main-page-count-card {margin-bottom: 15px; flex-basis: 150px;}
 }
 
-@media screen and (min-width: 768px) and (max-width: 992px) {
+@media screen and (min-width: 740px) and (max-width: 1150px) {
     /* Body Style */
     div.flex-container {flex-direction: row-reverse;}
     div.flex-container .content {width: 100%;}
-    /* div.flex-container .sidebar {align-self: center;} */
+
+    /* CARDS */
+    div.main-page-count-card {margin-bottom: 15px; flex-basis: 150px;}
 }
