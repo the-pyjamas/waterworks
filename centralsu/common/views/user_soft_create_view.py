@@ -29,7 +29,7 @@ class BaseUserSoftRegisterView(LoginRequiredMixin, View):
     """
     model = User
     form_class = UserSoftRegisterForm
-    success_url = reverse_lazy("dashboard:dashboard")
+    success_url = reverse_lazy("home:main-home")
     template_name = None
     user_role = None
     authorized_roles: tuple[str, ...] = ()
@@ -48,7 +48,7 @@ class BaseUserSoftRegisterView(LoginRequiredMixin, View):
         # Redirects user only if user is neither
         # a superuser nor has an authorized role
         if not is_allowed:
-            return redirect("dashboard:dashboard")
+            return redirect("home:main-home")
 
         return super().dispatch(*args, **kwargs)
 
@@ -146,7 +146,7 @@ class BaseUserProfileSoftUpdateView(LoginRequiredMixin, View):
     """
     model = UserProfile
     form_class = UserProfileUpdateForm
-    success_url = reverse_lazy("dashboard:dashboard")
+    success_url = reverse_lazy("home:main-home")
     template_name = None
     user = None
     authorized_roles: tuple[str, ...] = ()
@@ -165,7 +165,7 @@ class BaseUserProfileSoftUpdateView(LoginRequiredMixin, View):
         # Redirects user only if user is neither
         # a superuser nor has an authorized role
         if not is_allowed:
-            return redirect("dashboard:dashboard")
+            return redirect("home:main-home")
 
         return super().dispatch(*args, **kwargs)
 

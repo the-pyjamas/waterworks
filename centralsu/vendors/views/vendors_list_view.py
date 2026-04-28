@@ -29,7 +29,7 @@ class VendorListView(LoginRequiredMixin, View):
         # Redirects user only if user is neither
         # a superuser nor has an authorized role
         if not is_allowed:
-            return redirect("dashboard:dashboard")
+            return redirect("home:main-home")
 
         return super().dispatch(*args, **kwargs)
 

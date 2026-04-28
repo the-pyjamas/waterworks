@@ -22,7 +22,7 @@ class BaseRoleProfileCreateView(LoginRequiredMixin, View):
     """
     form_class = None
     template_name = None
-    success_url = reverse_lazy("dashboard:dashboard")
+    success_url = reverse_lazy("home:main-home")
     user_role = None
     authorized_roles: tuple[str, ...] = ()
 
@@ -38,7 +38,7 @@ class BaseRoleProfileCreateView(LoginRequiredMixin, View):
         )
 
         if not is_allowed:
-            return redirect("dashboard:dashboard")
+            return redirect("home:main-home")
 
         return super().dispatch(*args, **kwargs)
 
@@ -74,7 +74,7 @@ class BaseRoleProfileCreateView(LoginRequiredMixin, View):
                 message=_(f"No user found for {self.user_role} creation."),
                 extra_tags="danger"
             )
-            return redirect("dashboard:dashboard")
+            return redirect("home:main-home")
 
         # Get the created user object
         user = User.objects.get(id=user_id)
@@ -129,7 +129,7 @@ class BaseRoleProfileUpdateView(LoginRequiredMixin, View):
     form_class = None
     template_name = None
     # pk_url_kwarg = "instance_pk"
-    success_url = reverse_lazy("dashboard:dashboard")
+    success_url = reverse_lazy("home:main-home")
 
     def dispatch(self, *args, **kwargs):
         """
@@ -143,7 +143,7 @@ class BaseRoleProfileUpdateView(LoginRequiredMixin, View):
         )
 
         if not is_allowed:
-            return redirect("dashboard:dashboard")
+            return redirect("home:main-home")
 
         return super().dispatch(*args, **kwargs)
 

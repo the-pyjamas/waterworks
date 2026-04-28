@@ -8,7 +8,7 @@ DJANGO_URLS = [
     path('admin/', admin.site.urls),
 ]
 LOCAL_URLS = [
-    path("", include("dashboard.urls", namespace="dashboard")),
+    path("", include("home.urls", namespace="home")),
 
     path("accounts/", include("accounts.urls", namespace="accounts")),
     path("customers/", include("customers.urls", namespace="customers")),

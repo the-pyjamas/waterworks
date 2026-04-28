@@ -13,12 +13,12 @@ EXTERNAL_APPS = [
     'django_filters',
 ]
 LOCAL_APPS = [
+    'home.apps.HomeConfig',
     'accounts.apps.AccountsConfig',
     'customers.apps.CustomersConfig',
     'common.apps.CommonConfig',
     'vendors.apps.VendorsConfig',
     'technicians.apps.TechniciansConfig',
-    'dashboard.apps.DashboardConfig',
     'devices.apps.DevicesConfig',
 ]
 INSTALLED_APPS = DJANGO_APPS + EXTERNAL_APPS + LOCAL_APPS
