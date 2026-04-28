@@ -78,13 +78,26 @@ section.cards {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 div.main-page-count-card {
     background-color: #DE7119;
     box-shadow: 0 2px 15px #DE7119;
     border: none;
+    width: 10rem;
+    height: 40px;
 }
-div.main-page-count-card .card-title {font-family: Hasti; color: #F6F1F1;}
+div.main-page-count-card {
+    display: flex;
+    justify-content: center;
+    flex-basis: 200px;
+}
+div.main-page-count-card .card-title {
+    font-family: Hasti;
+    color: #F6F1F1;
+    text-align: center;
+    margin: auto;
+}
 
 
 /* Basic Tags Styles */
@@ -100,7 +113,9 @@ a.active {color: #1E88E5!important; font-family: IranYekanBold;}
     /* Body Style */
     div.flex-container {flex-direction: column-reverse;}
     div.flex-container .content {flex-basis: 0; width: 100%;}
-    /* div.flex-container .sidebar {flex-basis: 0; width: 100%;} */
+
+    /* CARDS */
+    div.main-page-count-card {margin-bottom: 15px; flex-basis: 150px;}
 }
 
 @media screen and (min-width: 768px) and (max-width: 992px) {
