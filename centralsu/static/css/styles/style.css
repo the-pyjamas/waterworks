@@ -73,6 +73,20 @@ div.flex-container .content {width: 100%;}
     box-shadow: 0 4px 15px #535E7B;
 } */
 
+/* CARDS */
+section.cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+div.main-page-count-card {
+    background-color: #DE7119;
+    box-shadow: 0 2px 15px #DE7119;
+    border: none;
+}
+div.main-page-count-card .card-title {font-family: Hasti; color: #F6F1F1;}
+
+
 /* Basic Tags Styles */
 a {text-decoration: none;}
 a.active {color: #1E88E5!important; font-family: IranYekanBold;}

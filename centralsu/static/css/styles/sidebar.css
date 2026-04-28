@@ -49,11 +49,14 @@ main.sidebar-links .btn-toggle {
     color: var(--bs-emphasis-color);
     background-color: transparent;
     font-family: IranYekanBlack;
+    color: #FFFFFF!important;
 }
 main.sidebar-links .btn-toggle:hover,
 main.sidebar-links .btn-toggle:focus {
+    /* background-color: var(--bs-tertiary-bg); */
+
     color: rgba(var(--bs-emphasis-color-rgb), .85);
-    background-color: var(--bs-tertiary-bg);
+    background-color: #b5d2ec;
 }
 
 main.sidebar-links .btn-toggle::before {
