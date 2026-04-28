@@ -31,7 +31,7 @@ class MainHomeView(TemplateView):
 
         # Number of objects
         context['customers_count'] = Customer.objects.count()
-        context['technician_count'] = Technician.objects.count()
+        context['technicians_count'] = Technician.objects.count()
         context['vendors_count'] = Vendor.objects.count()
         context['devices_count'] = Device.objects.count()
 
