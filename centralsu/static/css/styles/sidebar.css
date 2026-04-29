@@ -36,6 +36,7 @@ main.sidebar-links {
     /* height: 50vh; */
     /* height: -webkit-fill-available; */
     /* max-height: 50vh; */
+
     overflow-x: auto;
     overflow-y: hidden;
     margin-top: 0;
@@ -105,16 +106,9 @@ main.sidebar-links .sidebar-title {font-family: Hasti;}
 
 /* Response configs */
 @media screen and (max-width: 576px) {
-
     /* Navbar */
     nav.navbar {width: 100%;}
-    main.sidebar-links {
-        /* height: 40vh;
-        max-height: 40vh; */
-        flex-direction: column;
-        margin-top: 5%;
-        /* border-top: 2px solid #b5d2ec; */
-    }
+    main.sidebar-links {flex-direction: column; margin-top: 5%;}
     div.header-navbar {
         display: flex;
         flex-direction: row;
@@ -135,10 +129,7 @@ main.sidebar-links .sidebar-title {font-family: Hasti;}
 }
 
 @media screen and (min-width: 740px) and (max-width: 1150px) {
-    main.sidebar-links {
-        flex-direction: column;
-        width: 300px;
-    }
+    main.sidebar-links {flex-direction: column; width: 300px;}
     div.header-navbar {
         display: flex;
         flex-direction: row-reverse;
@@ -147,13 +138,7 @@ main.sidebar-links .sidebar-title {font-family: Hasti;}
 
     /* Navbar */
     nav.navbar {width: 100%;}
-    main.sidebar-links {
-        /* height: 40vh;
-        max-height: 40vh; */
-        flex-direction: column;
-        margin-top: 5%;
-        /* border-top: 2px solid #b5d2ec; */
-    }
+    main.sidebar-links {flex-direction: column; margin-top: 5%;}
     div.header-navbar {
         display: flex;
         flex-direction: row;
@@ -171,4 +156,33 @@ main.sidebar-links .sidebar-title {font-family: Hasti;}
     div.img-links .nav-logo-link {flex-basis: 60px;}
     div.img-links .nav-logo-link img {border-radius: .4rem; flex-grow: 1;}
     div.img-links .nav-account-link img {border-radius: .4rem; flex-grow: 1;}
+}
+
+/* Desktop size */
+@media (min-width: 992px) {
+    main.sidebar-links .btn-toggle:hover,
+    main.sidebar-links .btn-toggle:focus {
+        background-color: rgba(0, 0, 0, .2);
+        color: rgba(var(--bs-emphasis-color-rgb), .85);
+    }
+    main.sidebar-links .btn-toggle-nav a:hover,
+    main.sidebar-links .btn-toggle-nav a:focus {
+        background-color: rgba(0, 0, 0, .1);
+    }
+    
+    .navbar-collapse {
+        position: fixed;
+        top: 0;
+        right: -350px; /* Hidden out of the screen! */
+        width: 350px;
+        height: 100vh;
+        background: #116979;
+        box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+        transition: right 0.3s ease-in-out;
+        padding: 2rem;
+        z-index: 1050;
+        overflow-y: auto;
+    }
+    /* Open the sidebar when get inside */
+    .navbar-collapse.show {right: 0;}
 }
