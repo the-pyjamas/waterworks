@@ -1,13 +1,13 @@
 {% load static %}
 
 <nav
-    class="navbar navbar-expand-lg"
+    class="navbar"
     aria-label="Thirteenth navbar example"
     style="background-image: linear-gradient(to right, #38598B, #1672c2);"
 >
     <div class="container-fluid header-navbar">
         <button
-            class="navbar-toggler bg-white collapsed d-block d-lg-none"
+            class="navbar-toggler bg-white collapsed d-block"
             type="button"
             id="navbar-toggle-btn"
             data-bs-toggle="collapse"
@@ -36,10 +36,10 @@
         >
             <ul class="navbar-nav justify-content-lg-center">
                 <main class="d-flex flex-nowrap sidebar-links justify-content-between">
-                    <h2 class="sidebar-title">
-                        <a href="{% url 'home:main-home' %}">صفحه اصلی</a>
-                    </h2>
                     <div class="flex-shrink-0 p-3" style="width: 280px">
+                        <h2 class="sidebar-title">
+                            <a href="{% url 'home:main-home' %}">صفحه اصلی</a>
+                        </h2>
                         <!-- <a
                             href="/"
                             class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom"

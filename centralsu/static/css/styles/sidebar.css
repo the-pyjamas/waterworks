@@ -1,6 +1,6 @@
 div.header-navbar {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
     justify-content: space-around;
 }
 div.nav-static-links {
