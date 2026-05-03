@@ -31,7 +31,7 @@ class CustomerAdmin(admin.ModelAdmin):
         (_("Installation Information"),
             {
                 "classes": ("collapse",),
-                "fields": ("vendor", "technician", "description")
+                "fields": ("vendor", "technician", "description", "device")
             }
         ),
         (_("Service Dates"),
@@ -69,7 +69,7 @@ class CustomerAdmin(admin.ModelAdmin):
         (_("Installation Information"),
             {
                 "classes": ("collapse",),
-                "fields": ("vendor", "technician", "description")
+                "fields": ("vendor", "technician", "description", "device")
             }
         ),
         (_("Service Dates"),

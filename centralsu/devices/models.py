@@ -34,6 +34,7 @@ class Device(BaseModel):
 	class Meta:
 		verbose_name = _('Device')
 		verbose_name_plural = _('Devices')
+		ordering = ['-created_at']
 
 	def __str__(self) -> str:
 		return f"{self.name} - {self.model}"

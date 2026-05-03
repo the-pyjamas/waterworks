@@ -46,6 +46,7 @@ class Vendor(BaseModel):
     class Meta:
         verbose_name = _("Vendor")
         verbose_name_plural = _("Vendors")
+        ordering = ['-created_at']
 
     def __str__(self) -> str:
         """

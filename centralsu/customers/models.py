@@ -122,6 +122,7 @@ class Customer(BaseModel):
     class Meta:
         verbose_name = _("Customer")
         verbose_name_plural = _("Customers")
+        ordering = ['-created_at']
 
     def __str__(self) -> str:
         """

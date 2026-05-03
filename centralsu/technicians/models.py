@@ -58,6 +58,7 @@ class Technician(BaseModel):
     class Meta:
         verbose_name = _("Technician")
         verbose_name_plural = _("Technicians")
+        ordering = ['-created_at']
 
     def __str__(self) -> str:
         """
