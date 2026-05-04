@@ -3,10 +3,7 @@ div.row {
     margin: auto;
 }
 div.user-login {
-    /* background-color: #3281B9; */
-    /* background-color: #40A2E3; */
-
-    width: 30%;
+    width: 50%;
     background-color: #1672c2;
     padding: 20px;
     margin: auto;
@@ -22,6 +19,7 @@ div.user-login form.form-control {
 }
 
 /* Specific Buttons */
+input {font-size: .8rem!important;}
 input.save-changes-btn {
     background-color: #198754;
     color: #FFFFFF;
@@ -33,6 +31,17 @@ input.save-changes-btn:hover {
     box-shadow: 0 2px 15px #20c997;
     color: #FFFFDD;
 }
+.login-btn {
+    background-color: #4A628A;
+    color: #FFFFFF;
+    opacity: .8;
+    transition: opacity .4s;
+    width: 50%;
+    margin: auto;
+    font-size: 1.1rem!important;
+}
+.login-btn:hover {background-color: #4A628A; color: #FFFFFF; opacity: 1;}
+.forgot-password {color: #F6F1F1;}
 
 
 /* Response configs */
@@ -41,6 +50,7 @@ input.save-changes-btn:hover {
     /* Form Style */
     div.row {margin: 0 !important; padding: 0 !important;}
     div.user-login {width: 100% !important;}
+    .login-btn {width: 100%;}
 }
 
 @media screen and (min-width: 768px) and (max-width: 992px) {
