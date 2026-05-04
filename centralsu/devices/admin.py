@@ -15,3 +15,4 @@ class DeviceAdmin(admin.ModelAdmin):
 	)
 	list_filter = ('is_active', 'is_in_stock', 'created_at', 'updated_at')
 	search_fields = ('name', 'model')
+	prepopulated_fields = {'slug': ('name', 'model')}
