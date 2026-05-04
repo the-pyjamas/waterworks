@@ -10,7 +10,8 @@ class DeviceAdmin(admin.ModelAdmin):
 		'model',
 		'installed_count',
 		'guarantee',
-		'stock_quantity'
+		'stock_quantity',
+		'is_in_stock'
 	)
-	list_filter = ('is_active', 'created_at', 'updated_at')
+	list_filter = ('is_active', 'is_in_stock', 'created_at', 'updated_at')
 	search_fields = ('name', 'model')
