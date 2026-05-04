@@ -43,6 +43,11 @@ class Device(BaseModel):
 		verbose_name=_('In Stock'),
 		help_text=_('وضعیت موجودی در سایت.')
 	)
+	description = TextField(
+		null=True,
+		blank=True,
+		verbose_name=_('Description')
+	)
 	slug = models.SlugField(
         unique=True,
         verbose_name=_('Slug'),
