@@ -5,6 +5,12 @@ from .models import Device
 
 @admin.register(Device)
 class DeviceAdmin(admin.ModelAdmin):
-	list_display = ('name', 'model', 'installed_count', 'guarantee')
+	list_display = (
+		'name',
+		'model',
+		'installed_count',
+		'guarantee',
+		'stock_quantity'
+	)
 	list_filter = ('is_active', 'created_at', 'updated_at')
 	search_fields = ('name', 'model')
