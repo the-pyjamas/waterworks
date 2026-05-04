@@ -10,12 +10,13 @@ class DeviceCreateForm(forms.ModelForm):
     """
     class Meta:
         model = Device
-        fields = ('name', 'model', 'guarantee')
+        fields = ('name', 'model', 'guarantee', 'stock_quantity')
 
         labels = {
             'name': _('نام دستگاه'),
             'model': _('مدل دستگاه'),
-            'guarantee': _('گارانتی دستگاه')
+            'guarantee': _('گارانتی دستگاه'),
+            'stock_quantity': _('موجودی')
         }
 
 
