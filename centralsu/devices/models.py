@@ -26,10 +26,6 @@ class Device(BaseModel):
 		default=0,
 		verbose_name=_('Installed Count')
 	)
-	is_exists = models.BooleanField(
-		default=True,
-		verbose_name=_('Existence Status')
-	)
 	guarantee = models.PositiveIntegerField(
 		null=True,
 		blank=True,
@@ -41,6 +37,11 @@ class Device(BaseModel):
 		blank=True,
 		verbose_name=_('Stock Quantity'),
 		help_text=_('تعداد موجودی (برای استفاده در سایت).')
+	)
+	is_in_stock = models.BooleanField(
+		default=True,
+		verbose_name=_('In Stock'),
+		help_text=_('وضعیت موجودی در سایت.')
 	)
 
 	class Meta:
