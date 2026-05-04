@@ -30,6 +30,12 @@ class Device(BaseModel):
 		default=True,
 		verbose_name=_('Existence Status')
 	)
+	guarantee = models.PositiveIntegerField(
+		null=True,
+		blank=True,
+		verbose_name=_('Guarantee'),
+		help_text=_('گارانتی دستگاه‌ را به ماه وارد کنید. (مثال: ۲۴)')
+	)
 
 	class Meta:
 		verbose_name = _('Device')
@@ -41,6 +47,7 @@ class Device(BaseModel):
 
 	@classmethod
 	def most_installation(cls, length: int):
-		devices = cls.objects.filter(is_active=True).order_by('-installed_count')[:length]
+		devices = cls.objects.filter(
+			is_active=True).order_by('-installed_count')[:length]
 
 		return devices
