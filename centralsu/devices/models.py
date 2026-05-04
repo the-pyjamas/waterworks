@@ -36,6 +36,12 @@ class Device(BaseModel):
 		verbose_name=_('Guarantee'),
 		help_text=_('گارانتی دستگاه‌ را به ماه وارد کنید. (مثال: ۲۴)')
 	)
+	stock_quantity = models.PositiveIntegerField(
+		null=True,
+		blank=True,
+		verbose_name=_('Stock Quantity'),
+		help_text=_('تعداد موجودی (برای استفاده در سایت).')
+	)
 
 	class Meta:
 		verbose_name = _('Device')
