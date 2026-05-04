@@ -11,6 +11,7 @@ EXTERNAL_APPS = [
     'django_jalali',
     'jalali_date',
     'django_filters',
+    'django_quill',
 ]
 LOCAL_APPS = [
     'home.apps.HomeConfig',
