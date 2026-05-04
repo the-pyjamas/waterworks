@@ -10,13 +10,20 @@ class DeviceCreateForm(forms.ModelForm):
     """
     class Meta:
         model = Device
-        fields = ('name', 'model', 'guarantee', 'stock_quantity')
+        fields = (
+            'name',
+            'model',
+            'guarantee',
+            'stock_quantity',
+            'is_in_stock'
+        )
 
         labels = {
             'name': _('نام دستگاه'),
             'model': _('مدل دستگاه'),
             'guarantee': _('گارانتی دستگاه'),
-            'stock_quantity': _('موجودی')
+            'stock_quantity': _('موجودی'),
+            'is_in_stock': _('وضعیت موجودی')
         }
 
 
@@ -29,8 +36,13 @@ class DeviceCreateForm(forms.ModelForm):
         """
         super().__init__(*args, **kwargs)
 
-        for field in self.fields.values():
-            field.widget.attrs.update({
-                'class': 'form-control mb-3',
-                'placeholder': field.label
-            })
+        for name, field in self.fields.items():
+            if isinstance(field.widget, forms.CheckboxInput):
+                field.widget.attrs.update({
+                    'class': 'form-check-input mb-3'
+                })
+            else:
+                field.widget.attrs.update({
+                    'class': 'form-control mb-3',
+                    'placeholder': field.help_text
+                })

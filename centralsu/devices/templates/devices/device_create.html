@@ -6,14 +6,26 @@
     <style>
         /* .login-btn {background-color: #7AB2D3; color: #FFFFFF;} */
 
+        div.user-login {width: 50%;}
+        form.form-class {width: 100%;}
         .forgot-password {color: #F6F1F1;}
         .login-btn {
             background-color: #4A628A;
             color: #FFFFFF;
             opacity: .8;
             transition: opacity .4s;
+            width: 50%;
+            margin: auto;
+            font-size: 1.1rem!important;
         }
         .login-btn:hover {background-color: #4A628A; color: #FFFFFF; opacity: 1;}
+
+        input {font-size: .8rem!important;}
+
+
+        @media screen and (max-width: 576px) {
+           .login-btn {width: 100%;}
+        }
     </style>
 {% endblock extra_style %}
 
@@ -25,23 +37,35 @@
             <h2>اضافه کردن دستگاه</h2>
             <p style="opacity: .8;">لطفا از فرم زیر برای اضافه کردن یک دستگاه جدید استفاده کنید:</p>
 
-            <form accept="{% url 'accounts:user-login' %}" class="form-control mb-3" method="post">
+            <form action="" class="form-control mb-3" method="post">
                 {% csrf_token %}
                 {{ form.non_field_errors }}
 
-                {% for field in form %}
-					{% if field.errors %}
-						{% for error in field.errors %}
-							<p class="alert alert-danger">{{ error }}</p>
-						{% endfor %}
-					{% endif %}
+                <div class="row">
 
-                    <small>{{ field.help_text }}</small>
-                    {{ field }}
-                {% endfor %}
+                    {% for field in form %}
+
+                        {% if field.field.widget.input_type == "checkbox" %}
+                            <div class="col-md-3 form-check mb-3">
+                                {{ field }}
+                                <label class="form-check-label" for="{{ field.id_for_label }}">
+                                    {{ field.label }}
+                                </label>
+                            </div>
+                        {% else %}
+                            <div class="col-md-6 mb-3">
+                                {{ field.label_tag }}
+                                {{ field }}
+                            </div>
+                        {% endif %}
+
+                    {% endfor %}
+
+                </div>
 
                 <input type="submit" value="اضافه کردن دستگاه" class="btn login-btn">
             </form>
+
         </div>
     </div>
 

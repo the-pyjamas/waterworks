@@ -30,13 +30,13 @@ class Device(BaseModel):
 		null=True,
 		blank=True,
 		verbose_name=_('Guarantee'),
-		help_text=_('گارانتی دستگاه‌ را به ماه وارد کنید. (مثال: ۲۴)')
+		help_text=_('ماه وارد کنید (مثال: ۲۴)')
 	)
 	stock_quantity = models.PositiveIntegerField(
 		null=True,
 		blank=True,
 		verbose_name=_('Stock Quantity'),
-		help_text=_('تعداد موجودی (برای استفاده در سایت).')
+		help_text=_('تعداد موجودی (برای سایت)')
 	)
 	is_in_stock = models.BooleanField(
 		default=True,
