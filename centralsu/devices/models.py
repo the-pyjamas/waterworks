@@ -43,7 +43,7 @@ class Device(BaseModel):
 		verbose_name=_('In Stock'),
 		help_text=_('وضعیت موجودی در سایت.')
 	)
-	description = TextField(
+	description = models.TextField(
 		null=True,
 		blank=True,
 		verbose_name=_('Description')
