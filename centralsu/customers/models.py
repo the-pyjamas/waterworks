@@ -156,9 +156,6 @@ class Customer(BaseModel):
             if self.installation_date:
                 self.save_replacement_dates()
 
-        # Increse the installation cound of devices after a customer added
-        self.device.installed_count += 1
-
         super().save(*args, **kwargs)
 
 
