@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.urls import reverse_lazy
 
 from common.models import BaseModel
 from common.utils import path_with_hash
@@ -87,3 +88,14 @@ class Device(BaseModel):
 			is_active=True).order_by('-installed_count')[:length]
 
 		return devices
+
+	def get_absolute_url(self) -> reverse_lazy:
+		"""
+		Returning back a device retrieve/detail URL.
+		Uses the reverse-lazy URL method and gets the device
+		by its PK and Slug.
+		"""
+		return reverse_lazy(
+			'devices:device-detail',
+			kwargs={'device_pk': self.pk, 'device_slug': self.slug}
+		)
