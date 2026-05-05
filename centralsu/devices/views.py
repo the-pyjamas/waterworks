@@ -1,5 +1,9 @@
 from django.shortcuts import redirect
-from django.views.generic import ListView, FormView
+from django.views.generic import (
+	ListView,
+	FormView,
+	DetailView
+)
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
@@ -63,3 +67,13 @@ class DevicesListView(ListView):
 	model = Device
 	queryset = Device.objects.all().order_by('-created_at')
 	template_name = 'devices/devices_list.html'
+
+
+class DeviceDetailView(DetailView):
+	"""
+	Retrieving a device detail.
+	Reads it by its ID and SLUG field.
+	"""
+	model = Device
+	slug_url_kwarg = 'device_slug'
+	pk_url_kwarg = 'device_pk'
