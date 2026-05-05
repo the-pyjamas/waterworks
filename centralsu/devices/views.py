@@ -62,10 +62,10 @@ class DeviceCreateView(LoginRequiredMixin, FormView):
 
 class DevicesListView(ListView):
 	"""
-	Lists all devices.
+	Lists all in stock (available) devices.
 	"""
 	model = Device
-	queryset = Device.objects.all().order_by('-created_at')
+	queryset = qeuryset = Device.availables.all()
 	template_name = 'devices/devices_list.html'
 
 

@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 
 from common.models import BaseModel
 from common.utils import path_with_hash
+from .managers import InStockDevicesManager
 
 
 def banner_path(instance, filename: str) -> str:
@@ -73,6 +74,9 @@ class Device(BaseModel):
         blank=True,
         allow_unicode=True
     )
+
+	objects = models.Manager()
+	availables = InStockDevicesManager()	
 
 	class Meta:
 		verbose_name = _('Device')
