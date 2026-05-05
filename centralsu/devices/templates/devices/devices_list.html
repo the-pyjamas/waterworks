@@ -11,15 +11,24 @@
                 <div class="col">
                     <div
                         class="card card-cover h-100 overflow-hidden text-bg-dark border border-none rounded-4 shadow-lg"
-                        style="background-image: linear-gradient(#38598B, #1672c2)"
-                    >
-                    <!-- 
+                        style="
+                            {% if object.image %}
+                                background-image: url('{{ object.image.url }}');
+                            {% else %}
+                                background-image: linear-gradient(#38598B,#1672c2);
+                            {% endif %}
+                            background-size: cover;
+                            background-position: center;
+                        ">
+                    <!--
                         For background image in a prettier way:
                         url(&quot;unsplash-photo-1.jpg&quot;) 
                     -->
                         <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
                             <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold align-self-start" style="position: relative; top: -50px;">
-                                {{ object.name }}
+                                <a href="{{ object.get_absolute_url }}" class="text-white">
+                                    {{ object.name }}
+                                </a>
                             </h3>
                             <ul class="d-flex list-unstyled mt-auto p-0 
                                         flex-md-row flex-md-nowrap 

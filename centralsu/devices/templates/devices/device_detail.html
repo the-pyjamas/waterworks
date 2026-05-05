@@ -187,10 +187,10 @@
                             <span>تصویر دستگاه</span>
                         </div>
                         <div class="device-image-wrapper">
-                            {% if object.image.url %}
+                            {% if object.image %}
                                 <img src="{{ object.image.url }}" alt="{{ device.name }}">
                             {% else %}
-                                <img src="{% static 'img/placeholders/device-placeholder.png' %}" alt="{{ device.name }}">
+                                <img src="{% static 'img/default_device.jpg' %}" alt="{{ device.name }}">
                             {% endif %}
                         </div>
                         <!-- <p class="text-muted-small mt-2 mb-0">
