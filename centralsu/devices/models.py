@@ -21,7 +21,11 @@ class Device(BaseModel):
 		name (str): The original name of the device.		
 		model (str): The model of the device.
 		installed_count (int, unsigned): Installation count of the device.
-		is_exists (bool): Existence status of the device.
+		guarantee (int): The months device guaranteed.
+		stock_quantity (int): The stock, invenroty of the device.
+		is_in_stock (bool): The availability status of device.
+		image (str, file): Device's banner, encrypting with path-to-hash method.
+		slug (str): Device slug wich filled by name and model of device.
 	"""
 	name = models.CharField(
 		max_length=50,
