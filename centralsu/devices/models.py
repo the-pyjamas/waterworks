@@ -88,6 +88,14 @@ class Device(BaseModel):
 
 	@classmethod
 	def most_installation(cls, length: int):
+		"""
+		Returning the most installed devices
+		which referes to the most popular devices
+		based on the 'installed-count' of each device.
+
+		Arguments:
+			length (int): The number of returning objects.
+		"""
 		devices = cls.objects.filter(
 			is_active=True).order_by('-installed_count')[:length]
 
