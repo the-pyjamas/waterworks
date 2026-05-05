@@ -16,7 +16,6 @@ class DeviceCreateForm(forms.ModelForm):
             'guarantee',
             'stock_quantity',
             'is_in_stock',
-            'description'
         )
 
         labels = {
@@ -25,7 +24,6 @@ class DeviceCreateForm(forms.ModelForm):
             'guarantee': _('گارانتی دستگاه'),
             'stock_quantity': _('موجودی'),
             'is_in_stock': _('وضعیت موجودی'),
-            'description': _('توضیحات دستگاه')
         }
 
 
