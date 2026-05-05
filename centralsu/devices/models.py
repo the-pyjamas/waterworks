@@ -2,6 +2,15 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from common.models import BaseModel
+from common.utils import path_with_hash
+
+
+def banner_path(instance, filename: str) -> str:
+	"""
+	Uploads the device banner/image file with a hash
+	method to encrypting the file.
+	"""
+	return f"devices/{path_with_hash(filename)}"
 
 
 class Device(BaseModel):
@@ -49,7 +58,7 @@ class Device(BaseModel):
 		verbose_name=_('Description')
 	)
 	image = models.ImageField(
-		upload_to='devices/%Y/%m/%d/',
+		upload_to=banner_path,
 		blank=True
 	)
 	slug = models.SlugField(
