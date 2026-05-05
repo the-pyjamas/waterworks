@@ -48,6 +48,10 @@ class Device(BaseModel):
 		blank=True,
 		verbose_name=_('Description')
 	)
+	image = models.ImageField(
+		upload_to='devices/%Y/%m/%d/',
+		blank=True
+	)
 	slug = models.SlugField(
         unique=True,
         verbose_name=_('Slug'),
