@@ -1,0 +1,264 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} جزئیات دستگاه {{ object.name }} {% endblock title %}
+
+{% block extra_style %}
+    <style>
+        :root {
+            --primary-color: #1672c2;
+            --secondary-color: #38598B;
+            --accent-color: #DE7119;
+            --bg-light-color: #DEE3E2;
+        }
+
+        body {
+            background-color: var(--bg-light-color);
+        }
+
+        .device-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(56, 89, 139, 0.12);
+        }
+
+        .device-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: #fff;
+            border-radius: 12px 12px 0 0;
+            padding: 1.5rem 1.75rem;
+        }
+
+        .device-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .device-model-badge {
+            background-color: rgba(222, 113, 25, 0.1);
+            color: #fff;
+            border: 1px solid rgba(222, 113, 25, 0.6);
+            border-radius: 999px;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.85rem;
+        }
+
+        .stat-badge {
+            border-radius: 999px;
+            background-color: rgba(22, 114, 194, 0.06);
+            color: var(--secondary-color);
+            font-size: 0.85rem;
+            padding: 0.35rem 0.75rem;
+        }
+
+        .stat-badge i {
+            font-size: 0.9rem;
+        }
+
+        .device-image-wrapper {
+            overflow: hidden;
+            border-radius: 12px;
+            border: 1px solid rgba(22, 114, 194, 0.12);
+            background-color: #f7f9fa;
+        }
+
+        .device-image-wrapper img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .section-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+            border-bottom: 2px solid rgba(22, 114, 194, 0.15);
+            padding-bottom: 0.35rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .availability-pill {
+            border-radius: 999px;
+            padding: 0.3rem 0.7rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .availability-pill.in-stock {
+            background-color: rgba(22, 114, 194, 0.06);
+            color: #42ab73;
+            border: 1px solid #42ab73;
+        }
+
+        .availability-pill.out-of-stock {
+            background-color: rgba(222, 113, 25, 0.06);
+            color: #b44a0e;
+            border: 1px solid rgba(180, 74, 14, 0.35);
+        }
+
+        .accent-separator {
+            width: 60px;
+            height: 3px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+            margin-top: 0.5rem;
+        }
+
+        .text-muted-small {
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+    </style>
+{% endblock extra_style %}
+
+
+{% block content %}
+
+    <div class="container py-4 py-md-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h1 class="h5 mb-1 text-dark">جزئیات دستگاه تصفیه آب</h1>
+                <p class="text-muted-small mb-0">اطلاعات کامل دستگاه، وضعیت موجودی و توضیحات فنی</p>
+            </div>
+            <a href="{% url 'devices:devices-list' %}" class="btn btn-sm" style="background-color: var(--primary-color); color: #fff;">
+                بازگشت به لیست
+            </a>
+        </div>
+
+        <div class="device-card">
+            <div class="device-header d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
+                <div>
+                    <div class="device-title">
+                        {{ object.name }}
+                    </div>
+                    <div class="d-flex flex-wrap align-items-center gap-2 mt-2">
+                        {% if object.model %}
+                        <span class="device-model-badge">
+                            مدل: {{ object.model }}
+                        </span>
+                        {% endif %}
+                        <span class="stat-badge d-inline-flex align-items-center gap-1" style="color: #DEE3E2;">
+                            <i class="bi bi-check2-circle"></i>
+                            بیش از
+                            <strong class="mx-1">{{ object.installed_count|default:"0" }}</strong>
+                            نصب موفق
+                        </span>
+                    </div>
+                </div>
+
+                <div class="text-md-end">
+                    <div class="mb-2">
+                        <span class="text-muted-small text-white" style="opacity: .8;">
+                            مدت گارانتی
+                        </span>
+                        <div class="fw-bold" style="color:#fff;">
+                            {% if object.guarantee %}
+                                {{ object.guarantee }} ماه
+                            {% else %}
+                                بدون گارانتی ثبت‌شده
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div>
+                        {% if object.is_in_stock %}
+                            <span class="availability-pill in-stock">
+                                <span class="badge bg-danger rounded-pill me-1" style="width:8px;height:8px;padding:0;"></span>
+                                موجود در انبار
+                            </span>
+                        {% else %}
+                            <span class="availability-pill out-of-stock">
+                                <span class="badge bg-danger rounded-pill me-1" style="width:8px;height:8px;padding:0;"></span>
+                                ناموجود
+                            </span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-3 p-md-4">
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="section-title d-flex align-items-center justify-content-between">
+                            <span>تصویر دستگاه</span>
+                        </div>
+                        <div class="device-image-wrapper">
+                            {% if object.image.url %}
+                                <img src="{{ object.image.url }}" alt="{{ device.name }}">
+                            {% else %}
+                                <img src="{% static 'img/placeholders/device-placeholder.png' %}" alt="{{ device.name }}">
+                            {% endif %}
+                        </div>
+                        <!-- <p class="text-muted-small mt-2 mb-0">
+                            در صورت عدم انتخاب تصویر، تصویر پیش‌فرض نمایش داده می‌شود.
+                        </p> -->
+                    </div>
+
+                    <div class="col-md-8">
+                        <div class="mb-4">
+                            <div class="section-title">
+                                اطلاعات دستگاه
+                                <div class="accent-separator"></div>
+                            </div>
+                            <div class="row g-2 mb-2">
+                                <div class="col-sm-6">
+                                    <div class="text-muted-small">نام دستگاه</div>
+                                    <div class="fw-semibold">
+                                        {{ object.name }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="text-muted-small">مدل دستگاه</div>
+                                    <div class="fw-semibold">
+                                        {{ object.model|default:"-" }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row g-2">
+                                {% if request.user.role == 'Admin' or request.user.is_superuser %}
+                                    <div class="col-sm-6">
+                                        <div class="text-muted-small">تعداد نصب‌های انجام‌شده</div>
+                                        <div class="fw-semibold">
+                                            {{ object.installed_count|default:"0" }} نصب
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                <div class="col-sm-6">
+                                    <div class="text-muted-small">گارانتی</div>
+                                    <div class="fw-semibold">
+                                        {% if object.guarantee %}
+                                            {{ object.guarantee }} ماه
+                                        {% else %}
+                                            بدون گارانتی ثبت‌شده
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="section-title">
+                                توضیحات دستگاه
+                                <div class="accent-separator"></div>
+                            </div>
+                            {% if device.description %}
+                                <p class="mb-0" style="line-height: 1.9; text-align: justify;">
+                                    {{ device.description|linebreaks }}
+                                </p>
+                            {% else %}
+                                <p class="text-muted-small mb-0">
+                                    توضیحاتی برای این دستگاه ثبت نشده است.
+                                </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
