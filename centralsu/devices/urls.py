@@ -15,7 +15,7 @@ CRUD_URLS = [
 	path(
 		"<int:device_pk>/<str:device_slug>/",
 		DeviceDetailView.as_view(),
-		name="devices-detail"
+		name="device-detail"
 	),
 ]
 urlpatterns = CRUD_URLS
