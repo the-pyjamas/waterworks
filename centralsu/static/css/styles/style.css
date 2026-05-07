@@ -26,6 +26,10 @@
 	font-family: IranYekanBlack;
 	src: url(../../fonts/farsi/iranyekan/IRANYekanX-Black.woff), format(woff2);
 }
+@font-face {
+    font-family: "IRANYekanHeavy";
+    src: url("../../fonts/farsi/iranyekan/IRANYekanX-Heavy.woff");
+}
 
 
 * {margin: 0; padding: 0;}

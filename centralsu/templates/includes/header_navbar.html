@@ -1,180 +1,145 @@
 {% load static %}
 
-<nav
-    class="navbar"
-    aria-label="Thirteenth navbar example"
-    style="background-image: linear-gradient(to right, #38598B, #1672c2);"
->
-    <div class="container-fluid header-navbar">
-        <button
-            class="navbar-toggler bg-white collapsed d-block"
-            type="button"
-            id="navbar-toggle-btn"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarsExample11"
-            aria-controls="navbarsExample11"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-        >
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="nav-static-links">
-            <div class="img-links">
-                <a class="nav-title nav-logo-link navbar-brand col-lg-5 me-0 text-secondary" href="/">
-                    <img src="{% static 'img/centralsu.png' %}">
-                </a>
-                <a class="nav-account-link navbar-brand col-lg-3 me-0" href="{% url 'accounts:user-dashboard' %}">
-                    <img src="{% static 'img/default-user.webp' %}" alt="" class="nav-auth-avatar">
-                    <!-- حساب کاربری -->
-                </a>
-            </div>
-        </div>
+{% load static %}
 
-        <div
-            class="collapse navbar-collapse"
-            id="navbarsExample11"
-        >
+{% load static %}
 
-            <ul class="navbar-nav justify-content-lg-center">
-                <main class="d-flex flex-nowrap sidebar-links justify-content-between">
-                    <div class="flex-shrink-0 p-3" style="width: 280px">
-                        <h2 class="sidebar-title">
-                            <a href="{% url 'home:main-home' %}">صفحه اصلی</a>
-                        </h2>
+<header class="topbar">
 
-                        <ul class="list-unstyled ps-0">
-                            {% if request.user.role == 'Admin' or request.user.is_superuser or request.user.role == 'Technician' or request.user.role == 'Vendor' %}
-                                <li class="mb-1">
-                                    <button
-                                        class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                                        data-bs-toggle="collapse"
-                                        data-bs-target="#customers-collapse"
-                                        aria-expanded="false"
-                                    >
-                                        مشتریان
-                                    </button>
-                                    <div class="collapse" id="customers-collapse">
-                                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                            {% if request.user.role == 'Admin' or request.user.is_superuser or request.user.role == 'Technician'  %}
-                                                <li>
-                                                    <a
-                                                    href="{% url 'customers:customer-create-user' %}"
-                                                    class="link-body-emphasis d-inline-flex text-decoration-none rounded"
-                                                    >مشتری جدید</a
-                                                    >
-                                                </li>
-                                            {% endif %}
-                                            <li>
-                                                <a
-                                                href="{% url 'customers:customers-list' %}"
-                                                class="link-body-emphasis d-inline-flex text-decoration-none rounded"
-                                                >لیست مشتریان</a
-                                                >
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            {% endif %}
+    <button id="sidebarToggle" class="sidebar-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
 
-                            {% if request.user.role == 'Admin' or request.user.is_superuser %}
-                                <li class="mb-1">
-                                    <button
-                                        class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                                        data-bs-toggle="collapse"
-                                        data-bs-target="#technicians-collapse"
-                                        aria-expanded="false"
-                                    >
-                                        نصاب‌ها
-                                    </button>
-                                    <div class="collapse" id="technicians-collapse">
-                                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                            <li>
-                                                <a
-                                                href="{% url 'technicians:technician-create-user' %}"
-                                                class="link-body-emphasis d-inline-flex text-decoration-none rounded"
-                                                >نصاب جدید</a
-                                                >
-                                            </li>
-                                            <li>
-                                                <a
-                                                href="{% url 'technicians:technicians-list' %}"
-                                                class="link-body-emphasis d-inline-flex text-decoration-none rounded"
-                                                >لیست نصاب‌ها</a
-                                                >
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            {% endif %}
+    <a class="logo" href="/">
+        <img src="{% static 'img/centralsu.png' %}" alt="">
+    </a>
 
-                            {% if request.user.role == 'Admin' or request.user.is_superuser %}
-                                <li class="mb-1">
-                                    <button
-                                        class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                                        data-bs-toggle="collapse"
-                                        data-bs-target="#vendors-collapse"
-                                        aria-expanded="false"
-                                    >
-                                        فروشندگان
-                                    </button>
-                                    <div class="collapse" id="vendors-collapse">
-                                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                            <li>
-                                                <a
-                                                href="{% url 'vendors:vendor-create-user' %}"
-                                                class="link-body-emphasis d-inline-flex text-decoration-none rounded"
-                                                >فروشنده جدید</a
-                                                >
-                                            </li>
-                                            <li>
-                                                <a
-                                                href="{% url 'vendors:vendors-list' %}"
-                                                class="link-body-emphasis d-inline-flex text-decoration-none rounded"
-                                                >لیست فروشنده‌ها</a
-                                                >
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            {% endif %}
+    <a class="account" href="{% url 'accounts:user-dashboard' %}">
+        <img src="{% static 'img/default-user.webp' %}" class="avatar" alt="">
+    </a>
 
-                            {% if request.user.role == 'Admin' or request.user.is_superuser %}
-                                <li class="mb-1">
-                                    <button
-                                        class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                                        data-bs-toggle="collapse"
-                                        data-bs-target="#devices-collapse"
-                                        aria-expanded="false"
-                                    >
-                                        دستگاه‌ها
-                                    </button>
-                                    <div class="collapse" id="devices-collapse">
-                                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                                            <li>
-                                                <a
-                                                href="{% url 'devices:device-create' %}"
-                                                class="link-body-emphasis d-inline-flex text-decoration-none rounded"
-                                                >دستگاه جدید</a
-                                                >
-                                            </li>
-                                            <li>
-                                                <a
-                                                href="{% url 'devices:devices-list' %}"
-                                                class="link-body-emphasis d-inline-flex text-decoration-none rounded"
-                                                >لیست دستگاه‌ها</a
-                                                >
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="border-top my-3"></li>
-                            {% endif %}
-                        </ul>
+</header>
 
-                    </div>
-                </main>
+
+<div id="overlay" class="overlay"></div>
+
+
+<aside id="sidebar" class="sidebar">
+
+    <h2 class="sidebar-title">
+        <a href="{% url 'home:main-home' %}">صفحه اصلی</a>
+    </h2>
+
+    <ul class="menu">
+
+
+        {% if request.user.role == 'Admin' or request.user.is_superuser or request.user.role == 'Technician' or request.user.role == 'Vendor' %}
+        <li class="menu-group">
+
+            <button class="menu-toggle">مشتریان</button>
+
+            <ul class="submenu">
+
+                {% if request.user.role == 'Admin' or request.user.is_superuser or request.user.role == 'Technician' %}
+                <li>
+                    <a href="{% url 'customers:customer-create-user' %}">
+                        مشتری جدید
+                    </a>
+                </li>
+                {% endif %}
+
+                <li>
+                    <a href="{% url 'customers:customers-list' %}">
+                        لیست مشتریان
+                    </a>
+                </li>
+
             </ul>
 
-        </div>
-    </div> 
-</nav>
+        </li>
+        {% endif %}
+
+
+
+        {% if request.user.role == 'Admin' or request.user.is_superuser %}
+        <li class="menu-group">
+
+            <button class="menu-toggle">نصاب‌ها</button>
+
+            <ul class="submenu">
+
+                <li>
+                    <a href="{% url 'technicians:technician-create-user' %}">
+                        نصاب جدید
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'technicians:technicians-list' %}">
+                        لیست نصاب‌ها
+                    </a>
+                </li>
+
+            </ul>
+
+        </li>
+        {% endif %}
+
+
+
+        {% if request.user.role == 'Admin' or request.user.is_superuser %}
+        <li class="menu-group">
+
+            <button class="menu-toggle">فروشندگان</button>
+
+            <ul class="submenu">
+
+                <li>
+                    <a href="{% url 'vendors:vendor-create-user' %}">
+                        فروشنده جدید
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'vendors:vendors-list' %}">
+                        لیست فروشنده‌ها
+                    </a>
+                </li>
+
+            </ul>
+
+        </li>
+        {% endif %}
+
+
+
+        {% if request.user.role == 'Admin' or request.user.is_superuser %}
+        <li class="menu-group">
+
+            <button class="menu-toggle">دستگاه‌ها</button>
+
+            <ul class="submenu">
+
+                <li>
+                    <a href="{% url 'devices:device-create' %}">
+                        دستگاه جدید
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'devices:devices-list' %}">
+                        لیست دستگاه‌ها
+                    </a>
+                </li>
+
+            </ul>
+
+        </li>
+        {% endif %}
+
+    </ul>
+
+</aside>
+

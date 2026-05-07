@@ -1,13 +1,30 @@
-document.addEventListener('click', function(e) {
-    const sidebar = document.getElementById('navbarsExample11');
-    const toggler = document.querySelector('.navbar-toggler');
+const sidebar = document.getElementById("sidebar")
+const overlay = document.getElementById("overlay")
+const toggle = document.getElementById("sidebarToggle")
 
-    // If sidebar is open
-    if (sidebar.classList.contains('show') &&
-        !sidebar.contains(e.target) &&
-        !toggler.contains(e.target)) {
 
-    const bsCollapse = new bootstrap.Collapse(sidebar, { toggle: true });
-    bsCollapse.hide();
+toggle.onclick = () => {
+
+    sidebar.classList.toggle("open")
+    overlay.classList.toggle("show")
+
+}
+
+
+overlay.onclick = () => {
+
+    sidebar.classList.remove("open")
+    overlay.classList.remove("show")
+
+}
+
+
+document.querySelectorAll(".menu-toggle").forEach(btn => {
+
+    btn.onclick = () => {
+
+        btn.parentElement.classList.toggle("open")
+
     }
-});
+
+})
