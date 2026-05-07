@@ -127,9 +127,6 @@
             <a href="{% url 'devices:devices-list' %}" class="btn btn-sm" style="background-color: var(--primary-color); color: #fff;">
                 بازگشت به لیست
             </a>
-            <a href="{% url 'devices:device-update' object.pk %}" class="btn btn-sm" style="background-color: var(--primary-color); color: #fff;">
-                ویرایش
-            </a>
         </div>
 
         <div class="device-card">
@@ -203,9 +200,14 @@
 
                     <div class="col-md-8">
                         <div class="mb-4">
-                            <div class="section-title">
-                                اطلاعات دستگاه
-                                <div class="accent-separator"></div>
+                            <div class="section-title d-flex justify-content-between">
+                                <div class="device-info">
+                                    اطلاعات دستگاه
+                                    <div class="accent-separator"></div>
+                                </div>
+                                <a href="{% url 'devices:device-update' object.pk %}" class="btn btn-sm" style="background-color: var(--primary-color); color: #fff;">
+                                    ویرایش
+                                </a>
                             </div>
                             <div class="row g-2 mb-2">
                                 <div class="col-sm-6">
