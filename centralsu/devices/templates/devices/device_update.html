@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}اضافه‌ کردن دستگاه{% endblock title %}
+
+{% block extra_style %}
+    <style>
+        .form-check-input {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+    </style>
+{% endblock extra_style %}
+
+{% block content %}
+
+    <div class="row flex-container">
+        <div class="user-login">
+            <h2>اضافه کردن دستگاه</h2>
+            <p style="opacity: .8;">لطفا از فرم زیر برای اضافه کردن یک دستگاه جدید استفاده کنید:</p>
+
+            <form action="" class="form-control mb-3" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+
+                <div class="row">
+
+                    {% for field in form %}
+
+                        {% if field.field.widget.input_type == "checkbox" %}
+                            <div class="col-12 mb-3">
+                                <div class="d-flex align-items-baseline gap-2">
+                                    <label class="mb-0" for="{{ field.id_for_label }}">
+                                        {{ field.label }}
+                                    </label>
+                                    {{ field }}
+                                </div>
+                            </div>
+                        {% elif field.name == "image" %}
+                            <div class="col-md-12 mb-3">
+                                {{ field.label_tag }}
+
+                                {% if form.instance.image %}
+                                    <div class="mb-2">
+                                        <img src="{{ form.instance.image.url }}" alt="device image" style="max-width: 300px; height: auto; border-radius: 4px;">
+                                    </div>
+                                {% endif %}
+
+                                <input type="file" name="{{ field.name }}" class="form-control">
+                            </div>
+                        {% elif field.name == "description" %}
+                            <div class="col-md-12 mb-3">
+                                {{ field.label_tag }}
+                                {{ field }}
+                            </div>
+                        {% else %}
+                            <div class="col-md-6 mb-3">
+                                {{ field.label_tag }}
+                                {{ field }}
+                            </div>
+                        {% endif %}
+
+                    {% endfor %}
+
+                </div>
+
+                <input type="submit" value="اضافه کردن دستگاه" class="btn login-btn">
+            </form>
+
+        </div>
+    </div>
+
+{% endblock content %}

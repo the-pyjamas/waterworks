@@ -1,15 +1,19 @@
 from django.shortcuts import redirect
+from django.urls import reverse_lazy
+from django.http import HttpResponseRedirect
 from django.views.generic import (
 	ListView,
 	FormView,
-	DetailView
+	DetailView,
+	UpdateView
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 
-from .forms import DeviceCreateForm
+from .forms import DeviceCreateForm, DeviceUpdateForm
 from .models import Device
+from .services import update_device
 
 
 class DeviceCreateView(LoginRequiredMixin, FormView):
@@ -77,3 +81,31 @@ class DeviceDetailView(DetailView):
 	model = Device
 	slug_url_kwarg = 'device_slug'
 	pk_url_kwarg = 'device_pk'
+
+
+
+class DeviceUpdateView(UpdateView):
+	"""
+	Updating a device information,
+	only admin users have permission to update an object.
+	"""
+	model = Device
+	form_class = DeviceUpdateForm
+	pk_url_kwarg = 'device_pk'
+	success_url = reverse_lazy('devices:devices-list')
+	template_name = 'devices/device_update.html'
+
+	def form_valid(self, form):
+		"""
+		Validating the form-class and its incoming data
+		from the client using 'update-device' in 'services'.
+
+		Arguments:
+			form (obj): The form-class and its incoming data from the client.
+		"""
+		self.object = update_device(
+			device=self.get_object(),
+			data=form.cleaned_data,
+		)
+
+		return HttpResponseRedirect(self.get_success_url())
