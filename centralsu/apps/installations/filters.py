@@ -38,3 +38,20 @@ class InstallationFilter(django_filters.FilterSet):
     class Meta:
         model = Installation
         fields = ("device", "technician", "vendor", "last_name", "phone_number")
+
+    def __init__(self, *args, **kwargs):
+        request = kwargs.get("request")
+        super().__init__(*args, **kwargs)
+
+        if not request:
+            return
+
+        user = request.user
+
+        # Technician cannot filter by technician
+        if user.role == "Technician":
+            self.filters.pop("technician", None)
+
+        # Vendor cannot filter by vendor
+        if user.role == "Vendor":
+            self.filters.pop("vendor", None)
