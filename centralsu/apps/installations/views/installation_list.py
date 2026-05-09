@@ -1,25 +1,27 @@
 from django.shortcuts import render, redirect
-from django.views import View
+from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from apps.installations.models import Installation
 from apps.installations.filters import InstallationFilter
 
 
-class InstallationListView(LoginRequiredMixin, View):
+class InstallationListView(LoginRequiredMixin, ListView):
     """
     List all installations.
 
     Methods
         get(GET HTTP).
     """
-    template_name = "installations/installations_list.html"
+    model = Installation
+    paginated_by= 20
+
 
     def dispatch(self, request, *args, **kwargs):
         """
-		Ensures that the user who creating a new user
-		has an appropriate role.
-		"""
+        Ensures that the user who creating a new user
+        has an appropriate role.
+        """
         user = request.user
         if user.is_authenticated:
             is_allowed = (
@@ -36,34 +38,37 @@ class InstallationListView(LoginRequiredMixin, View):
 
         return super().dispatch(request, *args, **kwargs)
 
-    def get(self, request):
+    def get_queryset(self):
         """
-        Lists all the installations,
-        filters them base on the client request, the search filter.
+        Returns filtered queryset based on user role and search filters.
         """
-        user = request.user
+        user = self.request.user
 
-        if user.role == 'Technician':
-            installations = Installation.objects.filter(technician__user_id=user.id)
-        elif user.role == 'Vendor':
-            installations = Installation.objects.filter(vendor__user_id=user.id)
+        # Base queryset based on role
+        if user.role == "Technician":
+            queryset = Installation.objects.filter(
+                technician__user_id=user.id
+            )
+        elif user.role == "Vendor":
+            queryset = Installation.objects.filter(
+                vendor__user_id=user.id
+            )
         else:
-            installations = Installation.objects.filter(is_active=True)
+            queryset = Installation.objects.filter(is_active=True)
 
-        # Search filter according to the 'InstallationFilter'
-        filters = InstallationFilter(
-            request.GET,
-            queryset=installations
+        # Apply django-filter
+        self.filterset = InstallationFilter(
+            self.request.GET,
+            queryset=queryset
         )
-        # Remake the quesryset to the requests of the search filters
-        installations = filters.qs
 
-        context = {
-            "installations": installations,
-            "filters": filters
-        }
-        return render(
-            request=request,
-            template_name=self.template_name,
-            context=context
-        )
+        return self.filterset.qs
+
+    def get_context_data(self, **kwargs):
+        """
+        Inject filterset into template context.
+        """
+        context = super().get_context_data(**kwargs)
+        context["filters"] = self.filterset
+
+        return context
