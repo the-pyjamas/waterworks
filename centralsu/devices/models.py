@@ -101,6 +101,19 @@ class Device(BaseModel):
 
 		return devices
 
+	@classmethod
+	def last_devices(cls, length: int):
+		"""
+		Returning the last added devices in database.
+		It refers to the newest 'created-at' devices.
+
+		Arguments:
+			length (int): The number of returning objects.
+		"""
+		devices = cls.availables.filter(is_active=True).order_by('-created_at')[:length]
+
+		return devices
+
 	def get_absolute_url(self) -> reverse_lazy:
 		"""
 		Returning back a device retrieve/detail URL.
