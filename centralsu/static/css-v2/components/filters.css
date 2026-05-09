@@ -1,0 +1,38 @@
+/* =====================================================
+    FILTER STEP CARDS
+    Shared replacement-step cards used in detail pages
+===================================================== */
+
+.filters-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-4);
+}
+
+.filter-card {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.filter-title {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+.filter-date {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+}
+
+.active-filter {
+    border-color: #86efac;
+    background: #f0fdf4;
+}
+
+.empty-filter {
+    border-style: dashed;
+    background: #fcfcfd;
+}

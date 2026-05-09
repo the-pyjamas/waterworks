@@ -1,0 +1,42 @@
+/* =====================================================
+    INFO GRID
+    Shared structured information grid used in detail pages
+===================================================== */
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-5);
+}
+
+.info-grid > div {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: 14px 16px;
+    border-radius: var(--radius-md);
+    background: var(--bg-surface-soft);
+}
+
+.info-grid span {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+}
+
+.info-grid strong {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.info-grid .full-row {
+    grid-column: 1 / -1;
+}
+
+.info-link {
+    color: var(--primary);
+}
+
+.info-link:hover {
+    color: var(--primary-hover);
+}

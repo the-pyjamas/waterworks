@@ -1,0 +1,24 @@
+/* =========================================================
+    Shared Cards
+========================================================= */
+
+.overview-card,
+.device-card,
+.article-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+    transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        border-color var(--transition-fast);
+}
+
+.overview-card:hover,
+.device-card:hover,
+.article-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-border-strong);
+}

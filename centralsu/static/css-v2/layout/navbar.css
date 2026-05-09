@@ -1,0 +1,66 @@
+/* =========================================================
+    Top Navbar
+========================================================= */
+
+.top-navbar {
+    height: var(--navbar-height);
+    background-color: var(--color-navbar);
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: 0 var(--space-7);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-right,
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+}
+
+.brand {
+    font-size: 1.1rem;
+    font-weight: var(--font-weight-extra-bold);
+    color: var(--color-text);
+}
+
+.menu-btn,
+#theme-toggle {
+    width: 2.75rem;
+    height: 2.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    cursor: pointer;
+    transition:
+        background-color var(--transition-fast),
+        border-color var(--transition-fast),
+        color var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+.menu-btn:hover,
+#theme-toggle:hover {
+    background-color: var(--color-surface-soft);
+    border-color: var(--color-border-strong);
+    transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+    .top-navbar {
+        padding: 0 var(--space-5);
+    }
+
+    .brand {
+        font-size: 1rem;
+    }
+}

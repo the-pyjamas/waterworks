@@ -1,0 +1,220 @@
+/* ======================================
+   PAGE TOPBAR + TABS
+====================================== */
+
+.page-topbar{
+    display:flex;
+    justify-content:flex-start;
+    margin-bottom:var(--space-6);
+}
+
+.page-tabs{
+    display:flex;
+    gap:10px;
+}
+
+.tab{
+    padding:6px 14px;
+    border-radius:var(--radius-md);
+    border:1px solid var(--color-border);
+    background:var(--color-surface);
+    font-size:0.9rem;
+    cursor:pointer;
+    transition:all .2s ease;
+}
+
+.tab:hover{
+    border-color:var(--color-primary);
+}
+
+.tab.active{
+    background:var(--color-primary);
+    border-color:var(--color-primary);
+    color:#fff;
+}
+
+
+
+/* ======================================
+   FILTER STATUS GRID
+====================================== */
+
+.filters-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:var(--space-4);
+    margin-bottom:var(--space-6);
+}
+
+
+
+/* ======================================
+   FILTER CARD
+====================================== */
+
+.filter-card{
+    padding:14px;
+    border-radius:var(--radius-lg);
+    border:1px solid var(--color-border);
+    background:var(--color-surface);
+
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+
+    transition:all .2s ease;
+}
+
+.filter-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 4px 14px rgba(0,0,0,0.05);
+}
+
+.filter-title{
+    font-size:0.85rem;
+    color:var(--color-text-muted);
+}
+
+.filter-date{
+    font-size:1rem;
+    font-weight:600;
+}
+
+
+
+/* ======================================
+   FILTER STATES
+====================================== */
+
+.active-filter{
+    border-color:#2e7d32;
+    background:rgba(46,125,50,0.06);
+}
+
+.active-filter .filter-date{
+    color:#2e7d32;
+}
+
+.empty-filter{
+    border-color:#e0a800;
+    background:rgba(224,168,0,0.08);
+}
+
+.empty-filter .filter-date{
+    color:#b76e00;
+}
+
+
+
+/* ======================================
+   INFO CARD
+====================================== */
+
+.info-card{
+    border:1px solid var(--color-border);
+    border-radius:var(--radius-lg);
+    background:var(--color-surface);
+    padding:var(--space-6);
+}
+
+
+
+/* ======================================
+   CARD HEADER
+====================================== */
+
+.card-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:var(--space-5);
+}
+
+.card-header h3{
+    font-size:1.1rem;
+    font-weight:600;
+}
+
+
+
+/* ======================================
+   STATUS BADGE
+====================================== */
+
+.status-badge{
+    font-size:0.8rem;
+    padding:4px 10px;
+    border-radius:var(--radius-sm);
+    background:#f1f1f1;
+}
+
+.status-badge.active{
+    background:#2e7d32;
+    color:#fff;
+}
+
+
+
+/* ======================================
+   INFO GRID
+====================================== */
+
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.info-grid span{
+    font-size:0.8rem;
+    color:var(--color-text-muted);
+    display:block;
+}
+
+.info-grid strong{
+    font-size:0.9rem;
+}
+
+.info-link{
+    color:var(--color-primary);
+    text-decoration:none;
+}
+
+.info-link:hover{
+    text-decoration:underline;
+}
+
+
+
+/* full width row */
+
+.full-row{
+    grid-column:1 / -1;
+}
+
+
+
+/* ======================================
+   RESPONSIVE
+====================================== */
+
+@media (max-width:1000px){
+
+    .filters-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+
+@media (max-width:600px){
+
+    .filters-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .info-grid{
+        grid-template-columns:1fr;
+    }
+
+}

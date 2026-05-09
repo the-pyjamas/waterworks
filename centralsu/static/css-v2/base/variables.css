@@ -1,0 +1,149 @@
+/* =========================================================
+    Design Tokens
+========================================================= */
+
+:root {
+    /* ------------------------------
+        Colors
+    ------------------------------ */
+    --color-primary: #2563eb;
+    --color-primary-hover: #1d4ed8;
+    --color-primary-soft: #dbeafe;
+
+    --color-success: #16a34a;
+    --color-success-soft: #dcfce7;
+
+    --color-warning: #d97706;
+    --color-warning-soft: #fef3c7;
+
+    --color-danger: #dc2626;
+    --color-danger-soft: #fee2e2;
+
+    --color-text: #0f172a;
+    --color-text-soft: #475569;
+    --color-text-muted: #64748b;
+
+    --color-border: #e2e8f0;
+    --color-border-strong: #cbd5e1;
+
+    --color-surface: #ffffff;
+    --color-surface-soft: #f8fafc;
+    --color-body: #f1f5f9;
+
+    --color-sidebar: #0f172a;
+    --color-sidebar-text: #e2e8f0;
+    --color-sidebar-muted: #94a3b8;
+    --color-sidebar-hover: rgba(255, 255, 255, 0.08);
+    --color-sidebar-active: rgba(37, 99, 235, 0.22);
+
+    --color-navbar: #ffffff;
+    --color-overlay: rgba(15, 23, 42, 0.45);
+
+    --hero-overlay-start: rgba(15, 23, 42, 0.72);
+    --hero-overlay-end: rgba(15, 23, 42, 0.32);
+
+    /* ------------------------------
+        Typography
+    ------------------------------ */
+    --font-family-base: "IRANYekan", "Tahoma", sans-serif;
+
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-md: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.5rem;
+    --font-size-2xl: 2rem;
+
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 700;
+    --font-weight-extra-bold: 800;
+
+    --line-height-base: 1.8;
+
+    /* ------------------------------
+        Spacing
+    ------------------------------ */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-7: 2rem;
+    --space-8: 2.5rem;
+    --space-9: 3rem;
+
+    /* ------------------------------
+        Radius
+    ------------------------------ */
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.25rem;
+    --radius-2xl: 1.5rem;
+    --radius-pill: 999px;
+
+    /* ------------------------------
+        Shadows
+    ------------------------------ */
+    --shadow-sm: 0 4px 14px rgba(15, 23, 42, 0.06);
+    --shadow-md: 0 10px 30px rgba(15, 23, 42, 0.10);
+    --shadow-lg: 0 18px 40px rgba(15, 23, 42, 0.14);
+
+    /* ------------------------------
+        Layout
+    ------------------------------ */
+    --sidebar-width: 280px;
+    --navbar-height: 72px;
+    --container-max: 1400px;
+
+    /* ------------------------------
+        Motion
+    ------------------------------ */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+}
+
+/* =========================================================
+    Dark Theme Tokens
+    Applied when JS toggles body.dark
+========================================================= */
+
+body.dark {
+    --color-primary: #60a5fa;
+    --color-primary-hover: #3b82f6;
+    --color-primary-soft: rgba(96, 165, 250, 0.18);
+
+    --color-success: #4ade80;
+    --color-success-soft: rgba(74, 222, 128, 0.18);
+
+    --color-warning: #fbbf24;
+    --color-warning-soft: rgba(251, 191, 36, 0.18);
+
+    --color-danger: #f87171;
+    --color-danger-soft: rgba(248, 113, 113, 0.18);
+
+    --color-text: #e5eef9;
+    --color-text-soft: #cbd5e1;
+    --color-text-muted: #94a3b8;
+
+    --color-border: #243244;
+    --color-border-strong: #334155;
+
+    --color-surface: #16202d;
+    --color-surface-soft: #0f172a;
+    --color-body: #0b1220;
+
+    --color-sidebar: #08111f;
+    --color-sidebar-text: #e2e8f0;
+    --color-sidebar-muted: #8ea3bd;
+    --color-sidebar-hover: rgba(255, 255, 255, 0.06);
+    --color-sidebar-active: rgba(96, 165, 250, 0.22);
+
+    --color-navbar: #16202d;
+    --color-overlay: rgba(0, 0, 0, 0.52);
+
+    --hero-overlay-start: rgba(2, 6, 23, 0.76);
+    --hero-overlay-end: rgba(15, 23, 42, 0.38);
+}
