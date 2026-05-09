@@ -64,7 +64,7 @@
 
         <!-- Installation Card -->
         {% for installation in object_list %}
-            <a href="#" class="installation-card">
+            <a href="{{ installation.get_absolute_url }}" class="installation-card">
 
                 <div class="installation-top">
 

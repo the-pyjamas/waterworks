@@ -9,7 +9,7 @@ from apps.installations.views import (
     InstallationUpdateView,
     # List and retrieve
     InstallationListView,
-    InstallationRetrieveView
+    InstallationDetailView
 )
 
 app_name = "installations"
@@ -37,7 +37,7 @@ INSTALLATION_CRUD_URLS = [
 
     # List and Retrieve
     path("list/", InstallationListView.as_view(), name="installations-list"),
-    path("<int:installation_pk>/", InstallationRetrieveView.as_view(), name="installation-retrieve")
+    path("<int:installation_pk>/", InstallationDetailView.as_view(), name="installation-retrieve")
 ]
 
 urlpatterns = INSTALLATION_CRUD_URLS

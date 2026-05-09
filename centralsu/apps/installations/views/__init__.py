@@ -5,4 +5,4 @@ from .installation_create import (
 )
 from .installation_update import InstallationUpdateView
 from .installation_list import InstallationListView
-from .installation_retrieve import InstallationRetrieveView
+from .installation_retrieve import InstallationDetailView

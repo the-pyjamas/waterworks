@@ -191,7 +191,7 @@ class Installation(BaseModel):
         """
         return reverse_lazy(
             'installations:installation-retrieve',
-            kwargs={'Installation_pk': self.pk}
+            kwargs={'installation_pk': self.pk}
         )
 
     @classmethod
