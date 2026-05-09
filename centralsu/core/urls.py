@@ -8,13 +8,13 @@ DJANGO_URLS = [
     path('admin/', admin.site.urls),
 ]
 LOCAL_URLS = [
-    path("", include("home.urls", namespace="home")),
+    path("", include("apps.home.urls", namespace="home")),
 
-    path("accounts/", include("accounts.urls", namespace="accounts")),
-    path("customers/", include("customers.urls", namespace="customers")),
-    path("technicians/", include("technicians.urls", namespace="technicians")),
-    path("vendors/", include("vendors.urls", namespace="vendors")),
-    path("devices/", include("devices.urls", namespace="devices")),
+    path("accounts/", include("apps.accounts.urls", namespace="accounts")),
+    path("customers/", include("apps.customers.urls", namespace="customers")),
+    path("technicians/", include("apps.technicians.urls", namespace="technicians")),
+    path("vendors/", include("apps.vendors.urls", namespace="vendors")),
+    path("devices/", include("apps.devices.urls", namespace="devices")),
 ]
 
 urlpatterns = DJANGO_URLS + LOCAL_URLS

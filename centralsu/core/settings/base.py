@@ -25,7 +25,7 @@ ALLOWED_HOSTS = [
 
 
 # Application definition
-from .configs import INSTALLED_APPS
+from .conf import INSTALLED_APPS
 
 
 MIDDLEWARE = [
@@ -38,7 +38,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # Local middleware
-    'customers.middleware.jalali_locale.JalaliLocaleMiddleware'
+    'apps.customers.middleware.jalali_locale.JalaliLocaleMiddleware'
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -62,7 +62,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 
 # Database
-from .configs import DATABASES
+from .conf import DATABASES
 
 
 # Password validation
@@ -116,4 +116,4 @@ AUTH_USER_MODEL = "accounts.User"
 
 
 # Jalali date configs
-from .configs import JALALI_DATE_DEFAULTS
+from .conf import JALALI_DATE_DEFAULTS
