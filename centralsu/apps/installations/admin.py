@@ -25,7 +25,7 @@ class InstallationAdmin(admin.ModelAdmin):
     fieldsets = (
         (_("Installation Customer Information"),
             {
-                "fields": ("user", "Installation_code")
+                "fields": ("user", "installation_code")
             }
         ),
         (_("Installation Information"),
@@ -63,7 +63,7 @@ class InstallationAdmin(admin.ModelAdmin):
     add_fieldsets = (
         (_("Installation Customer Information"),
             {
-                "fields": ("user", "Installation_code")
+                "fields": ("user", "installation_code")
             }
         ),
         (_("Installation Information"),

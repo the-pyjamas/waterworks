@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load jalali_tags %}
+
+{% block title %}لیست نصب‌ها{% endblock title %}
+
+{% block content %}
+
+    <!-- Page Header & Action Button -->
+    <div class="installation-page-header">
+
+        <h2 class="page-title">لیست نصب‌ها</h2>
+
+        <a href="{% url 'installations:installation-create' %}" class="add-new-install-btn">
+            <span class="icon">+</span>
+            نصب جدید
+        </a>
+
+    </div>
+
+    <!-- Installation Filters -->
+    <section class="installation-filters">
+
+        <button class="filter-toggle">
+            فیلترها
+            <span class="arrow">▾</span>
+        </button>
+
+        <form class="filter-form">
+
+            <input type="text" placeholder="نام مشتری">
+
+            <select>
+                <option>دستگاه</option>
+            </select>
+
+            <select>
+                <option>نصاب</option>
+            </select>
+
+            <select>
+                <option>فروشنده</option>
+            </select>
+
+            <div class="date-range">
+
+                <input type="date">
+                <span>تا</span>
+                <input type="date">
+
+            </div>
+
+            <button type="submit" class="filter-btn">
+                جستجو
+            </button>
+
+        </form>
+
+    </section>
+
+    <!-- Installation Grid -->
+    <section class="installation-grid">
+
+        <!-- Installation Card -->
+        {% for installation in object_list %}
+            <a href="#" class="installation-card">
+
+                <div class="installation-top">
+
+                    <div class="installation-name">
+                        {{ installation.user.userprofile.fullname }}
+                    </div>
+
+                    <span class="installation-code">
+                        {{ insallation.installation_code }}
+                    </span>
+
+                </div>
+
+
+                <div class="installation-customer-phone">
+                    {{ installation.user.phone_number.as_national }}
+                </div>
+
+
+                <div class="installation-meta">
+
+                    <div>
+
+                        <span class="meta-label">
+                            دستگاه
+                        </span>
+
+                        <span class="meta-value">
+                            {{ installation.device }}
+                        </span>
+
+                    </div>
+
+                    <div>
+
+                        <span class="meta-label">
+                            نصاب
+                        </span>
+
+                        <span class="meta-value">
+                            {{ installation.technician.user.userprofile.fullname }}
+                        </span>
+
+                    </div>
+
+                    <div>
+
+                        <span class="meta-label">
+                            فروشنده
+                        </span>
+
+                        <span class="meta-value">
+                            {{ installation.vendor.user.userprofile.fullname }}
+                        </span>
+
+                    </div>
+
+                    <div>
+
+                        <span class="meta-label">
+                            نصب
+                        </span>
+
+                        <span class="meta-value">
+                            {{ installation.installation_date | to_jalali:"%d %B %Y" }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Filter replacement indicators -->
+
+                <div class="replacement-status">
+
+                    <span class="rep done">1</span>
+                    <span class="rep done">2</span>
+                    <span class="rep pending">3</span>
+                    <span class="rep">4</span>
+
+                </div>
+
+            </a>
+        {% endfor %}
+
+    </section>
+
+    <!-- Pagination -->
+    <div class="pagination">
+
+        <a href="#" class="page-btn">
+            قبلی
+        </a>
+
+
+        <div class="page-numbers">
+
+            <a href="#" class="page-number active">
+                1
+            </a>
+
+            <a href="#" class="page-number">
+                2
+            </a>
+
+            <a href="#" class="page-number">
+                3
+            </a>
+
+            <a href="#" class="page-number">
+                4
+            </a>
+
+        </div>
+
+
+        <a href="#" class="page-btn">
+            بعدی
+        </a>
+
+    </div>
+
+{% endblock content %}
