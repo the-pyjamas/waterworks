@@ -2,6 +2,7 @@
 
 {% load static %}
 {% load jalali_tags %}
+{% load farsi_digits %}
 
 {% block title %}
     مشخصات نصب {{ installation.user.userprofile.fullname }}
@@ -20,20 +21,20 @@
     <!-- Replacement Cards -->
     <div class="filters-grid">
         <div class="filter-card active-filter">
-            <span class="filter-title">فیلتر اول</span>
-            <span class="filter-date">1403/05/12</span>
+            <span class="filter-title">تاریخ تعویض فیلتر اول</span>
+            <span class="filter-date">{{ object.first_replacement_date | to_jalali:"%d %B %Y" | to_farsi_digit }}</span>
         </div>
         <div class="filter-card active-filter">
-            <span class="filter-title">فیلتر دوم</span>
-            <span class="filter-date">1403/08/12</span>
+            <span class="filter-title">تاریخ تعویض فیلتر دوم</span>
+            <span class="filter-date">{{ object.second_replacement_date | to_jalali:"%d %B %Y" | to_farsi_digit }}</span>
         </div>
         <div class="filter-card empty-filter">
-            <span class="filter-title">فیلتر سوم</span>
-            <span class="filter-date">—</span>
+            <span class="filter-title">تاریخ تعویض فیلتر سوم</span>
+            <span class="filter-date">{{ object.third_replacement_date | to_jalali:"%d %B %Y" | to_farsi_digit }}</span>
         </div>
         <div class="filter-card empty-filter">
-            <span class="filter-title">فیلتر چهارم</span>
-            <span class="filter-date">—</span>
+            <span class="filter-title">تاریخ تعویض فیلتر چهارم</span>
+            <span class="filter-date">{{ object.forth_replacement_date | to_jalali:"%d %B %Y" | to_farsi_digit }}</span>
         </div>
     </div>
 
@@ -48,16 +49,16 @@
             <div><span>نام:</span><strong>{{ object.user.userprofile.fullname }}</strong></div>
             <div><span>کد نصب:</span><strong>{{ object.installation_code }}</strong></div>
             <div><span>شماره تماس:</span>
-                <strong dir="ltr" style="text-align: right;">{{ object.user.phone_number.as_national }}</strong>
+                <strong dir="ltr" style="text-align: right;">{{ object.user.phone_number.as_national | to_farsi_digit }}</strong>
             </div>
-            <!-- <div><span>کد ملی:</span><strong>{{ object.national_code }}</strong></div> -->
+            <!-- <div><span>کد ملی:</span><strong>{{ object.national_code | to_farsi_digit }}</strong></div> -->
 
             <div><span>نصاب:</span>
                 <strong>
                     <a href="{{ object.technician.get_absolute_url }}" class="info-link">{{ object.technician.user.userprofile.fullname }}</a>
                 </strong>
             </div>
-            <div><span>تاریخ نصب:</span><strong>{{ object.installation_date | to_jalali:"%d %B %Y" }}</strong></div>
+            <div><span>تاریخ نصب:</span><strong>{{ object.installation_date | to_jalali:"%d %B %Y" | to_farsi_digit }}</strong></div>
             <div><span>دستگاه:</span>
                 <strong>
                     <a href="{{ object.device.get_absolute_url }}" class="info-link">{{ object.device.name }} - {{ object.device.model }}</a>
