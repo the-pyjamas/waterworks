@@ -1,11 +1,11 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
-from .models import Customer
+from .models import Installation
 
 
-@admin.register(Customer)
-class CustomerAdmin(admin.ModelAdmin):
+@admin.register(Installation)
+class InstallationAdmin(admin.ModelAdmin):
     list_display = (
         "user__phone_number",
         "vendor__shop_name",
@@ -23,9 +23,9 @@ class CustomerAdmin(admin.ModelAdmin):
 
 
     fieldsets = (
-        (_("Personal Information"),
+        (_("Installation Customer Information"),
             {
-                "fields": ("user", "customer_code")
+                "fields": ("user", "Installation_code")
             }
         ),
         (_("Installation Information"),
@@ -61,9 +61,9 @@ class CustomerAdmin(admin.ModelAdmin):
     )
 
     add_fieldsets = (
-        (_("Personal Information"),
+        (_("Installation Customer Information"),
             {
-                "fields": ("user", "customer_code")
+                "fields": ("user", "Installation_code")
             }
         ),
         (_("Installation Information"),

@@ -58,7 +58,7 @@ class BaseRoleProfileCreateView(LoginRequiredMixin, View):
     def post(self, request):
         """
         Getting created user with the role created
-        and create a role profile (e.g. Customer) for the user.
+        and create a role profile (e.g. Installation) for the user.
         Activate user after its role profile created successfully,
         and then delete the session which contains the created user-id.
         """
@@ -115,7 +115,7 @@ class BaseRoleProfileCreateView(LoginRequiredMixin, View):
 
 class BaseRoleProfileUpdateView(LoginRequiredMixin, View):
     """
-    Updating a user's role profile (e.g. Customer or Technician.)
+    Updating a user's role profile (e.g. Installation or Technician.)
     Just 'Admin' and the user who is the owner of the profile
     are be able to update a role profile.
 
@@ -170,7 +170,7 @@ class BaseRoleProfileUpdateView(LoginRequiredMixin, View):
 
     def post(self, request, instance_pk: int):
         """
-        Updating a role profile (e.g. Customer or Technician).
+        Updating a role profile (e.g. Installation or Technician).
         Gets the instance-id which is the ID of a role profile
         and then update it from the sent date from the client of POST method.
 

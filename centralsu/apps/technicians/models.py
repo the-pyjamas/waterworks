@@ -19,7 +19,7 @@ class Technician(BaseModel):
     Model representing a technician with personal and contact information.
 
     Attributes:
-        user (int, O2O): The user who is the customer. This profile belongs to it.
+        user (int, O2O): The user who is the Installation. This profile belongs to it.
         national_code (str): Technician national code for security info.
         installer_code (str): Generated code for the technician which is unique.
         experience_years (int, unsigned): How many years technician has experience.
@@ -97,8 +97,8 @@ class Technician(BaseModel):
     @property
     def get_absolute_url(self):
         """
-        Mostly use for retrieving a customer.
-        However, it returns a customer detail but its PK.
+        Mostly use for retrieving a Installation.
+        However, it returns a Installation detail but its PK.
         """
         return reverse_lazy(
             'technicians:technician-retrieve',

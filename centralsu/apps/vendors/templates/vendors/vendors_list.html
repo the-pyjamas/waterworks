@@ -14,13 +14,13 @@
 
     @media screen and (max-width: 576px) {
         form.search-filter-form .search-btn {width: 100%;}
-        .register-new-customer-btn {width: 100%;}
+        .register-new-Installation-btn {width: 100%;}
         .items-list-section {width: 100%; margin: 0; padding: 0;}
     }
 
     @media screen and (min-width: 768px) and (max-width: 992px) {
         form.search-filter-form .search-btn {width: 30%;}
-        .register-new-customer-btn {width: 30%;}
+        .register-new-Installation-btn {width: 30%;}
     }
 </style>
 {% endblock extra_style %}
@@ -38,7 +38,7 @@
                             <h4 class="d-flex-items gap-10">لیست فروشندگان</h4>
                             <div class="d-flex flex-wrap gap-15">
                                 <a
-                                    class="btn btn-orange register-new-customer-btn"
+                                    class="btn btn-orange register-new-Installation-btn"
                                     href="{% url 'vendors:vendor-create-user' %}"
                                 >
                                     اضافه کردن فروشنده جدید
@@ -101,9 +101,9 @@
                                                 <td dir="ltr" class="text-center">
                                                     {{ vendor.contact_phone.as_national }}
                                                 </td>
-                                                <td>{{ vendor.customers.count }}</td>
+                                                <td>{{ vendor.installations.count }}</td>
                                                 <!-- <td>
-                                                    {% if customer.is_active %}
+                                                    {% if Installation.is_active %}
                                                         <span class="badge bg-label-success">
                                                             فعال
                                                         </span>

@@ -222,7 +222,7 @@
     margin-bottom: 6px;
 }
 
-.customer-name {
+.Installation-name {
     font-weight: 600;
 }
 
@@ -234,7 +234,7 @@
 
 /* phone */
 
-.customer-phone {
+.Installation-phone {
     font-size: 0.85rem;
     color: var(--color-text-muted);
     margin-bottom: var(--space-4);

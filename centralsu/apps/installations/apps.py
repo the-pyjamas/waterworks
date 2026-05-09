@@ -1,9 +1,9 @@
 from django.apps import AppConfig
 
 
-class CustomersConfig(AppConfig):
+class InstallationsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'apps.customers'
+    name = 'apps.installations'
 
     def ready(self):
-        import apps.customers.signals
+        import apps.installations.signals

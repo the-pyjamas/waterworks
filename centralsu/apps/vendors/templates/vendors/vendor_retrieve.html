@@ -15,13 +15,13 @@
             flex-wrap: wrap;
         }
         ol.breadcrumb {display: flex; flex-direction: row-reverse; flex-wrap: wrap;}
-        div.customer-nav ul {
+        div.Installation-nav ul {
             list-style-type: none;
             display: flex;
             flex-direction: row-reverse;
             justify-content: flex-start;
         }
-        div.customer-nav ul li {margin-right: 2%;}
+        div.Installation-nav ul li {margin-right: 2%;}
         div.main-retrieve {
             background-image: linear-gradient(to bottom, #DE7119, #DEE3E2);
             padding: 3%;
@@ -39,8 +39,8 @@
             .page-title {margin: auto;}
             /* Breadcrumb and Buttons */
             nav.nav-breadcrumb {display: none;}
-            div.customer-nav ul {flex-direction: row; justify-content: space-between;}
-            div.customer-nav ul li {flex-basis: 400px;}
+            div.Installation-nav ul {flex-direction: row; justify-content: space-between;}
+            div.Installation-nav ul li {flex-basis: 400px;}
             div.row div.main-info {display: flex; flex-direction: column;}
             /* Profile Card Info */
             div.profile-info .unique-code {font-size: 1rem!important;}
@@ -99,7 +99,7 @@
                     </div>
 
                     <div class="col-xl-12">
-                        <div class="customer-nav mb-25 mobile-nav">
+                        <div class="Installation-nav mb-25 mobile-nav">
                             <ul class="d-flex-items gap-10">
                                 <li class="active">
                                     <a
@@ -149,7 +149,7 @@
                                         <div class="card-content">
                                             <span class="d-block fs-19 mb-5 text-secondary report-title">تجربه</span>
                                             <p class="mb-5 fa report-text">
-                                                سال {{ customer.experience_years }}
+                                                سال {{ Installation.experience_years }}
                                             </p>
                                         </div>
                                     </div>
@@ -167,10 +167,10 @@
                                                     خدمات
                                                 </h2>
                                             </span>
-                                            {% for customer in customers %}
+                                            {% for Installation in installations %}
                                                 <p class="mb-5 fa" style="font-size: 1.5rem;">
-                                                    <a href="{{ customer.get_absolute_url }}">
-                                                        {{ customer.user.userprofile.fullname }}
+                                                    <a href="{{ Installation.get_absolute_url }}">
+                                                        {{ Installation.user.userprofile.fullname }}
                                                     </a>
                                                 </p>
                                             {% empty %}
@@ -253,7 +253,7 @@
                                                 <td>تعداد فروش</td>
                                                 <td>
                                                     <div class="text-heading">
-                                                        {{ vendor.customers.count }}
+                                                        {{ vendor.installations.count }}
                                                     </div>
                                                 </td>
                                             </tr>

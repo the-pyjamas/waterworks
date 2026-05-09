@@ -1,0 +1,12 @@
+from django.urls import reverse_lazy
+
+from apps.common.views import BaseRoleProfileUpdateView
+from apps.installations.models import Installation
+from apps.installations.forms import InstallationUpdateForm
+
+
+class InstallationUpdateView(BaseRoleProfileUpdateView):
+    model = Installation
+    role = "Installation"
+    form_class = InstallationUpdateForm
+    template_name = "installations/Installation_update.html"

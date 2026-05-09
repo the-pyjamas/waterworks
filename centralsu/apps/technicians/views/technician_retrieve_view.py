@@ -46,18 +46,18 @@ class TechnicianRetrieveView(LoginRequiredMixin, View):
 		role = user.role
 
 		if role == 'Technician':
-			technician = Technician.objects.prefetch_related('customers').get(user=user)
-			technician_customers = technician.customers.all()
-			customers_count = len(technician_customers)
+			technician = Technician.objects.prefetch_related('installations').get(user=user)
+			technician_installations = technician.installations.all()
+			installations_count = len(technician_installations)
 		elif role == 'Admin' or user.is_superuser:
 			technician = get_object_or_404(Technician, pk=technician_pk)
-			technician_customers = technician.customers.all()
-			customers_count = len(technician_customers)
+			technician_installations = technician.installations.all()
+			installations_count = len(technician_installations)
 
 		context = {
 			"technician": technician,
-			"customers": technician_customers,
-			"customers_count": customers_count
+			"installations": technician_installations,
+			"installations_count": installations_count
 		}
 		return render(
 			request=request,

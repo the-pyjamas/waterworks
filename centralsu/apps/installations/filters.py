@@ -5,12 +5,12 @@ import django_filters
 from apps.devices.models import Device
 from apps.technicians.models import Technician
 from apps.vendors.models import Vendor
-from apps.customers.models import Customer
+from apps.installations.models import Installation
 
 
-class CustomerFilter(django_filters.FilterSet):
+class InstallationFilter(django_filters.FilterSet):
     """
-    Search filter on customers.
+    Search filter on installations.
     """
     device = django_filters.ModelChoiceFilter(
         queryset=Device.objects.filter(is_active=True),
@@ -36,5 +36,5 @@ class CustomerFilter(django_filters.FilterSet):
     )
 
     class Meta:
-        model = Customer
+        model = Installation
         fields = ("device", "technician", "vendor", "last_name", "phone_number")

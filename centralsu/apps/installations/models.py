@@ -12,20 +12,20 @@ from apps.accounts.models import User
 from apps.devices.models import Device
 
 
-class Customer(BaseModel):
+class Installation(BaseModel):
     """
-    Represents the customers of the system.
-    Involves customers who had the water purifier services.
+    Represents the installations of the system.
+    Involves installations who had the water purifier services.
 
-    Saves the customers information such as the installation date,
+    Saves the installations information such as the installation date,
     next inspection date, and their contact details, also replacement dates.
 
     Attributes:
-        user (int, O2O): The user who is the customer with the Customer role!
+        user (int, O2O): The user who is the Installation with the Installation role!
         vendor (int, FK): The vendor who provided the device, if any.
-        technician (int, FK): The technician assigned to this customer. Who done the installation.
-        customer_code (char): Unqiue generated code for customer to verify it.
-        description (str): Additional notes or description about the customer.
+        technician (int, FK): The technician assigned to this Installation. Who done the installation.
+        installation_code (char): Unqiue generated code for Installation to verify it.
+        description (str): Additional notes or description about the Installation.
         installation_date (date): The date that the purifier was installed.
         next_inspection_date (date): The date for the next scheduled inspection or maintenance.
         replacement_dates (1, 2, 3, 4) (date): The date when the filter or part was replaced — or should be replaced
@@ -39,7 +39,7 @@ class Customer(BaseModel):
     vendor = models.ForeignKey(
         Vendor,
         on_delete=models.SET_NULL,
-        related_name="customers",
+        related_name="installations",
         null=True,
         blank=True,
         verbose_name=_("Seller"),
@@ -48,18 +48,18 @@ class Customer(BaseModel):
     technician = models.ForeignKey(
         Technician,
         on_delete=models.SET_NULL,
-        related_name="customers",
+        related_name="installations",
         null=True,
         blank=True,
         verbose_name=_("Technician"),
-        help_text=_("The technician assigned to this customer. Who done the installation.")
+        help_text=_("The technician assigned to this Installation. Who done the installation.")
     )
-    customer_code = models.CharField(
+    installation_code = models.CharField(
         max_length=6,
         unique=True,
         null=True,
         blank=True,
-        verbose_name=_("Customer Code")
+        verbose_name=_("Installation Code")
     )
     description = models.TextField(
         null=True,
@@ -69,7 +69,7 @@ class Customer(BaseModel):
     device = models.ForeignKey(
         Device,
         on_delete=models.SET_NULL,
-        related_name='customers',
+        related_name='installations',
         null=True,
         blank=True,
         verbose_name=_("Device")
@@ -120,8 +120,8 @@ class Customer(BaseModel):
     )
 
     class Meta:
-        verbose_name = _("Customer")
-        verbose_name_plural = _("Customers")
+        verbose_name = _("Installation")
+        verbose_name_plural = _("installations")
         ordering = ['-created_at']
 
     def __str__(self) -> str:
@@ -145,13 +145,13 @@ class Customer(BaseModel):
         """
         Override the save method.
         If the target object is new, then generate
-        an unique code for the customer in 'customer-code' field,
+        an unique code for the Installation in 'installation-code' field,
         and also automatically save the replacement-dates properly.
         """
         is_new = self.pk is None
 
         if is_new:
-            self.customer_code_generator()
+            self.installation_code_generator()
 
             if self.installation_date:
                 self.save_replacement_dates()
@@ -159,14 +159,14 @@ class Customer(BaseModel):
         super().save(*args, **kwargs)
 
 
-    def customer_code_generator(self) -> None:
+    def installation_code_generator(self) -> None:
         """
         Generates a unique code with length 6
-        for a customer as a customer code.
+        for a Installation as a Installation code.
         """
         length = 6
         generated_string = get_random_string(length)
-        self.customer_code = generated_string
+        self.Installation_code = generated_string
 
     def save_replacement_dates(self) -> None:
         """
@@ -186,16 +186,16 @@ class Customer(BaseModel):
     @property
     def get_absolute_url(self):
         """
-        Mostly use for retrieving a customer.
-        However, it returns a customer detail but its PK.
+        Mostly use for retrieving a Installation.
+        However, it returns a Installation detail but its PK.
         """
         return reverse_lazy(
-            'customers:customer-retrieve',
-            kwargs={'customer_pk': self.pk}
+            'installations:installation-retrieve',
+            kwargs={'Installation_pk': self.pk}
         )
 
     @classmethod
     def last_objects(cls, length: int):
-        customers = cls.objects.all()[:length]
+        installations = cls.objects.all()[:length]
 
-        return customers
+        return installations

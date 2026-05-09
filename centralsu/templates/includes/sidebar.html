@@ -11,7 +11,7 @@
                 </div>
 
                 <div class="submenu">
-                    <a href="{% url 'customers:customers-list' %}" class="submenu-item">لیست نصب‌ها</a>
+                    <a href="{% url 'installations:installations-list' %}" class="submenu-item">لیست نصب‌ها</a>
                     {% if request.user.role != 'Vendor' %}
                         <a href="#" class="submenu-item">لیست تعویض فیلترها</a>
                     {% endif %}

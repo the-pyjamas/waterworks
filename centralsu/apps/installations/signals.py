@@ -2,11 +2,11 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.db.models import F
 
-from .models import Customer
+from .models import Installation
 from apps.devices.models import Device
 
 
-@receiver(post_save, sender=Customer)
+@receiver(post_save, sender=Installation)
 def update_device_installed_count(sender, instance, created, **kwargs):
     """
     Signal for updating the device installed-count that

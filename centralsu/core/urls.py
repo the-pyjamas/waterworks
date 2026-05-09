@@ -11,7 +11,7 @@ LOCAL_URLS = [
     path("", include("apps.home.urls", namespace="home")),
 
     path("accounts/", include("apps.accounts.urls", namespace="accounts")),
-    path("customers/", include("apps.customers.urls", namespace="customers")),
+    path("installations/", include("apps.installations.urls", namespace="installations")),
     path("technicians/", include("apps.technicians.urls", namespace="technicians")),
     path("vendors/", include("apps.vendors.urls", namespace="vendors")),
     path("devices/", include("apps.devices.urls", namespace="devices")),

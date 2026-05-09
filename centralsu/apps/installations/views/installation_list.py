@@ -2,18 +2,18 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from apps.customers.models import Customer
-from apps.customers.filters import CustomerFilter
+from apps.installations.models import Installation
+from apps.installations.filters import InstallationFilter
 
 
-class CustomerListView(LoginRequiredMixin, View):
+class InstallationListView(LoginRequiredMixin, View):
     """
-    List all customers.
+    List all installations.
 
     Methods
         get(GET HTTP).
     """
-    template_name = "customers/customers_list.html"
+    template_name = "installations/installations_list.html"
 
     def dispatch(self, request, *args, **kwargs):
         """
@@ -38,28 +38,28 @@ class CustomerListView(LoginRequiredMixin, View):
 
     def get(self, request):
         """
-        Lists all the customers,
+        Lists all the installations,
         filters them base on the client request, the search filter.
         """
         user = request.user
 
         if user.role == 'Technician':
-            customers = Customer.objects.filter(technician__user_id=user.id)
+            installations = Installation.objects.filter(technician__user_id=user.id)
         elif user.role == 'Vendor':
-            customers = Customer.objects.filter(vendor__user_id=user.id)
+            installations = Installation.objects.filter(vendor__user_id=user.id)
         else:
-            customers = Customer.objects.filter(is_active=True)
+            installations = Installation.objects.filter(is_active=True)
 
-        # Search filter according to the 'CustomerFilter'
-        filters = CustomerFilter(
+        # Search filter according to the 'InstallationFilter'
+        filters = InstallationFilter(
             request.GET,
-            queryset=customers
+            queryset=installations
         )
         # Remake the quesryset to the requests of the search filters
-        customers = filters.qs
+        installations = filters.qs
 
         context = {
-            "customers": customers,
+            "installations": installations,
             "filters": filters
         }
         return render(

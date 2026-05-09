@@ -4,17 +4,17 @@ from django.utils.translation import gettext_lazy as _
 from jalali_date.fields import JalaliDateField
 from jalali_date.widgets import AdminJalaliDateWidget
 
-from apps.customers.models import Customer
+from apps.installations.models import Installation
 
 
-class CustomerCreateForm(forms.ModelForm):
+class InstallationCreateForm(forms.ModelForm):
     """
-    Creation form for creating a new customer object.
+    Creation form for creating a new Installation object.
     Only the admin-user and technician-user be able to
-    create a new customer.
+    create a new Installation.
     """
     class Meta:
-        model = Customer
+        model = Installation
         fields = (
             "vendor", "technician", "device",
             "description", "installation_date"
@@ -56,9 +56,9 @@ class CustomerCreateForm(forms.ModelForm):
             })
 
 
-class CustomerUpdateForm(forms.ModelForm):
+class InstallationUpdateForm(forms.ModelForm):
     """
-    Updating form to update a customer profile,
+    Updating form to update a Installation profile,
     only the admin user and superuser are be able to
     update a profile.
     """
@@ -86,7 +86,7 @@ class CustomerUpdateForm(forms.ModelForm):
     forth_replacement_status = forms.BooleanField(required=False)
 
     class Meta:
-        model = Customer
+        model = Installation
         fields = (
             "vendor", "technician", "description",
             "device", "installation_date", "is_active",

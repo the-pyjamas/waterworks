@@ -15,7 +15,7 @@ EXTERNAL_APPS = [
 LOCAL_APPS = [
     'apps.home.apps.HomeConfig',
     'apps.accounts.apps.AccountsConfig',
-    'apps.customers.apps.CustomersConfig',
+    'apps.installations.apps.InstallationsConfig',
     'apps.common.apps.CommonConfig',
     'apps.vendors.apps.VendorsConfig',
     'apps.technicians.apps.TechniciansConfig',

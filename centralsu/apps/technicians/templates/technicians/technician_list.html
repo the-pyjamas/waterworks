@@ -13,13 +13,13 @@
     /* Response configs */
     @media screen and (max-width: 576px) {
         form.search-filter-form .search-btn {width: 100%;}
-        .register-new-customer-btn {width: 100%;}
+        .register-new-Installation-btn {width: 100%;}
         .items-list-section {width: 100%; margin: 0; padding: 0;}
     }
 
     @media screen and (min-width: 768px) and (max-width: 992px) {
         form.search-filter-form .search-btn {width: 30%;}
-        .register-new-customer-btn {width: 30%;}
+        .register-new-Installation-btn {width: 30%;}
     }
 </style>
 {% endblock extra_style %}
@@ -90,9 +90,9 @@
                                                 </td>
                                                 <td>{{ technician.national_code }}</td>
                                                 <td>{{ technician.created_at | to_jalali:"%d %B %Y" }}</td>
-                                                <td>{{ technician.customers.count }}</td>
+                                                <td>{{ technician.installations.count }}</td>
                                                 <!-- <td>
-                                                    {% if customer.is_active %}
+                                                    {% if Installation.is_active %}
                                                         <span class="badge bg-label-success">
                                                             فعال
                                                         </span>

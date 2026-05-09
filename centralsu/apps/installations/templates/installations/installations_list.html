@@ -14,13 +14,13 @@
 
     @media screen and (max-width: 576px) {
         form.search-filter-form .search-btn {width: 100%;}
-        .register-new-customer-btn {width: 100%;}
+        .register-new-Installation-btn {width: 100%;}
         .items-list-section {width: 100%; margin: 0; padding: 0;}
     }
 
     @media screen and (min-width: 768px) and (max-width: 992px) {
         form.search-filter-form .search-btn {width: 30%;}
-        .register-new-customer-btn {width: 30%;}
+        .register-new-Installation-btn {width: 30%;}
     }
 </style>
 {% endblock extra_style %}
@@ -38,8 +38,8 @@
                             <h4 class="d-flex-items gap-10">لیست مشتریان</h4>
                             <div class="d-flex flex-wrap gap-15">
                                 <a
-                                    class="btn btn-orange register-new-customer-btn"
-                                    href="{% url 'customers:customer-create-user' %}"
+                                    class="btn btn-orange register-new-Installation-btn"
+                                    href="{% url 'installations:installation-create-user' %}"
                                 >
                                     ثبت مشتری جدید
                                 </a>
@@ -47,7 +47,7 @@
                         </div>
 
                         <form
-                            action="{% url 'customers:customers-list' %}"
+                            action="{% url 'installations:installations-list' %}"
                             method="get"
                             class="form-control mt-3 mb-5 search-filter-form"
                         >
@@ -98,24 +98,24 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% for customer in customers %}
+                                        {% for Installation in installations %}
                                             <tr>
                                                 <td>
                                                     <a
-                                                        href="{{ customer.get_absolute_url }}"
+                                                        href="{{ Installation.get_absolute_url }}"
                                                         style="color: #DE7119;"
                                                     >
-                                                        {{ customer.user.userprofile.last_name }}</td>
+                                                        {{ Installation.user.userprofile.last_name }}</td>
                                                     </a>
                                                 <td>
-                                                    <span dir="ltr">{{ customer.user.phone_number.as_national }}</span>
+                                                    <span dir="ltr">{{ Installation.user.phone_number.as_national }}</span>
                                                 </td>
-                                                <td>{{ customer.device }}</td>
-                                                <td>{{ customer.vendor.shop_name }}</td>
-                                                <td>{{ customer.technician.user.userprofile.last_name }}</td>
-                                                <td>{{ customer.installation_date | to_jalali:"%d %B %Y" }}</td>
+                                                <td>{{ Installation.device }}</td>
+                                                <td>{{ Installation.vendor.shop_name }}</td>
+                                                <td>{{ Installation.technician.user.userprofile.last_name }}</td>
+                                                <td>{{ Installation.installation_date | to_jalali:"%d %B %Y" }}</td>
                                                 <!-- <td>
-                                                    {% if customer.is_active %}
+                                                    {% if Installation.is_active %}
                                                         <span class="badge bg-label-success">
                                                             فعال
                                                         </span>

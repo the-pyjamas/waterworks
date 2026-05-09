@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views import View
 from django.views.generic.base import TemplateView
 
-from apps.customers.models import Customer
+from apps.installations.models import Installation
 from apps.technicians.models import Technician
 from apps.vendors.models import Vendor
 from apps.devices.models import Device
@@ -26,11 +26,11 @@ class MainHomeView(TemplateView):
         context = super().get_context_data(**kwargs)
 
         # List of last objects
-        context['last_five_customers'] = Customer.last_objects(5)
+        context['last_five_installations'] = Installation.last_objects(5)
         context['last_three_devices'] = Device.most_installation(3)
 
         # Number of objects
-        context['customers_count'] = Customer.objects.count()
+        context['installations_count'] = Installation.objects.count()
         context['technicians_count'] = Technician.objects.count()
         context['vendors_count'] = Vendor.objects.count()
         context['devices_count'] = Device.objects.count()

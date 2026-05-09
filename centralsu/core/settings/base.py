@@ -38,7 +38,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # Local middleware
-    'apps.customers.middleware.jalali_locale.JalaliLocaleMiddleware'
+    'apps.installations.middleware.jalali_locale.JalaliLocaleMiddleware'
 ]
 
 ROOT_URLCONF = 'core.urls'

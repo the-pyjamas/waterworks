@@ -2,18 +2,18 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from apps.customers.models import Customer
+from apps.installations.models import Installation
 
 
-class CustomerRetrieveView(LoginRequiredMixin, View):
+class InstallationRetrieveView(LoginRequiredMixin, View):
 	"""
-	Retrieving a customer information,
-	It must have showing the detail of a customer.
+	Retrieving a Installation information,
+	It must have showing the detail of a Installation.
 
 	Methods:
 		get (GET HTTP).
 	"""
-	template_name = "customers/customer_retrieve.html"
+	template_name = "installations/Installation_retrieve.html"
 
 	def dispatch(self, request, *args, **kwargs):
 		"""
@@ -37,26 +37,26 @@ class CustomerRetrieveView(LoginRequiredMixin, View):
 
 		return super().dispatch(request, *args, **kwargs)
 
-	def get(self, request, customer_pk: int):
+	def get(self, request, Installation_pk: int):
 		"""
-		Gets the customer's PK and shows its detail.
+		Gets the Installation's PK and shows its detail.
 
 		Args:
-			customer_pk (int): The primary-key of customer.
+			Installation_pk (int): The primary-key of Installation.
 		"""
 		user = request.user
 		role = user.role
 
 		if role == 'Technician':
-			customer = Customer.objects.filter(technician__user=user).first()
+			Installation = Installation.objects.filter(technician__user=user).first()
 		elif role == 'Customer':
-			customer = Customer.objects.filter(user=user).first()
+			Installation = Installation.objects.filter(user=user).first()
 		elif role == 'Vendor':
-			customer = Customer.objects.filter(vendor__user=user).first()
+			Installation = Installation.objects.filter(vendor__user=user).first()
 		elif role == 'Admin' or user.is_superuser:
-			customer = get_object_or_404(Customer, pk=customer_pk)
+			Installation = get_object_or_404(Installation, pk=Installation_pk)
 
-		context = {"customer": customer}
+		context = {"Installation": Installation}
 		return render(
 			request=request,
             template_name=self.template_name,
