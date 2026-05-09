@@ -1,43 +1,26 @@
-{% load static %}
-
-<!doctype html>
-<html class="no-js" lang="fa">
+<!DOCTYPE html>
+<html lang="fa">
 <head>
-	<title>{% block title %}{% endblock title %}</title>
     {% include 'includes/head.html' %}
+
+    <title>{% block title %}{% endblock title %}</title>
 </head>
 
-{% block extra_style %}
-{% endblock extra_style %}
+<body>
 
-<body class="body-area" data-bs-theme="light" dir="rtl">
+    <div class="panel-container">
+        {% include 'includes/sidebar.html' %}
 
-    {% include 'includes/header_navbar.html' %}
+        <main class="main-content">
+            {% include 'includes/navbar.html' %}
 
-    <div class="display">
-        {% include "includes/messages.html" %}
-        <div class="col-lg-3 justify-content-lg-end d-none">
-            <button class="btn col-3" id="theme-toggle-btn">
-                <!-- <i class="fa-solid fa-moon"></i> -->
-                چشمات!
-            </button>
-        </div>
-
-        <div class="flex-container">
-            <div class="content">
+            <div class="page-inner">
                 {% block content %}
-                {% endblock %}
+                {% endblock content %}
             </div>
-
-            <!-- <div class="side">
-                <div class="sidebar">
-            </div> -->
-        </div>
+        </main>
     </div>
 
-    {% include 'includes/footer.html' %}
-
     {% include 'includes/js_links.html' %}
-
 </body>
 </html>
