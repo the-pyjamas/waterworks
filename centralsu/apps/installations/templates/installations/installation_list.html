@@ -2,6 +2,7 @@
 
 {% load static %}
 {% load jalali_tags %}
+{% load farsi_digits %}
 
 {% block title %}لیست نصب‌ها{% endblock title %}
 
@@ -27,27 +28,64 @@
             <span class="arrow">▾</span>
         </button>
 
-        <form class="filter-form">
+        <form class="filter-form" method="get" action="{% url 'installations:installations-list' %}">
 
-            <input type="text" placeholder="نام مشتری">
+            <input type="text" placeholder="نام مشتری" name="last_name" value="{{ request.GET.last_name }}">
 
-            <select>
+            <select name="device">
                 <option>دستگاه</option>
+                
+                {% for device in filters.form.device.field.queryset %}
+                    <option 
+                        value="{{ device.id }}"
+                        {% if request.GET.device == device.id|stringformat:"s" %}
+                            selected
+                        {% endif %}
+                    >
+                        {{ device }}
+                    </option>
+                {% endfor %}
             </select>
 
-            <select>
-                <option>نصاب</option>
-            </select>
+            {% if filters.form.technician %}
+                <select name="technician">
+                    <option>نصاب</option>
 
-            <select>
-                <option>فروشنده</option>
-            </select>
+                    {% for technician in filters.form.technician.field.queryset %}
+                        <option
+                            value="{{ technician.id }}"
+                            {%  if request.GET.technician == technician.id|stringformat:"s" %}
+                                selected
+                            {% endif %}
+                        >
+                            {{ technician }}
+                        </option>
+                    {% endfor %}
+                </select>
+            {% endif %}
+
+            {% if filters.form.vendor %}
+                <select name="vendor">
+                    <option>فروشنده</option>
+
+                    {% for vendor in filters.form.vendor.field.queryset %}
+                        <option
+                            value="{{ vendor.id }}"
+                            {% if request.GET.vendor == vendor.id|stringformat:"s" %}
+                                selected
+                            {% endif %}
+                        >
+                            {{ vendor }}
+                        </option>
+                    {% endfor %}
+                </select>
+            {% endif %}
 
             <div class="date-range">
 
-                <input type="date">
+                <input type="date" name="start_date" value="{{ request.GET.start_date }}">
                 <span>تا</span>
-                <input type="date">
+                <input type="date" name="end_date" value="{{ request.GET.end_date }}">
 
             </div>
 
@@ -79,8 +117,8 @@
                 </div>
 
 
-                <div class="installation-customer-phone">
-                    {{ installation.user.phone_number.as_national }}
+                <div class="installation-customer-phone" dir="ltr" style="text-align: right;">
+                    {{ installation.user.phone_number.as_national | to_farsi_digit }}
                 </div>
 
 
@@ -129,7 +167,7 @@
                         </span>
 
                         <span class="meta-value">
-                            {{ installation.installation_date | to_jalali:"%d %B %Y" }}
+                            {{ installation.installation_date | to_jalali:"%d %B %Y" | to_farsi_digit }}
                         </span>
 
                     </div>

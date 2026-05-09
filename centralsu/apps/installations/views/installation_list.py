@@ -59,7 +59,8 @@ class InstallationListView(LoginRequiredMixin, ListView):
         # Apply django-filter
         self.filterset = InstallationFilter(
             self.request.GET,
-            queryset=queryset
+            queryset=queryset,
+            request=self.request
         )
 
         return self.filterset.qs
