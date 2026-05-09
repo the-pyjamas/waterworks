@@ -8,6 +8,141 @@
 
 {% block content %}
 
-    <h1>صفحه اصلی</h1>
+    <section class="home-section">
+
+        <!-- HERO BANNER -->
+        <section class="hero">
+
+            <a href="#" class="hero-banner">
+
+                <div class="hero-content">
+                    <h1 class="hero-title">سیستم مرکزی سرویس</h1>
+
+                    <p class="hero-subtitle">
+                        مدیریت دستگاه‌ها، سرویس‌ها و تکنسین‌ها در یک محیط یکپارچه
+                    </p>
+                </div>
+
+                <div class="hero-action">
+                    <span class="hero-button">مشاهده بیشتر</span>
+                </div>
+
+            </a>
+
+        </section>
+
+
+        <!-- OVERVIEW CARDS -->
+        {% if request.user.role == 'Admin' or request.user.is_superuser %}
+            <section class="overview">
+
+                <div class="overview-grid">
+
+                    <a class="overview-card" href="#">
+                        <div class="overview-icon">💧</div>
+
+                        <div class="overview-info">
+                            <span class="overview-number">۲۴</span>
+                            <span class="overview-label">دستگاه‌ها</span>
+                        </div>
+                    </a>
+
+                    <a class="overview-card" href="#">
+                        <div class="overview-icon">🔧</div>
+
+                        <div class="overview-info">
+                            <span class="overview-number">۳۱۲</span>
+                            <span class="overview-label">نصب‌ها</span>
+                        </div>
+                    </a>
+
+                    <a class="overview-card" href="#">
+                        <div class="overview-icon">🛠</div>
+
+                        <div class="overview-info">
+                            <span class="overview-number">۴۱</span>
+                            <span class="overview-label">سرویس‌ها</span>
+                        </div>
+                    </a>
+
+                    <a class="overview-card" href="#">
+                        <div class="overview-icon">👨‍🔧</div>
+
+                        <div class="overview-info">
+                            <span class="overview-number">۱۲</span>
+                            <span class="overview-label">تکنسین‌ها</span>
+                        </div>
+                    </a>
+
+                </div>
+
+            </section>
+        {% endif %}
+
+
+        <!-- DEVICES SECTION -->
+        <section class="devices">
+
+            <div class="section-header">
+                <h2 class="section-title">دستگاه‌های اخیر</h2>
+                <a href="#" class="section-link">مشاهده همه</a>
+            </div>
+
+            <div class="devices-grid">
+
+                {% for device in last_three_devices %}
+                    <a class="device-card" href="#">
+
+                        <div class="device-cover">
+                            <img src="{{ device.image.url }}" alt="AquaPro X200">
+
+                            <span class="device-status active">فعال</span>
+                        </div>
+
+                        <div class="device-body">
+
+                            <h3 class="device-name">{{ device.name }}</h3>
+
+                            <div class="device-meta">
+                                <span class="device-model">مدل {{ device.model }}</span>
+                                <span class="device-count">{{ device.installed_count }} نصب</span>
+                            </div>
+
+                        </div>
+
+                    </a>
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+        <!-- ARTICLES SECTION -->
+        <section class="articles">
+
+            <div class="section-header">
+                <h2 class="section-title">آخرین مقالات</h2>
+                <a href="#" class="section-link">مشاهده همه</a>
+            </div>
+
+            <div class="articles-grid">
+
+                <a class="article-card" href="#">
+
+                    <h3 class="article-title">
+                        نحوه نگهداری دستگاه تصفیه آب
+                    </h3>
+
+                    <p class="article-excerpt">
+                        نکات مهم برای افزایش عمر دستگاه و بهبود عملکرد آن.
+                    </p>
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </section>
 
 {% endblock content %}

@@ -27,7 +27,7 @@ class MainHomeView(TemplateView):
 
         # List of last objects
         context['last_five_customers'] = Customer.last_objects(5)
-        context['most_installed_devices'] = Device.most_installation(3)
+        context['last_three_devices'] = Device.most_installation(3)
 
         # Number of objects
         context['customers_count'] = Customer.objects.count()
