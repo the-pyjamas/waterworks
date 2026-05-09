@@ -14,6 +14,8 @@
         <main class="main-content">
             {% include 'includes/navbar.html' %}
 
+            {% block pre_main_content %}
+            {% endblock pre_main_content %}
             <div class="page-inner">
                 {% block content %}
                 {% endblock content %}

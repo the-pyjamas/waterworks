@@ -1,44 +1,53 @@
 
 <aside class="sidebar">
     <div class="sidebar-menu">
-        <div class="menu-item has-submenu">
-            <div class="menu-link">
-                <span class="icon">🛠</span>
-                <span class="text">خدمات</span>
-                <span class="arrow">▾</span>
-            </div>
 
-            <div class="submenu">
-                <a href="{% url 'customers:customers-list' %}" class="submenu-item">لیست نصب‌ها</a>
-                <a href="#" class="submenu-item">لیست تعویض فیلترها</a>
-            </div>
-        </div>
+        {% if request.user.role == 'Admin' or request.user.role == 'Technician' or request.user.role == 'Vendor' or request.user.is_superuser %}
+            <div class="menu-item has-submenu">
+                <div class="menu-link">
+                    <span class="icon">🛠</span>
+                    <span class="text">خدمات</span>
+                    <span class="arrow">▾</span>
+                </div>
 
-        <div class="menu-item has-submenu">
-            <div class="menu-link">
-                <span class="icon">🧑‍🔧</span>
-                <span class="text">نصاب‌ها</span>
-                <span class="arrow">▾</span>
+                <div class="submenu">
+                    <a href="{% url 'customers:customers-list' %}" class="submenu-item">لیست نصب‌ها</a>
+                    {% if request.user.role != 'Vendor' %}
+                        <a href="#" class="submenu-item">لیست تعویض فیلترها</a>
+                    {% endif %}
+                </div>
             </div>
+        {% endif %}
 
-            <div class="submenu">
-                <a href="{% url 'technicians:technicians-list' %}" class="submenu-item">نصاب جدید</a>
-                <a href="#" class="submenu-item">لیست نصاب‌ها</a>
+        {% if request.user.role == 'Admin' or request.user.is_superuser %}
+            <div class="menu-item has-submenu">
+                <div class="menu-link">
+                    <span class="icon">🧑‍🔧</span>
+                    <span class="text">نصاب‌ها</span>
+                    <span class="arrow">▾</span>
+                </div>
+                
+                <div class="submenu">
+                    <a href="{% url 'technicians:technician-create' %}" class="submenu-item">نصاب جدید</a>
+                    <a href="{% url 'technicians:technicians-list' %}" class="submenu-item">لیست نصاب‌ها</a>
+                </div>
             </div>
-        </div>
+        {% endif %}
 
-        <div class="menu-item has-submenu">
-            <div class="menu-link">
-                <span class="icon">🏪</span>
-                <span class="text">فروشندگان</span>
-                <span class="arrow">▾</span>
-            </div>
+        {% if request.user.role == 'Admin' or request.user.is_superuser %}
+            <div class="menu-item has-submenu">
+                <div class="menu-link">
+                    <span class="icon">🏪</span>
+                    <span class="text">فروشندگان</span>
+                    <span class="arrow">▾</span>
+                </div>
 
-            <div class="submenu">
-                <a href="{% url 'vendors:vendor-create' %}" class="submenu-item">فروشنده جدید</a>
-                <a href="{% url 'vendors:vendors-list' %}" class="submenu-item">لیست فروشندگان</a>
+                <div class="submenu">
+                    <a href="{% url 'vendors:vendor-create' %}" class="submenu-item">فروشنده جدید</a>
+                    <a href="{% url 'vendors:vendors-list' %}" class="submenu-item">لیست فروشندگان</a>
+                </div>
             </div>
-        </div>
+        {% endif %}
 
         <div class="menu-item has-submenu">
             <div class="menu-link">
@@ -52,5 +61,6 @@
                 <a href="{% url 'devices:devices-list' %}" class="submenu-item">لیست دستگاه‌ها</a>
             </div>
         </div>
+
     </div>
 </aside>
