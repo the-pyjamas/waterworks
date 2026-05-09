@@ -104,13 +104,6 @@ div.main-page-count-card .card-title {
 }
 
 
-/* Basic Tags Styles */
-a {text-decoration: none;}
-a.active {color: #1E88E5!important; font-family: IranYekanBold;}
-.btn,
-.device-installation-count {font-family: Hasti;}
-
-
 /* Response configs */
 
 @media screen and (max-width: 576px) {
