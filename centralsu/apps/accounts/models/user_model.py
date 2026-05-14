@@ -43,7 +43,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 		help_text=_("Display name shown in your profile interface, people will know you with this.")
 	)
 	role = models.CharField(
-		max_length=11,
+		max_length=20,
 		choices=UserRoleChoice,
 		default=UserRoleChoice.EXPLORER,
 		verbose_name=_("Role"),
