@@ -2,6 +2,7 @@
 
 {% load static %}
 {% load jalali_tags %}
+{% load farsi_digits %}
 
 {% block title %}لیست نصاب‌ها{% endblock title %}
 
@@ -10,7 +11,7 @@
     <!-- Header -->
     <div class="page-header">
         <h2 class="page-title">لیست نصاب‌ها</h2>
-        <a href="add_technician.html" class="btn-sub">+ نصاب جدید</a>
+        <a href="{% url 'technicians:technician-create' %}" class="btn-sub">+ نصاب جدید</a>
     </div>
 
     <!-- Installers Grid -->
@@ -32,11 +33,11 @@
                 <div class="installer-info">
                     <div class="info-item">
                         <span class="label">کد ملی</span>
-                        <span class="value">{{ technician.national_code }}</span>
+                        <span class="value">{{ technician.national_code | to_farsi_digit }}</span>
                     </div>
                     <div class="info-item">
                         <span class="label">تجربه</span>
-                        <span class="value">{{ technician.experience_years }} سال</span>
+                        <span class="value">{{ technician.experience_years | to_farsi_digit }} سال</span>
                     </div>
                     <div class="info-item">
                         <span class="label">سطح مهارت</span>

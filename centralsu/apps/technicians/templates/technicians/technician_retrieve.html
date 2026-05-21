@@ -2,6 +2,7 @@
 
 {% load static %}
 {% load jalali_tags %}
+{% load farsi_digits %}
 
 {% block title %}
     مشخصات نصاب {{ technician.user.userprofile.fullname }}
@@ -32,7 +33,7 @@
                     {% endif %}
                     <div class="quick-info">
                         <p><strong>کد نصاب:</strong> {{ technician.installer_code }}</p>
-                        <p><strong>تعداد نصب:</strong> {{ installations_count }}</p>
+                        <p><strong>تعداد نصب:</strong> {{ installations_count | to_farsi_digit }}</p>
                     </div>
                 </div>
             </aside>
@@ -46,15 +47,15 @@
                     <div class="details-grid">
                         <div class="detail-item">
                             <span>کد ملی</span>
-                            <strong>{{ technician.national_code }}</strong>
+                            <strong>{{ technician.national_code | to_farsi_digit }}</strong>
                         </div>
                         <div class="detail-item">
                             <span>شماره همراه</span>
-                            <strong>{{ technician.user.phone_number }}</strong>
+                            <strong dir="ltr">{{ technician.user.phone_number.as_national | to_farsi_digit }}</strong>
                         </div>
                         <div class="detail-item">
                             <span>تجربه</span>
-                            <strong>{{ technician.experience_years }} سال</strong>
+                            <strong>{{ technician.experience_years | to_farsi_digit }} سال</strong>
                         </div>
                         <div class="detail-item">
                             <span>سطح مهارت</span>
@@ -77,18 +78,17 @@
                 <div class="card">
                     <h3>آخرین نصب‌ها</h3>
                     <ul class="compact-list">
-                        <li>
-                            <span class="item-title">نصب تصفیه آب آکوا</span>
-                            <span class="item-meta">۱۴۰۳/۰۲/۱۵</span>
-                        </li>
-                        <li>
-                            <span class="item-title">تعویض فیلتر دستگاه نیمه صنعتی</span>
-                            <span class="item-meta">۱۴۰۳/۰۲/۱۰</span>
-                        </li>
-                        <li>
-                            <span class="item-title">سرویس دوره‌ای دستگاه خانگی</span>
-                            <span class="item-meta">۱۴۰۳/۰۲/۰۱</span>
-                        </li>
+                        {% for installation in last_installations %}
+                            <li>
+                                <span class="item-title">
+                                    نصب {{ installation.device }} برای  
+                                    <span class="text-primary">
+                                        <a href="{{ installation.get_absolute_url }}">{{ installation.user.userprofile.fullname }}</a>
+                                    </span>
+                                </span>
+                                <span class="item-meta">{{ installation.installation_date | to_jalali:"%d %B %Y" | to_farsi_digit }}</span>
+                            </li>
+                        {% endfor %}
                     </ul>
                 </div>
 
@@ -96,18 +96,19 @@
                 <div class="card">
                     <h3>دستگاه‌های پرتکرار</h3>
                     <ul class="compact-list">
-                        <li>
-                            <span class="item-title">دستگاه خانگی ۶ مرحله‌ای</span>
-                            <span class="item-meta">۴۵ نصب</span>
-                        </li>
-                        <li>
-                            <span class="item-title">دستگاه نیمه صنعتی</span>
-                            <span class="item-meta">۱۲ نصب</span>
-                        </li>
-                        <li>
-                            <span class="item-title">دستگاه یخچال ساید</span>
-                            <span class="item-meta">۸ نصب</span>
-                        </li>
+                        {% for installation in last_installations %}
+                            <li>
+                                <span class="item-title">
+                                    دستگاه 
+                                    <span class="text-primary">
+                                        <a href="{{ installation.device.get_absolute_url }}">
+                                            {{ installation.device }}
+                                        </a>
+                                    </span>
+                                </span>
+                                <span class="item-meta">{{ installation.device.installed_count | to_farsi_digit }} نصب</span>
+                            </li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
