@@ -1,0 +1,127 @@
+/* ==========================================================================
+   INSTALLER DETAIL PAGE
+   - Styles for installer profile page
+   - Modular structure with minimalist orange accent
+   ========================================================================== */
+
+/* --- Layout Structure --- */
+.profile-layout {
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1fr);
+    gap: var(--space-6);
+}
+/* --- Action Buttons (Edit / Detail) --- */
+.profile-actions {
+    display: flex;
+    gap: 12px;
+    margin-bottom: var(--space-6);
+}
+
+/* --- Sidebar Profile Card --- */
+.profile-main-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-3);
+    text-align: center;
+}
+
+.installer-main-info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.profile-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 10%;
+    margin-bottom: var(--space-4);
+    border: 2px solid var(--color-text-muted);
+    object-fit: cover;
+    box-shadow: 0 2px 15px var(--color-text-muted);
+}
+
+.status-pill {
+    display: inline-block;
+    padding: 4px 42px;
+    border-radius: 20px;
+    font-size: 1rem;
+    margin-top: 10px;
+}
+.status-pill.active { background: #e8f5e9; color: #2e7d32; }
+
+div.quick-info {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+/* --- Main Content Info & Stats --- */
+.info-card, .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.detail-item span { display: block; color: var(--color-text-muted); font-size: 0.8rem; }
+.detail-item.full { grid-column: span 2; }
+
+.stats-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+    margin-top: var(--space-6);
+}
+
+/* --- Compact Lists (For Recent Activity) --- */
+.compact-list {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0 0 0;
+}
+
+.compact-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.compact-list li:last-child { border-bottom: none; padding-bottom: 0; }
+
+.item-title { font-size: 0.9rem; color: var(--color-text); font-weight: 500; }
+.item-meta { 
+    font-size: 0.8rem; 
+    color: var(--color-text-muted); 
+    background: #f8f9fa; 
+    padding: 2px 8px; 
+    border-radius: 4px; 
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 900px) {
+    .profile-layout { grid-template-columns: 1fr; }
+    .stats-row { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 901px){
+
+    .profile-sidebar{
+        grid-column: 2;
+        order: 1;
+    }
+
+    .profile-content{
+        grid-column: 1;
+    }
+
+}

@@ -1,0 +1,86 @@
+/* =========================================================
+    Shared Buttons
+========================================================= */
+
+.hero-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 140px;
+    min-height: 48px;
+    padding: 0.8rem 1.25rem;
+    border-radius: var(--radius-pill);
+    background-color: #ffffff;
+    color: #0f172a;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    box-shadow: var(--shadow-sm);
+    transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        background-color var(--transition-fast);
+}
+
+.hero-banner:hover .hero-button {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    background-color: #f8fafc;
+}
+
+
+/* Most usable buttons */
+
+.btn-main, .btn-sub {
+    padding: 10px 20px;
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.btn-main {
+    background: var(--color-primary); /* Primary orange brand color */
+    color: #fff;
+}
+.btn-main:hover { background: #e65100; }
+
+.btn-sub {
+    background: var(--color-surface);
+    border-color: var(--color-border);
+    color: var(--color-text);
+}
+.btn-sub:hover { border-color: var(--color-primary); color: var(--color-primary); }
+
+
+
+.btn-main,
+.btn-primary {
+    width: 100%;
+    padding: 0.9rem;
+    border-radius: var(--radius-md);
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+    background: var(--color-primary);
+    color: #fff;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.btn-main:hover,
+.btn-primary:hover {
+    background: var(--color-primary-strong, #f27a1a);
+}
+
+.btn-main:active,
+.btn-primary:active {
+    transform: translateY(1px);
+}
+
+/* Small Variant (The requested one) */
+.btn-sm {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+}

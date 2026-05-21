@@ -1,0 +1,89 @@
+/* ==========================================================================
+   Add Device Page (Isolated Layout)
+   ========================================================================== */
+
+/* Limit card width and center it */
+.add-device-page .form-card {
+    max-width: 760px;
+    margin: 2.5rem auto;
+    padding: 2rem;
+}
+
+/* Grid layout */
+.add-device-form .add-device-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem 2rem;
+}
+
+/* Field wrapper */
+.add-device-form .field-item {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Label styling */
+.add-device-form .field-item label {
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+    color: var(--color-text-muted);
+}
+
+/* Inputs only inside this page */
+.add-device-form .field-item input,
+.add-device-form .field-item textarea {
+    width: 100%;
+    padding: 0.75rem 0.9rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background-color: var(--color-surface);
+    font: inherit;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.add-device-form .field-item input:focus,
+.add-device-form .field-item textarea:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 18%, transparent);
+}
+
+/* Full-width elements */
+.add-device-form .full-width {
+    grid-column: span 2;
+}
+
+/* Checkbox layout fix */
+.add-device-form .checkbox-item {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.add-device-form .checkbox-item input {
+    width: auto;
+}
+
+/* Textarea resize control */
+.add-device-form textarea {
+    resize: vertical;
+    min-height: 110px;
+}
+
+/* Submit button */
+.add-device-form .btn-main {
+    margin-top: 2rem;
+    width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .add-device-form .add-device-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .add-device-form .full-width {
+        grid-column: span 1;
+    }
+}

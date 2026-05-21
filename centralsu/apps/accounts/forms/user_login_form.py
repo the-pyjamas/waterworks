@@ -15,12 +15,17 @@ class UserLoginForm(forms.Form):
         min_length=11,
         max_length=13,
         required=True,
-        label=_('Phone number')
+        label=_('شماره همراه')
     )
     password = forms.CharField(
-        label=_('Password'),
+        label=_('رمز عبور'),
         widget=forms.PasswordInput
     )
+
+    labels = {
+        'phone_number': _('شماره همراه'),
+        'password': _('رمز عبور'),
+    }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -28,11 +33,11 @@ class UserLoginForm(forms.Form):
         # Add placeholder for fields
         self.fields['phone_number'].widget.attrs = {
             'placeholder': _('شماره همراه مثل ۰۹۱۲۵۶۵۲۳۳۲'),
-            'class': 'form-control mb-4'
+            'class': 'mb-4',
         }
         self.fields['password'].widget.attrs = {
             'placeholder': _('رمزعبور'),
-            'class': 'form-control mb-4'
+            'class': 'mb-4',
         }
 
         # Get the placeholders to use them in the template fields' placeholders

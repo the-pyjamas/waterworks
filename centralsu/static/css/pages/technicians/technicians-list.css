@@ -1,0 +1,106 @@
+/* =====================================
+   Installers Grid
+===================================== */
+.installers-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+    margin-top: var(--space-8);
+}
+
+/* =====================================
+   Installer Card
+===================================== */
+.installer-card {
+    padding: var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    transition: all 0.2s ease;
+}
+
+.installer-card:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-3px);
+}
+
+.installer-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: var(--space-4);
+}
+
+.avatar {
+    width: 45px;
+    height: 45px;
+    background: #f0f0f0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #666;
+}
+
+.installer-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.installer-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: var(--space-4);
+}
+
+.name { 
+    font-size: 1.05rem; 
+    margin: 0; 
+    font-weight: 700;
+}
+
+.name { font-size: 1rem; margin: 0; }
+.id-code { font-size: 0.8rem; color: var(--color-primary); font-weight: 600; }
+
+/* Info Section */
+.installer-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: var(--space-4);
+}
+
+.info-item .label { display: block; font-size: 0.75rem; color: var(--color-text-muted); }
+.info-item .value { font-size: 0.85rem; font-weight: 500; }
+
+/* Skills Badge */
+.badge-skill {
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+}
+.advanced { background: #e8f5e9; color: #2e7d32; }
+body.dark .advanced {color: var(--color-surface);}
+
+/* Button */
+.view-profile-btn {
+    display: block;
+    text-align: center;
+    padding: 8px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-size: 0.85rem;
+    text-decoration: none;
+    color: var(--color-text);
+}
+.page-title {margin-bottom: var(--space-4);}
+
+/* Responsive */
+@media (max-width: 1000px) { .installers-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .installers-grid { grid-template-columns: 1fr; } }

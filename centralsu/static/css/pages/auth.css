@@ -1,0 +1,106 @@
+/* =========================================================
+   Auth Split Page - Updated Visual & Responsive Design
+   ========================================================= */
+
+.auth-split-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* Visual Section (Left) - Gradient and centered content */
+.auth-split-visual {
+    background: linear-gradient(160deg, var(--color-primary), #0a0e3d);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    color: var(--color-white);
+}
+
+/* Constrained and filled content container */
+.auth-split-content {
+    max-width: 400px;
+    text-align: center;
+}
+
+.auth-split-headline {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    color: #e2e8f0;
+}
+
+.auth-split-text {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    line-height: 1.6;
+    color: var(--color-sidebar-muted);
+}
+
+/* Panel Section (Right) */
+.auth-split-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-background);
+    padding: 2rem;
+}
+
+.auth-split-glass-card {
+    width: 100%;
+    max-width: 420px;
+    background: var(--color-surface);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--color-border);
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.auth-split-title { 
+    font-size: 1.75rem; 
+    margin-bottom: 2rem; 
+    color: var(--color-text-primary); 
+}
+
+.auth-split-field { margin-bottom: 1.5rem; }
+.auth-split-field label { 
+    display: block; 
+    margin-bottom: 0.5rem; 
+    color: var(--color-text-secondary); 
+    font-size: 0.9rem; 
+}
+
+.auth-split-field input {
+    width: 100%;
+    padding: 0.9rem;
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: 0.8rem;
+    color: var(--color-text-primary);
+}
+
+.auth-split-btn {
+    width: 100%;
+    padding: 0.9rem;
+    background: var(--color-primary);
+    color: var(--color-surface);
+    border: none;
+    border-radius: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: filter 0.3s;
+}
+
+.auth-split-btn:hover {
+    filter: brightness(1.1);
+}
+
+/* Responsive adjustment */
+@media (max-width: 768px) {
+    .auth-split-page { grid-template-columns: 1fr; }
+    .auth-split-visual { display: none; } /* Hide illustration on mobile */
+}
