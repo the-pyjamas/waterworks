@@ -1,4 +1,4 @@
-{% extends 'base_soft.html' %}
+{% extends 'base.html' %}
 
 {% load static %}
 {% load jalali_tags %}
@@ -7,279 +7,111 @@
     مشخصات نصاب {{ technician.user.userprofile.fullname }}
 {% endblock title %}
 
-{% block extra_style %}
-    <style>
-        .page-title-box {
-            display: flex;
-            flex-direction: row-reverse;
-            flex-wrap: wrap;
-        }
-        ol.breadcrumb {display: flex; flex-direction: row-reverse; flex-wrap: wrap;}
-        div.Installation-nav ul {
-            list-style-type: none;
-            display: flex;
-            flex-direction: row-reverse;
-            justify-content: flex-start;
-        }
-        div.Installation-nav ul li {margin-right: 2%;}
-        div.main-retrieve {
-            background-image: linear-gradient(to bottom, #DE7119, #DEE3E2);
-            padding: 3%;
-            border-radius: 2%;
-            margin-top: 0%;
-            margin-bottom: 5%;
-        }
-        div.profile-info .unique-code {font-size: 1.4rem;}
-        .report-card {direction: rtl;}
-        .report-text {font-size: 1.5rem;}
-        .report-title {font-size: 1rem;}
-
-        /* Response configs */
-        @media screen and (max-width: 576px) {
-            .page-title {margin: auto;}
-            /* Breadcrumb and Buttons */
-            nav.nav-breadcrumb {display: none;}
-            div.Installation-nav ul {flex-direction: row; justify-content: space-between;}
-            div.Installation-nav ul li {flex-basis: 400px;}
-            div.row div.main-info {display: flex; flex-direction: column;}
-            /* Profile Card Info */
-            div.profile-info .unique-code {font-size: 1rem!important;}
-            /* Table Info */
-            .table-info {font-size: .8rem!important;}
-            .extra-link {font-size: 1rem!important;}
-            /* Report Card */
-            .bigger-card {margin-bottom: 5%;}
-            .bigger-card h2 {font-size: 1.5rem!important;}
-            .bigger-card p {font-size: .9rem!important;}
-            .report-text {font-size: 1.2rem;}
-            .report-title {font-size: .8rem;}
-            /* Card Items */
-            .card-item {line-height: 5px;}
-        }
-        @media screen and (min-width: 768px) and (max-width: 992px) {
-            .bigger-card {margin-bottom: 5%;}
-            .table {text-align: center;}
-        }
-    </style>
-{% endblock extra_style %}
-
 {% block content %}
 
-    <div class="app-content-area">
-
-        <div class="app-content-wrap main-retrieve">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xl-12">
-                        {% if request.user.is_superuser or request.user.role == 'Admin' %}
-                            <div class="page-title-box d-flex-between flex-wrap gap-15">
-                                <h1 class="page-title fs-18 lh-1" style="color: #DEE3E2;">جزئیات نصاب</h1>
-                                <div class="container my-5">
-                                    <nav aria-label="breadcrumb" class="nav-breadcrumb">
-                                        <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
-                                            <li class="breadcrumb-item">
-                                                <a href="/">
-                                                    صفحه اصلی
-                                                </a>
-                                            </li>
-                                            <li class="breadcrumb-item"></li>
-                                            <li class="breadcrumb-item">
-                                                <a href="{% url 'technicians:technicians-list' %}">
-                                                    نصاب‌ها
-                                                </a>
-                                            </li>
-                                            <li class="breadcrumb-item active" aria-current="page">
-                                                جزئیات نصاب
-                                            </li>
-                                        </ol>
-                                    </nav>
-                                </div>
-                            </div>
-                        {% endif %}
-                    </div>
-
-                    <div class="col-xl-12">
-                        <div class="Installation-nav mb-25 mobile-nav">
-                            <ul class="d-flex-items gap-10">
-                                <li class="active">
-                                    <a
-                                    class="btn"
-                                    style="background-color: #116979; color: #FFFFFF;"
-                                    href="{{ technician.get_absolute_url }}"
-                                    >جزئیات</a
-                                    >
-                                </li>
-                                {% if request.user.is_superuser or request.user.role == 'Admin' %}
-                                    <li class="">
-                                        <a
-                                            class="btn btn-light"
-                                            style="color: #116979;"
-                                            href="#">
-                                            تنظیم
-                                        </a>
-                                    </li>
-                                {% endif %}
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-xxl-8 col-xl-6 pb-4">
-                        <div class="row card-section">
-                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 card-item pb-3">
-                                <div class="card report-card">
-                                    <div class="card-body mini-card-body d-flex align-center gap-16">
-                                        <div class="avatar avatar-xl bg-success-transparent text-success">
-                                            <i class="ri-checkbox-circle-line fs-42"></i>
-                                        </div>
-                                        <div class="card-content">
-                                            <span class="d-block fs-19 mb-5 text-secondary report-title">سطح مهارت</span>
-                                            <p class="mb-5 fa report-text">
-                                                {{ technician.skill_level }}
-                                            </p>
-                                            <!-- <span class="fs-12 text-muted ml-5">این هفته</span> -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 card-item pb-3">
-                                <div class="card report-card">
-                                    <div class="card-body mini-card-body d-flex align-center gap-16">
-                                    <div class="avatar avatar-xl bg-warning-transparent text-warning">
-                                        <i class="ri-time-line fs-42"></i>
-                                    </div>
-                                        <div class="card-content">
-                                            <span class="d-block fs-19 mb-5 text-secondary report-title">تجربه</span>
-                                            <p class="mb-5 fa report-text">
-                                                سال {{ Installation.experience_years }}
-                                            </p>
-                                            <!-- <span class="fs-12 text-muted ml-5">در انتظار</span> -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xxl-12 col-xl-6 col-lg-6 col-md-6 bigger-card">
-                                <div class="card report-card">
-                                    <div class="card-body mini-card-body d-flex align-center gap-16">
-                                        <div class="avatar avatar-xl bg-warning-transparent text-warning">
-                                            <i class="ri-time-line fs-42"></i>
-                                        </div>
-                                            <div class="card-content">
-                                                <span class="d-block fs-19 mb-5">
-                                                    <h2 style="font-size: 1.8rem;">
-                                                        خدمات
-                                                    </h2>
-                                                </span>
-                                                {% for Installation in installations %}
-                                                    <p class="mb-5 fa" style="font-size: 1.5rem;">
-                                                        <a href="{{ Installation.get_absolute_url }}">
-                                                            {{ Installation.user.userprofile.fullname }}
-                                                        </a>
-                                                    </p>
-                                                {% empty %}
-                                                    <p class="mb-5 fa" style="font-size: 1.7rem;">
-                                                        خدماتی تا به‌حال انجام نشده‌است!
-                                                    </p>
-                                                {% endfor %}
-                                                <!-- <span class="fs-12 text-muted ml-5">این ماه</span> -->
-                                            </div>
-                                        </div>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xxl-4 col-xl-6">
-                            <div class="card">
-                                <div class="card-header justify-between" style="background-color: #116979; color: #FFFFFF;">
-                                    <h4 class="text-center" style="margin: auto;">اطلاعات شخصی</h4>
-                                    </div>
-                                    <div class="card-body pt-15">
-                                    <!--
-                                        <div class="text-center mb-10">
-                                            <div class="avatar avatar-big radius-100">
-                                                <img
-                                                    alt="image not found"
-                                                    class="radius-100"
-                                                    src="{% static 'images/avatar/avatar-thumb-001.webp' %}"
-                                                />
-                                            </div>
-                                        </div>
-                                    -->
-                                    <div class="profile-info text-center mb-15">
-                                        <h3 class="mb-5">{{ technician.user.userprofile.fullname }}</h3>
-                                        <h6 class="badge bg-primary-subtle text-primary-emphasis unique-code">
-                                            <span class="text-black">
-                                                شناسه نصاب: {{ technician.installer_code }}
-                                            </span>
-                                        </h6>
-                                        <div class="d-flex-center gap-15"></div>
-                                    </div>
-
-                                    <div class="table-responsive table-info">
-                                        <table class="table">
-                                            <tbody>
-                                                <tr>
-                                                    <td>نام</td>
-                                                    <td>
-                                                        <div class="text-heading">
-                                                            {{ technician.user.userprofile.fullname }}
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>تاریخ پیوستن</td>
-                                                    <td>
-                                                        <div class="text-heading">
-                                                            {{ technician.created_at | to_jalali:"%Y/%m/%d" }}
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>شماره موبایل</td>
-                                                    <td>
-                                                        <div class="text-heading">
-                                                        <a dir="ltr">
-                                                            {{ technician.user.phone_number.as_national }}
-                                                        </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>شماره ملی</td>
-                                                    <td>
-                                                        <div class="text-heading">
-                                                            {{ technician.national_code }}
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>تعداد نصب‌ها</td>
-                                                    <td>
-                                                        <div class="text-heading">
-                                                            {{ installations_count }}
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>وضعیت</td>
-                                                    <td>
-                                                        {% if technician.is_active %}
-                                                            <div class="badge bg-success-subtle text-success-emphasis">فعال</div>
-                                                        {% else %}
-                                                            <div class="badge bg-danger-subtle text-danger-emphasis">غیرفعال</div>
-                                                        {% endif %}
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-                </div>
-            </div>
+    <main class="installer-profile">
+        <!-- Top Action Bar -->
+        <div class="profile-actions">
+            <button class="btn-sub">ویرایش اطلاعات</button>
+            <button class="btn-sub">جزئیات</button>
         </div>
 
-    </div>
+        <div class="profile-layout">
+            <!-- Sidebar: Info & Avatar -->
+            <aside class="profile-sidebar">
+                <div class="profile-main-card">
+                    <div class="installer-main-info">
+                        <img src="{% static 'img/user_default_avatar.png' %}" alt="Installer" class="profile-img">
+                        <h2 class="installer-name">{{ technician.user.userprofile.fullname }}</h2>
+                    </div>
+
+                    {% if technician.is_active %}
+                        <span class="status-pill active">فعال</span>
+                    {% else %}
+                        <span class="status-pill">غیرفعال</span>
+                    {% endif %}
+                    <div class="quick-info">
+                        <p><strong>کد نصاب:</strong> {{ technician.installer_code }}</p>
+                        <p><strong>تعداد نصب:</strong> {{ installations_count }}</p>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <section class="profile-content">
+
+                <!-- Detailed Info Card -->
+                <div class="info-card">
+                    <h3>اطلاعات تکمیلی</h3>
+                    <div class="details-grid">
+                        <div class="detail-item">
+                            <span>کد ملی</span>
+                            <strong>{{ technician.national_code }}</strong>
+                        </div>
+                        <div class="detail-item">
+                            <span>شماره همراه</span>
+                            <strong>{{ technician.user.phone_number }}</strong>
+                        </div>
+                        <div class="detail-item">
+                            <span>تجربه</span>
+                            <strong>{{ technician.experience_years }} سال</strong>
+                        </div>
+                        <div class="detail-item">
+                            <span>سطح مهارت</span>
+                            <strong>{{ technician.skill_level }}</strong>
+                        </div>
+                        <div class="detail-item full">
+                            <span>آدرس</span>
+                            <strong>{{ technician.user.userprofile.address }}</strong>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+
+        <!-- Recent Installs & Stats -->
+        <section class="stats-content">
+            <div class="stats-row">
+                <!-- Recent Installs Section -->
+                <div class="card">
+                    <h3>آخرین نصب‌ها</h3>
+                    <ul class="compact-list">
+                        <li>
+                            <span class="item-title">نصب تصفیه آب آکوا</span>
+                            <span class="item-meta">۱۴۰۳/۰۲/۱۵</span>
+                        </li>
+                        <li>
+                            <span class="item-title">تعویض فیلتر دستگاه نیمه صنعتی</span>
+                            <span class="item-meta">۱۴۰۳/۰۲/۱۰</span>
+                        </li>
+                        <li>
+                            <span class="item-title">سرویس دوره‌ای دستگاه خانگی</span>
+                            <span class="item-meta">۱۴۰۳/۰۲/۰۱</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Frequent Devices Section -->
+                <div class="card">
+                    <h3>دستگاه‌های پرتکرار</h3>
+                    <ul class="compact-list">
+                        <li>
+                            <span class="item-title">دستگاه خانگی ۶ مرحله‌ای</span>
+                            <span class="item-meta">۴۵ نصب</span>
+                        </li>
+                        <li>
+                            <span class="item-title">دستگاه نیمه صنعتی</span>
+                            <span class="item-meta">۱۲ نصب</span>
+                        </li>
+                        <li>
+                            <span class="item-title">دستگاه یخچال ساید</span>
+                            <span class="item-meta">۸ نصب</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
 
 {% endblock content %}

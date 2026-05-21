@@ -5,117 +5,85 @@
 
 {% block title %}لیست نصاب‌ها{% endblock title %}
 
-{% block extra_style %}
-<style>
-    form.search-filter-form {border: 1px solid #DE7119;}
-    tbody.td {font-size: 1.6rem;}
-
-    /* Response configs */
-    @media screen and (max-width: 576px) {
-        form.search-filter-form .search-btn {width: 100%;}
-        .register-new-Installation-btn {width: 100%;}
-        .items-list-section {width: 100%; margin: 0; padding: 0;}
-    }
-
-    @media screen and (min-width: 768px) and (max-width: 992px) {
-        form.search-filter-form .search-btn {width: 30%;}
-        .register-new-Installation-btn {width: 30%;}
-    }
-</style>
-{% endblock extra_style %}
-
 {% block content %}
 
-<div class="app-content-area">
-    <div class="app-content-wrap">
-        <div class="container-fluid">
+    <!-- Header -->
+    <div class="page-header">
+        <h2 class="page-title">لیست نصاب‌ها</h2>
+        <a href="add_technician.html" class="btn-sub">+ نصاب جدید</a>
+    </div>
 
-            <div class="row">
-                <div class="col-xl-12 items-list-section">
-                    <div class="card" style="padding: 10px;">
-                        <div class="justify-between">
-                            <h4 class="d-flex-items gap-10">لیست نصاب‌ها</h4>
-                            <div class="d-flex flex-wrap gap-15">
-                                <a
-                                    class="btn btn-orange register-new-technician-btn"
-                                    href="{% url 'technicians:technician-create-user' %}"
-                                >
-                                    ثبت نطاب جدید
-                                </a>
-                            </div>
-                        </div>
+    <!-- Installers Grid -->
+    <section class="installers-grid">
 
-                        <form
-                            action="{% url 'technicians:technicians-list' %}"
-                            method="get"
-                            class="form-control mt-3 mb-5 search-filter-form"
-                        >
-                            {% csrf_token %}
-                            {{ form.non_field_errors }}
+        <!-- Installer Card -->
+        {% for technician in technicians %}
 
-                            <div class="row g-2 align-items-end">
-                                <div class="col-md-4">
-                                    <!-- {{ filters.form.device.label }} -->
-                                    سطح مهارت
-                                    {{ filters.form.skill_level }}
-                                </div>
-                            </div>
-                            <input type="submit" value="جستجو" class="btn btn-orange mt-2 col-1 search-btn">
-                        </form>
+            <div class="installer-card">
+                <div class="installer-header">
+                    <img src="{% static 'img/user_default_avatar.png' %}" alt="{{ technician.user.username }}" class="installer-avatar">
 
-                        <div class="card-body pt-10">
-                            <div class="table-responsive">
-                                <table class="table text-nowrap w-100" id="dataTableDefault">
-                                    <thead class="table-warning">
-                                        <tr>
-                                            <th>نام</th>
-                                            <th>شماره تماس</th>
-                                            <th>شماره ملی</th>
-                                            <th>تاریخ عضویت</th>
-                                            <th>تعداد نصب</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% for technician in technicians %}
-                                            <tr>
-                                                <td>
-                                                    <a
-                                                        href="{{ technician.get_absolute_url }}"
-                                                        style="color: #DE7119;"
-                                                    >
-                                                        {{ technician.user.userprofile.fullname }}</td>
-                                                    </a>
-                                                <td>
-                                                    <span dir="ltr">{{ technician.user.phone_number.as_national }}</span>
-                                                </td>
-                                                <td>{{ technician.national_code }}</td>
-                                                <td>{{ technician.created_at | to_jalali:"%d %B %Y" }}</td>
-                                                <td>{{ technician.installations.count }}</td>
-                                                <!-- <td>
-                                                    {% if Installation.is_active %}
-                                                        <span class="badge bg-label-success">
-                                                            فعال
-                                                        </span>
-                                                    {% else %}
-                                                        <span class="badge bg-label-danger">
-                                                            غیرفعال
-                                                        </span>
-                                                    {% endif %}
-                                                </td> -->
-                                            </tr>
-                                        {% empty %}
-                                            <h3 class="text text-center">تا به‌حال مشتریی ثبت نشده!</h3>
-                                        {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                    <div>
+                        <h3 class="name">{{ technician.user.userprofile.fullname }}</h3>
+                        <span class="id-code">کد: {{ technician.installer_code }}</span>
                     </div>
                 </div>
+
+                <div class="installer-info">
+                    <div class="info-item">
+                        <span class="label">کد ملی</span>
+                        <span class="value">{{ technician.national_code }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">تجربه</span>
+                        <span class="value">{{ technician.experience_years }} سال</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">سطح مهارت</span>
+                        <span class="value badge-skill advanced">{{ technician.skill_level }}</span>
+                    </div>
+                </div>
+
+                <a href="{{ technician.get_absolute_url }}" class="view-profile-btn">مشاهده پروفایل</a>
             </div>
+        
+        {% endfor %}
+
+    </section>
+
+    <!-- Pagination -->
+    <div class="pagination">
+
+        <a href="#" class="page-btn">
+            قبلی
+        </a>
+
+
+        <div class="page-numbers">
+
+            <a href="#" class="page-number active">
+                1
+            </a>
+
+            <a href="#" class="page-number">
+                2
+            </a>
+
+            <a href="#" class="page-number">
+                3
+            </a>
+
+            <a href="#" class="page-number">
+                4
+            </a>
 
         </div>
+
+
+        <a href="#" class="page-btn">
+            بعدی
+        </a>
+
     </div>
-</div>
 
 {% endblock content %}
