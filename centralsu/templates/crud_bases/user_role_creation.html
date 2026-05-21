@@ -4,46 +4,41 @@
     {% block role_head_title %}{% endblock role_head_title %}
 {% endblock title %}
 
-{% block extra_style %}
-    <style>
-        /* .login-btn {background-color: #7AB2D3; color: #FFFFFF;} */
-
-        .forgot-password {color: #F6F1F1;}
-        .user-role-creation-btn {
-            background-color: #4A628A;
-            color: #FFFFFF;
-            opacity: .8;
-            transition: opacity .4s;
-        }
-        .user-role-creation-btn:hover {background-color: #4A628A; color: #FFFFFF; opacity: 1;}
-    </style>
-{% endblock extra_style %}
-
 
 {% block content %}
 
-    <div class="row flex-container">
-        <div class="user-login">
-            <h2>{% block form_title %}{% endblock form_title %}</h2>
-            <p style="opacity: .8;">{% block form_description %}{% endblock form_description %}</p>
+    <main class="form-container">
+        <div class="form-card">
+            <h2 class="form-title">{%block form_title%}{% endblock form_title %}</h2>
 
-            <form class="form-control mb-3" method="post">
+            <!-- Multi step indicator -->
+            <div class="form-steps">
+                <div class="form-step is-active">۱</div>
+                <div class="form-step">۲</div>
+                <div class="form-step">۳</div>
+            </div>
+
+            <!-- Step 1 Form -->
+            <form method="post">
                 {% csrf_token %}
-                {{ form.non_field_errors }}
 
-                {% for field in form %}
-					{% if field.errors %}
-						{% for error in field.errors %}
-							<p class="alert alert-danger">{{ error }}</p>
-						{% endfor %}
-					{% endif %}
+                <div class="form-group">
+                    <label>{{ form.phone_number.label }}</label>
+                    <input type="text" placeholder="{{ form.phone_number_placeholder }}" name="phone_number">
+                </div>
 
-                    {{ field }}
-                {% endfor %}
+                <div class="form-group">
+                    <label class="mt-4">{{ form.password.label }}</label>
+                    <input type="password" placeholder="{{ form.password_placeholder }}" name="password">
+                </div>
 
-                <input type="submit" value="بعدی" class="btn user-role-creation-btn">
+                <!-- Form actions -->
+                <div class="form-actions">
+                    <button type="submit" class="btn-main">بعدی</button>
+                </div>
+
             </form>
         </div>
-    </div>
+    </main>
 
 {% endblock content %}

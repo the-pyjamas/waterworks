@@ -1,0 +1,50 @@
+/* Container for toast messages */
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Base toast style */
+.toast-item {
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 300px;
+    max-width: 400px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    color: var(--color-white);
+    animation: slideIn 0.3s ease-out;
+}
+
+/* Variations based on Django tags */
+.toast-success { background: #2ecc71; }
+.toast-error { background: #e74c3c; }
+.toast-info { background: #3498db; }
+.toast-warning { background: #f1c40f; color: #333; }
+
+.toast-message { font-size: 1rem; font-weight: 500; }
+
+.toast-close {
+    background: transparent;
+    border: none;
+    color: currentColor;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-left: 1rem;
+    opacity: 0.7;
+}
+
+.toast-close:hover { opacity: 1; }
+
+/* Simple entrance animation */
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}

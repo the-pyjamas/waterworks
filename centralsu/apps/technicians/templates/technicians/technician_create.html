@@ -1,10 +1,50 @@
-{% extends 'crud_bases/role_creation.html' %}
+{% extends 'base.html' %}
 
-{% block role_head_title %}اطلاعات شغلی نصاب{% endblock role_head_title %}
+{% block title %}ثبت نصاب{% endblock title %}
 
-{% block form_title %}اطلاعات شغلی نصاب{% endblock form_title %}
-{% block form_description %}
-    با استفاده از فرم زیر اطلاعات شغلی و تجربه کاری نصاب را ثبت کنید:
-{% endblock form_description %}
 
-{% block btn_value %}ثبت نصاب جدید{% endblock btn_value %}
+{% block content %}
+
+    <main class="form-container">
+        <div class="form-card">
+            <h2 class="form-title">اطلاعات حرفه‌ای</h2>
+
+            <!-- Progress Bar -->
+            <div class="form-steps">
+                <div class="form-step is-completed">۱</div>
+                <div class="form-step is-completed">۲</div>
+                <div class="form-step is-active">۳</div>
+            </div>
+
+            <form method="post">
+                {% csrf_token %}
+
+                <!-- Row for Experience and Skill Level -->
+                <div class="form-grid-2">
+                    <div class="form-group">
+                        <label>{{ form.experience_years.label }}</label>
+                        <input type="number" placeholder="مثلاً: ۵" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label>{{ form.skill_level.label }}</label>
+                        {{ form.skill_level }}
+                    </div>
+                </div>
+
+                <!-- National ID field -->
+                <div class="form-group">
+                    <label>{{ form.national_code.label }}</label>
+                    <input type="text" placeholder="۰۰۱۲۳۴۵۶۷۸" maxlength="10">
+                    <span class="field-hint">کد ملی ۱۰ رقمی بدون خط تیره وارد شود.</span>
+                </div>
+
+                <!-- Navigation buttons -->
+                <div class="form-actions" style="display: flex; gap: 1rem; margin-top: 2rem;">
+                    <a href="{% url 'technicians:technician-update-user-profile' %}" class="btn-sub">بازگشت</a>
+                    <button type="submit" class="btn-main">ثبت نهایی</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+{% endblock content %}

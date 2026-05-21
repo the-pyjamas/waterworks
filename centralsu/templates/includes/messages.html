@@ -1,7 +1,10 @@
 {% if messages %}
-    {% for msg in messages %}
-        <div class="messagealert" style="font-size: 1.4rem; width: 100%; text-align: center;">
-            <p class="alert alert-{{ msg.tags }}">{{ msg }}</p>
+    <div class="toast-container">
+        {% for msg in messages %}
+        <div class="toast-item toast-{{ msg.tags }}">
+            <span class="toast-message">{{ msg }}</span>
+            <button class="toast-close" onclick="this.parentElement.remove()">×</button>
         </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
 {% endif %}

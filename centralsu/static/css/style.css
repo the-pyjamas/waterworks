@@ -26,6 +26,7 @@
 @import url("components/info-grid.css");
 @import url("components/filters.css");
 @import url("components/dropdown.css");
+@import url("components/messages.css");
 
 @import url("pages/home.css");
 @import url("pages/user_profile.css");

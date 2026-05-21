@@ -17,6 +17,8 @@
             {% block pre_main_content %}
             {% endblock pre_main_content %}
             <div class="page-inner">
+                {% include 'includes/messages.html' %}
+                
                 {% block content %}
                 {% endblock content %}
             </div>

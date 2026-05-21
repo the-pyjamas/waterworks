@@ -19,11 +19,11 @@ class UserSoftRegisterForm(forms.Form):
     """
     phone_number = PhoneNumberField(
         region='IR',
-        label=_('Phone number'),
+        label=_('شماره همراه'),
         widget=forms.TextInput(attrs={'placeholder': _('شماره همراه مثل ۰۹۱۲۵۶۵۲۳۳۲')})
     )
     password = forms.CharField(
-        label=_("Password"),
+        label=_("رمزعبور"),
         widget=forms.PasswordInput(attrs={'placeholder': _('رمزعبوری را انتخاب کنید')}),
         validators=[validate_password]
     )
@@ -38,9 +38,19 @@ class UserSoftRegisterForm(forms.Form):
         super().__init__(*args, **kwargs)
 
         for field in self.fields.values():
-            field.widget.attrs.update({
-                'class': 'form-control mb-2'
-            })
+            # Add placeholder for fields
+            self.fields['phone_number'].widget.attrs = {
+                'placeholder': _('شماره همراه مثل ۰۹۱۲۵۶۵۲۳۳۲'),
+                'class': 'mb-4',
+            }
+            self.fields['password'].widget.attrs = {
+                'placeholder': _('رمزعبور'),
+                'class': 'mb-4',
+            }
+
+        # Get the placeholders to use them in the template fields' placeholders
+        self.password_placeholder = self.fields['password'].widget.attrs.get('placeholder')
+        self.phone_number_placeholder = self.fields['phone_number'].widget.attrs.get('placeholder')
 
     def clean_phone(self):
         """

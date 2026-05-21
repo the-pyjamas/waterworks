@@ -37,13 +37,16 @@ class UserProfileUpdateForm(forms.ModelForm):
     Just profile info.
     Validate the incoming data from the client and cleaned them.
     """
-    first_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': _('نام')}))
-    last_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': _('نام خانوادگی')}))
-    address = forms.CharField(widget=forms.TextInput(attrs={'placeholder': _('آدرس')}))
 
     class Meta:
         model = UserProfile
         fields = ('first_name', 'last_name', 'address')
+
+        labels = {
+            "first_name": _("نام کوچک"),
+            "last_name": _("نام خانوادگی"),
+            "address": _("آدرس")
+        }
 
 
     def __init__(self, *args, **kwargs) -> None:
@@ -54,5 +57,5 @@ class UserProfileUpdateForm(forms.ModelForm):
 
         for field in self.fields.values():
             field.widget.attrs.update({
-                'class': 'form-control mb-4'
+                'class': 'mb-4'
             })
