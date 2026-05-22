@@ -64,18 +64,23 @@ class InstallationUpdateForm(forms.ModelForm):
     """
     # Overriding installation and replacement dates fields
     installation_date = JalaliDateField(
+        label=_("تاریخ نصب"),
         widget=AdminJalaliDateWidget(attrs={"class": "form-control"})
     )
     first_replacement_date = JalaliDateField(
+        label=_("اولین تعویض فیلتر"),
         widget=AdminJalaliDateWidget(attrs={"class": "form-control"})
     )
     second_replacement_date = JalaliDateField(
+        label=_("دومین تعویض فیلتر"),
         widget=AdminJalaliDateWidget(attrs={"class": "form-control"})
     )
     third_replacement_date = JalaliDateField(
+        label=_("سومین تعویض فیلتر"),
         widget=AdminJalaliDateWidget(attrs={"class": "form-control"})
     )
     forth_replacement_date = JalaliDateField(
+        label=_("چهارمین تعویض فیلتر"),
         widget=AdminJalaliDateWidget(attrs={"class": "form-control"})
     )
 
@@ -98,22 +103,30 @@ class InstallationUpdateForm(forms.ModelForm):
             "third_replacement_status", "forth_replacement_status"
         )
 
+        labels = {
+            "vendor": _("فروشنده"),
+            "technician": _("نصاب"),
+            "description": _("توضیحات"),
+            "device": _("دستگاه"),
+            "is_active": _("وضعیت خدمات"),
+        }
+
         widgets = {
-            "vendor": forms.Select(attrs={"class": "form-control mb-4"}),
-            "device": forms.Select(attrs={"class": "form-control mb-4"}),
-            "technician": forms.Select(attrs={"class": "form-control mb-4"}),
-            "is_active": forms.CheckboxInput(attrs={"type": "checkbox", "class": "form-control mb-4"}),
+            "vendor": forms.Select(attrs={"class": "mb-4"}),
+            "device": forms.Select(attrs={"class": "mb-4"}),
+            "technician": forms.Select(attrs={"class": "mb-4"}),
+            "is_active": forms.CheckboxInput(attrs={"type": "checkbox", "class": "mb-4"}),
             # Replacement dates status
             "first_replacement_status": forms.CheckboxInput(
-                attrs={"type": "checkbox", "class": "form-control mb-4"}
+                attrs={"type": "checkbox", "class": "mb-4"}
             ),
             "second_replacement_status": forms.CheckboxInput(
-                attrs={"type": "checkbox", "class": "form-control mb-4"}
+                attrs={"type": "checkbox", "class": "mb-4"}
             ),
             "third_replacement_status": forms.CheckboxInput(
-                attrs={"type": "checkbox", "class": "form-control mb-4"}
+                attrs={"type": "checkbox", "class": "mb-4"}
             ),
             "forth_replacement_status": forms.CheckboxInput(
-                attrs={"type": "checkbox", "class": "form-control mb-4"}
+                attrs={"type": "checkbox", "class": "mb-4"}
             ),
         }

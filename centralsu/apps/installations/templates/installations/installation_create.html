@@ -1,10 +1,62 @@
-{% extends 'crud_bases/role_creation.html' %}
+{% extends 'base.html' %}
 
-{% block role_head_title %}اطلاعات نصب{% endblock role_head_title %}
+{% block title %}ثبت نصب{% endblock title %}
 
-{% block form_title %}اطلاعات نصب{% endblock form_title %}
-{% block form_description %}
-    با استفاده از فرم زیر اطلاعات نصب و دستگاه نصب‌شده را وارد کنید:
-{% endblock form_description %}
 
-{% block btn_value %}ثبت مشتری{% endblock btn_value %}
+{% block content %}
+
+    <main class="form-container add-installation-step3-page">
+        <div class="form-card">
+            <h2 class="form-title">اطلاعات نصب</h2>
+
+            <!-- Progress Bar -->
+            <div class="form-steps">
+                <div class="form-step is-completed">۱</div>
+                <div class="form-step is-completed">۲</div>
+                <div class="form-step is-active">۳</div>
+            </div>
+
+            <form class="add-installation-step3-form" method="post">
+                {% csrf_token %}
+
+                <div class="add-installation-step3-grid">
+                    <!-- Seller -->
+                    <div class="form-group">
+                        <label for="sellerSelect">{{ form.vendor.label }}</label>
+                        {{ form.vendor }}
+                    </div>
+
+                    <!-- Installer -->
+                    <div class="form-group">
+                        <label for="installerSelect">{{ form.technician.label }}</label>
+                        {{ form.technician }}
+                    </div>
+
+                    <!-- Device -->
+                    <div class="form-group">
+                        <label for="deviceSelect">{{ form.device.label }}</label>
+                        {{ form.device }}
+                    </div>
+
+                    <!-- Installation Date -->
+                    <div class="form-group">
+                        <label for="installationDate">{{ form.installation_date.label }}</label>
+                        <input type="date" id="installationDate" name="installation_date">
+                    </div>
+
+                    <!-- Description -->
+                    <div class="form-group add-installation-step3-description">
+                        <label for="installationDescription">{{ form.description.label }}</label>
+                        <textarea id="installationDescription" rows="4" placeholder="توضیحات تکمیلی نصب را وارد کنید" name="description"></textarea>
+                    </div>
+                </div>
+
+                <!-- Navigation buttons -->
+                <div class="form-actions add-installation-step3-actions">
+                    <button type="submit" class="btn-main">ثبت نهایی</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+{% endblock content %}

@@ -9,4 +9,4 @@ class InstallationUpdateView(BaseRoleProfileUpdateView):
     model = Installation
     role = "Installation"
     form_class = InstallationUpdateForm
-    template_name = "installations/Installation_update.html"
+    template_name = "installations/installation_update.html"
