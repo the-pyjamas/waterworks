@@ -91,89 +91,32 @@
             <div class="devices-grid">
 
                 {% for device in last_three_devices %}
-                
-                    {% if device.image %}
-                        <a class="device-card" href="{{ device.get_absoute_url }}">
-                            <div class="device-cover">
-                                    <img src="{{ device.image.url }}" alt="AquaPro X200">
-
-                                <span class="device-status active">فعال</span>
-                            </div>
-
-                            <div class="device-body">
-
-                                <h3 class="device-name">{{ device.name }}</h3>
-
-                                <div class="device-meta">
-                                    <span class="device-model">مدل {{ device.model }}</span>
-                                    <span class="device-count">{{ device.installed_count }} نصب</span>
-                                </div>
-
-                            </div>
-                        </a>
-                    {% else %}
-                        <div class="col">
-                            <div
-                                class="card card-cover h-100 overflow-hidden text-bg-dark border border-none rounded-4 shadow-lg"
-                                style="
-                                    background-image: linear-gradient(#38598B,#1672c2);
-                                    background-size: cover;
-                                    background-position: center;
-                                ">
-                                <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-                                    <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold align-self-start" style="position: relative; top: -50px;">
-                                        <a href="{{ device.get_absolute_url }}" class="text-white">
-                                            {{ device.name }}
-                                        </a>
-                                    </h3>
-                                    <ul class="d-flex list-unstyled mt-auto p-0 
-                                                flex-md-row flex-md-nowrap 
-                                                justify-content-center justify-content-md-start 
-                                                mb-md-0
-                                                pb-md-0">
-
-                                        <li class="me-auto md-md-2">
-                                            <img
-                                                src=""
-                                                alt="Nothing!"
-                                                width="32"
-                                                height="32"
-                                                class="rounded border border-white px-2 d-none"
-                                            />
-                                        </li>
-                                        <li class="d-flex align-items-center me-3 me-md-2">
-                                            <svg
-                                                class="bi me-2"
-                                                width="1em"
-                                                height="1em"
-                                                role="img"
-                                                aria-label="Location"
-                                            >
-                                                <use xlink:href="#geo-fill"></use>
-                                            </svg>
-                                            {% if device.is_in_stock %}
-                                                <small class="badge bg-success-subtle text-success-emphasis">موجود</small>
-                                            {% else %}
-                                                <small class="badge bg-danger-subtle text-danger-emphasis">ناموجود</small>
-                                            {% endif %}
-                                        </li>
-                                        <li class="d-flex align-items-center">
-                                            <svg
-                                                class="bi me-2"
-                                                width="1em"
-                                                height="1em"
-                                                role="img"
-                                                aria-label="Duration"
-                                            >
-                                                <use xlink:href="#calendar3"></use>
-                                            </svg>
-                                            <small>{{ device.model }}</small>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                    <a class="device-card" href="{{ device.get_absolute_url }}">
+                        <div class="device-cover">
+                            {% if device.image %}
+                                <img src="{{ device.image.url }}" alt="AquaPro X200">
+                            {% else %}
+                                <img src="{% static 'img/illustration_banner.png' %}" alt="AquaPro X200">
+                            {% endif %}
+                            
+                            {% if device.is_in_stock %}
+                                <span class="device-status active">موجود</span>
+                            {% else %}
+                                <span class="device-status">ناموجود</span>
+                            {% endif %}
                         </div>
-                    {% endif %}
+
+                        <div class="device-body">
+
+                            <h3 class="device-name">{{ device.name }}</h3>
+
+                            <div class="device-meta">
+                                <span class="device-model">مدل {{ device.model }}</span>
+                                <span class="device-count">{{ device.installed_count | to_farsi_digit }} نصب</span>
+                            </div>
+
+                        </div>
+                    </a>
                 {% endfor %}
 
             </div>
