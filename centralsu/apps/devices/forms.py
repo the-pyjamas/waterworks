@@ -16,6 +16,7 @@ class DeviceCreateForm(forms.ModelForm):
             'guarantee',
             'stock_quantity',
             'is_in_stock',
+            'image'
         )
 
         labels = {
@@ -24,6 +25,11 @@ class DeviceCreateForm(forms.ModelForm):
             'guarantee': _('گارانتی دستگاه'),
             'stock_quantity': _('موجودی'),
             'is_in_stock': _('وضعیت موجودی'),
+            'image': _('تصویر بنر دستگاه')
+        }
+
+        widgets = {
+            'is_in_stock': forms.CheckboxInput(attrs={'type': 'checkbox'}),
         }
 
 

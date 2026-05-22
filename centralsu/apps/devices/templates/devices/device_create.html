@@ -5,41 +5,46 @@
 
 {% block content %}
 
-    <div class="row flex-container">
-        <div class="user-login">
-            <h2>اضافه کردن دستگاه</h2>
-            <p style="opacity: .8;">لطفا از فرم زیر برای اضافه کردن یک دستگاه جدید استفاده کنید:</p>
+    <main class="add-device-page">
 
-            <form action="" class="form-control mb-3" method="post">
+        <!-- Page Title -->
+        <div class="page-header">
+            <h1>ویرایش دستگاه {{ device.name }}  {{ device.model }}</h1>
+            <a href="{{ object.get_absolute_url }}" class="btn-sub outline">برگشت به صفحه جزئیات دستگاه</a>
+        </div>
+
+        <!-- Device Form Card -->
+        <section class="form-card">
+
+            <form class="add-device-form" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ form.non_field_errors }}
-
-                <div class="row">
+                
+                <div class="add-device-grid">
 
                     {% for field in form %}
-
-                        {% if field.field.widget.input_type == "checkbox" %}
-                            <div class="col-md-3 form-check mb-3">
-                                <label class="form-check-label" for="{{ field.id_for_label }}">
-                                    {{ field.label }}
-                                </label>
-                                {{ field }}
-                            </div>
+                        {% if field.name == 'is_in_stock' %}
+                            <div class="field-item checkbox-item">
+                                    <label>
+                                        موجود هست
+                                        <input type="checkbox" name="is_in_stock">
+                                    </label>
+                                </div>
                         {% else %}
-                            <div class="col-md-6 mb-3">
-                                {{ field.label_tag }}
+                            <div class="field-item">
+                                <label>{{ field.label }}</label>
                                 {{ field }}
                             </div>
                         {% endif %}
-
                     {% endfor %}
 
                 </div>
 
-                <input type="submit" value="اضافه کردن دستگاه" class="btn login-btn">
+                <button type="submit" class="btn-main">ثبت تغییرات</button>
             </form>
 
-        </div>
-    </div>
+
+        </section>
+
+    </main>
 
 {% endblock content %}

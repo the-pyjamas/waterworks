@@ -58,7 +58,7 @@ class DeviceCreateView(LoginRequiredMixin, FormView):
 
 		messages.success(
 			request=self.request,
-			message=_(f"Device created successfully."),
+			message=_(f"دستگاه با موفقیت ثبت شد."),
 			extra_tags="success"
 		)
 		return redirect("devices:devices-list")
