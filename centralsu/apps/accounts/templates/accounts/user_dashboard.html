@@ -1,87 +1,51 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block title %}داشبورد کاربری{% endblock title %}
 
 
 {% block content %}
 
-	<div class="user-dashboard">
-		<div class="user-card mb-2">
-			<div class="user-dashboard-card">
-				<img src="{{ user.userprofile.picture.url }}" alt="" class="user-profile-picture">
-				<div class="user-basic-info">
-					<h2 class="user-username">{{ user.username | upper }}</h2>
-					<p>
-						به داشبورد اختصاصی خودت خوش‌اومدی،  
-						<span style="font-weight: bold;">{{ user.username }}</span>.
-					</p>
+	<div class="user-profile-page">
+
+		<div class="user-profile-card">
+
+			<div class="user-profile-header">
+
+				<div class="user-avatar">
+					<img src="{% static 'img/user_default_avatar.png' %}" alt="User Avatar">
 				</div>
+
+				<div class="user-info">
+					<h2 class="user-name">{{ user.userprofile.fullname }}</h2>
+
+					<div class="user-meta">
+						<div class="meta-item">
+							<span class="meta-label">نام کاربری</span>
+							<span class="meta-value">@{{ user.username }}</span>
+						</div>
+
+						<div class="meta-item">
+							<span class="meta-label">نام کامل</span>
+							<span class="meta-value">{{ user.userprofile.fullname }}</span>
+						</div>
+
+						<div class="meta-item">
+							<span class="meta-value role-badge">مدیر سیستم</span>
+						</div>
+					</div>
+				</div>
+
 			</div>
+
+			<div class="user-profile-actions">
+				<a href="{% url 'accounts:user-profile-update' %}" class="btn-main">ویرایش پروفایل</a>
+				<a href="{% url 'accounts:user-logout' %}" class="btn-sub logout-btn">خروج</a>
+			</div>
+
 		</div>
 
-		<div class="user-profile-info mt-2">
-			<div class="user-personal-info">
-				<ul class="user-info-list">
-					<li>
-						<h4>نام کاربری</h4>
-						<a href="" class="user-value">{{ user.username }}</a>
-					</li>
-
-					{% if user.userprofile.first_name or user.userprofile.last_name %}
-						<li>
-							<h4>نام</h4>
-							{% if user.userprofile.first_name and user.userprofile.last_name %}
-								<span class="user-value">
-									{{ user.userprofile.first_name }} {{ user.userprofile.last_name }}
-								</span>
-							{% elif user.userprofile.first_name and not user.userprofile.last_name %}
-								<span class="user-value">
-									{{ user.userprofile.first_name }}
-								</span>
-							{% elif user.userprofile.last_name and not user.userprofile.first_name %}
-								<span class="user-value">
-									{{ user.userprofile.last_name }}
-								</span>
-							{% endif %}
-						</li>
-					{% endif %}
-
-					{% if user.role %}
-						<li>
-							<h4>نقش</h4> 
-							<span class="user-value">{{ user.role }}</span>
-						</li>
-					{% endif %}
-
-					<!-- {% if user.userprofile.address %}
-						<li>
-							<h4>آدرس</h4> 
-							<span class="user-value">{{ user.userprofile.address }}</span>
-						</li>
-					{% endif %} -->
-				</ul>
-			</div>
-			<hr>
-
-			<div class="user-options">
-
-				<div class="d-grid">
-					<a href="#" class="btn btn-orange">
-						تغییر رمزعبور
-					</a>
-				</div>
-				<div class="d-grid">
-					<a href="{% url 'accounts:user-profile-update' %}" class="btn btn-orange">
-						ویرایش پروفایل
-					</a>
-				</div>
-				<div class="d-grid">
-					<a href="{% url 'accounts:user-logout' %}" class="btn btn-orange">
-						خروج از حساب
-					</a>
-				</div>
-			</div>
-		</div>
 	</div>
 
 {% endblock content %}

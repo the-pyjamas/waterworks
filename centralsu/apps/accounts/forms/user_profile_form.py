@@ -18,6 +18,10 @@ class UserUpdateForm(forms.ModelForm):
         model = User
         fields = ('username',)
 
+        labels = {
+            'username': _('نام کاربری')
+        }
+
 
     def __init__(self, *args, **kwargs) -> None:
         """

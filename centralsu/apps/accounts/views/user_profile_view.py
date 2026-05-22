@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from django.views import View
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
+from django.urls import reverse_lazy
 
 from apps.accounts.forms import UserUpdateForm, UserProfileUpdateForm
 
@@ -61,14 +62,14 @@ class UserProfileUpdateView(View):
 
             messages.success(
                 request=request,
-                message=_("Profile udpated successfully."),
+                message=_("پروفایل شما با موفقیت بروزرسانی شد."),
                 extra_tags="success"
             )
-            return redirect("/")
+            return redirect(reverse_lazy("accounts:user-dashboard"))
         else:
             messages.error(
                 request=request,
-                message=_("Please correct the errors bellow."),
+                message=_("لطفا خطا زیر را بررسی و تصحیح کنید."),
                 extra_tags="danger"
             )
         return render(

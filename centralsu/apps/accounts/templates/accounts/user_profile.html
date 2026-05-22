@@ -1,49 +1,59 @@
 {% extends 'base.html' %}
 
-{% block title %}Update Profile{% endblock title %}
+{% load static %}
 
-{% block extra_style %}
-    <style>
-        div.user-login {width: 50%;}
-    </style>
-{% endblock extra_style %}
+{% block title %}Update Profile{% endblock title %}
 
 {% block content %}
 
-    <div class="row flex-container">
-        <div class="user-login">
-            <h2>ویرایش حساب</h2>
-            <p style="opacity: .8;">لطفا با استفاده از فرم زیر اطلاعات کاربری خود را ویرایش کنید:</p>
+    <main class="profile-edit-page">
+        <div class="profile-edit-card">
+            <header class="profile-edit-header">
+                <h1>ویرایش پروفایل</h1>
+                <p>اطالاعات کاربری خود را ویرایش کنید با استفاده از فرم زیر</p>
+            </header>
 
-            <form class="form-control mb-3" method="post" enctype="multipart/form-data">
+            <form class="profile-edit-form" method="post">
                 {% csrf_token %}
-                {{ form.non_field_errors }}
+                
+                <!-- Avatar Upload Section -->
+                <div class="profile-edit-avatar-section">
+                    <div class="avatar-preview">
+                        <img src="{% static 'img/user_default_avatar.png' %}" alt="Profile">
+                    </div>
+                    <!-- <button type="button" class="btn-secondary">تغییر تصویر</button> -->
+                </div>
 
-                {% for field in user_form %}
-					{% if field.errors %}
-						{% for error in field.errors %}
-							<p class="alert alert-danger">{{ error }}</p>
-						{% endfor %}
-					{% endif %}
+                <!-- Fields Grid -->
+                <div class="profile-edit-grid">
+                    {% for field in user_form %}
+                        <div class="edit-field">
+                            <label>{{ field.label }}</label>
+                            {{ field }}
+                        </div>
+                    {% endfor %}
 
-                    {{ field }}
-                {% endfor %}
+                    {% for field in profile_form %}
+                        {% if field.name == 'address' %}
+                            <div class="edit-field full-width">
+                                <label>{{ field.label }}</label>
+                                <textarea rows="3" placeholder="آدرس کامل خود را وارد کنید" name="address"></textarea>
+                            </div>
+                        {% else %}
+                            <div class="edit-field">
+                                <label>{{ field.label }}</label>
+                                {{ field }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
 
-                <hr>
-
-                {% for field in profile_form %}
-					{% if field.errors %}
-						{% for error in field.errors %}
-							<p class="alert alert-danger">{{ error }}</p>
-						{% endfor %}
-					{% endif %}
-
-                    {{ field }}
-                {% endfor %}
-
-                <input type="submit" value="ذخیره تغییرات" class="btn save-changes-btn">
+                <footer class="profile-edit-actions">
+                    <button type="button" class="btn-outline">لغو</button>
+                    <button type="submit" class="btn-main">ثبت تغییرات</button>
+                </footer>
             </form>
         </div>
-    </div>
+    </main>
 
 {% endblock content %}
