@@ -62,7 +62,7 @@ class BaseRoleProfileCreateView(LoginRequiredMixin, View):
         Activate user after its role profile created successfully,
         and then delete the session which contains the created user-id.
         """
-        form = self.form_class(request.POST)
+        form = self.form_class(request.POST, request.FILES)
         # Get user-id from the session
         user_id = request.session.get("user_role_registered_id")
 
@@ -71,7 +71,7 @@ class BaseRoleProfileCreateView(LoginRequiredMixin, View):
         if not user_id:
             messages.error(
                 request=request,
-                message=_(f"No user found for {self.user_role} creation."),
+                message=_(f"No user found for {self.user_role} creation. کاربری برای ثبت با نقش {self.user_role} پیدا نشد."),
                 extra_tags="danger"
             )
             return redirect("home:main-home")
@@ -94,14 +94,14 @@ class BaseRoleProfileCreateView(LoginRequiredMixin, View):
 
             messages.success(
                 request=request,
-                message=_(f"{self.user_role} created successfully."),
+                message=_(f"{self.user_role} با موفقیت ساخته شد."),
                 extra_tags="success"
             )
             return redirect(self.success_url)
         else:
             messages.error(
                 request=request,
-                message=_("The data you sent are invalid."),
+                message=_("مقادیر ارسالی مشکل دارد!"),
                 extra_tags="danger"
             )
 
@@ -189,14 +189,14 @@ class BaseRoleProfileUpdateView(LoginRequiredMixin, View):
 
             messages.success(
                 request=request,
-                message=_(f"{self.role} profile udpated successfully."),
+                message=_(f"پروفایل {self.role} با موفقیت بروزرسانی شد."),
                 extra_tags="success"
             )
             return redirect(self.success_url)
         else:
             messages.error(
                 request=request,
-                message=_("Please correct the errors bellow."),
+                message=_("لطفا خطا زیر را بررسی و رفع کنید."),
                 extra_tags="danger"
             )
 

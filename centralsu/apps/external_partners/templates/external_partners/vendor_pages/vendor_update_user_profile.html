@@ -3,6 +3,5 @@
 {% block role_head_title %}فروشنده جدید{% endblock role_head_title %}
 
 {% block form_title %}فروشنده جدید{% endblock form_title %}
-{% block form_description %}
-    با استفاده از فرم زیر اطلاعات شخصی فروشنده را ثبت کنید:
-{% endblock form_description %}
+
+{% block back_link %}{% url 'external_partners:vendor-create-user' %}{% endblock back_link %}

@@ -5,7 +5,7 @@ from apps.common.views import (
     BaseUserProfileSoftUpdateView,
     BaseRoleProfileCreateView
 )
-from apps.vendors.forms import VendorCreateForm
+from apps.external_partners.forms import VendorCreateForm
 
 
 class VendorCreateUserView(BaseUserSoftRegisterView):
@@ -15,8 +15,8 @@ class VendorCreateUserView(BaseUserSoftRegisterView):
     do this, creating a new vendor object means
     creating a new user with `Vendor` role.
     """
-    success_url = reverse_lazy("vendors:vendor-update-user-profile")
-    template_name = "vendors/vendor_create_user.html"
+    success_url = reverse_lazy("external_partners:vendor-update-user-profile")
+    template_name = "external_partners/vendor_pages/vendor_create_user.html"
     user_role = "Vendor"
     authorized_roles = ("Admin",)
 
@@ -27,8 +27,8 @@ class VendorUpdateUserProfileView(BaseUserProfileSoftUpdateView):
     User personal info, the user who has just created
     softly with the Vendor role.
     """
-    success_url = reverse_lazy("vendors:vendor-create")
-    template_name = "vendors/vendor_update_user_profile.html"
+    success_url = reverse_lazy("external_partners:vendor-create")
+    template_name = "external_partners/vendor_pages/vendor_update_user_profile.html"
     authorized_roles = ("Admin",)
 
 
@@ -39,7 +39,7 @@ class VendorCreateView(BaseRoleProfileCreateView):
     Only users who authorized as Admin is be able to do it.
     """
     form_class = VendorCreateForm
-    success_url = reverse_lazy("vendors:vendors-list")
-    template_name = "vendors/vendor_create.html"
+    success_url = reverse_lazy("external_partners:vendors-list")
+    template_name = "external_partners/vendor_pages/vendor_create.html"
     user_role = "Vendor"
     authorized_roles = ("Admin",)

@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from apps.vendors.models import Vendor
-from apps.vendors.filters import VendorFilter
+from apps.external_partners.models import Vendor
+from apps.external_partners.filters import VendorFilter
 
 
 class VendorListView(LoginRequiredMixin, View):
@@ -13,7 +13,7 @@ class VendorListView(LoginRequiredMixin, View):
     Methods
         get(GET HTTP).
     """
-    template_name = "vendors/vendors_list.html"
+    template_name = "external_partners/vendor_pages/vendors_list.html"
 
     def dispatch(self, *args, **kwargs):
         """

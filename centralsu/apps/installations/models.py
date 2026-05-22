@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from dateutil.relativedelta import relativedelta
 
 from apps.common.models import BaseModel
-from apps.vendors.models import Vendor
+from apps.external_partners.models import Vendor
 from apps.technicians.models import Technician
 from apps.accounts.models import User
 from apps.devices.models import Device

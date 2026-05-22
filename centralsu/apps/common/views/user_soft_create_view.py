@@ -62,7 +62,7 @@ class BaseUserSoftRegisterView(LoginRequiredMixin, View):
         """
         messages.success(
             request=self.request,
-            message=_(f"User with '{self.user_role}' role created successfully."),
+            message=_(f"کاربر با نقش {self.user_role} با موفقیت ساخته شد."),
             extra_tags="success"
         )
 
@@ -76,7 +76,7 @@ class BaseUserSoftRegisterView(LoginRequiredMixin, View):
         """
         messages.error(
             request=self.request,
-            message=_("The sent data are invalid."),
+            message=_("مقادیر ارسالی درست نیست!"),
             extra_tags="danger"
         )
 
@@ -179,7 +179,7 @@ class BaseUserProfileSoftUpdateView(LoginRequiredMixin, View):
         """
         messages.success(
             request=self.request,
-            message=_(f"Profile registered successfully."),
+            message=_(f"پروفایل کاربر با موفقیت ساخته شد."),
             extra_tags="success"
         )
 
@@ -193,7 +193,7 @@ class BaseUserProfileSoftUpdateView(LoginRequiredMixin, View):
         """
         messages.error(
             request=self.request,
-            message=_("The sent data are invalid."),
+            message=_("مقادیر ارسالی درست نیست!"),
             extra_tags="danger"
         )
 

@@ -53,6 +53,8 @@
 .list-item:last-child { border-bottom: none; }
 .list-item small { display: block; color: var(--color-text-muted); }
 
+span.phone-value {direction: ltr; text-align: right;}
+
 /* Responsive adjustments */
 @media (max-width: 900px) {
     .profile-layout { grid-template-columns: 1fr; }

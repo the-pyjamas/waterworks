@@ -3,6 +3,5 @@
 {% block role_head_title %}مشتری جدید{% endblock role_head_title %}
 
 {% block form_title %}مشتری جدید{% endblock form_title %}
-{% block form_description %}
-    با استفاده از فرم زیر اطلاعات شخصی مشتری را ثبت کنید:
-{% endblock form_description %}
+
+{% block back_link %}{% url 'installations:installation-create-user' %}{% endblock back_link %}

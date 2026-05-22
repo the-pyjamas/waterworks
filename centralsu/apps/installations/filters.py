@@ -4,7 +4,7 @@ import django_filters
 
 from apps.devices.models import Device
 from apps.technicians.models import Technician
-from apps.vendors.models import Vendor
+from apps.external_partners.models import Vendor
 from apps.installations.models import Installation
 
 

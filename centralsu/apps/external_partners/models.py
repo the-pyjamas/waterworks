@@ -5,7 +5,16 @@ from django.urls import reverse_lazy
 from phonenumber_field.modelfields import PhoneNumberField
 
 from apps.common.models import BaseModel
+from apps.common.utils import path_with_hash
 from apps.accounts.models import User
+
+
+def banner_path(instance, filename: str) -> str:
+	"""
+	Uploads the device banner/image file with a hash
+	method to encrypting the file.
+	"""
+	return f"vendors/{path_with_hash(filename)}"
 
 
 class Vendor(BaseModel):
@@ -42,6 +51,11 @@ class Vendor(BaseModel):
         null=True,
         verbose_name=_("Contact Phone Number")
     )
+    banner = models.ImageField(
+		upload_to=banner_path,
+		blank=True,
+        verbose_name=_("Shop Banner")
+	)
 
     class Meta:
         verbose_name = _("Vendor")
@@ -72,6 +86,6 @@ class Vendor(BaseModel):
         However, it returns a vendor detail but its PK.
         """
         return reverse_lazy(
-            'vendors:vendor-retrieve',
+            'external_partners:vendor-retrieve',
             kwargs={'vendor_pk': self.pk}
         )

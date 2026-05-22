@@ -1,7 +1,7 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
 
-from apps.vendors.models import Vendor
+from apps.external_partners.models import Vendor
 
 
 class VendorUpdateForm(forms.ModelForm):

@@ -4,7 +4,7 @@ from django.views.generic.base import TemplateView
 
 from apps.installations.models import Installation
 from apps.technicians.models import Technician
-from apps.vendors.models import Vendor
+from apps.external_partners.models import Vendor
 from apps.devices.models import Device
 
 

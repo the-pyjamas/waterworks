@@ -31,6 +31,7 @@ class VendorAdmin(admin.ModelAdmin):
                     "shop_name",
                     "contact_email",
                     "contact_phone",
+                    "banner"
                 )
             }
         ),
@@ -50,6 +51,7 @@ class VendorAdmin(admin.ModelAdmin):
                     "shop_name",
                     "contact_email",
                     "contact_phone",
+                    "banner"
                 )
             }
         ),

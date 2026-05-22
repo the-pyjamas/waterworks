@@ -17,7 +17,7 @@ LOCAL_APPS = [
     'apps.accounts.apps.AccountsConfig',
     'apps.installations.apps.InstallationsConfig',
     'apps.common.apps.CommonConfig',
-    'apps.vendors.apps.VendorsConfig',
+    'apps.external_partners.apps.ExternalPartnersConfig',
     'apps.technicians.apps.TechniciansConfig',
     'apps.devices.apps.DevicesConfig',
 ]

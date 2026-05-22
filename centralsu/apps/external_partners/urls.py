@@ -1,6 +1,6 @@
 from django.urls import path
 
-from apps.vendors.views import (
+from apps.external_partners.views import (
     # Creation
     VendorCreateUserView,
     VendorUpdateUserProfileView,
@@ -12,7 +12,7 @@ from apps.vendors.views import (
     VendorUpdateView
 )
 
-app_name = "vendors"
+app_name = "external_partners"
 
 VENDORS_CRUD_URLS = [
     # Creation

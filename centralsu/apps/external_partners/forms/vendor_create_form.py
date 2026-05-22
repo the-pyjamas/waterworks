@@ -1,7 +1,7 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
 
-from apps.vendors.models import Vendor
+from apps.external_partners.models import Vendor
 
 
 class VendorCreateForm(forms.ModelForm):
@@ -11,11 +11,12 @@ class VendorCreateForm(forms.ModelForm):
     """
     class Meta:
         model = Vendor
-        fields = ("shop_name", "contact_phone")
+        fields = ("shop_name", "contact_phone", "banner")
 
         labels = {
             'shop_name': _('نام فروشگاه'),
-            'contact_phone': _('شماره تماس کسب')
+            'contact_phone': _('شماره تماس کسب'),
+            'banner': _('بنر فروشگاه')
         }
 
     def __init__(self, *args, **kwargs):

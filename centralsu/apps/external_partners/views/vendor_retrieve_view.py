@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from apps.vendors.models import Vendor
+from apps.external_partners.models import Vendor
 
 
 class VendorRetrieveView(LoginRequiredMixin, View):
@@ -13,7 +13,7 @@ class VendorRetrieveView(LoginRequiredMixin, View):
 	Methods:
 		get (GET HTTP).
 	"""
-	template_name = "vendors/vendor_retrieve.html"
+	template_name = "external_partners/vendor_pages/vendor_retrieve.html"
 
 	def dispatch(self, request, *args, **kwargs):
 		"""

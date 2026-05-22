@@ -2,7 +2,7 @@ from django.forms import TextInput
 
 import django_filters
 
-from apps.vendors.models import Vendor
+from apps.external_partners.models import Vendor
 
 
 class VendorFilter(django_filters.FilterSet):
