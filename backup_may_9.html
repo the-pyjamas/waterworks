@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>گزارش مشتریان، نصاب‌ها و فروشندگان</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Vazir', 'Tahoma', 'IRANSans', 'B Nazanin', sans-serif;
+            background: #f0f2f5;
+            padding: 30px;
+            color: #1a1a2e;
+        }
+        
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 25px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            border-radius: 20px;
+            color: white;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .header .date {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 16px;
+            margin-bottom: 35px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .section-title {
+            background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+            color: white;
+            padding: 18px 25px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        
+        .customer-card {
+            background: #fafafa;
+            margin: 15px;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .customer-card:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        
+        .info-row {
+            margin-bottom: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+        }
+        
+        .info-label {
+            font-weight: bold;
+            min-width: 110px;
+            color: #2c3e50;
+            font-size: 14px;
+        }
+        
+        .info-value {
+            color: #555;
+            font-size: 14px;
+            flex: 1;
+        }
+        
+        /* LTR style for numeric fields */
+        .ltr {
+            direction: ltr;
+            display: inline-block;
+            unicode-bidi: embed;
+            font-family: 'Courier New', 'Consolas', monospace;
+            letter-spacing: 0.5px;
+        }
+        
+        .tech-card, .vendor-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 18px;
+            margin: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .badge-senior {
+            background: #ff9800;
+            color: white;
+        }
+        
+        .badge-mid {
+            background: #2196F3;
+            color: white;
+        }
+        
+        .badge-junior {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .device-name-en {
+            font-family: 'Courier New', monospace;
+            background: #e8e8e8;
+            padding: 2px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            font-size: 12px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            color: #666;
+            font-size: 12px;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 10px;
+            }
+            .customer-card:hover {
+                transform: none;
+            }
+            .section-title {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .header {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📋 گزارش نصب دستگاه‌های تصفیه آب</h1>
+        <p class="date">تاریخ تهیه گزارش: ۵ خرداد ۱۴۰۵</p>
+    </div>
+
+    <!-- ==================== مشتریان ==================== -->
+    <div class="section">
+        <div class="section-title">👨‍👩‍👧‍👦 مشتریان</div>
+        
+        <div class="customer-card">
+            <div class="grid-2">
+                <div class="info-row"><span class="info-label">📞 شماره همراه:</span><span class="info-value ltr">+989130653141</span></div>
+                <div class="info-row"><span class="info-label">👤 نام:</span><span class="info-value">جلیل</span></div>
+                <div class="info-row"><span class="info-label">👨‍👩‍👧 نام خانوادگی:</span><span class="info-value">اسماعیلی</span></div>
+                <div class="info-row"><span class="info-label">📍 آدرس:</span><span class="info-value">قاسم آباد .ک 30 طلوع</span></div>
+                <div class="info-row"><span class="info-label">💧 دستگاه:</span><span class="info-value">Penca <span class="device-name-en">(Grade_A_7F)</span></span></div>
+                <div class="info-row"><span class="info-label">🔧 نصاب:</span><span class="info-value">علیرضا جعفری</span></div>
+                <div class="info-row"><span class="info-label">🏪 فروشنده:</span><span class="info-value">بازرگانی بهاری</span></div>
+                <div class="info-row"><span class="info-label">📅 تاریخ نصب:</span><span class="info-value">۱۳ فروردین ۱۴۰۵</span></div>
+            </div>
+        </div>
+
+        <div class="customer-card">
+            <div class="grid-2">
+                <div class="info-row"><span class="info-label">📞 شماره همراه:</span><span class="info-value ltr">+989132538284</span></div>
+                <div class="info-row"><span class="info-label">👤 نام:</span><span class="info-value">مجید</span></div>
+                <div class="info-row"><span class="info-label">👨‍👩‍👧 نام خانوادگی:</span><span class="info-value">پویان</span></div>
+                <div class="info-row"><span class="info-label">📍 آدرس:</span><span class="info-value">مهریز.بلوار جمهوری.ک24</span></div>
+                <div class="info-row"><span class="info-label">💧 دستگاه:</span><span class="info-value">Pureline <span class="device-name-en">(Grade_A_7F)</span></span></div>
+                <div class="info-row"><span class="info-label">🔧 نصاب:</span><span class="info-value">علیرضا جعفری</span></div>
+                <div class="info-row"><span class="info-label">🏪 فروشنده:</span><span class="info-value">فروشگاه مسلم</span></div>
+                <div class="info-row"><span class="info-label">📅 تاریخ نصب:</span><span class="info-value">۲۸ فروردین ۱۴۰۵</span></div>
+            </div>
+        </div>
+
+        <div class="customer-card">
+            <div class="grid-2">
+                <div class="info-row"><span class="info-label">📞 شماره همراه:</span><span class="info-value ltr">+989901534118</span></div>
+                <div class="info-row"><span class="info-label">👤 نام:</span><span class="info-value">مجتبی</span></div>
+                <div class="info-row"><span class="info-label">👨‍👩‍👧 نام خانوادگی:</span><span class="info-value">خواجه رضایی</span></div>
+                <div class="info-row"><span class="info-label">📍 آدرس:</span><span class="info-value">یزد</span></div>
+                <div class="info-row"><span class="info-label">💧 دستگاه:</span><span class="info-value">Penca <span class="device-name-en">(Grade_A_7F)</span></span></div>
+                <div class="info-row"><span class="info-label">🔧 نصاب:</span><span class="info-value">علیرضا جعفری</span></div>
+                <div class="info-row"><span class="info-label">🏪 فروشنده:</span><span class="info-value">Centralsu</span></div>
+                <div class="info-row"><span class="info-label">📅 تاریخ نصب:</span><span class="info-value">۴ اردیبهشت ۱۴۰۵</span></div>
+            </div>
+        </div>
+
+        <div class="customer-card">
+            <div class="grid-2">
+                <div class="info-row"><span class="info-label">📞 شماره همراه:</span><span class="info-value ltr">+989131569006</span></div>
+                <div class="info-row"><span class="info-label">👤 نام:</span><span class="info-value">اقای</span></div>
+                <div class="info-row"><span class="info-label">👨‍👩‍👧 نام خانوادگی:</span><span class="info-value">صالحی</span></div>
+                <div class="info-row"><span class="info-label">📍 آدرس:</span><span class="info-value">یزد</span></div>
+                <div class="info-row"><span class="info-label">💧 دستگاه:</span><span class="info-value">Fluxtec <span class="device-name-en">(Grade_A_7S)</span></span></div>
+                <div class="info-row"><span class="info-label">🔧 نصاب:</span><span class="info-value">علیرضا جعفری</span></div>
+                <div class="info-row"><span class="info-label">🏪 فروشنده:</span><span class="info-value">تاسیسات لطفی نیا</span></div>
+                <div class="info-row"><span class="info-label">📅 تاریخ نصب:</span><span class="info-value">۳ اردیبهشت ۱۴۰۵</span></div>
+            </div>
+        </div>
+
+        <div class="customer-card">
+            <div class="grid-2">
+                <div class="info-row"><span class="info-label">📞 شماره همراه:</span><span class="info-value ltr">+989117288546</span></div>
+                <div class="info-row"><span class="info-label">👤 نام:</span><span class="info-value">اقای</span></div>
+                <div class="info-row"><span class="info-label">👨‍👩‍👧 نام خانوادگی:</span><span class="info-value">زارع</span></div>
+                <div class="info-row"><span class="info-label">📍 آدرس:</span><span class="info-value">بلوار شهید قندی.میدان سفیر.مجتمع یکتا. واحد136</span></div>
+                <div class="info-row"><span class="info-label">💧 دستگاه:</span><span class="info-value">CCK <span class="device-name-en">(Grade-B-6F)</span></span></div>
+                <div class="info-row"><span class="info-label">🔧 نصاب:</span><span class="info-value">علیرضا جعفری</span></div>
+                <div class="info-row"><span class="info-label">🏪 فروشنده:</span><span class="info-value">فروشگاه آخوندی</span></div>
+                <div class="info-row"><span class="info-label">📅 تاریخ نصب:</span><span class="info-value">۷ اردیبهشت ۱۴۰۵</span></div>
+            </div>
+        </div>
+
+        <div class="customer-card">
+            <div class="grid-2">
+                <div class="info-row"><span class="info-label">📞 شماره همراه:</span><span class="info-value ltr">+989135292770</span></div>
+                <div class="info-row"><span class="info-label">👤 نام:</span><span class="info-value">سید رسول</span></div>
+                <div class="info-row"><span class="info-label">👨‍👩‍👧 نام خانوادگی:</span><span class="info-value">حزیره ای</span></div>
+                <div class="info-row"><span class="info-label">📍 آدرس:</span><span class="info-value">بلوار خاتم.کوچه شهید خراسانی.کوچه شقایق9</span></div>
+                <div class="info-row"><span class="info-label">💧 دستگاه:</span><span class="info-value">Penca <span class="device-name-en">(Grade_A_7F)</span></span></div>
+                <div class="info-row"><span class="info-label">🔧 نصاب:</span><span class="info-value">علیرضا جعفری</span></div>
+                <div class="info-row"><span class="info-label">🏪 فروشنده:</span><span class="info-value">فروشگاه زینی</span></div>
+                <div class="info-row"><span class="info-label">📅 تاریخ نصب:</span><span class="info-value">۵ اردیبهشت ۱۴۰۵</span></div>
+            </div>
+        </div>
+
+        <div class="customer-card">
+            <div class="grid-2">
+                <div class="info-row"><span class="info-label">📞 شماره همراه:</span><span class="info-value ltr">+989131591046</span></div>
+                <div class="info-row"><span class="info-label">👤 نام:</span><span class="info-value">محمد رضا</span></div>
+                <div class="info-row"><span class="info-label">👨‍👩‍👧 نام خانوادگی:</span><span class="info-value">دهقان</span></div>
+                <div class="info-row"><span class="info-label">📍 آدرس:</span><span class="info-value">بلوار تهران</span></div>
+                <div class="info-row"><span class="info-label">💧 دستگاه:</span><span class="info-value">Aqua pure <span class="device-name-en">(Grade_B_7F)</span></span></div>
+                <div class="info-row"><span class="info-label">🔧 نصاب:</span><span class="info-value">امیرحسین حداد (حرفه‌ای)</span></div>
+                <div class="info-row"><span class="info-label">🏪 فروشنده:</span><span class="info-value">تاسیسات بیمکث</span></div>
+                <div class="info-row"><span class="info-label">📅 تاریخ نصب:</span><span class="info-value">۹ فروردین ۱۴۰۵</span></div>
+            </div>
+        </div>
+
+        <div class="customer-card">
+            <div class="grid-2">
+                <div class="info-row"><span class="info-label">📞 شماره همراه:</span><span class="info-value ltr">+989133568793</span></div>
+                <div class="info-row"><span class="info-label">👤 نام:</span><span class="info-value">اقای</span></div>
+                <div class="info-row"><span class="info-label">👨‍👩‍👧 نام خانوادگی:</span><span class="info-value">دهقان</span></div>
+                <div class="info-row"><span class="info-label">📍 آدرس:</span><span class="info-value">یزد.بلوار آزادگان</span></div>
+                <div class="info-row"><span class="info-label">💧 دستگاه:</span><span class="info-value">AquaCare <span class="device-name-en">(Grade_B_6F)</span></span></div>
+                <div class="info-row"><span class="info-label">🔧 نصاب:</span><span class="info-value">امیرحسین حداد (حرفه‌ای)</span></div>
+                <div class="info-row"><span class="info-label">🏪 فروشنده:</span><span class="info-value">دنیای شیرالات</span></div>
+                <div class="info-row"><span class="info-label">📅 تاریخ نصب:</span><span class="info-value">۸ اردیبهشت ۱۴۰۵</span></div>
+            </div>
+        </div>
+
+        <div class="customer-card">
+            <div class="grid-2">
+                <div class="info-row"><span class="info-label">📞 شماره همراه:</span><span class="info-value ltr">+989133959396</span></div>
+                <div class="info-row"><span class="info-label">👤 نام:</span><span class="info-value">اقای</span></div>
+                <div class="info-row"><span class="info-label">👨‍👩‍👧 نام خانوادگی:</span><span class="info-value">شفیعی</span></div>
+                <div class="info-row"><span class="info-label">📍 آدرس:</span><span class="info-value">یزد.میدان مسکن .خ مقدم.کوچه مقدم ۳</span></div>
+                <div class="info-row"><span class="info-label">💧 دستگاه:</span><span class="info-value">AquaCare <span class="device-name-en">(Grade_B_6F)</span></span></div>
+                <div class="info-row"><span class="info-label">🔧 نصاب:</span><span class="info-value">امیرحسین حداد (حرفه‌ای)</span></div>
+                <div class="info-row"><span class="info-label">🏪 فروشنده:</span><span class="info-value">فروشگاه ایزدی</span></div>
+                <div class="info-row"><span class="info-label">📅 تاریخ نصب:</span><span class="info-value">۳ فروردین ۱۴۰۵</span></div>
+            </div>
+        </div>
+
+        <div class="customer-card">
+            <div class="grid-2">
+                <div class="info-row"><span class="info-label">📞 شماره همراه:</span><span class="info-value ltr">+989133541241</span></div>
+                <div class="info-row"><span class="info-label">👤 نام:</span><span class="info-value">محسن</span></div>
+                <div class="info-row"><span class="info-label">👨‍👩‍👧 نام خانوادگی:</span><span class="info-value">زارع</span></div>
+                <div class="info-row"><span class="info-label">📍 آدرس:</span><span class="info-value">یزد.امام شهر. خ شهید صدوقی کوچه 8</span></div>
+                <div class="info-row"><span class="info-label">💧 دستگاه:</span><span class="info-value">Aqua pure <span class="device-name-en">(Grade_B_7F)</span></span></div>
+                <div class="info-row"><span class="info-label">🔧 نصاب:</span><span class="info-value">علیرضا جعفری</span></div>
+                <div class="info-row"><span class="info-label">🏪 فروشنده:</span><span class="info-value">تاسیسات لطفی نیا</span></div>
+                <div class="info-row"><span class="info-label">📅 تاریخ نصب:</span><span class="info-value">۱۳ اردیبهشت ۱۴۰۵</span></div>
+            </div>
+        </div>
+
+        <div class="customer-card">
+            <div class="grid-2">
+                <div class="info-row"><span class="info-label">📞 شماره همراه:</span><span class="info-value ltr">+989131594088</span></div>
+                <div class="info-row"><span class="info-label">👤 نام:</span><span class="info-value">اقای</span></div>
+                <div class="info-row"><span class="info-label">👨‍👩‍👧 نام خانوادگی:</span><span class="info-value">جعفری</span></div>
+                <div class="info-row"><span class="info-label">📍 آدرس:</span><span class="info-value">بلوار کوثر.مجتمع آریز</span></div>
+                <div class="info-row"><span class="info-label">💧 دستگاه:</span><span class="info-value">Penca <span class="device-name-en">(Grade_A_7F)</span></span></div>
+                <div class="info-row"><span class="info-label">🔧 نصاب:</span><span class="info-value">مجید پویان (متوسط)</span></div>
+                <div class="info-row"><span class="info-label">🏪 فروشنده:</span><span class="info-value">بازرگانی بهاری</span></div>
+                <div class="info-row"><span class="info-label">📅 تاریخ نصب:</span><span class="info-value">۱۳ اردیبهشت ۱۴۰۵</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== نصاب‌ها (تکنسین‌ها) ==================== -->
+    <div class="section">
+        <div class="section-title">🔧 نصاب‌ها (تکنسین‌ها)</div>
+        <div class="grid-3">
+            <div class="tech-card">
+                <div class="info-row"><span class="info-label">📞 شماره همراه:</span><span class="info-value ltr">+989105843400</span></div>
+                <div class="info-row"><span class="info-label">👤 نام:</span><span class="info-value">علیرضا</span></div>
+                <div class="info-row"><span class="info-label">👨‍👩‍👧 نام خانوادگی:</span><span class="info-value">جعفری</span></div>
+                <div class="info-row"><span class="info-label">📍 آدرس:</span><span class="info-value">یزد</span></div>
+                <div class="info-row"><span class="info-label">⭐ سال سابقه:</span><span class="info-value">۱ سال</span></div>
+                <div class="info-row"><span class="info-label">📊 سطح مهارت:</span><span class="info-value"><span class="badge badge-mid">متوسط</span></span></div>
+            </div>
+
+            <div class="tech-card">
+                <div class="info-row"><span class="info-label">📞 شماره همراه:</span><span class="info-value ltr">+989926669937</span></div>
+                <div class="info-row"><span class="info-label">👤 نام:</span><span class="info-value">مجتبی</span></div>
+                <div class="info-row"><span class="info-label">👨‍👩‍👧 نام خانوادگی:</span><span class="info-value">کریمی</span></div>
+                <div class="info-row"><span class="info-label">📍 آدرس:</span><span class="info-value">یزد</span></div>
+                <div class="info-row"><span class="info-label">⭐ سال سابقه:</span><span class="info-value">۱ سال</span></div>
+                <div class="info-row"><span class="info-label">📊 سطح مهارت:</span><span class="info-value"><span class="badge badge-mid">متوسط</span></span></div>
+            </div>
+
+            <div class="tech-card">
+                <div class="info-row"><span class="info-label">📞 شماره همراه:</span><span class="info-value ltr">+989133773974</span></div>
+                <div class="info-row"><span class="info-label">👤 نام:</span><span class="info-value">امیرحسین</span></div>
+                <div class="info-row"><span class="info-label">👨‍👩‍👧 نام خانوادگی:</span><span class="info-value">حداد</span></div>
+                <div class="info-row"><span class="info-label">📍 آدرس:</span><span class="info-value">یزد</span></div>
+                <div class="info-row"><span class="info-label">⭐ سال سابقه:</span><span class="info-value">۵ سال</span></div>
+                <div class="info-row"><span class="info-label">📊 سطح مهارت:</span><span class="info-value"><span class="badge badge-senior">حرفه‌ای</span></span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== فروشندگان ==================== -->
+    <div class="section">
+        <div class="section-title">🏪 فروشندگان</div>
+        <div class="grid-3">
+            <div class="vendor-card">
+                <div class="info-row"><span class="info-label">📞 شماره همراه:</span><span class="info-value ltr">+989134493900</span></div>
+                <div class="info-row"><span class="info-label">👤 نام:</span><span class="info-value">اقایی</span></div>
+                <div class="info-row"><span class="info-label">👨‍👩‍👧 نام خانوادگی:</span><span class="info-value">بهاری</span></div>
+                <div class="info-row"><span class="info-label">📍 آدرس:</span><span class="info-value">سه راه شحنه</span></div>
+                <div class="info-row"><span class="info-label">🏬 نام فروشگاه:</span><span class="info-value">بازرگانی بهاری</span></div>
+                <div class="info-row"><span class="info-label">🆔 شماره کسب:</span><span class="info-value ltr">-</span></div>
+            </div>
+
+            <div class="vendor-card">
+                <div class="info-row"><span class="info-label">📞 شماره همراه:</span><span class="info-value ltr">+989133591001</span></div>
+                <div class="info-row"><span class="info-label">👤 نام:</span><span class="info-value">-</span></div>
+                <div class="info-row"><span class="info-label">👨‍👩‍👧 نام خانوادگی:</span><span class="info-value">-</span></div>
+                <div class="info-row"><span class="info-label">📍 آدرس:</span><span class="info-value">-</span></div>
+                <div class="info-row"><span class="info-label">🏬 نام فروشگاه:</span><span class="info-value">فروشگاه مسلم</span></div>
+                <div class="info-row"><span class="info-label">🆔 شماره کسب:</span><span class="info-value ltr">-</span></div>
+            </div>
+
+            <div class="vendor-card">
+                <div class="info-row"><span class="info-label">📞 شماره همراه:</span><span class="info-value ltr">+989132521618</span></div>
+                <div class="info-row"><span class="info-label">👤 نام:</span><span class="info-value">اقایی</span></div>
+                <div class="info-row"><span class="info-label">👨‍👩‍👧 نام خانوادگی:</span><span class="info-value">لطفی نیا</span></div>
+                <div class="info-row"><span class="info-label">📍 آدرس:</span><span class="info-value">یزد.سه راه آزاد شهر</span></div>
+                <div class="info-row"><span class="info-label">🏬 نام فروشگاه:</span><span class="info-value">تاسیسات لطفی نیا</span></div>
+                <div class="info-row"><span class="info-label">🆔 شماره کسب:</span><span class="info-value ltr">-</span></div>
+            </div>
+
+            <div class="vendor-card">
+                <div class="info-row"><span class="info-label">📞 شماره همراه:</span><span class="info-value ltr">+989138501209</span></div>
+                <div class="info-row"><span class="info-label">👤 نام:</span><span class="info-value">Central</span></div>
+                <div class="info-row"><span class="info-label">👨‍👩‍👧 نام خانوادگی:</span><span class="info-value">su</span></div>
+                <div class="info-row"><span class="info-label">📍 آدرس:</span><span class="info-value">یزد</span></div>
+                <div class="info-row"><span class="info-label">🏬 نام فروشگاه:</span><span class="info-value">Centralsu</span></div>
+                <div class="info-row"><span class="info-label">🆔 شماره کسب:</span><span class="info-value ltr">-</span></div>
+            </div>
+
+            <div class="vendor-card">
+                <div class="info-row"><span class="info-label">📞 شماره همراه:</span><span class="info-value ltr">+989137570910</span></div>
+                <div class="info-row"><span class="info-label">👤 نام:</span><span class="info-value">اقایی</span></div>
+                <div class="info-row"><span class="info-label">👨‍👩‍👧 نام خانوادگی:</span><span class="info-value">آخوندی</span></div>
+                <div class="info-row"><span class="info-label">📍 آدرس:</span><span class="info-value">یزد</span></div>
+                <div class="info-row"><span class="info-label">🏬 نام فروشگاه:</span><span class="info-value">فروشگاه آخوندی</span></div>
+                <div class="info-row"><span class="info-label">🆔 شماره کسب:</span><span class="info-value ltr">-</span></div>
+            </div>
+
+            <div class="vendor-card">
+                <div class="info-row"><span class="info-label">📞 شماره همراه:</span><span class="info-value ltr">+989138600082</span></div>
+                <div class="info-row"><span class="info-label">👤 نام:</span><span class="info-value">اقایی</span></div>
+                <div class="info-row"><span class="info-label">👨‍👩‍👧 نام خانوادگی:</span><span class="info-value">زینی</span></div>
+                <div class="info-row"><span class="info-label">📍 آدرس:</span><span class="info-value">یزد</span></div>
+                <div class="info-row"><span class="info-label">🏬 نام فروشگاه:</span><span class="info-value">فروشگاه زینی</span></div>
+                <div class="info-row"><span class="info-label">🆔 شماره کسب:</span><span class="info-value ltr">-</span></div>
+            </div>
+
+            <div class="vendor-card">
+                <div class="info-row"><span class="info-label">📞 شماره همراه:</span><span class="info-value ltr">+989132562770</span></div>
+                <div class="info-row"><span class="info-label">👤 نام:</span><span class="info-value">-</span></div>
+                <div class="info-row"><span class="info-label">👨‍👩‍👧 نام خانوادگی:</span><span class="info-value">-</span></div>
+                <div class="info-row"><span class="info-label">📍 آدرس:</span><span class="info-value">-</span></div>
+                <div class="info-row"><span class="info-label">🏬 نام فروشگاه:</span><span class="info-value">تاسیسات بیمکث</span></div>
+                <div class="info-row"><span class="info-label">🆔 شماره کسب:</span><span class="info-value ltr">-</span></div>
+            </div>
+
+            <div class="vendor-card">
+                <div class="info-row"><span class="info-label">📞 شماره همراه:</span><span class="info-value ltr">+989133731837</span></div>
+                <div class="info-row"><span class="info-label">👤 نام:</span><span class="info-value">اقایی</span></div>
+                <div class="info-row"><span class="info-label">👨‍👩‍👧 نام خانوادگی:</span><span class="info-value">ایزدی</span></div>
+                <div class="info-row"><span class="info-label">📍 آدرس:</span><span class="info-value">یزد</span></div>
+                <div class="info-row"><span class="info-label">🏬 نام فروشگاه:</span><span class="info-value">فروشگاه ایزدی</span></div>
+                <div class="info-row"><span class="info-label">🆔 شماره کسب:</span><span class="info-value ltr">-</span></div>
+            </div>
+
+            <div class="vendor-card">
+                <div class="info-row"><span class="info-label">📞 شماره همراه:</span><span class="info-value ltr">+989134513401</span></div>
+                <div class="info-row"><span class="info-label">👤 نام:</span><span class="info-value">اقایی</span></div>
+                <div class="info-row"><span class="info-label">👨‍👩‍👧 نام خانوادگی:</span><span class="info-value">دهقان</span></div>
+                <div class="info-row"><span class="info-label">📍 آدرس:</span><span class="info-value">یزد.بلوار مدرس</span></div>
+                <div class="info-row"><span class="info-label">
