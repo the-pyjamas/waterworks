@@ -9,9 +9,11 @@
 
     <header class="page-header">
         <h1>لیست دستگاه‌ها</h1>
-        <button class="btn-sub btn-sm">
-            <a href="{% url 'devices:device-create' %}">+ افزودن دستگاه‌</a>
-        </button>
+        {% if request.user.role == 'Admin' or request.user.is_superuser %}
+            <button class="btn-sub btn-sm">
+                <a href="{% url 'devices:device-create' %}">+ افزودن دستگاه‌</a>
+            </button>
+        {% endif %}
     </header>
 
     <!-- Devices Grid -->

@@ -57,7 +57,9 @@
             </div>
 
             <div class="submenu">
-                <a href="{% url 'devices:device-create' %}" class="submenu-item">دستگاه جدید</a>
+                {% if request.user.role == 'Admin' or request.user.is_superuser %}
+                    <a href="{% url 'devices:device-create' %}" class="submenu-item">دستگاه جدید</a>
+                {% endif %}
                 <a href="{% url 'devices:devices-list' %}" class="submenu-item">لیست دستگاه‌ها</a>
             </div>
         </div>

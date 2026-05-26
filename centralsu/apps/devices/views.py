@@ -95,6 +95,24 @@ class DeviceUpdateView(UpdateView):
 	success_url = reverse_lazy('devices:devices-list')
 	template_name = 'devices/device_update.html'
 
+	def dispatch(self, request, *args, **kwargs):
+		"""
+		Ensures that the user who creating a new user
+		has an appropriate role.
+		"""
+		user = request.user
+		is_allowed = (
+		    user.is_superuser
+		    or user.role == "Admin"
+		)
+
+		# Redirects user only if user is neither
+		# a superuser nor has an authorized role
+		if not is_allowed:
+			return redirect('devices:devices-list')
+		
+		return super().dispatch(request, *args, **kwargs)
+
 	def form_valid(self, form):
 		"""
 		Validating the form-class and its incoming data

@@ -12,9 +12,11 @@
 
         <!-- Action buttons -->
         <div class="device-actions">
-            <button class="btn-sub">
-                <a href="{% url 'devices:device-update' object.pk %}">ویرایش اطلاعات</a>
-            </button>
+            {% if request.user.role == 'Admin' or request.user.is_superuser %}
+                <button class="btn-sub">
+                    <a href="{% url 'devices:device-update' object.pk %}">ویرایش اطلاعات</a>
+                </button>
+            {% endif %}
             <a href="{% url 'devices:devices-list' %}" class="btn-sub outline">برگشت به لیست دستگاه‌ها</a>
         </div>
 
