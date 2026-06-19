@@ -9,6 +9,7 @@ from django.urls import reverse_lazy
 
 from apps.accounts.forms import UserSoftRegisterForm, UserProfileUpdateForm
 from apps.accounts.models import UserProfile
+from apps.accounts.service import register_or_continue_user
 
 
 User = get_user_model()
@@ -104,14 +105,28 @@ class BaseUserSoftRegisterView(LoginRequiredMixin, View):
 
         if form.is_valid():
             cleaned_data = form.cleaned_data
-            user = User.objects.create_user(
-                phone_number=cleaned_data["phone_number"],
-                password=cleaned_data["password"],
+
+            result = register_or_continue_user(
+                phone_number=cleaned_data['phone_number'],
+                password=cleaned_data['password'],
                 role=self.user_role
             )
-            # Deactive user until its role profile created
-            user.is_active = False
-            user.save()
+            user = result['user']
+
+            if result['action'] == 'already_exists':
+                messages.error(
+                    request=request,
+                    message=_('این کاربر قبلا ثبت‌نام شده است')
+                )
+                return redirect('home:main-home')
+
+            if result['action'] == 'complete_profile':
+                request.session['user_role_registered_id'] = user.id
+                return redirect(
+                    reverse_lazy(
+                        f'{self.user_role.lower()}s:{self.user_role.lower()}-create'
+                    )
+                )
 
             # Keep created user-id in the session
             # to use it for creating a role object
@@ -120,9 +135,14 @@ class BaseUserSoftRegisterView(LoginRequiredMixin, View):
             request.session.modified = True
 
             self.form_valid(form=form)
+            messages.success(
+                request,
+                _(f"کاربر با نقش {self.user_role} با موفقیت ساخته شد.")
+            )
+
             return redirect(self.success_url)
         else:
-            self.form_invalid(form=form)
+            print(form.errors.as_json())
 
         context = {"form": form}
         return render(
