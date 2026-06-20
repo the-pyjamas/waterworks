@@ -72,8 +72,8 @@
 .installer-info {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-bottom: var(--space-4);
+    gap: 8px;
+    margin-bottom: var(--space-2);
 }
 
 .info-item .label { display: block; font-size: 0.75rem; color: var(--color-text-muted); }
@@ -81,7 +81,7 @@
 
 /* Skills Badge */
 .badge-skill {
-    padding: 2px 8px;
+    padding: 0 4px 0 4px;
     border-radius: 4px;
     font-size: 0.75rem;
 }
