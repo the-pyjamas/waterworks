@@ -1,38 +1,67 @@
-from django.shortcuts import redirect
-from django.urls import reverse_lazy
+from typing import TypedDict, Literal
 
 from apps.accounts.models import User
 
 
-def check_user_registration(user: User, role: str, role_url_namespace: str):
+
+class RegistrationResult(TypedDict):
+    action: Literal[
+        'created',
+        'already_exists',
+        'complete_profile'
+    ]
+    user: User
+
+
+def handle_existing_user(user: User, role: str) -> RegistrationResult:
     """
+    Handle an already existing user.
+    """
+
+    profile_name = role.lower()
+
+    if hasattr(user, profile_name):
+        return {
+            'action': 'already_exists',
+            'user': user
+        }
+
+    return {
+        'action': 'complete_profile',
+        'user': user
+    }
+
+
+def register_or_continue_user(
+    phone_number: str,
+    password: str,
+    role: str
+) -> RegistrationResult:
+    """
+    Create a new user or continute registeration
+    for an existing user.
+
     Check whether an existing user already has the requested role profile.
-
-    This helper is used before creating a new Customer, Vendor, or Technician.
-    If the user already exists but the requested role profile does not exist yet,
-    the user is redirected to the profile completion page.
-
-    Arguments:
-        user (User): Existing user instance.
-        role (str): Requested role name. Expected values are
-            'customer', 'vendor', or 'technician'.
     """
 
-    # Build URL name dunamically.
-    #   customers:customer-create
-    #   partners:vendor-create
-    #   technicians:technician-create
-    redirect_url = f'{role_url_namespace}:{role}-create'
+    user = User.objects.filter(phone_number=phone_number).first()
 
     if user:
-        try:
-            getattr(user, role)
+        return handle_existing_user(
+            user=user,
+            role=role
+        )
 
-        except Exception as occurred_exception:
-            # Check the current exception if 'relation object does not exist'
-            # which raises when the one-to-one role profile does not exist
-            if occurred_exception.__class__.__name__ == 'RelatedObjectDoesNotExist':
-                return redirect(reverse_lazy(redirect_url))
+    user = User.objects.create_user(
+        phone_number=phone_number,
+        password=password,
+        role=role
+    )
 
-        # Role profile already exists
-        return None
+    user.is_active = False
+    user.save()
+
+    return {
+        'action': 'created',
+        'user': user
+    }
