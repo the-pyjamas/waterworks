@@ -1,77 +1,71 @@
+from typing import Any
+
 from django import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth.password_validation import validate_password
 from django.utils.translation import gettext_lazy as _
 
-from phonenumber_field.formfields import PhoneNumberField
-
-from apps.accounts.models import User
-
-
 
 class UserSoftRegisterForm(forms.Form):
     """
-    User registration form class.
+    User registration form.
 
-    Handle user registration, its exceptions and validations.
-    Validates phone-number.
-    Validates the existence user with the phone-number.
+    Only validates user input.
+    User creation and registration logic are handled
+    in the service layer.
     """
-    phone_number = PhoneNumberField(
-        region='IR',
+
+    phone_number = forms.CharField(
         label=_('شماره همراه'),
-        widget=forms.TextInput(attrs={'placeholder': _('شماره همراه مثل ۰۹۱۲۵۶۵۲۳۳۲')})
+        widget=forms.TextInput(
+            attrs={
+                'placeholder': _('شماره همراه مثل ۰۹۱۲۵۶۵۲۳۳۲')
+            }
+        )
     )
+
     password = forms.CharField(
-        label=_("رمزعبور"),
-        widget=forms.PasswordInput(attrs={'placeholder': _('رمزعبوری را انتخاب کنید')}),
-        validators=[validate_password]
+        label=_('رمز عبور'),
+        widget=forms.PasswordInput(
+            attrs={
+                'placeholder': _('رمز عبوری را وارد کنید')
+            }
+        )
     )
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         """
-        Initialized the form class.
-
-        Add some same widgets such as 'CSS class' to the all fields,
-        or any other same properties.
+        Initialize form widgets and attributes.
         """
         super().__init__(*args, **kwargs)
 
-        for field in self.fields.values():
-            # Add placeholder for fields
-            self.fields['phone_number'].widget.attrs = {
-                'placeholder': _('شماره همراه مثل ۰۹۱۲۵۶۵۲۳۳۲'),
+        self.fields['phone_number'].widget.attrs.update(
+            {
+                'class': 'mb-4',
+                'dir': 'rtl',
+            }
+        )
+
+        self.fields['password'].widget.attrs.update(
+            {
                 'class': 'mb-4',
             }
-            self.fields['password'].widget.attrs = {
-                'placeholder': _('رمزعبور'),
-                'class': 'mb-4',
-            }
+        )
 
-        # Get the placeholders to use them in the template fields' placeholders
-        self.password_placeholder = self.fields['password'].widget.attrs.get('placeholder')
-        self.phone_number_placeholder = self.fields['phone_number'].widget.attrs.get('placeholder')
-
-    def clean_phone(self):
+    def clean_password(self) -> str:
         """
-        Cleans the user phone-number.
-
-        Gets the cleaned data (phone-number) and validate it
-        if any user with that phone-number is already exists or not.
+        Validate password strength using Django's
+        built-in password validators.
         """
-        phone_number = self.cleaned_data.get("phone_number")
 
-        # Check if the user with the phone-number is already exists
-        if User.objects.filter(phone_number__iexact=phone_number).exists():
-            # Add error if the user exists
-            self.add_error(
-                'phone_number',
-                ValidationError(
-                    _(
-                        'You already have an account with this phone number.'
-                        'You just need to login to your account.'
-                    )
-                )
+        password = self.cleaned_data['password']
+
+        try:
+            validate_password(password)
+
+        except ValidationError as validation_error:
+            raise forms.ValidationError(
+                validation_error.messages
             )
 
-        return phone_number
+        return password
