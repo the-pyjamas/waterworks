@@ -6,9 +6,6 @@ from django.utils.translation import gettext_lazy as _
 from django.forms import Form, ModelForm
 from django.contrib.auth import get_user_model
 from django.urls import reverse_lazy
-from django.db.utils import IntegrityError
-
-from psycopg2.errors import UniqueViolation 
 
 from apps.accounts.forms import UserSoftRegisterForm, UserProfileUpdateForm
 from apps.accounts.models import UserProfile
