@@ -7,6 +7,6 @@ from apps.installations.forms import InstallationUpdateForm
 
 class InstallationUpdateView(BaseRoleProfileUpdateView):
     model = Installation
-    role = "Installation"
+    role = "Customer"
     form_class = InstallationUpdateForm
     template_name = "installations/installation_update.html"

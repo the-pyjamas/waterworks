@@ -3,6 +3,8 @@ from django.utils.translation import gettext_lazy as _
 
 from jalali_date.fields import JalaliDateField
 from jalali_date.widgets import AdminJalaliDateWidget
+from django_jalali.forms.widgets import jDateInput
+from django_jalali.forms import jDateField
 
 from apps.installations.models import Installation
 
@@ -65,30 +67,49 @@ class InstallationUpdateForm(forms.ModelForm):
     # Overriding installation and replacement dates fields
     installation_date = JalaliDateField(
         label=_("تاریخ نصب"),
-        widget=AdminJalaliDateWidget(attrs={"class": "form-control"})
+        widget=AdminJalaliDateWidget(attrs={
+            "class": "form-control jalali_date-date",
+            "autocomplete": "off",
+        })
     )
     first_replacement_date = JalaliDateField(
         label=_("اولین تعویض فیلتر"),
-        widget=AdminJalaliDateWidget(attrs={"class": "form-control"})
+        required=False,
+        widget=AdminJalaliDateWidget(attrs={
+            "class": "form-control jalali_date-date",
+            "autocomplete": "off",
+        })
     )
     second_replacement_date = JalaliDateField(
         label=_("دومین تعویض فیلتر"),
-        widget=AdminJalaliDateWidget(attrs={"class": "form-control"})
+        required=False,
+        widget=AdminJalaliDateWidget(attrs={
+            "class": "form-control jalali_date-date",
+            "autocomplete": "off",
+        })
     )
     third_replacement_date = JalaliDateField(
         label=_("سومین تعویض فیلتر"),
-        widget=AdminJalaliDateWidget(attrs={"class": "form-control"})
+        required=False,
+        widget=AdminJalaliDateWidget(attrs={
+            "class": "form-control jalali_date-date",
+            "autocomplete": "off",
+        })
     )
     forth_replacement_date = JalaliDateField(
         label=_("چهارمین تعویض فیلتر"),
-        widget=AdminJalaliDateWidget(attrs={"class": "form-control"})
+        required=False,
+        widget=AdminJalaliDateWidget(attrs={
+            "class": "form-control jalali_date-date",
+            "autocomplete": "off",
+        })
     )
 
-    is_active = forms.BooleanField(required=False)
-    first_replacement_status = forms.BooleanField(required=False)
-    second_replacement_status = forms.BooleanField(required=False)
-    third_replacement_status = forms.BooleanField(required=False)
-    forth_replacement_status = forms.BooleanField(required=False)
+    is_active = forms.BooleanField(required=False, label=_('وضعیت فعالیت'))
+    first_replacement_status = forms.BooleanField(required=False, label=_('وضعیت'))
+    second_replacement_status = forms.BooleanField(required=False, label=_('وضعیت'))
+    third_replacement_status = forms.BooleanField(required=False, label=_('وضعیت'))
+    forth_replacement_status = forms.BooleanField(required=False, label=_('وضعیت'))
 
     class Meta:
         model = Installation
@@ -108,7 +129,6 @@ class InstallationUpdateForm(forms.ModelForm):
             "technician": _("نصاب"),
             "description": _("توضیحات"),
             "device": _("دستگاه"),
-            "is_active": _("وضعیت خدمات"),
         }
 
         widgets = {
