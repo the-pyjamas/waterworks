@@ -7,7 +7,9 @@ from apps.technicians.views import (
     TechnicianCreateView,
     # List and Retrieve
     TechnicianListView,
-    TechnicianRetrieveView
+    TechnicianRetrieveView,
+    # Update
+    TechnicianUpdateView
 )
 
 
@@ -28,6 +30,8 @@ TECHNICIAN_CRUD_URLS = [
 
     path("list/", TechnicianListView.as_view(), name="technicians-list"),
     path("<int:technician_pk>/", TechnicianRetrieveView.as_view(), name="technician-retrieve"),
+
+    path("<int:instance_pk>/update/", TechnicianUpdateView.as_view(), name="technician-update"),
 ]
 
 urlpatterns = TECHNICIAN_CRUD_URLS

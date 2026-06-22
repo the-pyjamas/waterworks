@@ -34,3 +34,34 @@ class CreateTechnicianForm(forms.ModelForm):
             field.widget.attrs.update({
                 "class": "form-control mb-4"
             })
+
+
+class UpdateTechnicianForm(forms.ModelForm):
+
+    is_active = forms.BooleanField(required=False, label=_('وضعیت فعالیت'))
+
+    class Meta:
+        model = Technician
+        fields = ('national_code', 'experience_years', 'skill_level', 'is_active')
+
+        labels = {
+            'national_code': _('کد ملی'),
+            'experience_years': _('سال‌های تجربه'),
+            'skill_level': _('سطح مهارت'),
+            'is_active': _('وضعیت فعالیت')
+        }
+
+        widgets = {
+            'national_code': forms.TextInput(
+                attrs={'class': 'mb-4 form-control', 'placeholder': _('کد ملی')}
+            ),
+            'experience_years': forms.NumberInput(
+                attrs={'class': 'mb-4 form-control', 'placeholder': _('سالهای تجربه')}
+            ),
+            'skill_level': forms.Select(
+                attrs={'class': 'mb-4 form-control', 'placeholder': _('سطح مهارت')}
+            ),
+            'is_active': forms.CheckboxInput(
+                attrs={'type': 'checkbox', 'class': 'mb-4', 'placeholder': _('وضعیت فعالیت')}
+            )
+        }

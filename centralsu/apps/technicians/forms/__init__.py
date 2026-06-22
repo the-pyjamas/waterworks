@@ -1,1 +1,1 @@
-from .technician_crud_form import CreateTechnicianForm
+from .technician_crud_form import CreateTechnicianForm, UpdateTechnicianForm

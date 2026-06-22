@@ -1,0 +1,108 @@
+/* ========================================
+   Installer Edit Page
+   ======================================== */
+
+.installer-edit-page {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.installer-edit-card {
+    width: 100%;
+    max-width: 650px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 18px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.05);
+}
+
+/* Header */
+
+.installer-edit-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.installer-edit-header h1 {
+    font-size: 1.7rem;
+    margin-bottom: .3rem;
+}
+
+/* Form Layout */
+
+.installer-edit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.4rem;
+}
+
+.installer-edit-full {
+    grid-column: span 2;
+}
+
+/* Fields */
+
+.installer-edit-field label {
+    display: block;
+    margin-bottom: .45rem;
+    font-size: .9rem;
+    color: var(--color-text-secondary);
+}
+
+.installer-edit-field input,
+.installer-edit-field select,
+.installer-edit-field textarea {
+    width: 100%;
+    padding: .7rem .8rem;
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    background: var(--color-background);
+    color: var(--color-text-primary);
+}
+
+div.technician-status-checkbox {
+    display: flex;
+    flex-direction: row;
+
+    background-color: #F1F5F9;
+    padding: 10px;
+    width: 50%;
+    border-radius: 4px;
+    margin-top: 30px;
+    font-family: 'HastiR';
+    color: var(--color-text-muted);
+}
+
+/* Buttons */
+
+.installer-edit-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* Mobile */
+
+@media (max-width: 640px) {
+
+    .installer-edit-page {
+        padding: 0;
+    }
+
+    .installer-edit-card {
+        border-radius: 0;
+        min-height: 100vh;
+    }
+
+    .installer-edit-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .installer-edit-full {
+        grid-column: span 1;
+    }
+
+}

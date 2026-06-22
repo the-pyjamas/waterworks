@@ -30,11 +30,11 @@
                     <div class="seller-info">
                         <div class="info-item">
                             <span class="label">تلفن کسب:</span>
-                            <span>{{ vendors.contact_phone | to_farsi_digit }}</span>
+                            <span dir="ltr">{{ vendor.contact_phone.as_national | to_farsi_digit }}</span>
                         </div>
                         <div class="info-item">
                             <span class="label">موبایل:</span>
-                            <span>{{ vendor.user.phone_number.as_national | to_farsi_digit }}</span>
+                            <span dir="ltr">{{ vendor.user.phone_number.as_national | to_farsi_digit }}</span>
                         </div>
                         <div class="info-item">
                             <span class="label">تعداد فروش:</span>

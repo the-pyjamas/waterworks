@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% load jalali_tags %}
+{% load farsi_digits %}
+
+{% block title %}ویرایش اطلاعات نصاب{% endblock title %}
+
+{% block content %}
+
+    <main class="installer-edit-page">
+        <div class="installer-edit-card">
+
+            <header class="installer-edit-header">
+                <h1>ویرایش نصاب</h1>
+                <p>ویرایش مشخصات کاری نصاب</p>
+            </header>
+
+            <form class="installer-edit-form" method="post">
+                {% csrf_token %}
+
+                <div class="installer-edit-grid">
+
+                    {% for field in form %}
+                        <div class="installer-edit-field">
+                            {% if field.name == 'is_active' %}
+                                <div class="technician-status-checkbox">
+                                    <label class="ps-2">{{ field.label }}</label>
+                                    <span>{{ field }}</span>
+                                </div>
+                            {% else %}
+                                <div class="technician-info">
+                                    <label>{{ field.label }}</label>
+                                    {{ field }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+                <div class="installer-edit-actions">
+                    <button type="button" class="btn-sub btn-logout">
+                        <a href="{% url 'technicians:technicians-list' %}">لغو تغییرات</a>
+                    </button>
+                    <button type="submit" class="btn-main">ذخیره تغییرات</button>
+                </div>
+
+            </form>
+
+        </div>
+    </main>
+
+{% endblock content %}
