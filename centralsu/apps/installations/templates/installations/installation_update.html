@@ -7,9 +7,11 @@
 
 {% block content %}
 
+    {{ form.media }}
+
     <main class="installer-edit-page">
         <div class="installer-edit-card">
-            <h2 class="installer-edit-title">ویرایش نصب</h2>
+            <h2 class="installer-edit-title mb-4">ویرایش نصب</h2>
 
             <form class="installer-edit-form" method="post">
                 {% csrf_token %}
@@ -20,7 +22,7 @@
                     <div class="edit-grid-2">
                         <div class="edit-field">
                             <label>{{ form.installation_date.label }}</label>
-                            <input value="{{ instance.installation_date | to_jalali:"%d %B %Y" | to_farsi_digit }}" name="installation_date">
+                            {{ form.installation_date }}
                         </div>
                         <div class="edit-field">
                             <label>{{ form.device.label }}</label>
@@ -43,28 +45,28 @@
                     <div class="filter-list">
                         <div class="filter-item">
                             <span class="filter-label">{{ form.first_replacement_date.label }}</span>
-                            <input value="{{ instance.first_replacement_date | to_jalali:"%d %B %Y" | to_farsi_digit }}" name="first_replacement_date">
+                            {{ form.first_replacement_date }}
                             <label class="check-box">
                                 <input type="checkbox" name="first_replacement_status"> انجام شده
                             </label>
                         </div>
                         <div class="filter-item">
                             <span class="filter-label">{{ form.second_replacement_date.label }}</span>
-                            <input value="{{ instance.second_replacement_date | to_jalali:"%d %B %Y" | to_farsi_digit  }}" name="second_replacement_date">
+                            {{ form.second_replacement_date }}
                             <label class="check-box">
                                 <input type="checkbox" name="second_replacement_status"> انجام شده
                             </label>
                         </div>
                         <div class="filter-item">
                             <span class="filter-label">{{ form.third_replacement_date.label }}</span>
-                            <input value="{{ instance.third_replacement_date | to_jalali:"%d %B %Y" | to_farsi_digit  }}" name="third_replacement_date">
+                            {{ form.third_replacement_date }}
                             <label class="check-box">
                                 <input type="checkbox" name="third_replacement_status"> انجام شده
                             </label>
                         </div>
                         <div class="filter-item">
                             <span class="filter-label">{{ form.forth_replacement_date.label }}</span>
-                            <input value="{{ instance.forth_replacement_date | to_jalali:"%d %B %Y" | to_farsi_digit  }}" name="forth_replacement_date">
+                            {{ form.forth_replacement_date }}
                             <label class="check-box">
                                 <input type="checkbox" name="forth_replacement_status"> انجام شده
                             </label>
