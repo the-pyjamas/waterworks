@@ -72,7 +72,6 @@ class InstallationUpdateForm(forms.ModelForm):
             "autocomplete": "off",
         })
     )
-
     first_replacement_date = JalaliDateField(
         label=_("اولین تعویض فیلتر"),
         required=False,
@@ -81,7 +80,6 @@ class InstallationUpdateForm(forms.ModelForm):
             "autocomplete": "off",
         })
     )
-
     second_replacement_date = JalaliDateField(
         label=_("دومین تعویض فیلتر"),
         required=False,
@@ -90,7 +88,6 @@ class InstallationUpdateForm(forms.ModelForm):
             "autocomplete": "off",
         })
     )
-
     third_replacement_date = JalaliDateField(
         label=_("سومین تعویض فیلتر"),
         required=False,
@@ -99,7 +96,6 @@ class InstallationUpdateForm(forms.ModelForm):
             "autocomplete": "off",
         })
     )
-
     forth_replacement_date = JalaliDateField(
         label=_("چهارمین تعویض فیلتر"),
         required=False,
@@ -109,11 +105,11 @@ class InstallationUpdateForm(forms.ModelForm):
         })
     )
 
-    is_active = forms.BooleanField(required=False)
-    first_replacement_status = forms.BooleanField(required=False)
-    second_replacement_status = forms.BooleanField(required=False)
-    third_replacement_status = forms.BooleanField(required=False)
-    forth_replacement_status = forms.BooleanField(required=False)
+    is_active = forms.BooleanField(required=False, label=_('وضعیت فعالیت'))
+    first_replacement_status = forms.BooleanField(required=False, label=_('وضعیت'))
+    second_replacement_status = forms.BooleanField(required=False, label=_('وضعیت'))
+    third_replacement_status = forms.BooleanField(required=False, label=_('وضعیت'))
+    forth_replacement_status = forms.BooleanField(required=False, label=_('وضعیت'))
 
     class Meta:
         model = Installation
@@ -133,7 +129,6 @@ class InstallationUpdateForm(forms.ModelForm):
             "technician": _("نصاب"),
             "description": _("توضیحات"),
             "device": _("دستگاه"),
-            "is_active": _("وضعیت خدمات"),
         }
 
         widgets = {

@@ -47,28 +47,32 @@
                             <span class="filter-label">{{ form.first_replacement_date.label }}</span>
                             {{ form.first_replacement_date }}
                             <label class="check-box">
-                                <input type="checkbox" name="first_replacement_status"> انجام شده
+                                {{ form.first_replacement_status }}
+                                {{ form.first_replacement_status.label }}
                             </label>
                         </div>
                         <div class="filter-item">
                             <span class="filter-label">{{ form.second_replacement_date.label }}</span>
                             {{ form.second_replacement_date }}
                             <label class="check-box">
-                                <input type="checkbox" name="second_replacement_status"> انجام شده
+                                {{ form.second_replacement_status }}
+                                {{ form.second_replacement_status.label }}
                             </label>
                         </div>
                         <div class="filter-item">
                             <span class="filter-label">{{ form.third_replacement_date.label }}</span>
                             {{ form.third_replacement_date }}
                             <label class="check-box">
-                                <input type="checkbox" name="third_replacement_status"> انجام شده
+                                {{ form.third_replacement_status }}
+                                {{ form.third_replacement_status.label }}
                             </label>
                         </div>
                         <div class="filter-item">
                             <span class="filter-label">{{ form.forth_replacement_date.label }}</span>
                             {{ form.forth_replacement_date }}
                             <label class="check-box">
-                                <input type="checkbox" name="forth_replacement_status"> انجام شده
+                                {{ form.forth_replacement_status }}
+                                {{ form.forth_replacement_status.label }}
                             </label>
                         </div>
                     </div>
@@ -77,7 +81,8 @@
                 <!-- Status -->
                 <div class="edit-block">
                     <label class="toggle-status">
-                        <input type="checkbox" checked name="is_active"> خدمات فعال است
+                        {{ form.is_active.label }}
+                        {{ form.is_active }}
                     </label>
                 </div>
 
