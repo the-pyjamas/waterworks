@@ -1,0 +1,105 @@
+/* =========================================
+   Seller Edit Page - Fully Isolated
+   ========================================= */
+
+.seller-edit-page {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.seller-edit-card {
+    width: 100%;
+    max-width: 700px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.05);
+}
+
+/* Header */
+
+.seller-edit-header {
+    text-align: center;
+    margin-bottom: 2.2rem;
+}
+
+.seller-edit-header h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.4rem;
+}
+
+/* Grid Layout */
+
+.seller-edit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.seller-edit-full {
+    grid-column: span 2;
+}
+
+/* Fields */
+
+.seller-edit-field label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+}
+
+.seller-edit-field input,
+.seller-edit-field textarea,
+.seller-edit-field select {
+    width: 100%;
+    padding: 0.75rem 0.85rem;
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    background: var(--color-background);
+    color: var(--color-text-primary);
+    transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.seller-edit-field input:focus,
+.seller-edit-field textarea:focus,
+.seller-edit-field select:focus {
+    border-color: var(--color-primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.08);
+}
+
+/* Actions */
+
+.seller-edit-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2.5rem;
+}
+
+/* Mobile */
+
+@media (max-width: 640px) {
+
+    .seller-edit-page {
+        padding: 0;
+    }
+
+    .seller-edit-card {
+        border-radius: 0;
+        min-height: 100vh;
+        padding: 1.5rem;
+    }
+
+    .seller-edit-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .seller-edit-full {
+        grid-column: span 1;
+    }
+
+}
