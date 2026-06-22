@@ -10,7 +10,7 @@ class VendorUpdateForm(forms.ModelForm):
     only the admin user and superuser are be able to
     update a profile.
     """
-    is_active = forms.BooleanField(required=False)
+    is_active = forms.BooleanField(required=False, label=_('وضعیت فعالیت'))
 
     class Meta:
         model = Vendor
@@ -19,8 +19,7 @@ class VendorUpdateForm(forms.ModelForm):
         labels = {
             'shop_name': _('نام فروشگاه'),
             'contact_email': _('پست‌الکترونیک'),
-            'contact_phone': _('شماره تماس کسب'),
-            'is_active': _('وضعیت')
+            'contact_phone': _('شماره تماس کسب')
         }
 
         widgets = {
