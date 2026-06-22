@@ -122,11 +122,18 @@ class BaseUserSoftRegisterView(LoginRequiredMixin, View):
 
             if result['action'] == 'complete_profile':
                 request.session['user_role_registered_id'] = user.id
-                return redirect(
-                    reverse_lazy(
-                        f'{self.user_role.lower()}s:{self.user_role.lower()}-create'
+                if user.role == 'Vendor':
+                    return redirect(
+                        reverse_lazy(
+                            f'external_partners:vendor-create'
+                        )
                     )
-                )
+                else:
+                    return redirect(
+                        reverse_lazy(
+                            f'{self.user_role.lower()}s:{self.user_role.lower()}-create'
+                        )
+                    )
 
             # Keep created user-id in the session
             # to use it for creating a role object
