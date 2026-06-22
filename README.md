@@ -10,9 +10,10 @@ The Water Treatment manager project. A minimal dashboard to record necessar thin
 ![Backend](https://go-skill-icons.vercel.app/api/icons?i=python,bash,django,docker,nginx,postgres)
 
 ### Frontend and Its Tools
-![Frontend](https://go-skill-icons.vercel.app/api/icons?i=html,css,bootstrap,javascript,jquery)
+![Frontend](https://go-skill-icons.vercel.app/api/icons?i=html,css,bootstrap,javascript)
 
-> Just bought the template, no developer for it.
+
+Template developed by **@richiepagard** witht he basic frontend. I do not know about this field much.
 
 ---
 
