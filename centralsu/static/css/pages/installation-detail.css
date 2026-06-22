@@ -126,12 +126,15 @@
    ===================================================== */
 
 .installation-info-card {
-    padding: var(--space-6);
+    padding: var(--space-4);
 
     border-radius: var(--radius-lg);
     border: 1px solid var(--color-border);
 
     background: var(--color-surface);
+
+    width: 70%;
+    margin: auto;
 }
 
 
@@ -165,7 +168,8 @@
     font-size: 0.75rem;
 
     border-radius: var(--radius-pill);
-    border: 1px solid transparent;
+    /* border: 1px solid transparent; */
+    box-shadow: 0 1px 10px #16a34a;
 }
 
 /* Active status */
@@ -249,6 +253,8 @@
         grid-template-columns: repeat(2, 1fr);
     }
 
+    .installation-info-card {width: 80%;}
+
 }
 
 
@@ -266,5 +272,7 @@
     .info-grid {
         grid-template-columns: 1fr;
     }
+
+    .installation-info-card {width: 100%;}
 
 }
