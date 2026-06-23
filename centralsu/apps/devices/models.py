@@ -114,7 +114,7 @@ class Device(BaseModel):
 
 		return devices
 
-	def get_absolute_url(self) -> reverse_lazy:
+	def get_absolute_url(self):
 		"""
 		Returning back a device retrieve/detail URL.
 		Uses the reverse-lazy URL method and gets the device

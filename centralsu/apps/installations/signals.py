@@ -9,8 +9,8 @@ from apps.devices.models import Device
 @receiver(post_save, sender=Installation)
 def update_device_installed_count(sender, instance, created, **kwargs):
     """
-    Signal for updating the device installed-count that
-    created user with.
+    Signal for updating the device installed-count 
+    and stock-quantity that created installation with.
 
     sender (obj): The model class.
     instance (obj): The actual instance being saved.
@@ -20,5 +20,6 @@ def update_device_installed_count(sender, instance, created, **kwargs):
         # Updating the device installed count and save it
         Device.objects.filter(pk=instance.device_id).update(
             # Preventing the race condition
-            installed_count = F('installed_count') + 1
+            installed_count = F('installed_count') + 1,
+            stock_quantity = F('stock_quantity') - 1
         )
