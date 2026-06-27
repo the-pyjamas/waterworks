@@ -1,6 +1,6 @@
-# Yazd Linux Water Treatment
+# Water Treatment
 
-The Water Treatment manager project. A minimal dashboard to record necessar things for this brand: **Yazd Linux Water Treatment**
+The Water Treatment manager project. A minimal dashboard to record necessar things for a water treatment team.
 
 ---
 
