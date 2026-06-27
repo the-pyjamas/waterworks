@@ -6,6 +6,16 @@ The project is designed with a reusable architecture, making it suitable as a fo
 
 ---
 
+## Features
+
+- Authentication and authorization
+- Dashboard
+- User management
+- Modular application structure
+- PostgreSQL
+- Docker support
+- Responsive server-rendered interface
+
 ## Stack
 
 ### Backend and Its Tools
